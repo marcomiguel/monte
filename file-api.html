@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>File API</title>
+	
+</head>
+<body>
+	<input type="file" id="uploader">
+	<button onclick="ver();">Ver</button>
+	<script type="text/javascript">
+		// validaciones
+		// validar formato archivo
+		// validar peso archivo
+		// validar dimensiones archivo si es imagen
+		var uploader=document.getElementById('uploader');
+		
+		function ver(){
+			var fileList=uploader.files; // retorna FileList
+			console.log(fileList,'ooo');
+			for (var i = fileList.length - 1; i >= 0; i--) {
+				console.log(fileList[i],'mmm'); // retorna File
+			};
+		}
+	</script>
+</body>
+</html>
