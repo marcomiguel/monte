@@ -1,0 +1,82 @@
+<!doctype html>  
+<html lang="en" ng-app="angularTodo">  
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular TODO app</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+</head>  
+<body ng-controller="mainController">  
+    <div class="container"> 
+    <!--Cabecera-->
+        <div class="jumbotron text-center">
+            <h1>Angular TODO List <span class="label label-info">{{ todos.length }}</span></h1>
+        </div>
+        <!--Lista de Todos-->
+        <div id="todo-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <div class="checkbox" ng-repeat="todo in todos">
+                    <label>
+                        <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }} 
+                    </label>
+                 </div>
+             </div>
+         </div>
+         <!--Formulario para insertar nuevos Todo-->             
+		 <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Inserta una tarea nueva" ng-model="formData.text">
+                    </div>
+                    <button class="btn btn-primary btn-lg" ng-click="createTodo()">Añadir</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script> 
+	<script>
+		angular.module('angularTodo', []); 
+		
+		function mainController($scope, $http) {  
+    $scope.formData = {};
+
+    // Cuando se cargue la página, pide del API todos los TODOs
+    $http.get('/crud/todos')
+        .success(function(data) {
+            $scope.todos = data;
+            console.log(data)
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+
+    // Cuando se añade un nuevo TODO, manda el texto a la API
+    $scope.createTodo = function(){
+        $http.post('/crud/todos', $scope.formData)
+            .success(function(data) {
+                $scope.formData = {};
+                $scope.todos = data;
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('Error:' + data);
+            });
+    };
+
+    // Borra un TODO despues de checkearlo como acabado
+    $scope.deleteTodo = function(id) {
+        $http.delete('/crud/todos/' + id)
+            .success(function(data) {
+                $scope.todos = data;
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('Error:' + data);
+            });
+    };
+}
+	</script>
+</body>  
+</html>
