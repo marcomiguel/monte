@@ -22,6 +22,11 @@ app.set('port', port);
 var server = http.createServer(app);
 
 /**
+ * Attach socket.io
+ */
+// app.io.attach(server); 
+
+/**
  * Listen on provided port, on all network interfaces.
  */
 
@@ -88,3 +93,23 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+//socket
+var messages = [{  
+    author: "Carlos",
+    text: "Hola! que tal?"
+},{
+    author: "Pepe",
+    text: "Muy bien! y tu??"
+},{
+    author: "Paco",
+    text: "Genial!"
+}];
+ 
+var io = require('socket.io')(server);
+// require('../routes/crud')(io);
+
+io.on('connection', function(socket) {  
+    console.log('Un cliente se ha conectado');
+    socket.emit('messages', messages);
+});

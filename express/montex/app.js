@@ -11,6 +11,9 @@ var crud = require('./routes/crud');
 
 var app = express();
 
+// call socket.io to the app
+// app.io = require('socket.io')();
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

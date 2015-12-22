@@ -51,4 +51,25 @@ router.delete('/todos/:todo',function(req, res){
   });
 });
 
+
+
+// var messages = [{  
+//     author: "Carlos",
+//     text: "Hola! que tal?"
+// },{
+//     author: "Pepe",
+//     text: "Muy bien! y tu??"
+// },{
+//     author: "Paco",
+//     text: "Genial!"
+// }];
+
 module.exports = router;
+
+// module.exports = function (io) {
+//   io.on('connection', function(socket) {  
+//     console.log('Un cliente se ha conectadooooo');
+//     socket.emit('messages', messages);
+//   });
+//   return router;
+// };
