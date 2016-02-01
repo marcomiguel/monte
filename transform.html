@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Transform</title>
+	<style>
+		.trans { 
+			transform: scale(1.5);
+			transform: rotate(90deg);
+			transform: translate(50px,50px);
+			transform: skew(10deg,10deg);
+			transform: rotate(90deg) translate(100px,100px) skew(10deg,10deg) scale(1.5);					
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			document.getElementById("escudo").onclick=function(){
+				this.classList.add("trans");	
+			};
+		};
+	</script>
+</head>
+<body>
+	<img id="escudo" src="resources/img/escudo.png" alt="" style="position:relative;">
+</body>
+</html>

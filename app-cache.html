@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html manifest="montex.appcache">
+<head>
+	<meta charset="UTF-8">
+	<title>App Cache</title>
+	<script src="resources/js/main.js"></script>
+</head>
+<body>
+	<img src="resources/img/escudo.png" alt="">
+	<script>
+		function onUpdateReady() {
+			alert('found new version!');
+		}
+		window.applicationCache.addEventListener('updateready', onUpdateReady);
+		if(window.applicationCache.status === window.applicationCache.UPDATEREADY) {
+			onUpdateReady();
+		}
+	</script>
+</body>
+</html>
