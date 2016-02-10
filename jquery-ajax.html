@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn-get">GET</button>
+	<button id="btn-post">POST</button>	
+	<script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script>
+		var btnGet=document.getElementById("btn-get");
+		btnGet.addEventListener("click", getRequest);
+		// var btnPost=document.getElementById("btn-post");
+		// btnPost.addEventListener("click", postRequest);
+		
+		// GET
+		function getRequest(){
+			var response;
+			$.get('https://itunes.apple.com/search?term=oasis', function(data){
+				response=data;
+			}).error(function(){
+				console.log('error');
+			});	
+		};
+		
+	</script>
+</body>
+</html>

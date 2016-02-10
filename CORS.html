@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// Create the XHR object.
+		function createCORSRequest(){
+			var xhr = new XMLHttpRequest();
+			if("withCredentials" in xhr){
+				// XHR for Chrome/Firefox/Opera/Safari.
+				xhr.open(method, url, true);
+			}else if (typeof XDomainRequest != "undefined"){
+				// XDomainRequest for IE.	
+				xhr = new XDomainRequest();
+				xhr.open(method, url);
+			}else{
+				// CORS not supported.
+				xhr = null;
+			}
+			return xhr;
+		};
+		
+		// Make the actual CORS request.
+		function makeCORSRequest(){
+			// All the HTML5 Rocks properties support CORS.
+			var url = '';
+			
+			var xhr = createCORSRequest('GET', url);
+			if (!xhr){
+				console.log('CORS not supported');
+				return;
+			}
+		};
+		
+	</script>
+</body>
+</html>
