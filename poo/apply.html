@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var Point = function(x,y){
+			this.x = x;
+			this.y = y;
+		};
+		Point.prototype.moveBy = function(deltaX, deltaY){
+			this.x += deltaX;
+			this.y += deltaY;
+		};
+		Point.prototype.moveTo = function(otherPoint){
+			this.x = otherPoint.x;
+			this.y = otherPoint.y;
+		};
+		var p1 = new Point(100, 200);
+		p1.moveBy(10, 20);
+		var p2 = new Point(25, 50);
+		p2.moveTo(p1);
+		console.log("p2.x: " + p2.x + " p2.y: " + p2.y);
+		
+		// Generic Function
+		function SetColor(color){
+			this.color=color;
+		};
+		
+		SetColor.apply(p1, ["red"]);
+		console.log(p1.color); // red
+	</script>
+</body>
+</html>

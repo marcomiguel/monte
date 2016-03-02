@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		function Dish(options) {
+			this.name = options.name;
+			this.ingredients = options.ingredients;
+			this.garnishes = options.garnishes;
+			this.diners = options.diners;
+		};
+		
+		var cevicheSimple = new Dish({
+			name: 'Ceviche simple',
+			diners: 4
+		});
+		
+		Dish.prototype.setIngredients=function(ingredients){
+			return this.ingredients=ingredients;	
+		};
+		
+		cevicheSimple.setIngredients(['1 kilo de pescado']);
+		
+		console.log(cevicheSimple);
+	</script>
+</body>
+
+</html>

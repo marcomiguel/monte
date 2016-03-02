@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Monte</title>
+</head>
+<body>
+	<div id="result"></div>
+	<button onclick="remover();">Remover</button>
+	<script>
+		if(typeof(Storage)!=="undefined")
+			console.log('Si Storage');
+		else
+			console.log('No Storage');
+		
+		//primera forma: setItem
+		localStorage.setItem('developer', 'marcoM');
+		document.getElementById('result').innerHTML=localStorage.getItem('developer');
+		//segunda forma:
+		localStorage.developer='tresemece';
+		document.getElementById('result').innerHTML=localStorage.developer;
+	
+		function remover(){
+			localStorage.removeItem('developer');	
+		};
+		
+	</script>
+</body>
+</html>

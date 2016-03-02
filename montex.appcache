@@ -1,0 +1,12 @@
+CACHE MANIFEST
+
+CACHE:
+/
+resources/img/escudo.png
+resources/js/main.js
+
+NETWORK:
+*
+
+FALLBACK:
+/ /offline.html

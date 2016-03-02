@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		/////////////////////////
+		//// Funcion constructora || CLASE//
+		///////////////////////////
+		function Person(config){
+			this.name=config.name;
+			this.age=config.age;
+		};
+		
+		Person.prototype.getAge=function(){
+			return this.age;	
+		};
+		
+		var pendejo=new Person({name:'marco', age:30});
+		var otro_pendejo=new Person({name:'miguel', age:27});
+
+		console.log(pendejo.getAge(), otro_pendejo.getAge());
+		
+		//
+		// Accesores de clase (public, private) ENCAPSULAMIENTO
+		// Function autoejecutada
+		//
+		var retinaMacBook=(function(){
+			// Private variables
+			var RAM, addRAM;
+			RAM=4;
+			// Private method
+			addRAM=function(additionalRAM){
+				RAM+=additionalRAM;
+			};
+			return {
+				// Public variables and methods
+				USB:undefined,
+				insertUSB:function(device){
+					this.USB=device;
+				},
+				removeUSB:function(){
+					var device=this.USB;
+					this.USB=undefined;
+					return device;
+				}
+			};
+		})();
+		
+		retinaMacBook.insertUSB('myUSB');
+		console.log(retinaMacBook.USB); // publico
+		console.log(retinaMacBook.RAM); // privado
+		
+		
+	</script>
+</body>
+
+</html>

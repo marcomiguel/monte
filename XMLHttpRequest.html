@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn-geta">GET A</button>
+	<button id="btn-getb">GET B</button>
+	<button id="btn-post">POST</button>	
+	<script>
+		var btnGeta=document.getElementById("btn-geta");
+		btnGeta.addEventListener("click", function(){
+			getRequest("http://coffeemaker.herokuapp.com/twitter.json?q=ceviche");	
+		});
+		var btnGetb=document.getElementById("btn-getb");
+		btnGetb.addEventListener("click", function(){
+			getRequest("https://itunes.apple.com/search?term=oasis");	
+		});
+		var btnPost=document.getElementById("btn-post");
+		btnPost.addEventListener("click", postRequest);
+		// GET
+		function getRequest(url){
+			var xhr = new XMLHttpRequest();
+			// var url = "http://coffeemaker.herokuapp.com/twitter.json?q=ceviche";
+			// var url = "https://itunes.apple.com/search?term=oasis";
+			xhr.open("GET", url, true);
+			xhr.addEventListener('error', function(e){
+				console.log('Un error ocurrió', e);
+			});
+			xhr.addEventListener('readystatechange', function(){
+				console.log('xhr.readyState', xhr.readyState);
+				if (xhr.readyState === 4) {
+					console.log(xhr.responseText);
+				}
+			});
+			// xhr.onreadystatechange = function(){
+			// 	if(xhr.readyState === 4){
+			// 		var response = JSON.parse(xhr.responseText);
+			// 		console.log(response, 'response');
+			// 	}
+			// };
+			xhr.withCredentials = true;
+			xhr.send();
+		};
+		
+		// POST
+		function postRequest(){
+			var xhr = new XMLHttpRequest();
+			var url = 'http://coffeemaker.herokuapp.com/form';
+			xhr.open('POST', url, true);
+			xhr.addEventListener('error', function(e){
+				console.log('Un error ocurrió', e);
+			});
+			xhr.addEventListener('readystatechange', function(){
+				console.log('xhr.readyState', xhr.readyState);
+				if (xhr.readyState === 4) {
+					console.log(xhr.responseText);
+				}
+			});
+			var data = new FormData();
+			data.append('nombre', 'valor');
+			xhr.send(data);
+		};
+		
+		// function getResponse(request){
+		// 	var type=request.getResponseHeader("Content-Type");
+		// 	switch(type){
+		// 		case "text/xml":
+		// 			return request.responseXML;
+		// 		case "application/json":
+		// 			return JSON.parse(request.responseText);
+		// 		default:
+		// 			return request.responseText;
+		// 	}
+		// };
+	</script>
+</body>
+</html>

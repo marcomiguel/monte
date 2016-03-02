@@ -11,6 +11,9 @@ var crud = require('./routes/crud');
 
 var app = express();
 
+// call socket.io to the app
+// app.io = require('socket.io')();
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -27,6 +30,12 @@ app.use('/', routes);
 app.use('/users', users);
 // app.use('/crud', crud);
 app.use('/crud', crud);
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
