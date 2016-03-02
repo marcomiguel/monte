@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Inicio</title>
+	<style>
+		#banner {
+			width: 100%;
+			height: 100px;
+			background-color: yellowgreen;
+			overflow: hidden;
+		}
+		
+		#iframe {
+			width: 100%;
+			height: 100px;
+		}
+		
+		#demas {
+			width: 100%;
+			height: 500px;
+			background-color: blue;
+			overflow: hidden;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="banner">
+		<iframe src="iframe.html" frameborder="0" id="iframe" name="iframe"></iframe>
+	</div>
+	<div id="demas">
+		lalala
+	</div>
+	<script>
+		var theFrame = document.getElementsByTagName("iframe")[0];
+		console.log(theFrame, 'f');
+		var theFrameDocument = theFrame.contentDocument || theFrame.contentWindow.document;
+		console.log(theFrameDocument, 'fd');
+		var button = theFrameDocument.getElementById("other");
+		
+		// button.addEventListener('click', function(){
+			
+		// });
+		
+		function abc (){
+			console.log('abc');
+		}
+	</script>
+</body>
+
+</html>

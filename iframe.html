@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>iframe</title>
+	<style>
+		#wrapper{
+			background-color: red;
+			width: 960px;
+			height: 100px;
+			margin: 0 auto;
+			position: relative;
+		}
+		#plus{
+			position: absolute;
+			background-color: indigo;
+			left: 0;
+			top: 0;
+		}
+		#minus{
+			position: absolute;
+			background-color: indigo;
+			right: 0;
+			top: 0;
+		}
+		#other{
+			position: absolute;
+			background-color: indigo;
+			right: 30%;
+			top: 0;
+		}
+		#otheru{
+			position: absolute;
+			background-color: indigo;
+			right: 60%;
+			top: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="plus">+++++++++++</div>
+		<div id="minus">-----------</div>
+		<div id="other">oooooooooooooo</div>
+		<div id="otheru">uuuuuuuuuuuuuu</div>
+	</div>
+	<script>
+		var plus = document.getElementById('plus');
+		var minus = document.getElementById('minus');
+		var wrapper = document.getElementById('wrapper');
+		var otheru = document.getElementById('otheru');
+		plus.addEventListener('click', function(){
+			wrapper.style.height = "500px";
+			parent.document.getElementById('banner').style.height = "500px";
+			parent.document.getElementById('iframe').style.height = "500px";
+		});
+		minus.addEventListener('click', function(){
+			wrapper.style.height = "100px";
+			parent.document.getElementById('banner').style.height = "100px";
+			parent.document.getElementById('iframe').style.height = "100px";
+		});
+		otheru.addEventListener('click', function(){
+			parent.abc();
+		});
+	</script>
+</body>
+</html>
