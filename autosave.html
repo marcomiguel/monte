@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Autosave</title>
+</head>
+<body>
+	<form action="">
+		<input type="text" id="txtTexto" value="">
+		<button id="btnTest">Test</button>
+	</form>
+	<script>
+		var txtTexto = document.getElementById("txtTexto");
+		var btnTest = document.getElementById("btnTest");
+		btnTest.addEventListener('click', function(e){
+			e.preventDefault();	
+		});
+		
+		var setear = function(){
+			console.log(localStorage.form, 'ggg');
+			var _json = JSON.parse(localStorage.form);
+			txtTexto.value = _json.texto;	
+		};
+		
+		var save = function(json){
+			localStorage.form = JSON.stringify(json);
+		};
+		
+		setear();
+		
+		setInterval(function(){
+			var formToSave = {
+				texto: txtTexto.value
+			};
+			save(formToSave);
+		}, 5000);
+		
+	</script>
+</body>
+</html>
