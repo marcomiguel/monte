@@ -1,0 +1,127 @@
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?>
+<!--Head-->
+{{ partial('partials/head/index') }}
+<body id='seccion' class="{{model.slug[0]}} {{model.slug[1]}}">
+<div id="contenedor_div">
+    <!--Header-->
+    {{ partial('partials/header/index') }}
+    <?php if($this->model->torneo=='peru') :?>
+<div class="wrap_bannerclick">
+<style type="text/css">body { background: #e3e3e3 url("http://ads.us.e-planning.net/eb/3/15cd9/02994db1f63a8e4d?o=i&rnd=$RANDOM") no-repeat center top fixed } </style>
+<div class="wrap_bannerclick">
+<a class="banner_left" target="_blank" href="http://ads.us.e-planning.net/ei/3/15cd9/02994db1f63a8e4d?it=i&rnd=$RANDOM"></a>
+<a class="banner_right" target="_blank" href="http://ads.us.e-planning.net/ei/3/15cd9/02994db1f63a8e4d?it=i&rnd=$RANDOM"></a>
+</div>
+</div>
+<?php endif;?>
+    <main class="wrapper">
+      {{ partial('partials/ads/top2') }}
+      {{ partial('partials/resultados/menu/campeonato_todos') }}
+     <section class="body detail">
+        <section class="content news-flow">
+          <!--News cards-->
+          <div class="grid">
+
+            <div class="col-2-2">
+
+             <section class="box">
+
+               <div class="box-inner">
+                  <section class="breadcrumb-social">
+                  {{ partial('partials/breadcrum/index' ,['elements':[ model.seccion ]]) }}
+                  {{ partial('partials/resultados/menu/social') }}
+                  </section>
+                </div>
+
+                <div class="wrapper-blocks">
+                 <section class="headboard-blocks">
+                    <div class="title-blocks">
+                     <span>{{model.seccion}}</span>
+                      <h2>{{model.categoria}}
+
+                        <div class="menu-blocks greedy-nav">
+                          <button>
+                            <div class="hamburger"></div>
+                          </button>
+                          <ul class="visible-links">
+                            <li><a href="{{host}}/{{model.slug[0]}}/{{model.slug[1]}}">Noticias</a></li>
+                            <li><a href="{{host}}/resultados/fixture/{{model.torneo}}"  <?php if($this->model->package=='fixture' ) :?> class="active" <?php endif;?> >Fixture</a></li>
+                            <li> <a href="{{host}}/resultados/posiciones/{{model.torneo}}" <?php if($this->model->package=='posiciones' ) :?> class="active" <?php endif;?>>Posiciones</a></li>
+                            <li><a href="{{host}}/resultados/goleadores/{{model.torneo}}" <?php if($this->model->package=='goleadores' ) :?> class="active" <?php endif;?>>Goleadores</a></li>
+                          </ul>
+                          <ul class="hidden-links hidden"></ul>
+                        </div>
+                      </h2>
+                    </div>
+                 </section>
+                <section class="body-blocks">
+                    <div class="content-blocks fixture">
+    
+                      <div class="wrap-tabs">
+                       {{ partial('partials/resultados/menu/fases') }}
+                       {{ partial('partials/resultados/menu/fechas') }}
+                        <div class="content-tab">
+                          <div id="grupoa" class="active item-tab">
+                            <div class="wrapper-table">
+                              <div class="caption-table-duo">
+                                <h4>Encuentros</h4>
+                              </div>
+                              <div class="wrapper-table-duo">
+                          <div class="wrapper-table-duo">
+                        <?php foreach (Rpp\Services\Get\Resultados::get_fecha($this->model->torneo)->{$this->model->fase}->{$this->model->fecha} as $match ) :?>
+                          <!---{{match}}-->
+                          {{ partial('partials/resultados/fixture' ,['match': match ] ) }}
+                        <?php endforeach; ?>
+                          </div>
+                      
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+    
+                        <section class="ads-full">
+                          <section class="ads-sidebar"></section>
+                          <section class="ads-sidebar"></section>
+                        </section>
+      
+                        {{ partial('partials/resultados/social/conectate') }}
+
+                      </div>
+                    </div>
+                  </section>
+                 
+                </div>
+
+
+
+
+              </section>
+         </div>
+        </div>
+
+        </section>
+        {{ partial('partials/nota/sidebar/index' , [] ) }}
+
+      </section>
+
+    </main>
+    <!--Footer-->
+    {{ partial('partials/footer/index' , [] , trackurl) }}
+    <div id="pad-swipe-nav"></div>
+    {{ partial('partials/footer/scripts') }}
+    <script>
+    $(function(){
+      $('#torneo_select').on('change', function () {
+          var url = $(this).val(); // get selected value
+          if (url) { // require a URL
+              window.location = url; // redirect
+          }
+          return false;
+      });
+    });
+    </script>
+    {{ partial('partials/footer/tracking') }}
+    </div>
+  </body>

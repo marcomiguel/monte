@@ -1,0 +1,396 @@
+/* Marco Montenegro */
+@font-face {
+    font-family: 'trasandina_boldbold';
+    src: url('../fonts/tipotype_-_trasandinabold-webfont.eot');
+    src: url('../fonts/tipotype_-_trasandinabold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/tipotype_-_trasandinabold-webfont.woff2') format('woff2'),
+         url('../fonts/tipotype_-_trasandinabold-webfont.woff') format('woff'),
+         url('../fonts/tipotype_-_trasandinabold-webfont.ttf') format('truetype'),
+         url('../fonts/tipotype_-_trasandinabold-webfont.svg#trasandina_boldbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'trasandina_mediummedium';
+    src: url('../fonts/tipotype_-_trasandinamedium-webfont.eot');
+    src: url('../fonts/tipotype_-_trasandinamedium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/tipotype_-_trasandinamedium-webfont.woff2') format('woff2'),
+         url('../fonts/tipotype_-_trasandinamedium-webfont.woff') format('woff'),
+         url('../fonts/tipotype_-_trasandinamedium-webfont.ttf') format('truetype'),
+         url('../fonts/tipotype_-_trasandinamedium-webfont.svg#trasandina_mediummedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'trasandina_regularregular';
+    src: url('../fonts/tipotype_-_trasandinaregular-webfont.eot');
+    src: url('../fonts/tipotype_-_trasandinaregular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/tipotype_-_trasandinaregular-webfont.woff2') format('woff2'),
+         url('../fonts/tipotype_-_trasandinaregular-webfont.woff') format('woff'),
+         url('../fonts/tipotype_-_trasandinaregular-webfont.ttf') format('truetype'),
+         url('../fonts/tipotype_-_trasandinaregular-webfont.svg#trasandina_regularregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.debate-box { background: #365fab url(../img/bg_debate.jpg?v=1) no-repeat center center; background-size: cover; padding: 14px 11px; color: #fff; font-family: 'trasandina_regularregular'; margin-bottom: 30px; }
+.debate-box .debate-box-top { border-bottom: 1px solid #6b8cc7; padding-bottom: 10px; }
+.debate-box .debate-box-top .breadcrumb { display: inline-block; vertical-align: middle; }
+.debate-box .debate-box-top .breadcrumb ul li { font-weight: normal; font-size: 10px; line-height: 14px; }
+.debate-box .debate-box-top .breadcrumb ul li:before { font-weight: normal; font-size: 10px; color:#000; margin-right: 4px; }
+.debate-box .debate-box-top .breadcrumb ul li a { color: #fff; text-transform: uppercase; }
+.debate-box .debate-box-top .breadcrumb ul li a.this { color: #ead535; }
+.debate-box .debate-box-perfil { width: 200px; margin: 0 auto; text-transform: uppercase; text-align: center; }
+.debate-box .img-candidato { width: 89px; height: 89px; border-radius: 50%; /*border: 3px solid #5f93de;*/ margin: 0 auto; margin-top: 30px; margin-bottom: 6px; background-image: url(../img/candidatos_sprite.png); background-repeat: no-repeat; }
+.debate-box .img-candidato.alfredo-barnechea { background-position: 0 0; }
+.debate-box .img-candidato.keiko-fujimori { background-position: -100px 0; }
+.debate-box .img-candidato.pedro-pablo-kuczynski { background-position: -200px 0; }
+.debate-box .img-candidato.miguel-hilario { background-position: -300px 0; }
+.debate-box .img-candidato.gregorio-santos { background-position: -400px 0; }
+.debate-box .img-candidato.veronika-mendoza { background-position: -500px 0; }
+.debate-box .img-candidato.fernando-olivera { background-position: -600px 0; }
+.debate-box .img-candidato.alejandro-toledo { background-position: -700px 0; }
+.debate-box .img-candidato.francisco-diez-canseco { background-position: 0 -100px; }
+.debate-box .img-candidato.antero-florez-araoz { background-position: -100px -100px; }
+.debate-box .img-candidato.alan-garcia { background-position: -200px -100px; }
+.debate-box .img-candidato.yehude-simon { background-position: -300px -100px; }
+.debate-box .img-candidato.vladimir-cerron { background-position: -400px -100px; }
+.debate-box .img-candidato.daniel-urresti { background-position: -500px -100px; }
+.debate-box .img-candidato.nano-guerra-garcia { background-position: -600px -100px; }
+.debate-box .debate-box-perfil .nombre-candidato { font-size: 36px; }
+.debate-box .debate-box-perfil .partido-candidato { font-size: 10px; line-height: 6px; }
+.debate-box .debate-sub-nav { width: 300px; margin: 27px auto 30px auto; text-align: center; border-bottom: 1px solid #6b8cc7; padding-bottom: 10px; }
+.debate-box .debate-sub-nav .nav { margin: 0; }
+.debate-box .debate-sub-nav .nav li { margin: 0 17px; display: inline-block; }
+.debate-box .debate-sub-nav .nav li a { color: #fff; text-transform: uppercase; font-size: 12px; font-weight: normal; padding-bottom: 10px; }
+.debate-box .debate-sub-nav .nav li a.active,
+.debate-box .debate-sub-nav .nav li a:hover { border-bottom: 2px solid #ead535; text-decoration: none; color: #ead535; }
+.debate-box .debate-datos { width: 230px; margin: 0 auto; text-align: center; border-bottom: 1px solid #6b8cc7; padding-bottom: 25px; margin-bottom: 25px; }
+.debate-box .debate-datos h2 { color: #fff; font-size: 17px; font-weight: normal; text-transform: uppercase; font-family: 'trasandina_mediummedium'; margin-bottom: 25px; }
+.debate-box .debate-datos .debate-votacion { overflow: hidden; }
+.debate-box .debate-datos .debate-votacion .votacion-likes { float: left; width: 50%; }
+.debate-box .debate-datos .debate-votacion .votacion-likes span { color: #6b8cc7; text-transform: uppercase; font-size: 14px; }
+.debate-box .debate-datos .debate-votacion .votacion-likes .likes { background-image: url(../img/sprite-icons-debate.png); background-repeat: no-repeat; width: 90px; height: 90px; margin: 8px auto 0px auto; }
+.debate-box .debate-datos .debate-votacion .votacion-likes .likes a { display: block; width: 100%; height: 100%; }
+.debate-box .debate-datos .debate-votacion .votacion-likes .likes.is-like { background-position: -10px -10px; }
+.debate-box .debate-datos .debate-votacion .votacion-likes .likes.is-dislike { background-position: -110px -10px; }
+.debate-box .debate-share { width: 230px; margin: 0 auto 25px auto; position: relative; }
+.debate-box .debate-share > a { font-size: 18px; color: #fff; text-transform: uppercase; border: 1px solid #fff; width: 230px; display: block; text-align: center; border-radius: 20px; padding: 6px 0; }
+.debate-box .debate-share > a:hover { text-decoration: none; background-color: #26446c; border-color: #26446c; }
+.debate-box .debate-gracias { display: none; width: 230px; border-bottom: 1px solid #6b8cc7; padding-bottom: 25px; margin: 0 auto; margin-bottom: 25px; }
+.debate-box .debate-gracias p { font-family: 'trasandina_mediummedium'; font-size: 18px; color: #fff; text-align: center; text-transform: uppercase; }
+.debate-box .debate-gracias p a { font-size: 14px; color: #ead535; text-align: center; }
+.debate-box .debate-gracias .img-gracias { background-image: url(../img/sprite-icons-debate.png); background-repeat: no-repeat; width: 90px; height: 90px; background-position: -210px -7px; margin: 0 auto; margin-bottom: 30px;}
+
+.debate-box .debate-share > a + .popover {
+  background-color: #26446c;
+  border-radius: 20px;
+  bottom: 67px;
+  color: #fff;
+  display: none;
+  font-size: 12px;
+  left: 0px;
+  padding: 10px 0px 20px 0;
+  position: absolute;
+  width: 250px;
+  z-index: 4;
+  text-align: center;
+  text-transform: uppercase;
+}
+.debate-box .debate-share > a + .popover:before {
+  border-top: 26px solid #26446c;
+  border-right: 13px solid transparent;
+  border-left: 13px solid transparent;
+  bottom: -26px;
+  content: '';
+  display: block;
+  left: 50%;
+  margin-left: -7px;
+  position: absolute;
+}
+
+.debate-box .debate-share:hover .popover {
+  display: block;
+  -webkit-animation: fade-in .3s linear 1, move-up .3s linear 1;
+  -moz-animation: fade-in .3s linear 1, move-up .3s linear 1;
+  -ms-animation: fade-in .3s linear 1, move-up .3s linear 1;
+}
+
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-ms-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes move-up {
+  from {
+    bottom: 30px;
+  }
+  to {
+    bottom: 42px;
+  }
+}
+@-moz-keyframes move-up {
+  from {
+    bottom: 30px;
+  }
+  to {
+    bottom: 42px;
+  }
+}
+@-ms-keyframes move-up {
+  from {
+    bottom: 30px;
+  }
+  to {
+    bottom: 42px;
+  }
+}
+
+.debate-box .debate-share > a + .popover .social ul { width: 150px; margin: 10px auto; }
+.debate-box .debate-share > a + .popover .social ul li a { font-size: 2rem; width: 40px; height: 40px; color: #fff; line-height: 1.50; }
+
+/* resultaos */
+#debate-resultados { padding: 0; margin-bottom: 40px; }
+#debate-resultados .debate-box-top { background-color: #3675ad; padding: 8px 17px; overflow: hidden;}
+#debate-resultados .debate-box-top .breadcrumb { border: none; padding: 0; }
+.vp-share-perfil { display: inline-block; float: right; }
+.vp-share-perfil .vp-fb-boton,
+.vp-share-perfil .vp-tw-boton { display: inline-block; vertical-align: middle; }
+.vp-share-perfil .vp-tw-boton { margin-top: 4px; }
+#debate-resultados .debate-candidatos { }
+#debate-resultados .debate-candidatos .debate-candidato { border-bottom: 1px solid #fff; overflow: hidden; display: table;}
+#debate-resultados .debate-candidatos .debate-candidato:last-child { border:none; }
+#debate-resultados .debate-candidatos .candidato-datos { width:345px; background-color: #22629a; display: table-cell; padding: 7px 11px; }
+#debate-resultados .debate-candidatos .candidato-datos .posicion { width: 30px; height: 30px; border-radius: 50%; background-color: #5f93de; color: #fff; font-size:18px; font-family: 'trasandina_mediummedium'; text-align: center; display: inline-block; vertical-align: middle; }
+#debate-resultados .debate-candidatos .candidato-datos .el-candidato { display: inline-block; vertical-align: middle; text-transform: uppercase; }
+#debate-resultados .debate-candidatos .candidato-datos .el-candidato .nombre-candidato { font-size: 18px; font-family: 'trasandina_mediummedium'; }
+#debate-resultados .debate-candidatos .candidato-datos .el-candidato .partido-candidato { font-size: 10px; font-family: 'trasandina_mediummedium'; }
+#debate-resultados .debate-candidatos .candidato-resultados { width:365px; text-align: center; }
+#debate-resultados .debate-candidatos .candidato-resultados .likes-mini { background-image: url(../img/sprite-icons-debate.png); background-repeat: no-repeat; width: 42px; height: 42px; display:inline-block; vertical-align: middle; margin-left: 10px; }
+#debate-resultados .debate-candidatos .candidato-resultados .likes-mini a { width: 100%; height: 100%; display: block; }
+#debate-resultados .debate-candidatos .candidato-resultados .likes-mini.is-like-mini { background-position: -10px -128px; }
+#debate-resultados .debate-candidatos .candidato-resultados .likes-mini.is-dislike-mini { background-position: -61px -128px; }
+#debate-resultados .debate-candidatos .candidato-resultados .candidato-likes { width: 48%; display: inline-block; }
+#debate-resultados .debate-candidatos .candidato-resultados .candidato-likes .percent-like,
+#debate-resultados .debate-candidatos .candidato-resultados .candidato-likes .percent-dislike { display: inline-block; vertical-align: middle; margin-left: 10px; margin-top: 0px; }
+#debate-resultados .debate-candidatos .candidato-resultados .candidato-likes .percent-like span,
+#debate-resultados .debate-candidatos .candidato-resultados .candidato-likes .percent-dislike span { color: #fff; font-size: 14px; line-height: 14px; text-transform: uppercase; font-family: 'trasandina_mediummedium'; }
+#debate-resultados .debate-candidatos .candidato-resultados .candidato-likes .percent-like .number { color: #2fe580; font-size: 28px; line-height: 28px; text-transform: uppercase; font-family: 'trasandina_mediummedium'; text-align: right; }
+#debate-resultados .debate-candidatos .candidato-resultados .candidato-likes .percent-like .votes { color: #2fe580; font-size: 14px; line-height: 14px; font-family: 'trasandina_mediummedium'; text-align: right; }
+#debate-resultados .debate-candidatos .candidato-resultados .candidato-likes .percent-dislike .number { color: #ff808b; font-size: 28px; line-height: 28px; text-transform: uppercase; font-family: 'trasandina_mediummedium'; text-align: right; }
+#debate-resultados .debate-candidatos .candidato-resultados .candidato-likes .percent-dislike .votes { color: #ff808b; font-size: 14px; line-height: 14px; font-family: 'trasandina_mediummedium'; text-align: right; }
+#debate-resultados .debate-candidatos .candidato-resultados .line { width: 1px; height: 47px; display: inline-block; background-color: #6b8cc7; vertical-align: middle; }
+
+#debate-resultados .img-candidato { margin:0 16px 0 31px; display: inline-block; vertical-align: middle; }
+#debate-resultados .icon-up { margin-left: 5px; font-size: 10px; }
+#debate-resultados .icon-up:before { content: '\118'; }
+
+#debate-resultados .debate-box-bottom { background-color: #2e4e85; padding: 18px 17px; }
+
+/* widget */
+#widget-debate { /* background-color: #005faf; */ background-color: #146fbb; padding: 10px;margin-bottom: 15px; }
+#widget-debate .wd-row { clear: both; overflow: hidden; }
+#widget-debate .wd-row .wd-col { float: left; background-color: #005faf; }
+#widget-debate .wd-row .wd-col.col-a { margin-right: 10px; width: 450px; }
+#widget-debate .wd-row .wd-col .col-a-top { padding: 6px 8px; }
+#widget-debate .wd-row .wd-col.col-b { width: 540px; padding: 6px 8px; }
+#widget-debate .wd-row .wd-col .envivo { background-color: #ce2123; font-size: 1.4rem; padding: 3px 0; margin: 0; color: #000; text-transform: uppercase; text-decoration: none; font-size: 16px; font-family: 'trasandina_mediummedium'; }
+#widget-debate .wd-row .wd-col .envivo .ico { width: 24px; height: 24px; display: inline-block; vertical-align: bottom; margin: 0 5px; color: #ffe001; }
+#widget-debate .wd-row .wd-col .envivo .titu { margin-right: 2px; color: #fff; font-family: 'trasandina_regularregular'; font-size: 18px; }
+#widget-debate .wd-row .wd-col.col-a .hashtag { color: #fff; font-size: 18px; font-family: 'trasandina_mediummedium'; margin-left: 10px; }
+#widget-debate .wd-row .wd-col.col-b .hashtag { color: #fff; font-size: 18px; font-family: 'trasandina_mediummedium'; margin-left: 6px; }
+#widget-debate .wd-row .wd-col .mam { color: #ffe001; font-size: 18px; font-family: 'trasandina_regularregular'; }
+#widget-debate #video { width: 450px; height: 255px; background-color: #000; }
+#widget-debate #opinion-candidato { border-bottom: 1px solid #3994e1; padding-bottom: 10px; margin-bottom: 20px; }
+#widget-debate #opinion-candidato blockquote { color: #3994e1; font-size: 24px; font-family: 'trasandina_mediummedium'; margin: 15px 0 0 0; padding: 0; color: #fff; line-height: 30px; }
+#widget-debate #opinion-candidato address { color: #fff; font-size: 16px; text-align: right; font-family: 'trasandina_mediummedium'; margin-top: 5px; margin-right: 3px; }
+#widget-debate #opinion-user { }
+#widget-debate #opinion-user .img-user { width: 75px; height: 75px; border-radius: 50%; border: 3px solid #3994e1; position: relative; display: inline-block; vertical-align: top; }
+#widget-debate #opinion-user .icon-facebook { width: 24px; height: 24px; border-radius: 50%; background-color: #3994e1; position: absolute; right: -5px; top: -3px; }
+#widget-debate #opinion-user .icon-facebook:before { text-align: center; display: block; margin-top: 4px; color: #fff; }
+#widget-debate #opinion-user .social-user { display: inline-block; width: 320px; color: #fff;  margin-left: 13px; line-height: 16px; font-size: 15px; margin-bottom: 10px; }
+#widget-debate #opinion-user .social-user blockquote { margin: 0; font-family: arial; line-height: 18px; font-size: 14px; }
+#widget-debate #opinion-user .social-user address { font-style: normal; font-weight: bold; font-size: 15px; line-height: 20px; }
+#widget-debate .more { color: #ffe001; font-family: 'trasandina_mediummedium'; font-size: 14px; }
+#widget-debate .valora { font-size: 18px; }
+#widget-debate #results { background-color: #005faf; margin-top: 5px;position: relative; }
+#widget-debate #results .ver-r { float: right; }
+#widget-debate #results .ver-r a { color: #ffe001; }
+#widget-debate #results .results-top { padding: 10px; }
+#widget-debate #results .wd-candidato { background-color: #fff; padding: 25px 8px; /* 15px 8px 25px 8px */ }
+#widget-debate #results .wd-candidato figure { border-right: 1px solid #598dca; }
+/*#widget-debate #results .wd-candidato:first-child figure { border-left: 1px solid #598dca; }*/
+/*#widget-debate #results .wd-candidato.active,*/
+#widget-debate #results .wd-candidato:hover { background-color: #faf1b1; padding: 25px 8px; margin-top: -10px; -webkit-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.75); -moz-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.75); box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.75); z-index: 9; }
+#widget-debate #results .wd-candidato.active figure,
+/*#widget-debate #results .wd-candidato:nth-child(4) figure*/
+#widget-debate #results .wd-candidato:hover figure { border: none; }
+/*#widget-debate #results .line { width: 1px; height: 47px; display: inline-block; background-color: #598dca; vertical-align: middle; }*/
+#widget-debate #results .img-candidato { width: 61px; height: 61px; border-radius: 50%; margin: 0 auto; background-image: url(../img/candidatos_sprite_small.png); background-repeat: no-repeat; display: inline-block; vertical-align: middle; margin-right: 15px; }
+#widget-debate #results .img-candidato.alfredo-barnechea { background-position: 0 0; }
+#widget-debate #results .img-candidato.keiko-fujimori { background-position: -70px 0; }
+#widget-debate #results .img-candidato.pedro-pablo-kuczynski { background-position: -140px 0; }
+#widget-debate #results .img-candidato.miguel-hilario { background-position: -210px 0; }
+#widget-debate #results .img-candidato.gregorio-santos { background-position: -280px 0; }
+#widget-debate #results .img-candidato.veronika-mendoza { background-position: -350px 0; }
+#widget-debate #results .img-candidato.fernando-olivera { background-position: -420px 0; }
+#widget-debate #results .img-candidato.alejandro-toledo { background-position: -490px 0; }
+#widget-debate #results .img-candidato.francisco-diez-canseco { background-position: 0 -70px; }
+#widget-debate #results .img-candidato.antero-florez-araoz { background-position: -70px -70px; }
+#widget-debate #results .img-candidato.alan-garcia { background-position: -140px -70px; }
+#widget-debate #results .img-candidato.yehude-simon { background-position: -210px -70px; }
+#widget-debate #results .img-candidato.vladimir-cerron { background-position: -280px -70px; }
+#widget-debate #results .img-candidato.daniel-urresti { background-position: -350px -70px; }
+#widget-debate #results .img-candidato.nano-guerra-garcia { background-position: -420px -70px; }
+#widget-debate #results .votaciones-candidato { display: inline-block; vertical-align: middle; }
+#widget-debate #results .votaciones-candidato .el-candidato .nombre-candidato { color: #000; font-family: 'trasandina_mediummedium'; font-size: 18px; text-transform: uppercase; line-height: 24px; }
+#widget-debate #results .votaciones-candidato .el-candidato .nombre-candidato a { color: #000; }
+#widget-debate #results .votaciones-candidato .el-candidato .partido-candidato { color: #000; font-family: 'trasandina_mediummedium'; font-size: 10px; text-transform: uppercase; line-height: 14px; }
+
+#widget-debate #results .gracias-voto {
+    display: none;
+    background-color: #faf1b1;
+    padding: 10px 0px;
+    -webkit-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.75);
+    z-index: 10;
+    top: 0px;
+    width: 260px;
+    position: absolute;
+    left: 50%;
+    
+}
+#widget-debate #results .gracias-voto .img-gracias { background-image: url(../img/sprite-icons-debate.png); background-repeat: no-repeat; width: 90px; height: 90px; background-position: -210px -7px; margin: 0; display: inline-block; transform: scale(0.75); vertical-align: middle; }
+#widget-debate #results .gracias-voto .txt-gracias { display: inline-block; text-transform: uppercase; vertical-align: middle; margin-left: -5px; color: #000; font-family: 'trasandina_mediummedium'; font-size: 16px; text-align: center; }
+#widget-debate #results .gracias-voto .txt-gracias a { font-size: 14px; }
+
+
+#widget-debate .debate-votacion { margin-top: 8px; }
+#widget-debate .debate-votacion .votacion-likes { display: inline-block; margin-right: 5px; }
+#widget-debate .debate-votacion .votacion-likes .percent-like,
+#widget-debate .debate-votacion .votacion-likes .percent-dislike { display: inline-block; vertical-align: middle; }
+#widget-debate .debate-votacion .votacion-likes .percent-like .number { color: #2fe580; font-size: 18px; line-height: 18px; text-transform: uppercase; font-family: 'trasandina_mediummedium'; }
+#widget-debate .debate-votacion .votacion-likes .percent-dislike .number { color: #ff808b; font-size: 18px; line-height: 18px; text-transform: uppercase; font-family: 'trasandina_mediummedium'; }
+
+
+#widget-debate .likes-mini { background-image: url(../img/sprite-icons-debate.png); background-repeat: no-repeat; width: 42px; height: 42px; display:inline-block; vertical-align: middle; }
+#widget-debate .likes-mini-small { background-image: url(../img/sprite-icons-debate.png); background-repeat: no-repeat; width: 25px; height: 25px; display:inline-block; vertical-align: middle; }
+#widget-debate .likes-mini-small a { width: 100%; height: 100%; display: block; }
+#widget-debate .likes-mini.is-like-mini { background-position: -10px -128px; }
+#widget-debate .likes-mini.is-dislike-mini { background-position: -61px -128px; }
+#widget-debate .likes-mini-small.is-like-mini { background-position: -110px -128px; }
+#widget-debate .likes-mini-small.is-dislike-mini { background-position: -210px -128px; }
+
+#widget-debate .body-inner-mam, #widget-debate .body-inner-video { background-color: white; width: 100%; height: 255px; overflow-y: scroll; overflow-x: hidden; }
+#widget-debate .body-inner-mam { margin-top: 5px; }
+/* slide */
+#widget-debate #results .x-slide { padding: 0 30px; background-color: #fff; }
+#widget-debate #results .x-slide .x-prev { padding: 0 30px; }
+#widget-debate #results .x-slide .x-prev span,
+#widget-debate #results .x-slide .x-next span { opacity: 1; font-size: 16px; color: #ce2123; }
+#widget-debate #results .x-slide .x-prev span.icon-prev,
+#widget-debate #results .x-slide .x-next span.icon-prev { left: 1rem; }
+#widget-debate #results .x-slide .x-container { padding: 5px 0; }
+
+#widget-debate #video figcaption{display: none;}
+@media only screen and (max-width: 1040px) {
+  #widget-debate .wd-row .wd-col.col-a{width: 49%;margin-right: 2%;}
+  #widget-debate .wd-row .wd-col.col-b{width: 49%;box-sizing: border-box;}
+  #widget-debate #video{width: 100%;}
+  #widget-debate #results .votaciones-candidato{display: block;}
+  #widget-debate #results .wd-candidato figure{padding-left: 20px; box-sizing: border-box;}
+}
+
+
+@media only screen and (max-width: 480px) {
+    /* Resultados */
+    #widget-debate #video{height: auto;}
+    #debate-resultados { width: 100%; }
+    #debate-resultados .debate-candidatos .candidato-resultados .candidato-likes { display: block; width: 100%; }
+    #debate-resultados .debate-candidatos .candidato-resultados .line { width: 180px; height: 1px; }
+    #debate-resultados .debate-candidatos .debate-candidato { width: 100%; border-bottom: 1px solid #6b8cc7; }
+    #debate-resultados .debate-candidatos .candidato-datos { width: 122px; text-align: center; }
+    #debate-resultados .debate-candidatos .candidato-datos .posicion { float: left; }
+    #debate-resultados .debate-candidatos .candidato-resultados { width: 198px; vertical-align: middle; display: table-cell; }
+ 
+    /* widget */
+    #widget-debate { width: 100%; }
+    #widget-debate .wd-row .wd-col.col-a { width: 100%; overflow: hidden;padding-bottom: 5px; }
+    #widget-debate .wd-row .wd-col.col-b { width: 100%; }
+    #widget-debate #video { width: 100%; }
+    #widget-debate #results .ver-r { display:none; }
+    #widget-debate #results .x-slide { padding: 0 50px; }
+    #widget-debate #results .wd-candidato figure { border: none; }
+}
+
+@media only screen and (max-width: 768px){
+  /* widget */
+    #widget-debate .wd-row .wd-col.col-a { width: 100%; overflow: hidden; }
+    #widget-debate #video { width: 100%; }
+    #widget-debate .wd-row .wd-col.col-b { width: 100%; }
+    #widget-debate #results .wd-candidato figure { border: none; }
+}
+
+
+
+/* SAM */
+#debate-resultados .likes-mini { cursor:pointer; }
+#debate-resultados .likes-mini.disabled { cursor: not-allowed; }
+#widget-debate #results .gracias-voto.hideme{
+
+  -moz-animation: cssAnimation 0s ease-in 5s forwards;
+  /* Firefox */
+  -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+  /* Safari and Chrome */
+  -o-animation: cssAnimation 0s ease-in 5s forwards;
+  /* Opera */
+  animation: cssAnimation 0s ease-in 5s forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+@keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+        -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    }
+}
+@-webkit-keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        visibility:hidden;
+        -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    }
+}
+/* FIN SAM */

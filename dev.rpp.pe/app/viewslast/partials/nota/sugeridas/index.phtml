@@ -1,0 +1,30 @@
+<div class="related-news box-mod">
+    <div class="box-header">
+        <div class="title">Más en {{getNode(model.nid).categoria['nombre']}}</div>
+    </div>
+    <div class="row columns-3">
+        <?php $e=0 ; $init=3 ; foreach ( \Rpp\Services\Get\Flow::seccion($this->model->slug_seccion[1].'/'.$this->model->slug_seccion[2],7) as  $item): ?>
+            <?php if($item->_id == $this->model->nid):?>
+                <?php $init = 4 ; continue; ?>
+            <?php endif;?>
+            <div class="cell">
+                <div class="card">
+                    <figure class="holder">
+                        <a  {{ partial('partials/portada/grilla/block/url/' ~ getNode(item._id).tipo , [ 'nid' : item._id ]) }} class="cover" rel="nofollow">
+                            {{ partial('partials/generic/lazy_image' , ['content' : cdn_image( getNode(item._id).imagen_portada['hash'], 'small'), 'alt': getNode(item._id).imagen_portada['alt'] ]) }}
+                            {{ partial( 'partials/portada/grilla/block/icon/' ~ getNode(item._id).tipo ) }}
+                        </a>
+                    </figure>
+                    <div class="cont">
+                        <h2>
+                            <a {{ partial('partials/portada/grilla/block/url/' ~ getNode(item._id).tipo , [ 'nid' : item._id ]) }}>{{getNode(item._id).titulo_corto}}</a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <?php $e++;?>
+            <?php if($e >= 6) break; ?>
+        <?php endforeach;?>
+
+    </div>
+</div>

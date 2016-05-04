@@ -1,0 +1,23 @@
+<div class="box-mod box-row brand-{{tag}}">
+	<?php $imgcb = !empty(@\Rpp\Services\Get\Tags::get_tag($tag)->personalidad['imagenes']['url_1020x51']);?>
+  <?php if((int)$imgcb==1){ ?>
+  <div style="background:transparent url('<?php echo \Rpp\Services\Get\UrlMedia::replace_cdn_raiz(@\Rpp\Services\Get\Tags::get_tag($tag)->personalidad['imagenes']['url_1020x51']) ?>') left top no-repeat;" class="box-header back-image">
+    <h3 class="title"><a href="{{host}}/tema-{{ tag }}">{{nombre}}</a></h3>
+  </div>
+  <?php }else{ ?>
+  <div class="box-header">
+    <h3 class="title"><a href="{{host}}/tema-{{ tag }}">{{nombre}}</a></h3>
+  </div>
+  <?php } ?>
+
+	<?php $cantle=1; foreach (\Rpp\Services\Get\Flow::tag($tag,$cantidad) as $e => $item):?> 
+		<article class="card">
+		    <figure class="holder">
+		    	<a {{ partial('partials/portada/grilla/block/url/' ~ getNode(item._id).tipo , [ 'nid' : item._id ] ) }} class="cover">
+		    		<img src="{{ cdn_image(getNode(item._id).imagen_portada['hash'], 'medium' ) }}" alt="{{ getNode(item._id).imagen_portada['alt'] }}">
+		    		{{ partial('partials/portada/grilla/block/icon/' ~ getNode(item._id).tipo ) }}
+		    	</a>
+            </figure>
+		  </article>
+	<?php $cantle++; endforeach;?>
+</div>

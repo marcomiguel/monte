@@ -1,0 +1,16 @@
+<section id="featured" class="featured-authors group">
+	
+	<div class="feat-title">
+		<h1>Autores</h1>
+	</div>
+	
+<?php $order = @\Rpp\Services\Get\Destacados::portada($this->model->slug_seccion)->tipo['slug'] ;?>
+<?php $namespace = @\Rpp\Services\Get\Destacados::portada($this->model->slug_seccion)->tipo['namespace'] ;?>
+
+
+{{ partial('partials/portada/grilla/seccion/show_' ~ order , [ 'slug': 'autores' , 'ads':'300x250x2' , 'namespace' : namespace ] ) }}
+<!-- feat-content -->
+</section>
+
+{{ partial('partials/ads/middle1') }}
+<!-- pub-980 -->

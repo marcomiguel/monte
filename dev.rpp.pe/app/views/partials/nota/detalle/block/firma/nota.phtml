@@ -1,0 +1,5 @@
+<?php if(@\Rpp\Services\Get\Content::part($this->model->nid,'firmarnoticia')) :?>
+     <address class="vcard">
+        <span class="url fn"><?php echo @\Rpp\Services\Get\Content::part($this->model->nid,'autor')['nombre']; ?></span>
+     </address>
+<?php endif;?>

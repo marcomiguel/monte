@@ -1,0 +1,471 @@
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?>
+<!--Head-->
+{{ partial('partials/head/index') }}
+<body data-bg="{{model.epl_kvs}}" data-app="{{model.js_app}}">
+    <div>
+        <!--Header-->
+        {{ partial('partials/header/index') }}
+        <div class="wrapper body group">
+
+            <div class="wrap group">
+
+                <div class="feat-title">
+                    <h1>Horario de Programación RPP TV</h1>
+                </div>
+
+
+                {{ partial('partials/redes/redes', ['slugne':'/' ~ model.slug]) }}
+
+                <div class="programacion-table tv">
+                    <ul class="prog-type group">
+                        <li><span class="icon-24"></span>Transmisión en vivo</li>
+                        <li><span class="icon-25"></span>Repetición</li>
+                    </ul>
+                    <table border="2">
+                        <thead>
+                            <tr>
+                                <th class="blank"></th>
+                                <th class="lv">Lunes - Viernes</th>
+                                <th class="s">Sábado</th>
+                                <th class="d">Domingo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="start-hour"><strong>06:00</strong> - 06:30</td>
+                                <td rowspan="4">
+                                    <span class="icon-24"></span>
+                                    <h2>RPP Noticias - Edición Mañana</h2>
+                                    <p>con Patricia del Rio y Armando Canchanya</p>
+                                </td>
+                                <td rowspan="4">
+                                    <h2>RPP Noticias - Edición Mañana</h2>
+                                    <p>con Yvonne García y Gerardo Reyna</p>
+                                </td>
+                                <td><h3>En Forma DW</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">06:30 - 07:00</td>
+                                <td><h3>Reporteros en el Mundo DW</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">07:00 - 07:30</td>
+                                <td rowspan="2">
+                                    <h3>Central de Informaciones</h3>
+                                    <p>con Raquel Salazar</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">07:30 - 08:00</td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour"><strong>08:00</strong> - 08:30</td>
+                                <td rowspan="4">
+                                    <span class="icon-24"></span>
+                                    <h2>Ampliación de Noticias</h2>
+                                    <p>con Raúl Vargas, Ricardo Gómez y Patricia del Río (Radio y TV)</p>
+                                </td>
+                                <td rowspan="2">
+                                    <h2>Ampliación de Noticias</h2>
+                                    <p>con Raúl Vargas y Armando Canchanya</p>
+                                </td>
+                                <td rowspan="4">
+                                    <h3>Ampliación de Noticias</h3>
+                                    <p>con Chema Salcedo</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">08:30 - 09:00</td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">09:00 - 09:30</td>
+                                <td rowspan="2">
+                                    <h2>Enfoque de los Sábados</h2>
+                                    <p>con Raúl Vargas</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">09:30 - 10:00</td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour"><strong>10:00</strong> - 10:30</td>
+                                <td>
+                                    <span class="icon-24"></span>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Armando Canchaya</p>
+                                </td>
+                                <td>
+                                    <h2>Diálogo de Fe</h2>
+                                    <p>con Armando C.</p>
+                                </td>
+                                <td rowspan="2">
+                                    <span class="icon-24"></span>
+                                    <h3>Central de Informaciones</h3>
+                                    <p>con Raquel Salazar</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">10:30 - 11:00</td>
+                                <td>
+                                    <span class="icon-24"></span>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Raquel Salazar</p>
+                                </td>
+                                <td rowspan="3">
+                                    <span class="icon-24"></span>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Yvonne García</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">11:00 - 11:30</td>
+                                <td>
+                                    <span class="icon-24"></span>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Ricardo Gómez</p>
+                                </td>
+                                <td><h3>Enlaces + Entre. de la Semana</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">11:30 - 12:00</td>
+                                <td>
+                                    <span class="icon-24"></span>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Raquel Salazar</p>
+                                </td>
+                                <td>
+                                    <span class="icon-24"></span>
+                                    <h3>Central de Informaciones</h3>
+                                    <p>con Raquel Salazar</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">12:00 - 12:30</td>
+                                <td>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Ricardo Gómez</p>
+                                </td>
+                                <td><h3>Reporteros en el Mundo DW</h3></td>
+                                <td><h3>Reporteros en el Mundo DW</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">12:30 - 13:00</td>
+                                <td>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Raquel Salazar</p>
+                                </td>
+                                <td><h3>Lo mejor de EPF I</h3></td>
+                                <td><h3>En forma DW</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour"><strong>13:00</strong> - 13:30</td>
+                                <td rowspan="2">
+                                    <h2>RPP Noticias - Edición Tarde</h2>
+                                    <p>con Katherine Donayre</p>
+                                </td>
+                                <td rowspan="3">
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Gerardo R.</p>
+                                </td>
+                                <td rowspan="2">
+                                    <h3>Central de Informaciones</h3>
+                                    <p>con Raquel Salazar</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">13:30 - 14:00</td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">14:00 - 14:30</td>
+                                <td>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Ricardo Gómez</p>
+                                </td>
+                                <td><h3>Entrevistas de la Semana I</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">14:30 - 15:00</td>
+                                <td>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Raquel Salazar</p>
+                                </td>
+                                <td><h3>Enlaces DW + Lo mejor de EPF</h3></td>
+                                <td><h3>Lo mejor de EPF I</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">15:00 - 15:30</td>
+                                <td>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Karen Herrera</p>
+                                </td>
+                                <td><h3>Extracto al estilo Juliana (I)</h3></td>
+                                <td rowspan="2">
+                                    <h3>Central de Informaciones</h3>
+                                    <p>con Jesús Verde</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">15:30 - 16:00</td>
+                                <td>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Raquel Salazar</p>
+                                </td>
+                                <td><h3>Reporteros en el Mundo DW</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">16:00 - 16:30</td>
+                                <td>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Jesús Verde</p>
+                                </td>
+                                <td rowspan="2">
+                                    <h3>RPP Noticias - Ed. Sáb. Tarde</h3>
+                                    <p>con Richard Cortez</p>
+                                </td>
+                                <td><h3>Reporteros en el Mundo DW</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">16:30 - 17:00</td>
+                                <td>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Karen Herrera</p>
+                                </td>
+                                <td rowspan="2"><h3>Enfoque de los Sábados</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">17:00 - 17:30</td>
+                                <td>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Renato Cisneros</p>
+                                </td>
+                                <td><h3>En forma DW</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">17:30 - 18:00</td>
+                                <td>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Juliana Oxenford</p>
+                                </td>
+                                <td>
+                                    <h3>Central de Informaciones</h3>
+                                    <p>con Richard Cortez</p>
+                                </td>
+                                <td>
+                                    <h3>Central de Informaciones</h3>
+                                    <p>con Jesús Verde</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">18:00 - 18:30</td>
+                                <td>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Renato Cisneros</p>
+                                </td>
+                                <td rowspan="2">
+                                    <span class="icon-25"></span>
+                                    <h2>Al estilo Juliana</h2>
+                                </td>
+                                <td><h3>En forma DW</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">18:30 - 19:00</td>
+                                <td>
+                                    <h2>Central de Informaciones</h2>
+                                    <p>con Juliana Oxenford</p>
+                                </td>
+                                <td><h3>Entrevistas de la Semana II</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour"><strong>19:00</strong> - 19:30</td>
+                                <td rowspan="2">
+                                    <h2>Las 5 de las 7</h2>
+                                    <p>con Patricia del Río</p>
+                                </td>
+                                <td><h3>Reporteros en el Mundo DW</h3></td>
+                                <td rowspan="2">
+                                    <span class="icon-25"></span>
+                                    <h3>RPP Noticias - Ed. Dom. Noche</h3>
+                                    <p>con Juliana Oxenford</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">19:30 - 20:00</td>
+                                <td><h3>Enlaces + EPF II</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">20:00 - 20:30</td>
+                                <td rowspan="2">
+                                    <h2>RPP Noticias - Edición Noche</h2>
+                                    <p>con Armando Canchaya</p>
+                                </td>
+                                <td rowspan="2">
+                                    <h3>RPP Noticias - Ed. Sáb. Noche</h3>
+                                    <p>con Richard Cortez</p>
+                                </td>
+                                <td><h3>Reporteros en el Mundo DW</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">20:30 - 21:00</td>
+                                <td><h3>Enlaces + EPF II</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour"><strong>21:00</strong> - 21:30</td>
+                                <td rowspan="4">
+                                    <h2>Conexión RPP</h2>
+                                    <p>con Martín Hudtwalcker. Co-conducción MaryCarmen Sjoo, Richard Cortez, Oscar Moral y Katherine Donayre</p>
+                                </td>
+                                <td rowspan="2">
+                                    <span class="icon-25"></span>
+                                    <h3>Enfoque de los Sábados</h3>
+                                    <p>con Raúl Vargas</p>
+                                </td>
+                                <td>
+                                    <h3>Central de Informaciones</h3>
+                                    <p>con Jesús Verde</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">21:30 - 22:00</td>
+                                <td><h3>Reporteros en el Mundo DW</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">22:00 - 22:30</td>
+                                <td><h3>Reporteros en el Mundo DW</h3></td>
+                                <td>
+                                    <h3>Efectos Naim</h3>
+                                    <p>(Entrevistas)</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">22:30 - 23:00</td>
+                                <td><h3>Las entrevistas de la semana I</h3></td>
+                                <td><h3>Las entrevistas de la semana I</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">23:00 - 23:30</td>
+                                <td rowspan="2">
+                                    <h2>Al estilo Juliana</h2>
+                                    <p>con Juliana Oxenford</p>
+                                </td>
+                                <td rowspan="2">
+                                    <span class="icon-24"></span>
+                                    <h3>RPP Noticias - Ed. Sáb. Noche</h3>
+                                    <p>con Richard Cortez</p>
+                                </td>
+                                <td rowspan="2">
+                                    <h3>RPP Noticias - Ed. Sáb. Noche</h3>
+                                    <p>con Richard Cortez</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">23:30 - 24:00</td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">00:00 - 00:30</td>
+                                <td rowspan="2">
+                                    <h2>RPP Noticias - Edición Noche</h2>
+                                    <p>con Armando Canchaya</p>
+                                </td>
+                                <td><h3>Las entrevistas de la semana II</h3></td>
+                                <td><h3>Reporteros en el Mundo DW</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">00:30 - 01:00</td>
+                                <td><h3>Enlaces DW + Claves</h3></td>
+                                <td><h3>Lo mejor de EPF I</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">01:00 - 01:30</td>
+                                <td rowspan="2">
+                                    <h2>Las 5 de las 7</h2>
+                                    <p>con Patricia del Río</p>
+                                </td>
+                                <td><h3>Reporteros en el Mundo</h3></td>
+                                <td><h3>Enlaces DW + Claves</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">01:30 - 02:00</td>
+                                <td><h3>Las entrevistas de la semana I</h3></td>
+                                <td><h3>Reporteros en el Mundo</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">02:00 - 02:30</td>
+                                <td rowspan="2">
+                                    <h2>Al estilo Juliana</h2>
+                                    <p>con Juliana Oxenford</p></td>
+                                <td rowspan="2">
+                                    <h2>Al estilo Juliana</h2>
+                                    <p>con Juliana Oxenford</p>
+                                </td>
+                                <td><h3>Las entrevistas de la Semana I</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">02:30 - 03:00</td>
+                                <td><h3>En forma DW</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">03:00 - 03:30</td>
+                                <td rowspan="4">
+                                    <h2>Conexión RPP</h2>                                    
+                                    <p>con Martín Hudtwalcker. Co-conducción MaryCarmen Sjoo, Richard Cortez, Oscar Moral y Katherine Donayre</p>
+                                </td>                                
+                                <td>
+                                    <h3>Las entrevistas de la semana I</h3>
+                                </td>
+                                <td rowspan="2">
+                                    <h3>Central de Informaciones 9pm</h3>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">03:30 - 04:00</td>
+                                <td><h3>En forma DW</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">04:00 - 04:30</td>
+                                <td rowspan="2">
+                                    <h3>RPP Noticias - Ed. Sáb. Noche</h3>
+                                    <p>con Richard Cortez</p>
+                                </td>
+                                <td rowspan="2">
+                                    <h3>RPP Noticias - Ed. Sáb. Noche</h3>
+                                    <p>con Richard Cortez</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">04:30 - 05:00</td>
+                            </tr>
+                            <tr>
+                                <td class="start-hour">05:00 - 05:30</td>
+                                <td rowspan="2">
+                                    <h2>Al estilo Juliana</h2>
+                                    <p>con Juliana Oxenford</p>
+                                </td>
+                                <td><h3>Lo mejor de EPF</h3></td>
+                                <td><h3>Reporteros en el Mundo</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="half-hour">05:30 - 06:00</td>
+                                <td>
+                                    <span class="icon-25"></span>
+                                    <h3>Diálogo de Fe</h3>
+                                    <p>con Armando C.</p>
+                                </td>
+                                <td><h3>En forma DW</h3></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <!--Footer-->
+
+        {{ partial('partials/footer/index') }}
+        <div id="pad-swipe-nav"></div>
+        {{ partial('partials/footer/scripts') }}
+        {{ partial('partials/footer/tracking') }}
+    </div>
+</body>

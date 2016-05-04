@@ -1,0 +1,7 @@
+//SELECTION
+@mixin selection($color, $background)
+   $prefixes: ("-moz-", "-webkit-", "-o-", "-ms-", "")
+   @each $prefix in $prefixes
+      &::#{$prefix}selection
+        color: $color
+        background: $background

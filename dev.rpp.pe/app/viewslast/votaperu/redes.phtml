@@ -1,0 +1,38 @@
+<!--Head-->
+{{ partial('partials/head/index') }}
+<link rel="stylesheet" type="text/css" href="{{ehost}}/elecciones-peru-2016/css/votaperu.css?v={{ehost}}">
+<body data-bg="{{model.epl_kvs}}" id='tema' class="{{model.tema}}"  data-x="lazy, columns-fit, sticky, media, column-fix, social-native">
+<div id="wrap">
+    <!--Header-->
+    {{ partial('partials/header/indextag_1') }}
+
+    <div id="content" role="main">
+        {{ partial('partials/ads/top') }}
+        <div class="grid pad submenujchs">
+
+ 
+
+            {{ partial('tag/cabecera/cb_' ~ model.slug , ['portada':'redes'] ) }}
+
+            <section id="featured" class="group">
+
+                    <iframe style="width:100%; margin-bottom:20px; height:1800px" src="http://widget.crowdynews.com/fullpage/#?cnCO=RPPpe/elecciones-2016-full"></iframe>
+
+            </section> 
+            {{ partial('partials/ads/middle2') }}
+
+
+        </div>
+
+        
+
+
+    </div>
+    
+    <!--Footer-->
+    {{ partial('partials/footer/index' , [] , trackurl) }}
+    <div id="pad-swipe-nav"></div>
+    {{ partial('partials/footer/scripts') }}
+    {{ partial('partials/footer/tracking') }}
+</div>
+</body>

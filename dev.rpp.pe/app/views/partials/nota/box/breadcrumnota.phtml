@@ -1,0 +1,2 @@
+<?php $lcategoria=\Rpp\Services\Get\Content::node($this->model->nid)->categoria['nombre'];  if($lcategoria=='Descentralizado') $lcategoria ='Copa Movistar';  ?>
+{{ partial('partials/breadcrum/index',['elements':[ '<a href="' ~ host ~ "/" ~ model.slug_seccion[1] ~'">' ~ lcategoria ~ '</a>' ]]) }}

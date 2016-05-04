@@ -1,0 +1,14 @@
+<article class="{{class}}-article hnews group">
+<div class="entry-cont no-image">
+
+{{ partial('partials/portada/grilla/block/entry-cont/categoria_' ~ getGrilla(slug).tipo['namespace'] , [ 'nombre' : item['categoria']['nombre'] ,'slug' : item['categoria']['slug'] ] ) }}
+
+    <h2 class="entry-title"><a class="url" {{ partial('partials/portada/grilla/block/url/' ~ item['tipo'] , [ 'nid' : item['nid'] ]) }}>{{item['titulo']}}</a></h2>
+    
+    <footer class="hide">
+        <p class="source-org vcard"><a class="fn url org" href="{{host}}">RPP Noticias</a></p>
+    </footer>
+    
+</div>
+<!-- .entry-cont -->
+</article>

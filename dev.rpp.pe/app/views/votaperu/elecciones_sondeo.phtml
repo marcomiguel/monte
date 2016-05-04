@@ -1,0 +1,89 @@
+<?php if(!empty(\Rpp\Services\Get\Elecciones::get(date('Ym')))):?>
+<?php $etipo = array('e-first','e-middle','e-last');?>
+<?php $esep = array('<span class="e-sep" >-</span>','<span class="e-sep">-</span>','')?>
+    <section class="e-encuesta clearfix">
+        <a href="http://rpp.pe/elecciones-peru-2016/encuesta" class="e-titulo"><span class="e-rotate90"><span class="e-openout">MÁS</span> ENCUESTAS</span></a>
+        <div class="e-sombra"></div>
+        <div class="e-contenido">
+        <?php $l=0;  foreach (\Rpp\Services\Get\Elecciones::get(date('Ym'))['encuestadora'] as $nombre => $encuesta): ?>
+        
+            <div class="e-candidato {{etipo[l]}}">
+                <div class="e-candidato-arriba">
+                    <strong>{{nombre}}</strong> <time><?php echo utf8_encode(strftime ( '%d %B %Y' , $encuesta['timestamp']  )) ?></time>
+                </div>
+                <?php if(is_array($encuesta['candidatos'])):?>
+                <div class="e-candidato-medio">
+                 
+
+                <?php $e=0; foreach ( $encuesta['candidatos'] as $f => $candidato): ?>
+                    <div class="e-candidato-dentro">
+                        <figure>
+                           <a href="{{candidato['url']}}"> <img width="80" height="85" src="{{candidato['foto']}}" alt="{{candidato['nombre']}}" /> </a>
+                        </figure>
+                        <div class="e-info">
+                            <h2><a href="{{candidato['url']}}">{{candidato['nombrecorto']}}</a></h2>
+                            <strong><span class="e-count" data-count="{{candidato['porcentaje']}}">{{candidato['porcentaje']}}</span>%</strong>
+                        </div>
+                    </div>
+                <?php unset($encuesta['candidatos'][$f])?>
+                <?php $e++;?>
+                <?php if($e>=2){break;}?>
+                <?php endforeach;?>
+              
+                </div>
+
+                <div class="e-candidato-abajo">
+                <?php $e = 0 ;foreach ($encuesta['candidatos'] as $f => $candidato): ?>
+                    <strong><a href="{{candidato['url']}}">{{candidato['nombrecorto']}}</a></strong> <span>({{candidato['porcentaje']}}%)</span> {{esep[e]}}
+                <?php $e++;?>
+                <?php if($e>=3)break;?>
+                <?php endforeach;?>
+                </div>
+                <?php endif;?>
+            </div>
+         <?php $l++;?>
+       <?php endforeach;?>
+       <a class="e-enlace" href="http://rpp.pe/elecciones-peru-2016/encuesta">
+                MAS ENCUESTAS
+            </a>
+        </div>
+    </section>
+
+<?php endif;?>
+
+    <script type="text/javascript">
+        //EFFECT COUNT
+        function porcentAnimate(id, start, end, duration, decimal) {
+            var obj = id;
+            var range = end - start;
+            var minTimer = 50;
+            var stepTime = Math.abs(Math.floor(duration / range));
+            stepTime = Math.max(stepTime, minTimer);
+            var startTime = new Date().getTime();
+            var endTime = startTime + duration;
+            var timer;
+            function run() {
+                var now = new Date().getTime();
+                var remaining = Math.max((endTime - now) / duration, 0);
+                var value = Math.round(end - (remaining * range));
+                obj.innerHTML = value;
+                if (value == end) {
+                    if(decimal){ obj.innerHTML = Number(value) + Number(decimal); }
+                    clearInterval(timer);
+                }
+            }
+            var timer = setInterval(run, stepTime);
+            run();
+        };
+        var query = '.e-count';
+        var attr = 'data-count';
+        var obj = document.querySelectorAll(query);
+        for (var i = 0; i < obj.length; i++) {
+            var _obj = obj[i];
+            var end = _obj.getAttribute(attr);
+            var endInteger = parseInt(end);
+            var decimal = (end % 1).toFixed(1);
+            var _decimal = (decimal && decimal != 0.0)?decimal:false;
+            porcentAnimate(_obj, 0, endInteger, 2000, _decimal);
+        }
+    </script>

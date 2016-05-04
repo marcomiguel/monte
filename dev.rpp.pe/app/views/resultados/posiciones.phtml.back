@@ -1,0 +1,129 @@
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?>
+<!--Head-->
+{{ partial('partials/head/index') }}
+<body>
+    <!--Header-->
+    {{ partial('partials/header/index') }}
+    <main class="wrapper">
+      {{ partial('partials/ads/top2') }}
+     <section class="body detail">
+        <section class="content news-flow">
+          <!--News cards-->
+          <div class="grid">
+
+            <div class="col-2-2">
+
+              <section  class="box">
+
+                <div class="box-padd none480">
+
+                  <section class="breadcrumb-social">
+                   {{ partial('partials/breadcrum/index' ,['elements':[ df_campeonato(model.torneo).nombre ] ])  }}
+                   {{ partial('partials/nota/box/socialnota',['position' : 'wtop']) }}
+                  </section>
+
+                </div>
+                {{ partial('partials/resultados/detallebox') }}
+
+                <div class="content-blocks posiciones">
+
+                  <div class="wrapper-table">
+                    <div class="container-table">
+                      <table class="table">
+                        <thead>
+                          <tr class="headboard-table">
+                            <th colspan="2" class="title-1 duo">
+                            <!--  <h4>grupo a</h4> -->
+                            </th>
+                            <th class="title-3">
+                              <h4>pts.</h4>
+                            </th>
+                            <th class="title-g">
+                              <h4>pj</h4>
+                            </th>
+                            <th class="title-g">
+                              <h4>pg </h4>
+                            </th>
+                            <th class="title-g">
+                              <h4>pe</h4>
+                            </th>
+                            <th class="title-g">
+                              <h4>pp</h4>
+                            </th>
+                            <th class="title-g">
+                              <h4>gf </h4>
+                            </th>
+                            <th class="title-g">
+                              <h4>gc</h4>
+                            </th>
+                            <th class="title-g">
+                              <h4>df</h4>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+            <?php foreach(Rpp\Services\Get\Resultados::posiciones($this->model->torneo) as $id => $equipo): ?>
+                          <tr class="main-table">
+                            <td class="tbl-number">
+                              <p>{{id+1}}</p>
+                            </td>
+                            <td class="tbl-equipo"><img src="http://eventos.rpp.com.pe/services/datafactory/escudos/{{equipo.id}}.png" width="30" height="30">
+                              <p>{{equipo.nombre}}</p>
+                            </td>
+                            <td class="tbl-goles"><span>{{equipo.puntos}}</span></td>
+                            <td class="tbl-num-2"><span>{{equipo.ganados + equipo.empatados + equipo.perdidos}}</span></td>
+                            <td class="tbl-num-2"><span>{{equipo.ganados}}</span></td>
+                            <td class="tbl-num-2"><span>{{equipo.empatados}}</span></td>
+                            <td class="tbl-num-2"><span>{{equipo.perdidos}}</span></td>
+                            <td class="tbl-num-2"><span>{{equipo.golesfavor}}</span></td>
+                            <td class="tbl-num-2"><span>{{equipo.golescontra}}</span></td>
+                            <td class="tbl-num-2"><span>{{equipo.difgol}}</span></td>
+                          </tr>
+            <?php endforeach ;?>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+
+
+
+                  <div class="wrap-tabs">
+
+                    <section class="ads-full">
+                      <section class="ads-sidebar"></section>
+                      <section class="ads-sidebar"></section>
+                    </section>
+                    {{ partial('partials/resultados/social/conectate') }}
+                  </div>
+                </div>
+
+         </section>
+         </div>
+        </div>
+
+        </section>
+        {{ partial('partials/nota/sidebar/index' , [] ) }}
+
+      </section>
+
+    </main>
+    <!--Footer-->
+    {{ partial('partials/footer/index' , [] , trackurl) }}
+    <div id="pad-swipe-nav"></div>
+    {{ partial('partials/footer/scripts') }}
+    <script>
+    $(function(){
+      $('#torneo_select').on('change', function () {
+          var url = $(this).val(); // get selected value
+          if (url) { // require a URL
+              window.location = url; // redirect
+          }
+          return false;
+      });
+    });
+    </script>
+    {{ partial('partials/footer/tracking') }}
+  </body>

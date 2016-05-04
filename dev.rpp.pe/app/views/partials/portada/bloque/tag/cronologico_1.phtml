@@ -1,0 +1,20 @@
+<?php if(@\Rpp\Services\Get\Destacados::portada($slug)->cronologico_1['slug']):?>
+<?php $tag = \Rpp\Services\Get\Destacados::portada($slug)->cronologico_1['slug'];?>
+<?php $imgcb = !empty(@\Rpp\Services\Get\Tags::get_tag($tag)->personalidad['imagenes']['url_1020x51']);?>
+<section class="especial content-automatic">
+  <h1>
+  <a data-size-title="{{imgcb*1}}" class="module-automatic" style="background:transparent url('<?php echo @\Rpp\Services\Get\Tags::get_tag($tag)->personalidad['imagenes']['url_1020x51'] ?>') left top no-repeat;" href="{{host}}/tema-{{ tag }}"></a>
+  <a data-size-title="{{!imgcb*1}}" class="module-automatic-title" href="{{host}}/tema-{{ tag }}">{{ getGrilla(slug).cronologico_1['nombre'] }}</a>
+  </h1>
+
+   <div class="articles group">
+<?php foreach (\Rpp\Services\Get\Flow::tag(@\Rpp\Services\Get\Destacados::portada($slug)->cronologico_1['slug'],1) as $e => $item):?>
+{{ partial('partials/portada/bloque/tag/tag_item', [ 'nid' : item._id , 'class' : 'noborder' , 'title_h' : 'h2' , 'img_size' : 'small']) }}
+<?php endforeach;?>
+
+<?php foreach (\Rpp\Services\Get\Flow::tag(@\Rpp\Services\Get\Destacados::portada($slug)->cronologico_1['slug'],2,1) as $e => $item):?>
+{{ partial('partials/portada/bloque/tag/tag_item', [ 'nid' : item._id , 'class' : '' , 'title_h' : 'h2' , 'img_size' : 'small']) }}
+<?php endforeach;?>
+  </div>
+</section>
+<?php endif; ?>

@@ -1,0 +1,499 @@
+@charset "UTF-8";
+/*
+    CSS MaM
+*/
+.rpp-mam-xyz * {
+    background-image: none;
+    background-color: transparent;
+    color: #4c4a4a;
+    font: normal 14px/1.25 Helvetica, Arial, sans-serif;
+    border: 0 none;
+    margin:0;
+    padding: 0;
+    vertical-align: baseline;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    zoom: 1;
+    position: static;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1;
+    -moz-osx-font-smoothing: grayscale;
+    float: none;
+}
+.rpp-mam-xyz{
+    position: relative;
+    margin: 0 0 1em;
+    display: block;
+    width: 100%;
+    clear: both;
+}
+.rpp-mam-xyz iframe{
+    /*position: static!important;*/
+    left:0;
+    top:0;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media .fb_iframe_widget span,
+.rpp-mam-xyz .rpp-mam-xyz--media .fb_iframe_widget span iframe{
+    /*width: 100%!important;
+    height: 650px!important;*/
+    display: block;
+}
+.rpp-mam-xyz--anchor{
+    position: fixed;
+    left: 50%;
+    margin-left: -75px;
+    top: 50px;
+    /*z-index: 9;*/
+    z-index: 999999999991;
+    font-size: 12px;
+    line-height: 32px!important;
+    background-color: #009DE1;
+    box-shadow: 2px 2px 1px rgba(0,0,0,0.3);
+    padding: 0 20px;
+    color: #fff;
+    border-radius: 24px;
+    float: left;
+    cursor: pointer;
+    opacity:0;
+    height: 0;
+    -o-transition:all 1s;
+    -ms-transition:all 1s;
+    -moz-transition:all 1s;
+    -webkit-transition:all 1s;
+    transition:all 1s;
+}
+.rpp-mam-xyz--anchor .rpp-mam-xyz-icon{
+    color: white;
+    vertical-align: middle;
+}
+.rpp-mam-xyz a, .rpp-mam-xyz a:hover {
+    cursor: pointer;
+    color: #009bdb;
+    text-decoration: none;
+}
+.rpp-mam-xyz a:hover {
+    text-decoration: underline;
+}
+.rpp-mam-xyz div, .rpp-mam-xyz section, .rpp-mam-xyz header, .rpp-mam-xyz ul, .rpp-mam-xyz li,
+.rpp-mam-xyz h6, .rpp-mam-xyz h5, .rpp-mam-xyz h3, .rpp-mam-xyz h2, .rpp-mam-xyz h1 {
+    display: block;
+}
+.rpp-mam-xyz .rpp-mam-xyz--table{
+    display: table;
+}
+.rpp-mam-xyz .rpp-mam-xyz--table-row{
+    display:table-row;
+}
+.rpp-mam-xyz .rpp-mam-xyz--table-cell{
+    display:table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.rpp-mam-xyz .rpp-mam-xyz--table-cell img{
+    margin: 0 auto;
+    display: block;
+    width: 50px;
+    height: 50px;
+}
+.rpp-mam-xyz .rpp-mam-xyz--header{
+    background-color: #f6f6f6;
+    text-align: center;
+}
+.rpp-mam-xyz .rpp-mam-xyz--title{
+    margin: 0;
+    padding: 8px 0;
+    line-height: 1;
+    font-weight:bold;
+    color: #4c4a4a;
+}
+.rpp-mam-xyz .rpp-mam-xyz--cell-point{
+    font-size: 42px;
+    font-weight: normal;
+    padding-top: 10px;
+    width: 30%;
+}
+.rpp-mam-xyz .rpp-mam-xyz--team, .rpp-mam-xyz .rpp-mam-xyz--goals-inner{
+    text-align: center;
+    max-width: 420px;
+    min-width: 280px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.rpp-mam-xyz .rpp-mam-xyz--table{
+    width: 100%;
+}
+.rpp-mam-xyz .rpp-mam-xyz--team-math{
+    width: 33%;
+    padding: 10px 0;
+}
+.rpp-mam-xyz .rpp-mam-xyz--team-separate{
+    width: 34%;
+    padding: 10px 0;
+}
+.rpp-mam-xyz .rpp-mam-xyz--over{
+    width: 100%;
+    overflow: hidden;
+    padding: 0 0 15px;
+}
+.rpp-mam-xyz .rpp-mam-xyz--over-team-match-1,
+.rpp-mam-xyz .rpp-mam-xyz--over-team-match-2{
+    width: 35%;
+    overflow: hidden;
+    font-weight: bold;
+    font-size: 16px;
+}
+.rpp-mam-xyz .rpp-mam-xyz--over-team-match-1{
+    float:left;
+}
+.rpp-mam-xyz .rpp-mam-xyz--over-team-match-2{
+    float:right;
+}
+.rpp-mam-xyz .rpp-mam-xyz--state{
+    font-size: 14px;
+    font-weight: normal;
+    padding: 15px 0 0;
+}
+.rpp-mam-xyz .rpp-mam-xyz--state-envivo{
+    color: #0cb81c
+}
+.rpp-mam-xyz .rpp-mam-xyz--state-finalizado{
+    color: #b14b67;
+}
+.rpp-mam-xyz .rpp-mam-xyz--state-poriniciar{
+    color: #009bdb;
+}
+.rpp-mam-xyz .rpp-mam-xyz--goals{
+    border-top: 3px solid #009bdb;
+}
+.rpp-mam-xyz .rpp-mam-xyz--goals ul{
+    list-style: none;
+    margin: 0;
+}
+.rpp-mam-xyz .rpp-mam-xyz--goals li{
+    font-size: 14px;
+}
+.rpp-mam-xyz strong, .rpp-mam-xyz span{
+    display: inline;
+}
+.rpp-mam-xyz strong{
+    font-weight: bold;
+}
+.rpp-mam-xyz .rpp-mam-xyz--goals-1,
+.rpp-mam-xyz .rpp-mam-xyz--goals-2{
+    width: 48%;
+    padding: 10px 0;
+    overflow: hidden;
+}
+.rpp-mam-xyz .rpp-mam-xyz--goals-1 li,
+.rpp-mam-xyz .rpp-mam-xyz--goals-2 li{
+    padding: 3px 0;
+}
+.rpp-mam-xyz .rpp-mam-xyz--goals-1{
+    float: left;
+    padding-left: 10px;
+    text-align: left;
+}
+.rpp-mam-xyz .rpp-mam-xyz--goals-2{
+    float: right;
+    padding-right: 10px;
+    text-align: right;
+}
+.rpp-mam-xyz .rpp-mam-xyz--flow{
+    padding: 0 10px 10px;
+    background-color: #f6f6f6;
+}
+.rpp-mam-xyz .rpp-mam-xyz--flow ul{
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.rpp-mam-xyz .rpp-mam-xyz--flow li{
+    position: relative;
+    display: block;
+    float: none;
+    list-style: none;
+    padding: 0 0 0 50px;
+    margin: 10px 0;
+    opacity:1;
+    -o-transition:all 1s;
+    -ms-transition:all 1s;
+    -moz-transition:all 1s;
+    -webkit-transition:all 1s;
+    transition:all 1s;
+}
+.rpp-mam-xyz .rpp-mam-xyz--flow li.rpp-mam-xyz--inside:after{
+    content:'';
+    position: absolute;
+    display:block;
+    left: 10px;
+    top:0;
+    height: 100%;
+    width: 3px;
+    background-color: #bebebe;
+}
+.rpp-mam-xyz .rpp-mam-xyz--flow li.rpp-mam-xyz--inside-insert,
+.rpp-mam-xyz .rpp-mam-xyz--goals-inner li.rpp-mam-xyz--goalname-insert{
+    opacity: 0;
+}
+.rpp-mam-xyz .rpp-mam-xyz--social{
+    text-align: right;
+    font-size: 12px;
+    color: #bebebe;
+    padding: 5px 0 10px;
+    border-bottom: 1px dashed #bebebe;
+}
+.rpp-mam-xyz .rpp-mam-xyz--social i{
+    font-size:20px;
+    vertical-align:middle;
+    color: #bebebe;
+    margin: 0 5px;
+    -o-transition:all .5s;
+    -ms-transition:all .5s;
+    -moz-transition:all .5s;
+    -webkit-transition:all .5s;
+    transition:all .5s;
+    cursor: pointer;
+}
+.rpp-mam-xyz .rpp-mam-xyz--social i:hover{
+    color: #4c4a4a;
+}
+.rpp-mam-xyz .rpp-mam-xyz--social-text{
+    margin-right: 10px;
+    font-size: 12px;
+    color:#bebebe;
+}
+.rpp-mam-xyz .rpp-mam-xyz--text{
+    text-align: left;
+}
+.rpp-mam-xyz .rpp-mam-xyz--text p{
+    margin:0;
+    padding: 0;
+    line-height: 1.25em;
+    font-size: 14px;
+}
+.rpp-mam-xyz .rpp-mam-xyz--time{
+    position: absolute;
+    display:block;
+    left: 0;
+    top:0;
+    z-index: 2;
+    width: 50px;
+    background-color: #f6f6f6;
+}
+.rpp-mam-xyz .rpp-mam-xyz--time time{
+    font-weight: bold;
+    font-style: normal;
+}
+.rpp-mam-xyz li.rpp-mam-xyz--loading{
+    margin: 5px 0;
+    padding: 0;
+    padding-left: 0;
+    color: #009bdb;
+    text-align: center;
+    opacity:0;
+    -o-transition:all 1s;
+    -ms-transition:all 1s;
+    -moz-transition:all 1s;
+    -webkit-transition:all 1s;
+    transition:all 1s;
+}
+.rpp-mam-xyz li.rpp-mam-xyz--loading img{
+    display: inline-block;
+    vertical-align: middle;
+    width:auto!important;
+    height:auto!important;
+}
+.rpp-mam-xyz .rpp-mam-xyz--icon{
+    padding: 5px 0 0;
+    text-align: left;
+}
+.rpp-mam-xyz .rpp-mam-xyz--icon i{
+    font-size: 24px;
+}
+.rpp-mam-xyz .rpp-mam-xyz--time-padding{
+    padding-left: 5px;
+}
+.rpp-mam-xyz .rpp-mam-xyz--time-nopadding{
+    padding-left: 0px;
+    padding-right: 0;
+    margin-left: -5px;
+}
+.rpp-mam-xyz .rpp-mam-xyz--time-peligro{
+    color: #b14b67;
+}
+.rpp-mam-xyz .rpp-mam-xyz--time-exito{
+    color: #0cb81c;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media{
+    margin: 0;
+    padding: 10px 0 0;
+    display: block;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media img{
+    display: block;
+    width:100%;
+    max-width: 560px!important;
+    height: auto!important;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media iframe{
+    display: block;
+    width:100%;
+    max-width: 560px!important;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media .rpp-mam-xyz--related{
+    margin-left: 0;
+    padding-left: 0;
+    list-style: circle;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media .rpp-mam-xyz--related li{
+    padding-left: 0;
+    margin-left: 0;
+    list-style: circle;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media .rpp-mam-xyz--related .rpp-mam-xyz--block-related{
+    width: 100%;
+    overflow: hidden;
+    border:1px solid #f6f6f6;
+    box-shadow: 1px 2px 1px #f6f6f6;
+    border-radius: 4px;
+    background-color: white;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media .rpp-mam-xyz--related .rpp-mam-xyz--block-related a{
+    color: #206baf;
+    text-decoration: none;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media .rpp-mam-xyz--related .rpp-mam-xyz--block-related a{
+    color: #206baf;
+    text-decoration: underline;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media .rpp-mam-xyz--related .rpp-mam-xyz--block-left{
+    float: left;
+    width:85px;
+    height: 48px;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media .rpp-mam-xyz--related .rpp-mam-xyz--block-sitio{
+    color: #bebebe;
+    font-size: 12px;
+    margin-top: 3px;
+    display: block;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media .rpp-mam-xyz--related .rpp-mam-xyz--block-titulorel{
+    color: #bebebe;
+    font-size: 12px;
+    margin:0 0 0 5px;
+    padding: 0;
+    display: block;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media .rpp-mam-xyz--related .rpp-mam-xyz--block-left img{
+    width: 100%!important;
+    height: auto!important;
+    display: block;
+    line-height: 1;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media .rpp-mam-xyz--related .rpp-mam-xyz--block-right{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 95px;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media .rpp-mam-xyz--related .rpp-mam-xyz--block-right a{
+    color: #4c4a4a;
+    text-decoration: none;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media .rpp-mam-xyz--related .rpp-mam-xyz--block-right a:hover{
+    color: #4c4a4a;
+    text-decoration: underline;
+}
+.rpp-mam-xyz .rpp-mam-xyz--media iframe{
+    width: 100%!important;
+    overflow: hidden;
+}
+@media (max-width: 600px) {
+    .rpp-mam-xyz .rpp-mam-xyz--media iframe{
+        height:250px!important;
+    }
+}
+@media (max-width: 450px) {
+    .rpp-mam-xyz .rpp-mam-xyz--media iframe{
+        height:170px!important;
+    }
+}
+/*
+    Font MaM
+*/
+@font-face {
+    font-family: "mxm-rpp";
+    src:url("../fonts/mxm-rpp.eot");
+    src:url("../fonts/mxm-rpp.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/mxm-rpp.woff") format("woff"),
+    url("../fonts/mxm-rpp.ttf") format("truetype"),
+    url("../fonts/mxm-rpp.svg#mxm-rpp") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+.rpp-mam-xyz [data-rpp-mam-xyz-icon]:before {
+    font-family: "mxm-rpp" !important;
+    content: attr(data-icon);
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.rpp-mam-xyz [class^="rpp-mam-xyz-icon-"]:before,
+.rpp-mam-xyz [class*=" rpp-mam-xyz-icon-"]:before {
+    font-family: "mxm-rpp" !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.rpp-mam-xyz .rpp-mam-xyz-icon-cambio-jugador:before {
+    content: "a";
+}
+.rpp-mam-xyz .rpp-mam-xyz-icon-finalizado:before {
+    content: "b";
+}
+.rpp-mam-xyz .rpp-mam-xyz-icon-gol:before {
+    content: "c";
+}
+.rpp-mam-xyz .rpp-mam-xyz-icon-penalty:before {
+    content: "d";
+}
+.rpp-mam-xyz .rpp-mam-xyz-icon-tarjeta:before {
+    content: "e";
+}
+.rpp-mam-xyz .rpp-mam-xyz-icon-tarjeta-roja:before {
+    content: "e";
+    color: #b53636;
+}
+.rpp-mam-xyz .rpp-mam-xyz-icon-tarjeta-amarilla:before {
+    content: "e";
+    color: #baa200;
+}
+.rpp-mam-xyz .rpp-mam-xyz-icon-tiempo-extra:before {
+    content: "f";
+}
+.rpp-mam-xyz .rpp-mam-xyz-icon-tiro-de-esquina:before {
+    content: "g";
+}
+.rpp-mam-xyz .rpp-mam-xyz-icon-facebook:before {
+    content: "h";
+}
+.rpp-mam-xyz .rpp-mam-xyz-icon-twitter:before {
+    content: "i";
+}
+.rpp-mam-xyz .rpp-mam-xyz-icon-up:before {
+    content: "j";
+}

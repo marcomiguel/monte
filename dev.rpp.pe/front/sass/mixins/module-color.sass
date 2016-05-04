@@ -1,0 +1,13 @@
+@import ../config/color
+//MODULE COLOR
+@mixin module-color($color:$color-base)
+    > h2,> h3,> h4,> h5,> h6
+        color:$color
+        border-top:5px solid $color
+    &.flow-news
+        li
+            a:hover
+                color: $color
+    .title-top
+        a, a:hover
+            color: $color

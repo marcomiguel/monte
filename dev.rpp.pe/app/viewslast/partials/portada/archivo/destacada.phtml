@@ -1,0 +1,26 @@
+      <article class="flow-prominent">
+              <?php foreach (\Rpp\Services\Get\Archivo::ultimas($this->model->intervalo) as $item) : ?>
+                    <h1> <a href="{{nUrl(item._id)}}{{TrackUrl(1)}}">{{getNode(item._id).titulo_corto}}</a></h1>
+                    <div class="prominent-media">
+                   <?php foreach (\Rpp\Services\Get\Content::part($item->_id,'contenido') as $contenido): ?>                 
+                      {% if contenido['tipo'] == "photo" %}
+                      <figure class="media"><a href="{{nUrl(item._id)}}{{TrackUrl(1)}}"><img src="{{contenido['foto']['url']}}" alt="{{contenido['foto']['alt']}}" width="445" height="251"></a></figure>
+                       {%break%}
+                      {% elseif contenido['tipo']=="video" %}
+                      <figure class="media media-video"><a href="{{nUrl(item._id)}}{{TrackUrl(1)}}"><img src="{{contenido['video']['url_cover']}}" alt="{{contenido['subtitulo']}}" width="445" height="251"></a></figure>
+                      {% elseif contenido['tipo'] == "youtube" %}
+                      <figure class="media media-video"><a href="{{nUrl(item._id)}}{{TrackUrl(1)}}"><img src="http://img.youtube.com/vi/{{contenido['youtube']['id']}}/0.jpg" alt="{{contenido['subtitulo']}}" width="445" height="251"></a></figure>
+                      {%break%}
+                      {% endif  %}
+                    <?php endforeach;?>
+                      <div class="prominent-txt"> 
+                        <p>
+                          {{getNode(item._id).bajada}}
+                        </p>
+                        <div class="time-related">Publicado el 
+                          <time datetime="{{date('Y-m-d H:i',getNode(item._id).fecha_publicacion)}}"> {{date('d/m/y',getNode(item._id).fecha_publicacion)}}  </time>
+                        </div>
+                      </div>
+                    </div>
+              <?php break; endforeach;?>
+        </article>

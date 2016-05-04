@@ -1,0 +1,38 @@
+<!--Head-->
+{{ partial('partials/head/index') }}
+<body>
+<div data-bg="{{model.epl_kvs}}" >
+    <!--Header-->
+    {{ partial('partials/header/galerias') }}
+
+    <main class="wrapper">
+        {{ partial('partials/ads/top2') }}
+        <section class="body detail">
+            <section class="news-flow">
+                <div class="wrapper-list-gallery">
+                    <h4 class="title-list-gallery">más galerias</h4>
+                    <?php \Rpp\Services\Get\UrlTrack::$ns_campaign = 'content.galerias.cronologico'; ?>
+                    <div class="container-item-list-gallery">
+                        <?php foreach (\Rpp\Services\Get\Gallery::home(15, 3) as $position => $item) : ?>
+                            <article class="item-list-gallery box">
+                                <figure><a href="{{nUrl(item._id)}}{{TrackUrl('image')}}"><img
+                                            src="{{cdn_image(getNode(item._id).imagen_portada['hash'],'small')}}"
+                                            alt="{{getNode(item._id).imagen_portada['alt']}}"></a>
+                                    <figcaption><a href="{{nUrl(item._id)}}{{TrackUrl('texto')}}">{{getNode(item._id).titulo_corto}}</a>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+    <!--Footer-->
+
+    {{ partial('partials/footer/index') }}
+    <div id="pad-swipe-nav"></div>
+    {{ partial('partials/footer/scripts') }}
+    {{ partial('partials/footer/tracking') }}
+</div>
+</body>

@@ -1,0 +1,14 @@
+<figure class="hmedia main-photo">
+{{ partial('partials/nota/contenido/bloque/'~model.package~'imagen',contenido) }}
+  <figcaption class="help-media">
+  <?php echo @$contenido['foto']['alt']; ?>
+      <!--<?php // if(!empty($contenido['via'])): ?>| fuente : {{contenido['via']}}<?php // endif;?>
+  <span> <?php // echo @$contenido['credito']; ?> </span>-->  
+    {% if not(contenido['via'] is empty) %}
+    | <strong>Fuente:</strong> {{ contenido['via'] }}
+    {% endif %}
+    {% if not(contenido['credito'] is empty) %}
+    | <strong>Fotógrafo:</strong> {{ contenido['credito'] }}
+    {% endif %}
+  </figcaption>
+</figure>

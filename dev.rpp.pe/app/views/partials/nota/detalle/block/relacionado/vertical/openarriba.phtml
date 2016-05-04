@@ -1,0 +1,21 @@
+<?php if(count($relacionado['items'])>0): ?>
+<?php if(count($relacionado['items'])>1): ?>
+<article class="related-list bloque">
+<h4>Noticias Relacionadas</h4>
+<ul>
+<?php foreach ($relacionado['items'] as  $rel) :?>
+   <li><i class="icon icon-play"></i><a href="/relacionada/permalink/{{rel['nid']}}">{{rel['titulo']}}</a></li>
+<?php endforeach;?>
+</ul>
+</article>
+<?php else:?>
+<article class="wrapper-relatedframe bloque">
+<?php foreach ($relacionado['items'] as  $rel) :?>
+   <figure class="wrapper-relatedframe-img">
+     <a href="/relacionada/permalink/{{rel['nid']}}"><img src="{{ cdn_image(rel['hash'] ,'medium') }}"></a>
+   </figure>
+   <div class="wrapper-relatedframe-description"><span>Noticia Relacionada</span><a href="/relacionada/permalink/{{rel['nid']}}">{{rel['titulo']}}</a></div>
+<?php endforeach;?>
+</article>
+<?php endif ?>
+<?php endif ?>

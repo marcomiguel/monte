@@ -1,0 +1,16 @@
+<?php echo $this->partial('partials/nota/detalle/block/cita/vertical/open' . @$contenido['cita']['alineacion'] , array('cita' => @$contenido['cita'] )); ?>
+<?php echo $this->partial('partials/nota/detalle/block/cita/horizontal/alignment' . @$contenido['cita']['alineacion'] , array('cita' => @$contenido['cita'] )); ?>
+
+
+<?php echo $this->partial('partials/nota/detalle/block/relacionado/vertical/open' . @$contenido['relacionado']['alineacion'] , array('relacionado' => @$contenido['relacionado'] )); ?>
+<?php echo $this->partial('partials/nota/detalle/block/relacionado/horizontal/alignment' . @$contenido['relacionado']['alineacion'] , array('relacionado' => @$contenido['relacionado'] )); ?>
+
+<?php $texto = str_replace("<p></p>","",$contenido['texto']);?>
+
+{{texto}}
+
+<?php echo $this->partial('partials/nota/detalle/block/cita/vertical/close' . @$contenido['cita']['alineacion'] , array('cita' => @$contenido['cita'] )); ?>
+
+
+<?php echo $this->partial('partials/nota/detalle/block/relacionado/vertical/close' . @$contenido['relacionado']['alineacion'] , array('relacionado' => @$contenido['relacionado'] )); ?>
+

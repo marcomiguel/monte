@@ -1,0 +1,10 @@
+<div class="slider-mkt">
+  <h4>Campañas</h4>
+  <ul class="slides">
+  <?php foreach (\Rpp\Services\Get\Flow::tag($tag,$cantidad) as $e => $item):?>
+    <li>  
+     <a href="{{nUrl(item._id)}}"> <img src="{{ cdn_image(getNode(item._id).imagen_portada['hash'], 'medium' ) }}" alt="{{ getNode(item._id).imagen_portada['alt'] }}" width="300"> </a>
+    </li>
+   <?php endforeach;?>
+  </ul>
+</div>

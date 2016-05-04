@@ -1,0 +1,37 @@
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?>
+<!--Head-->
+{{ partial('partials/head/index') }}
+{{ partial('partials/resultados_electorales/presidenciales/style') }}
+<style type="text/css">
+  body,  #content>.grid.pad.submenujchs{background: #ebebeb;}
+  .wrap-especial .box-header{margin-bottom: 0px;}
+</style>
+<script type="text/javascript">
+  stage_file = '{{model.s3_raiz}}';
+</script>
+<body data-bg="{{model.epl_kvs}}"  data-x="slide, lazy, media, sticky"  data-x="lazy, columns-fit, sticky, media, column-fix, social-native">
+    <div id="wrap">
+    {{ partial('partials/header/indextag_1'  ) }}
+    <div id="content" role="main">
+        {{ partial('partials/ads/top') }}
+        <div class="grid pad submenujchs">
+          {{ partial('tag/cabecera/cb_resultados_flash' , ['portada':'presidenciales'] ) }}
+          <div class="story">
+          {{ partial('partials/resultados_electorales/presidenciales/medio') }}
+
+      </div>
+      </div>
+      </div>
+
+    <!--Footer-->
+      {{ partial('partials/footer/index') }}
+      {{ partial('partials/footer/scripts') }}
+      <script type="text/javascript">
+          url_path = '{{host}}/elecciones-peru-2016/resultados-presidenciales';
+      </script>
+      {{ partial('partials/resultados_electorales/presidenciales/script') }}
+      {{ partial('partials/footer/tracking') }}
+
+</div>
+
+</body>

@@ -1,0 +1,46 @@
+{{ partial('partials/ads/top') }}
+<!-- pub-980 -->
+<header class="wrapper">
+    {{ partial('partials/ads/verticales') }}
+    {{ partial('partials/header/fecha') }}
+    {{ partial('partials/header/search',[] , trackurl ) }}
+    {{ partial('partials/header/navhp',[] , trackurl ) }}
+    {{ partial('partials/header/logonav' ) }}
+    <!-- header-main -->
+    {{ partial('partials/portada/bloque/tag/campana_cabecera' , ['slug':'home'] ) }}
+    <div class="widget-cabecera">    
+    </div>
+    {{ partial('partials/ads/expandible') }}
+    <!-- pub-980 -->
+</header><!-- header -->
+<!-- {{ partial('partials/ads/bg_banner') }} -->
+
+<!-- Inicio Hora del planeta Mobile -->
+<div id="wrap-hp">
+  <div id="wrap-content-hp">
+    <div id="hora-planeta-m">
+      <div id="logo-hp">
+        <img src="{{host}}/hora-planeta/images/logo-hp.png" alt="La hora del planeta">
+      </div>
+      <div id="clock-hp-m" class="clock-hp">
+        <div>
+          <span class="days"></span>
+          <div class="smalltext">DÍAS</div>
+        </div>
+        <div>
+          <span class="hours"></span>
+          <div class="smalltext">HORAS</div>
+        </div>
+        <div>
+          <span class="minutes"></span>
+          <div class="smalltext">MIN</div>
+        </div>
+        <div>
+          <span class="seconds"></span>
+          <div class="smalltext">SEG</div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
+<!-- Fin Hora del planeta Mobile -->

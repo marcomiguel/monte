@@ -1,0 +1,30 @@
+.wrapper-list-gallery
+	h4.title-list-gallery más galerias
+	.container-item-list-gallery(data-n="15")
+		- for(var a = 1; a <= 15; a++)
+			article.item-list-gallery.box
+				figure
+					a(href="")
+						img(src="img/img-list-gallery.jpg")
+						figcaption Claudio Pizarro no podría ir al Werbremen por estas duras declaraciones
+	.vermas
+		button#ver-mas-gallery Cargar más 
+	script
+		|var step = 15,
+		|	$inicio = $('.container-item-list-gallery'),
+		|	$mas_productos = $('#ver-mas-gallery');
+		|$('#ver-mas-gallery').click(function(event) {
+		|	var inicio = parseInt($inicio.attr('data-n')),
+		|		fin = inicio + step;console.log(fin);
+		|	$.ajax({
+		|		url: 'mas-gallery.html'
+		|	})
+		|	.done(function(data) {
+		|		$(data).appendTo('.container-item-list-gallery')
+		|		$inicio.attr('data-n', fin);console.log(data);
+		|		// en caso de que no existan más productos
+		|		if(data.trim().length < 1){
+		|			$mas_productos.hide();
+		|		}
+		|	});
+		|});

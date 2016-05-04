@@ -1,0 +1,30 @@
+<div class="wrap group">
+            <div class="content group">
+                {{ partial('partials/nota/header/index' ~ model.package) }}                
+                <div class="entry-content group">
+                    {{ partial('partials/nota/detalle/social') }}
+                    {{ partial('partials/nota/detalle/socialmobile') }}
+                    <div class="cont ajust_win">
+                        {{ partial('partials/nota/detalle/open/' ~ model.package ) }} 
+                        {{ partial('partials/nota/detalle/block/firma/'~model.package) }}
+                        {{ partial('partials/nota/detalle/content/'~model.package) }}                            
+                        <!-- .social-share -->                            
+                        {{ partial('partials/nota/tags/index'~model.package , [] , trackurl ) }}
+                    </div>
+                    <!-- .cont -->
+                </div>
+                <!-- .entry-content -->
+                
+<?php if(!(@$this->notapreview->comentariosfb === false) ) :?>
+<div class="news-comments" id="ancla-comments">
+    <h2 class="panel-title">¿Qué opinas?</h2>
+    <div id="fbCommentPage" class="fb-comments" data-href="{{host}}" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+</div>
+                <!-- .comments -->
+<?php endif;?>
+
+            </div>               
+    <!-- .content -->
+    {{ partial('partials/nota/sidebar/index') }} 
+    <!-- .sidebar -->
+</div>

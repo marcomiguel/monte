@@ -1,0 +1,40 @@
+{{ partial('partials/head/index') }}
+  <body data-bg="{{model.epl_kvs}}" data-app="{{model.js_app}}">
+  <div id="contenedor_div">
+    <!--Header-->
+    {{ partial('partials/header/index') }}
+
+    <div class="wrapper body group">
+        <div class="category search wrap group">
+            <div class="content group">
+    
+              <div class="notfound">
+                <h1>Página<br>
+                  no encontrada</h1>
+                <form class="search" id="search-content" action="/buscar" method="post">
+                  <input name="texto" type="text" placeholder="BUSCAR">
+                  <button><span class="icon-9"></span> Buscar</button>
+                </form>
+              </div>
+
+            </div>
+            <!-- .content -->
+            <aside class="sidebar">
+                {{ partial('partials/ads/right') }}
+                <!-- pub-300 -->
+                {{ partial('partials/sidebar/calientes' , ['slug':'home'] , trackurl ) }}
+            </aside>
+            <!-- .sidebar -->
+        </div>
+        <!-- pub-980 -->
+
+    </div>
+    <!-- .wrapper -->
+    <!--Footer-->
+    {{ partial('partials/footer/index' ,[] , trackurl) }}
+    <div id="pad-swipe-nav"></div>
+    {{ partial('partials/footer/scripts') }}
+    {{ partial('partials/footer/tracking') }}
+</div>
+  </body>
+</html>

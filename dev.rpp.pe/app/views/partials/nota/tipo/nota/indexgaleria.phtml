@@ -1,0 +1,24 @@
+{{ partial('partials/nota/tipo/nota/ghcache') }} 
+<div class="wrap group">
+    <div class="content group">  
+
+       {{ partial('partials/nota/tipo/nota/gcache') }} 
+
+       {{ partial('partials/ads/interna_full' , ['position':9]) }}
+        <!-- .pub-wrap -->
+        {{ partial('partials/nota/sugeridas/index' , [] , trackurl ) }}
+
+        {{ partial('partials/ads/interna_full' , ['position':10]) }}
+        <!-- .related-news -->
+    </div>
+     
+    <!-- .content -->
+    <aside class="sidebar">
+        {{ partial('partials/nota/sidebar/mas_en_tag' ,[], trackurl ) }}
+        {{ partial('partials/ads/perured_nota') }} 
+        <!-- pub-300 -->                   
+        {{ partial('partials/nota/sidebar/recomendado' ,[] , trackurl ) }}
+        {{ partial('partials/ads/right1') }}
+    </aside>
+    <!-- .sidebar -->
+</div>

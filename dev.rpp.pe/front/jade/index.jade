@@ -1,0 +1,60 @@
+extends extends/layout.jade
+
+block head
+    include includes/head
+    
+
+block header
+    //Header
+    include includes/header
+    
+block nav    
+    nav.nav-full
+        //Nav main
+        include includes/nav
+
+    include includes/nav-fix-scrolltop
+
+block nav-movil
+    include includes/nav-movil
+
+    
+block body
+    
+    main.wrapper
+        include includes/late
+        //include includes/laterales    
+        //ADS Top
+        include includes/ads-top
+        
+        //Widget
+        include includes/widget-result  
+
+        section.body.home 
+            section.content.news-flow#fix_target
+                //Prominent
+                article.box.prominent-news
+                    .box-inner
+                        header
+                            h1 
+                                a(href="#") Real Madrid, Triunfa con golazo de Cristiano Ronaldo
+                    #matchId-224365.pr-result
+                    figure.media
+                        a(href="#")
+                            img(src="img/16_9_nota_destacada.jpg", alt="Real Madrid, Triunfa con golazo de Cristiano Ronaldo", width="672", height="434")
+                    
+                
+                //News cards
+                include includes/body-home
+            script
+                | rppWR.read({events: 'copainca',type: 'MaM', matchId: '224365'}).renderInterval({id: '#matchId-224365'});
+            aside.sidebar
+                //Sidebar
+                include includes/sidebar-home
+                
+block footer         
+        //Footer
+        include includes/footer
+        
+block scripts             
+        include includes/script-footer

@@ -1,0 +1,68 @@
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?>
+<!--Head-->
+{{ partial('partials/head/index') }}
+<body data-bg="{{model.epl_kvs}}" id='seccion' class="{{model.slug_seccion}} <?php echo @$this->model->slug_categoria ?>" data-app="slide">
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5&appId=185239485185";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+<div>
+   {{ partial('partials/header/indexseccion' , ['slug': 'autores' ]) }}
+    <div class="wrapper body group">
+        <div class="wrap group">
+            <div class="content group">
+
+               <!-- .especial.autor-section -->
+               <section class="especial autor-section">
+                   <h6>Blog</h6>
+                   <h1>{{model.seccion_info.nombre}}</h1>
+                   <?php if(!empty(@$this->model->seccion_info->autor)):?>
+                    <?php $autor = \Rpp\Services\Get\User::get($this->model->seccion_info->autor); ?>
+                   <div class="autor-content">
+                      <?php if($autor->foto_blog['w110']):?>
+                       <figure class="autor-figure">
+                           <img src="{{ autor.foto_blog['w110'] }}" alt="{{autor.nombre}}" />
+                       </figure>
+                      <?php endif;?>
+                       <div class="autor-description">
+                           <h2>{{autor.nombre}}</h2>
+                           <p>{{autor.autor['biografia']}}</p>
+                           <ul class="autor-social-icons">
+                           <?php if(!empty($autor->autor['facebook'])):?>
+                            <li class="autor-fb"><a target="_blank" href="{{autor.autor['facebook']}}" title="Facebook"><i class="icon-1"></i></a></li>
+                           <?php endif;?>
+                           <?php if(!empty($autor->autor['twitter'])):?>
+                            <li class="autor-tw"><a target="_blank" href="{{autor.autor['twitter']}}" title="Twitter"><i class="icon-5"></i></a></li>
+                            <?php endif;?>
+                           <li class="autor-rss"><a target="_blank" href="{{host}}/feed/{{model.slug}}" title="RSS"><i class="icon-rss"></i></a></li>
+                           </ul>
+                       </div>
+                   </div>
+                   <?php endif; ?>
+               </section>
+               <!-- FIN .especial.autor-section -->
+
+
+                {{ partial('partials/portada/flujo/blog', [ 'slug':model.slug ] ) }}
+                <div class="more-news">
+                    <a class="btn" href="/archivo/{{model.slug}}">Ver más noticias</a>
+                </div>
+            </div>
+            {{ partial('partials/portada/bloque/sidebar_seccion' , ['slug': 'autores' ]) }}
+        </div>
+         {{ partial('partials/ads/middle2') }}
+        <!-- pub-980 -->
+    </div>
+    <!--Footer-->
+    {{ partial('partials/footer/index' , [] , trackurl) }}
+    <div id="pad-swipe-nav"></div>
+    {{ partial('partials/footer/scripts') }}
+    {{ partial('partials/footer/tracking') }}
+</div>
+</body>

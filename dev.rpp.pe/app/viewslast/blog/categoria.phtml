@@ -1,0 +1,85 @@
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?>
+<!--Head-->
+{{ partial('partials/head/indexportada') }}
+<body data-bg="{{model.epl_kvs}}" data-x="lazy, columns-fit, sticky, slide" class="author-section flujo-author-section">
+  {{ partial('partials/head/epl') }}
+  {{ partial('partials/head/comscore') }}
+<div id="wrap">
+    {{ partial('partials/header/indexseccion' , ['slug': 'autores' ]) }}
+    <div id="content" role="main">
+        {{ partial('partials/ads/top') }}
+        <div class="grid pad">
+            <div class="story">
+                <div class="col-primary">
+                    <div class="box-mod flow">
+                        <div class="box-header">
+                            <h3 class="title">{{model.seccion_info.nombre}}</h3>
+
+                            <div class="pull-right cat">BLOG</div>
+                        </div>
+
+                        <?php if (!empty(@$this->model->seccion_info->autor)): ?>
+                            <?php $autor = \Rpp\Services\Get\User::get($this->model->seccion_info->autor); ?>
+                            <div class="author-description">
+                                <?php if ($autor->foto_blog['w110']): ?>
+                                    <figure class="author-img">
+                                        <img src="{{ autor.foto_blog['w110'] }}" alt="{{autor.nombre}}"/>
+                                    </figure>
+                                <?php endif; ?>
+
+                                <div class="author-bio">
+                                    <div class="top-bio">
+                                        <div class="tit">Autor:</div>
+                                        <div class="name">{{autor.nombre}}</div>
+                                    </div>
+                                    <p>{{autor.autor['biografia']}}</p>
+                                    <ul class="author-social">
+
+
+                                        <ul class="autor-social-icons">
+                                            <?php if (!empty($autor->autor['facebook'])): ?>
+                                                <li><a target="_blank" href="{{autor.autor['facebook']}}"
+                                                       title="Twitter">
+                                                        <div class="icon-facebook"></div>
+                                                    </a></li>
+                                            <?php endif; ?>
+                                            <?php if (!empty($autor->autor['twitter'])): ?>
+                                                <li><a target="_blank" href="{{autor.autor['twitter']}}"
+                                                       title="Twitter">
+                                                        <div class="icon-twitter"></div>
+                                                    </a></li>
+                                            <?php endif; ?>
+                                            <li><a target="_blank" href="{{host}}/feed/{{model.slug}}" title="RSS">
+                                                    <div class="icon-rss"></div>
+                                                </a></li>
+
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <div class="flow">
+                            <div data-x='{"breakpoints":"480x1x10,768x2x10"}' class="row x-columns-fit">
+                                {{ partial('partials/portada/flujo/blog', [ 'slug':model.slug ] ) }}
+                            </div>
+                            <div class="row">
+                                <div class="foot-flow"><a href="/archivo/{{model.slug}}" class="viewmore"><span
+                                            class="icon-reload"></span>Ver más noticias</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    {{ partial('partials/portada/bloque/sidebar_seccion' , ['slug': 'autores' ]) }}
+            </div>
+
+            {{ partial('partials/ads/middle2') }}
+            <!-- pub-980 -->
+        </div>
+    </div>
+    <!--Footer-->
+    {{ partial('partials/footer/index' , [] , trackurl) }}
+
+    {{ partial('partials/footer/scripts') }}
+    {{ partial('partials/footer/tracking') }}
+</div>
+</body>

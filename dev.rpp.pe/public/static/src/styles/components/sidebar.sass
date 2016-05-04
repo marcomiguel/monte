@@ -1,0 +1,66 @@
+.col-secondary
+  .no-ellipsis
+    .cont h3 a
+      -webkit-line-clamp: inherit
+      height: inherit
+  .card
+    border-bottom: 2px solid #dcdcdc
+    //margin-bottom: $pad
+    border-bottom: 1px solid #dcdcdc
+    &:last-of-type
+      border: 0
+    //h3
+      +ellipsisOk(3, 68px)
+    &.divided
+      padding: 10px 0 8px
+      .holder
+        float: left
+        width: 122px
+        margin-left: 10px
+      .cont
+        padding: 0 10px 0  142px
+        a
+          font-size: 1.4rem
+          line-height: 1.3
+          +ellipsisOk(4, 72px)
+
+      [class*='icon-']:not([class*='jw-'])
+        font-size: 1.4rem
+        height: 30px
+        width: 30px
+
+  .box-mod .box-header
+    margin: 0
+
+  .box-mod
+    margin-bottom: $pad
+    iframe
+      border: 0
+  .ads [id*="eplAd"]
+    margin-bottom: $pad
+    //background-color: white
+
+.box-special
+  .card.divided
+    &:not(:last-of-type)
+      border-bottom: 1px dotted #999
+    &:first-of-type
+      padding-top: 0
+
+.also-media
+  font-size: 1.8rem
+  text-align: center
+  margin: $pad $pad $pad+.5
+  .go
+    +transition(background-color)
+    background-color: #f7df00
+    text-decoration: none
+    padding: 5px 15px
+    border-radius: 6px
+    color: black
+    font-weight: bold
+    &:hover
+      background-color: black
+      color: #f7df00
+  span
+    padding-right: 6px

@@ -1,0 +1,5 @@
+ {{notapreview.entradilla}} 
+ 
+<?php foreach ($this->notapreview->contenido as $key => $contenido): ?> 
+    {{ partial('partials/nota/detalle/block/' ~ contenido['tipo'] ,['contenido': contenido  , 'key': key ]) }}
+<?php endforeach;?>

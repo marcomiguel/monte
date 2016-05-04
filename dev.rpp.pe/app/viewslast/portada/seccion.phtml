@@ -1,0 +1,67 @@
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?>
+<!--Head-->
+{{ partial('partials/head/indexportada') }}
+
+<body data-bg="{{model.epl_kvs}}" id='seccion' class="{{model.slug_seccion}} author-flow section<?php //echo @$this->model->slug_categoria ?>" data-x="lazy, sticky, slide, widget, media" >
+  {{ partial('partials/head/epl') }}
+  {{ partial('partials/head/comscore_refresh') }}
+<div id="wrap">
+    <!--Header-->
+    <?php $p_slug = str_replace('rpp/', '', $this->model->seccion_info->parent_slug) ;?>
+    {{ partial('partials/header/indexseccion' , ['slug': p_slug ]) }}
+    <div id="content" role="main">
+        {{ partial('partials/ads/top') }}
+        <div class="grid pad" >
+        {{ partial('partials/portada/bloque/tag/campana_cabecera_' ~ model.package  , ['slug': p_slug ] ) }}
+            <div class="story">
+                {{ partial('partials/portada/grilla/' ~ model.package  ) }}
+                <div class="col-primary">
+                    <div class="box-mod flow  <?php if(!@$this->model->agrupador):?>noborder<?php endif;?>">
+
+                        <?php if(@$this->model->agrupador):?>
+                            <?php if($this->model->slug_seccion == 'actualidad' || $this->model->slug_seccion == 'peru' || $this->model->slug_seccion == 'entretenimiento'): ?>
+                                <div class="box-header head-brand cajaarequipa-new">
+                                    <h3 class="title">Lo Último</h3>
+                                    <figure class="pull-right"><a href="http://ads.us.e-planning.net/ei/3/17632/Home/Ultimas?it=i&rnd=$RANDOM" target="_blank">Gracias a:  <img src="http://ads.us.e-planning.net/eb/3/17632/Home/Ultimas?o=i&rnd=$RANDOM" alt="Logo Caja Arequipa"></a></figure>
+                                </div>
+                            <?php else:?>
+                                <div class="box-header">
+                                    <h3 class="title">Lo Último</h3>
+                                </div>
+                            <?php endif;?>
+                        <?php endif;?>
+
+                        <?php if($this->model->slug_categoria == 'arequipa'): ?>
+                            <div class="box-header head-brand cajaarequipa-new">
+                                <h3 class="title">Lo Último</h3>
+                                <figure class="pull-right"><a href="http://ads.us.e-planning.net/ei/3/17632/Home/Ultimas?it=i&rnd=$RANDOM" target="_blank">Gracias a:  <img src="http://ads.us.e-planning.net/eb/3/17632/Home/Ultimas?o=i&rnd=$RANDOM" alt="Logo Caja Arequipa"></a></figure>
+
+                            </div>
+
+                        <?php endif;?>
+                        <div class="flow-row">
+                            <div  class="row">
+                                {{ partial('partials/portada/flujo/seccion', [ 'slug':model.slug ] , trackurl) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="foot-flow"><a href="{{host}}/archivo/{{model.slug}}" class="viewmore"><span class="icon-reload"></span>Ver más noticias</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                {{ partial('partials/portada/bloque/sidebar_seccion' , ['slug': p_slug ]) }}
+                {{ partial('partials/ads/middle2') }}
+                <!-- pub-980 -->
+            </div>
+        </div>
+    </div>
+    <!--Footer-->
+    {{ partial('partials/footer/index' , [] , trackurl) }}
+    {{ partial('partials/footer/scripts') }}
+    <script src="{{ehost}}/elecciones-peru-2016/js/highcharts.js"></script>
+    <script src="{{ehost}}/elecciones-peru-2016/js/srcijp.js?v={{eversion}}"></script>
+    {{ partial('partials/resultados_electorales/presidenciales/script') }}
+    {{ partial('partials/footer/tracking') }}
+</div>
+</body>

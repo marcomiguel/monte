@@ -1,0 +1,37 @@
+extends extends/layout.jade
+
+block head
+    include includes/head
+    
+
+block header
+    //Header
+    include includes/header
+    
+block nav    
+    nav.nav-full
+        //Nav main
+        include includes/nav
+    include includes/nav-fix-scrolltop
+block nav-movil
+    include includes/nav-movil
+
+block body
+    main.wrapper
+        include includes/laterales
+        //ADS Top
+        include includes/ads-top
+        
+        section.body.detail
+            section.news-flow
+                //News cards
+                include includes/body-minuto
+                
+    //.nav-sociales.fix-sociales
+
+block footer         
+        //Footer
+        include includes/footer
+        
+block scripts             
+        include includes/script-footer

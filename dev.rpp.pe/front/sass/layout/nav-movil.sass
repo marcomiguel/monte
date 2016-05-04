@@ -1,0 +1,122 @@
+@import ../config/color
+@import ../config/grid
+@import ../mixins/border-radius
+@import ../mixins/clearfix
+@import ../mixins/box-shadow
+@import ../mixins/opacity
+@import ../mixins/css3-prefix
+
+#nav-movil
+    display:none
+    position:fixed
+    width:100%
+    height:100%
+    z-index:999
+    top:0
+    left:0
+    overflow: hidden
+    .header-nav-movil
+        //display:none
+        position:fixed
+        left:0
+        top:-100%
+        z-index:10
+        background-color:$blue
+        width:100%
+        padding:5px 0 0 0.5em
+        height:50px
+        @include css3-prefix('transition', 'top 0.1s ease-in-out')
+        img
+            max-width: 9em
+            height: 2.75em
+        .icon
+            margin-right:0.75em
+            color:white
+            font-size:2.25em
+            float:right
+            position:relative
+            top:-1.1em
+            cursor:pointer
+            &:hover
+                color:$yellow-dark
+    .nav-inner
+        //display:none
+        background-color:$blue
+        width:50%
+        height:100%
+        position:fixed
+        top:50px
+        right:-100%
+        z-index:10
+        @include box-shadow(-5px, 1px, 5px, rgba(black, 0.2))
+        @include css3-prefix('transition', 'right 0.25s ease-in-out')
+        ul
+            margin:0
+            padding:0.5em 0
+            list-style:none
+        li
+            position:relative
+            padding: 0.5em 1.5em 0.5em 1.25em
+            font-size:1.5em
+            font-family:'titillium_weblight', arial
+            a,i
+                color:white
+                //-webkit-tap-highlight-color: white
+            a
+                display:block
+                &:hover
+                    text-decoration:none
+                    color:$yellow-dark
+            i
+                position:absolute
+                right:0.75em
+                top:0.5em
+            li
+                padding-left:0.5em
+                font-size:0.875em
+                line-height:1.35em
+                a
+                    padding-left:0
+                    color:white!important
+                    &:hover
+                        color:$yellow-dark!important
+            &.active
+                background-color:$blue-dark
+                color:$yellow-dark
+                a,i
+                    color:$yellow-dark
+
+            &.menu-drop
+                ul
+                    display:none
+        > nav
+            //height:85%
+            height:100%
+            overflow-x:hidden
+            overflow-y:auto
+
+    .search-movil
+        background-color:$blue-dark
+        padding:1em 1.5em
+        .search-movil-inner
+                @include border-radius()
+                background-color: $blue
+                vertical-align: top
+                [type="text"]
+                    background-color: transparent
+                    border: 0 none
+                    padding: 0.15em 1em
+                    height: 2.35em
+                    width: 86%
+                    line-height: 1em
+                    color: $gray-light
+                    font-family: 'titillium_webregular', arial
+                    font-size: 1.15em
+                    letter-spacing: 0.075em
+                button
+                    background-color:transparent
+                    margin:0.125em 0.25em 0 0
+                    padding:0
+                    border:0
+                    font-size:1.45em
+                    color:$blue-dark

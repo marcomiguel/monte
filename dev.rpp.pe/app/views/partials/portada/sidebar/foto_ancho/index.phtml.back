@@ -1,0 +1,8 @@
+<div class="sidebar-branding sb_{{ tag }}">
+<div class="title-branding"></div>
+ <div>
+  <?php foreach (\Rpp\Services\Get\Flow::tag($tag,$cantidad) as $e => $item) : ?>
+   {{ partial('partials/portada/bloque/tag/tag_foto_ancho', [ 'nid' : item._id , 'img_size' : 'medium' , 'tag' : tag  ]) }}
+  <?php endforeach;?>
+ </div>
+</div>

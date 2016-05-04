@@ -1,0 +1,13 @@
+<section class="img-news"><div id="swfplayer_{{key}}" class="nd_galeriaopen_">
+    </div>
+    <div class="help-media">
+        <?php echo @$contenido['video']['descripcion']; ?>                
+        {% if not(contenido['via'] is empty) %}
+        | <strong>Fuente:</strong> {{ contenido['via'] }}
+        {% endif %}
+        {% if not(contenido['credito'] is empty) %}
+        | <strong>Fotógrafo:</strong> {{ contenido['credito'] }}
+        {% endif %}      
+    </div>
+</section>
+<script type="text/javascript">setJW7("swfplayer_{{key}}", "{{contenido['video']['url']}}", "{{contenido['video']['url_cover']}}", '{{contenido['video']['playlist']|default([])|json_encode}}', '{{contenido['video']['hash']}}',"{{model.preroll}}");</script>

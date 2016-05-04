@@ -1,0 +1,39 @@
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?>
+<!--Head-->
+{{ partial('partials/head/indexportada') }}
+<body data-bg="{{model.epl_kvs}}" data-x="lazy, sticky, slide" class="author-flow section"  data-app="{{model.js_app}}">
+  {{ partial('partials/head/epl') }}
+  {{ partial('partials/head/comscore_refresh') }}
+<div id="wrap">
+    <!--Header-->
+    {{ partial('partials/header/index') }}
+    <div id="content" role="main">
+      {{ partial('partials/ads/top') }}
+      <div class="grid pad" >
+        <div class="story">  
+          {{ partial('partials/portada/grilla/autores') }}      
+          <div class="col-primary">
+            <div class="flow-row">
+              <div class="row">
+                  {{ partial('partials/portada/flujo/autores') }}                 
+              </div>
+              <div class="row">
+                <div class="foot-flow"><a href="{{host}}/archivo/{{model.slug}}" class="viewmore"><span class="icon-reload"></span>Ver más noticias</a></div>
+              </div>
+            </div>
+          </div>
+
+            {{ partial('partials/portada/bloque/sidebar_seccion' , ['slug': 'autores' ]) }}
+
+
+          {{ partial('partials/ads/middle2') }}
+        
+        </div>
+        </div>
+    </div>
+    <!--Footer-->
+    {{ partial('partials/footer/index' , [] , trackurl) }}
+    {{ partial('partials/footer/scripts') }}
+    {{ partial('partials/footer/tracking') }}
+</div>
+</body>

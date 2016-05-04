@@ -1,0 +1,4 @@
+ {{gPart(model.nid,'entradilla')}} 
+<?php foreach (\Rpp\Services\Get\Article::part($this->model->nid,'contenido') as $key => $contenido): ?> 
+    {{ partial('partials/nota/detalle/block/' ~ contenido['tipo'] ,['contenido': contenido  , 'key': key ]) }}
+<?php endforeach;?>

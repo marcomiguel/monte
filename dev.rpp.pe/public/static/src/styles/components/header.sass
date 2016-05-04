@@ -1,0 +1,631 @@
+#header
+  background-color: #fff
+  //position: relative
+  //z-index: 2
+.hdr-top
+  border-bottom: 1px solid #e4e4e4
+  height: 21px
+  .fecha
+    float: left
+    text-transform: uppercase
+    font-size: 1.2rem
+    margin-top: 1px
+  .nav-top
+    float: right
+    margin: 5px 0 0
+    ul
+      list-style: none
+      line-height: 1
+      margin: 0
+      li
+        text-transform: uppercase
+        float: left
+        font-size: 1.2rem
+        margin-left: 8px
+        margin-right: 8px
+        margin-bottom: 0
+        position: relative
+        &:after
+          position: absolute
+          top: 25%
+          right: -8px
+          height: 50%
+          width: 1px
+          content: ""
+        &:last-child:after
+          content: none
+          padding-right: 0
+        a
+          border-bottom: 3px solid transparent
+          color: #666
+          text-decoration: none
+          display: block
+          padding-bottom: 1px
+          &.active, &:hover
+            color: #0060ab
+            border-bottom-color: #0060ab
+.hdr-body
+  position: relative
+  //.social
+    position: absolute
+    right: 10px
+    bottom: 10px
+    li
+      margin-right: 0
+      margin-left: 10px
+      &:first-child
+        margin-left: 0
+  .social
+    li
+      a
+        +transition(background-color)
+        &:hover
+          color: white
+    li.fb
+      a:hover
+        background-color: $facebook-color
+    li.tw
+      a:hover
+        background-color: $twitter-color
+    li.yt
+      a:hover
+        background-color: $youtube-color
+    li.rss
+      a:hover
+        background-color: $rss-color
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .content-side
+    display: table
+    float: right
+    .col
+      height: 100%
+      vertical-align: middle
+      margin: 0
+      display: table-cell
+      &:last-child
+        padding: 0
+    .col.col-social
+      border-right: 1px solid #dcdcdc
+      width: 165px
+      padding: 0
+      text-align: center
+      padding-top: 4px
+  .logo
+    float: left
+    margin-top: 3px
+
+  .envivo
+    background-color: $logo-base-color
+    border-radius: 4px
+    font-size: 1.4rem
+    padding: 5px 0 5px 0
+    margin: 0
+    color: #000
+    text-transform: uppercase
+    span.titu
+      margin-right: 10px
+      strong
+        max-width: 200px
+        overflow: hidden
+        display: inline-block
+        white-space: nowrap
+        text-overflow: ellipsis
+        line-height: 0.8
+
+    .ico
+      width: 20px
+      height: 20px
+      display: inline-block
+      vertical-align: bottom
+      margin: 0 5px
+  .resume-link
+    text-transform: uppercase
+    color: #000
+    margin: 0 20px
+    span.titu
+      margin-left: 10px
+
+    .icon-play
+      background-color: $logo-base-color
+      color: #000
+      border-radius: 50%
+      width: 30px
+      height: 30px
+      display: inline-block
+      text-align: center
+      &:before
+        margin-top: 8px
+        display: inline-block
+        font-size: 1.3rem
+  .social.inverse
+    display: inline-block
+    a
+      border-color: #dcdcdc
+  .nav-right
+    float: right
+    height: 69px
+    ul
+      list-style: none
+      margin: 0
+      height: 100%
+      display: table
+      li
+        border-right: 1px solid #dcdcdc
+        height: 100%
+        vertical-align: middle
+        margin: 0
+        text-align: center
+        display: table-cell
+        padding: 0 13px
+        a
+          color: #666
+          font-size: 3rem
+          text-decoration: none
+          &:hover
+            color: #111
+.hdr-foot
+  background-color: $color-base-bg
+  position: relative
+  .x-wrapper
+    height: 30px
+  .temas
+    ul
+      list-style: none
+      line-height: 1
+      margin: 0
+      li
+        float: left
+        font-size: 1.3rem
+        margin-bottom: 0
+        font-weight: bold
+        a
+          color: #fff
+          text-decoration: none
+          display: block
+          padding: 10px 12px
+          border-right: 1px solid #00487f
+          line-height: .8
+          &:hover
+            background-color: #00487f
+  .x-slide
+    padding-left: 15px
+    padding-right: 15px
+    overflow: hidden
+    .x-prev span, .x-next span
+      font-size: 1.4rem
+      left: 0
+      opacity: 1
+    .x-next span
+      left: inherit
+      right: 0
+
+// search panel
+.search-flyout
+  position: absolute
+  top: 100%
+  width: 100%
+  background-color: $color-base-bg
+  box-shadow: 0 10px 10px -3px rgba(0, 0, 0, 0.3)
+  display: none
+  z-index: 1000
+  .search-form
+    position: relative
+    padding: 7px 0
+  .search-input
+    background-color: transparent
+    border: 0
+    width: 100%
+    font-size: 3rem
+    border-left: 2px solid #1d90e9
+    padding: 5px 70px 5px 15px
+    box-sizing: border-box
+    color: #fff
+    outline: none
+    &::-webkit-input-placeholder
+      color: #1d90e9
+  button
+    position: absolute
+    top: 0
+    right: 0
+    background-color: #043a64
+    border: 0
+    color: #fff
+    height: 100%
+    width: 55px
+    font-size: 2.8rem
+    &:hover
+      background-color: darken(#043a64, 10%)
+
+// nav main
+.content-nav
+  position: absolute
+  top: 100%
+  width: 100%
+  z-index: 1000
+  display: none
+  .grid
+    position: relative
+
+.nav-main
+  position: fixed
+  //top: 0
+  //right: 0
+  width: 320px
+  margin-left: 720px
+  background-color: #fff
+  border-top: 1px solid $color-base-bg
+  border-bottom: 1px solid $color-base-bg
+  padding: 0 10px
+  overflow-y: auto
+  max-height: 100%
+
+  .account
+    background-color: #efeff0
+    margin-left: -10px
+    margin-right: -10px
+    padding: 10px 0 10px
+    .buttons
+      ul
+        margin: 0
+        list-style: none
+      li
+        float: left
+        width: 50%
+        text-align: center
+        font-size: 1rem
+        font-weight: 700
+        margin: 0
+        &:first-child
+          border-right: 1px solid #dcdcdc
+      a
+        display: inline-block
+        width: 130px
+        background-color: #fff
+        padding: 5px 0
+        border-radius: 15px
+        border: 1px solid #dcdcdc
+        text-transform: uppercase
+        text-decoration: none
+        [class*="icon-"]
+          display: inline-block
+          margin-left: 6px
+          transform: rotate(0deg)
+        &.active, &:hover
+          background-color: $color-base-bg
+          color: #fff
+        [class*="icon-chevron-"].active
+          transform: rotate(180deg)
+        span.icon-users
+          font-size: 14px
+          vertical-align: bottom
+    .list
+      display: none
+      ul
+        list-style: none
+        margin: 10px 0
+        li
+          width: 50%
+          float: left
+          padding: 8px 18px
+          margin: 0
+          font-size: 1rem
+          text-transform: uppercase
+        a
+          color: #7b7b7b
+          text-decoration: none
+          &:hover
+            color: $color-base-bg
+            font-weight: 700
+            border-bottom: 2px solid $color-base-bg
+  //-demo-open
+
+  .account.open
+    .list
+      display: block
+    .buttons
+      li:first-child
+        a
+          background-color: $color-base-bg
+          color: #fff
+          [class*="icon-chevron-"]
+              transform: rotate(180deg)
+  //-fin demo-open
+
+  .search-form
+    margin-top: 5px
+    margin-bottom: 10px
+    position: relative
+    padding: 5px 0
+    border-bottom: 1px solid #dcdcdc
+
+    .search-input
+      background-color: transparent
+      border: 0
+      width: 100%
+      //border-left: 1px solid #666
+      padding: 5px 40px 5px 10px
+      box-sizing: border-box
+      outline: none
+
+    button
+      position: absolute
+      background-color: transparent
+      top: 0
+      right: 0
+      border: 0
+      color: #666
+      height: 100%
+      width: 40px
+      font-size: 1.8rem
+      &:hover
+        color: darken(#666, 10%)
+
+  .topics-list
+    //overflow: auto
+    margin-bottom: 10px
+    border-bottom: 1px solid #dcdcdc
+    ul
+      margin: 10px 0
+      list-style: none
+      white-space: nowrap
+      overflow-x: auto
+      +clearfix
+    li
+      //float: left
+      display: inline-block
+      text-align: center
+      font-size: 1rem
+      font-weight: 700
+      margin: 0 2px
+    a
+      display: block
+      background-color: $color-base-bg
+      color: #fff
+      padding: 5px 10px
+      border-radius: 15px
+      text-transform: uppercase
+      text-decoration: none
+      &:hover
+        background-color: darken($color-base-bg, 10%)
+
+  .special
+    border-bottom: 1px solid #dcdcdc
+    margin-bottom: 10px
+    .holder
+      position: relative
+      margin-bottom: 10px
+      border: 1px solid #bfbfbf
+      a
+        text-align: center
+        text-decoration: none
+        position: absolute
+        background-color: #efeff0
+        top: 0
+        right: 0
+        border: 0
+        color: #004a8b
+        height: 100%
+        width: 34px
+        font-size: 1.6rem
+        span
+          margin-top: 13px
+          display: inline-block
+        &:hover
+          background-color: darken(#efeff0, 10%)
+
+  .title
+    padding: 0 10px
+    font-size: 1rem
+    text-transform: uppercase
+
+  .menubar
+    margin: 10px 0
+    list-style: none
+    li
+      text-transform: uppercase
+      margin-bottom: 0
+    a
+      color: #000
+      text-decoration: none
+      display: block
+      padding: 4px 10px
+      &:hover
+        color: $linkColor
+        background-color: #d5e6fa
+
+  .services
+    border-top: 1px solid #dcdcdc
+    padding: 10px 0
+    .inner
+      text-align: center
+      padding-top: 15px
+      ul
+        list-style: none
+        margin: 0 25px
+        overflow: hidden
+      li
+        width: 25%
+        float: left
+        text-align: center
+        margin-bottom: 0
+        [class*="icon-"]
+          font-size: 3rem
+        span.title
+          display: block
+        a
+          color: #666
+          text-decoration: none
+          &:hover
+            color: $linkColor
+
+  .newsletter-form
+    background-color: #d3d3d5
+    padding: 10px
+    margin-left: -10px
+    margin-right: -10px
+    .title
+      margin-bottom: 5px
+    .inner
+      position: relative
+      background-color: #fff
+      padding: 5px 0 5px 5px
+      .search-input
+        background-color: #fff
+        border: 0
+        width: 100%
+        //border-left: 1px solid #666
+        padding: 3px 40px 3px 6px
+        box-sizing: border-box
+        outline: none
+      button
+        position: absolute
+        background-color: #29a670
+        top: 0
+        right: 0
+        border: 0
+        color: #fff
+        height: 100%
+        width: 36px
+        font-size: 1.9rem
+        &:hover
+          background-color: darken(#29a670, 10%)
+
+  .en-redes
+    padding: 20px 0
+    background-color: #efeff0
+    margin-left: -10px
+    margin-right: -10px
+    padding-bottom: 30px
+    .social
+      text-align: center
+      float: none
+      margin: 0
+      ul
+        display: inline-block
+        margin: 20px 0 0
+
+
+
+#content
+  //padding-top: 1px
+  position: relative
+  top: 1px
+
+
+body.open-menu
+  #content:before
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background-color: rgba(0,0,0,.8)
+    content: ""
+    z-index: 100
+  .nav-main
+    z-index: 1000
+
+
+
+
+// action on click search button
+#header.open
+  .nav-right
+    ul
+      li.opt-search
+        background-color: $color-base-bg
+        a
+          color: #fff
+          span:before
+            content: "\150"
+  .search-flyout
+    display: block
+
+// action when clik on main bnav
+body.open-menu
+  overflow: hidden
+  #header
+    .nav-right
+      ul
+        li.opt-menu
+          background-color: $color-base-bg
+          a
+            color: #fff
+            span:before
+              content: "\150"
+    .content-nav
+      display: block
+
+//.menu-small
+  .hdr-body
+    border-top: 2px solid #0060ab
+    border-bottom: 1px solid #bababa;
+  .logo
+    margin: 0
+    img
+      max-height: 40px
+  .nav-right
+     height: 40px
+
+#x-fixed-menutop
+  &>.inner
+    top: -4.2rem
+  &.fixed-on, &.menu-small
+    height: 69px
+    //&.menu-small
+      height: 45px
+      box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.34)
+    .inner
+      border-top: 2px solid #0060ab
+    .nav-right
+      height: 38px //o auto
+      ul li a
+        font-size: 2.3rem
+    .logo
+      margin-left: 10px
+      margin-top: 0
+      img
+        height: 36px
+
+  &.fixed-on>.inner
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.34)
+    background-color: white
+    transition: top 300ms ease
+    position: fixed
+    z-index: 999
+    top: 0
+    width: 100%
+    left: 0
+  &.menu-small
+    height: 40px
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.34)
+    .content-side
+      .col-social
+        padding-left: $pad
+        width: 270px
+.issues
+  display: none
+.logo-head
+  margin: 0
+.logo-rpp-main
+  width: 153px
+.ads-main-top [id*="eplAd"]
+  margin-top: 10px
+  margin-bottom: 0
+
+
+body.open-menu .nav-main .en-redes
+  padding-bottom: 100px;

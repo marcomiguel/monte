@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rss version="2.0" xmlns:dc= "http://purl.org/dc/terms"   xmlns:media= "http://search.yahoo.com/mrss/">
+
+  <channel>
+
+    <title>&#218;ltimas noticias del deporte del Per&#250; y el Mundo: Fotos, Im&#225;genes, V&#237;deos, Audio, Multimedia, Interactivos y m&#225;s por RPP Noticias</title>
+
+    <language>es-pe</language>
+
+    <link>http://rpp.pe</link>
+<?php foreach (\Rpp\Services\Get\Flow::home(50) as $item) : ?>
+    <item>
+      <title><![CDATA[ <?php echo   \Rpp\Services\Get\Content::node($item->_id)->titulo ?>  ]]></title>
+
+      <link>{{host}}<?php echo \Rpp\Services\Get\Content::nurl($item->_id)?></link>
+
+     <?php if( \Rpp\Services\Get\Content::node($item->_id)->tipo =='galeria' ) :?>
+      {{ partial('msnfeed/media_group' , ['nid':item._id]) }}
+     <?php endif;?>
+
+      <!--Use the Media Tag to add images-->
+  <?php $primer_texto_nota = $relacionado = array(); ?>
+  <?php foreach (\Rpp\Services\Get\Content::part($item->_id,'contenido') as $contenido): ?> 
+   <?php if ($contenido['tipo'] == 'photo') :?>
+     <media:content url="http://contoso.com/image.jpg">
+        <media:thumbnail url="{{cdn_image( contenido['foto']['hash'] ,'medium')}}" type="image/jpeg"/>
+        <media:credit><?php echo @$contenido['credito'] ?></media:credit>
+        <media:title><?php echo @$contenido['foto']['alt'] ?></media:title>
+        <media:text><![CDATA[<?php echo htmlentities(@$contenido['via']) ?>]]></media:text>
+      </media:content>
+    <?php elseif ($contenido['tipo'] == 'video'): ?>
+      <media:content url="{{contenido['video']['url']}}"  type="video/mp4">
+        <media:thumbnail url="{{contenido['video']['url_cover']}}" type="image/jpeg"/>
+        <media:copyright><?php echo htmlspecialchars(@$contenido['via']) ?></media:copyright>
+        <media:title><?php echo htmlspecialchars(@$contenido['video']['alt']) ?></media:title>
+        <media:description><![CDATA[<?php echo htmlentities(@$contenido['video']['alt']) ?>]]></media:description>
+      </media:content>
+    <?php elseif ($contenido['tipo'] == 'audio'): ?>
+      <media:content url="{{contenido['audio']['url']}}"  type="video/mp3">
+        <media:thumbnail url="{{contenido['audio']['url_cover']}}" type="image/jpeg"/>
+        <media:copyright><?php echo htmlspecialchars(@$contenido['via']) ?></media:copyright>
+        <media:title><?php echo htmlspecialchars(@$contenido['video']['alt']) ?></media:title>
+        <media:description><?php echo htmlspecialchars(@$contenido['video']['alt']) ?></media:description>
+      </media:content>
+    <?php elseif ($contenido['tipo'] == 'text'): ?>
+     <?php $primer_texto_nota[] = strip_tags($contenido['texto']) ;?>
+     <?php if( count(@$contenido['relacionado']['items']) > 0 ):?>
+         <?php 
+            foreach ($contenido['relacionado']['items'] as $value) {
+                $relacionado[]=$value['nid'];
+            }
+         ?>
+     <?php endif;?>
+    <?php endif;?>
+  <?php endforeach;?>
+
+      <description>
+
+        <![CDATA[  <?php echo  \Rpp\Services\Get\Content::node($item->_id)->bajada ?> ]]>
+      </description>
+
+      <dc:alternative><![CDATA[<?php echo   \Rpp\Services\Get\Content::node($item->_id)->titulo_corto ?>]]></dc:alternative>
+
+      <dc:abstract><![CDATA[<?php echo htmlentities(@$primer_texto_nota[0])  ?>]]></dc:abstract>
+
+      <dc:publisher>RPP Noticias</dc:publisher>
+
+       <dc:created><?php echo date('Y-m-d\TH:i:sP' , \Rpp\Services\Get\Content::node($item->_id)->fecha_publicacion )?></dc:created>
+
+       <dc:modified><?php echo date('Y-m-d\TH:i:sP' , \Rpp\Services\Get\Content::part($item->_id,'last_modified'))?></dc:modified>
+
+      <dc:creator>Redacción RPP Noticias</dc:creator>
+      <guid isPermaLink="false">{{item._id}}</guid>
+
+     <?php foreach ($relacionado as $nid): ?> 
+      <link rel="related" type="text/html" href="{{host}}<?php echo \Rpp\Services\Get\Content::nurl($nid)?>" title="<?php echo htmlspecialchars(\Rpp\Services\Get\Content::node($nid)->titulo)?>">
+        <media:thumbnail url="{{ cdn_image(getNode(nid).imagen_portada['hash'],'medium') }}" type="image/jpeg"/>
+        <media:credit>RPP Noticias</media:credit>
+        <media:title>{{getNode(nid).imagen_portada['alt']}}</media:title>
+        <media:text><![CDATA[ <?php echo  \Rpp\Services\Get\Content::node($nid)->bajada ?> ]]></media:text>
+      </link>
+    <?php endforeach;?>
+    </item>
+<?php endforeach;?>
+  </channel>
+</rss>

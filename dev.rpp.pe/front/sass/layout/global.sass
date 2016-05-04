@@ -1,0 +1,774 @@
+@import ../config/color
+@import ../config/grid
+@import ../mixins/box-shadow
+@import ../mixins/border-radius
+@import ../mixins/text-shadow
+@import ../mixins/clearfix
+@import ../mixins/background-gradient
+@import ../mixins/arrow
+@import ../mixins/module-color
+@import ../extends/no-list
+@import ../extends/module
+@import ../mixins/css3-prefix
+
+
+
+
+
+//Todo tiene que ser generico 
+
+
+
+.ca
+    :background-image url(../svg/bg_card_ui.svg) 
+    :background-repeat repeat-y 
+    :background-color $blue-america
+    h1
+        :font-weight 300
+        a
+            :color white
+    h3.tag
+        :color #feee00
+        :font-weight 300
+        a
+            :color #feee00
+    .tag-time
+        time
+            :color white
+    .box-inner
+    	:color white
+    .rppWR-cntMatch
+    	:background-color transparent
+    	
+    .rppWR-cntMatch .rppWR-td1 > div, .rppWR-cntMatch .rppWR-td3 > div
+    	:color white
+    .rppWR-vs-resutls 
+    	a
+    		:color white
+    		&:hover
+    			:color white
+    	.rppWR-vs-separator
+    		:color white
+    .rppWR-info-vs.rppWR-info-2
+   		:background-color #0066AD
+   	.box-match-vs 
+   		.cntMatch
+   			:border none
+
+.new.social-detail
+	:position relative
+	ul
+		li.func-large
+			:width 100%
+			:position relative
+			a
+				:width 100%
+			
+		li.li-icon
+			:position absolute
+			:top 0
+			:right 5px
+.item-social-detail
+	:position relative
+	&:first-child
+		:text-align right
+		:padding-right 38px
+	&:last-child
+		:padding-left 5px
+
+
+
+.wrapper-table
+	:max-width 630px
+	:background-color #f1f1f1
+	:box-shadow 0px 26px 0px #bcbcbc inset
+	:padding-bottom 12px
+	:text-align center
+	:position relative
+	thead
+		.title-3
+			:text-align center
+			span 
+				:display inline-block
+		.title-g
+			:text-align center
+			span
+				:display inline-block
+	tbody
+		tr
+			:border-top 1px solid #bcbcbc
+		tr:first-child
+			:border-top none
+		.tbl-nombre
+			p
+				:margin 0
+				:margin-left 10px
+
+		.tbl-equipo
+			p
+				:margin 0
+				:display inline-block 
+				:vertical-align middle
+				:margin-left 5px
+			img 
+				:display inline-block
+				:vertical-align middle
+				:margin-right 5px
+		.tbl-goles
+			:text-align center
+			span 
+				:width 30px
+				:height 30px
+				:border-radius 50%
+				:background-color #888888
+				:text-align center
+				:display inline-block
+				:color white 
+				:line-height 27px
+				:text-indent -1px
+		.tbl-number
+			:text-align center
+			p
+				:margin 0
+				:font-size 24px
+				:color $blue-america
+		.tbl-num-2
+			:text-align center
+			:width 5%
+			span 
+				:display inline-block
+.body-blocks
+	tbody
+		tr
+			&:nth-child(1)
+				:box-shadow 3px 0px 0px rgb(0, 102, 173) inset
+			&:nth-child(2)
+				:box-shadow 3px 0px 0px #3385bd inset 
+			&:nth-child(3)
+				:box-shadow 3px 0px 0px #66a3ce inset 
+			&:nth-child(4)
+				:box-shadow 3px 0px 0px #99c2de inset 
+	
+
+	.social-detail
+		:margin-bottom 30px
+		:padding-top 10px
+		:border-top 1px solid #9EA9AD
+	.container-table
+		:max-width 610px
+		:margin auto
+		:background-color white
+	
+	.social-detail
+		:float none
+		:width 100%
+		:text-align left
+
+.content-noticias-ca
+	:overflow hidden
+	:padding 0px 8px
+	.text-noticias-ca
+		p
+			:font-size 1.241em
+	.time-noticias-ca
+		:color #9ea9ad
+
+
+//Tabla de copa america
+
+.wrapper-table
+	:max-width 660px
+	:margin auto
+
+.table
+	:width 100%
+	:margin autofire
+	:text-align left
+	th 
+		:text-transform uppercase
+		:color white
+		:text-align left
+		h4
+			:font-weight 300
+			:margin 0
+
+	.headboard-table
+		:background-color #bcbcbc
+		:height 25px
+		:border 1px solid #bcbcbc
+		.title-1
+			:text-align left
+			h4 	
+				:margin-left 10px
+		.title-1.duo
+			h4
+				:position absolute
+				:top 0
+				:left 0
+				:margin 0
+				:display inline-block
+				:line-height 26px
+				:padding 0px 14px
+				:background-color #969696
+	.main-table
+		:height 40px
+		:border 1px solid #BCBCBC
+		
+//sidebar-copa-america
+//tab mini
+.ca-sidebar-tabla
+	.headboard-ca-tabla
+		:background url(../img/bg_widget_tabla_de_posiciones.jpg) no-repeat center top
+		:background-size cover
+		:width 100%
+		:margin auto
+		:padding 11px 0px 4px 8px
+		:border-top 5px solid #0066ad
+		h5
+			:color #fffc13
+			:text-transform uppercase
+			:font-size 0.828em
+			:font-weight 300
+			:margin 0
+		h3
+			:color white
+			:text-transform uppercase
+			:font-size 1.769em
+			:font-weight 300
+			:margin 0
+	.wrap-tabs
+		:margin-top 8px
+		ul
+			:padding 0
+			:text-align center
+			:margin-bottom 0
+			:margin-bottom 8px
+		.item-header-tab
+			:display inline-block
+			:list-style-type none
+		.header-tab
+			.item-header-tab
+				span
+					:text-transform uppercase
+					:color #707070
+					:font-size 1.103em
+					:padding 2px 10px
+					:display block
+					:cursor pointer
+					&:hover
+						:text-decoration none
+				&:nth-child(2)
+					:margin 0px 10px
+			.item-header-tab.active
+				span
+					:background-color #0066ad
+					:color white
+		.cnt-tab
+			:height 40px
+			td
+				:font-size 16px
+				:display table-cell
+				:vertical-align middle
+				:text-transform uppercase
+				&.tbl-num
+					:font-size 24px
+					:color #0066ad
+				&.tbl-puntos
+					:text-align center
+					span
+						:color white
+						:border-radius 50%
+						:width 30px
+						:height 30px
+						:background-color #888888
+						:display inline-block
+						:text-align center
+						:line-height 30px
+				&.tbl-nom
+					:padding-left 10px
+					img
+						:display inline-block
+						:vertical-align middle
+						:margin-right 8px
+		.content-tab
+			.item-tab
+				:display none
+			.item-tab.active
+				:display block
+
+		.table-tab
+			:width 100%
+			.headboard-tab
+				:background-color #bcbcbc
+				th 
+					:color white
+					:font-weight 300
+					:text-transform uppercase
+					&.tl2
+						:width 65%
+						:text-align left
+						:padding-left 35px
+			tr 
+				td:first-child
+					text-align:  center
+				td 
+					:border-bottom 1px solid #bfbfbf
+				&:nth-child(2)
+					:box-shadow 3px 0px 0px rgb(0, 102, 173) inset
+				&:nth-child(3)
+					:box-shadow 3px 0px 0px #3385bd inset 
+				&:nth-child(4)
+					:box-shadow 3px 0px 0px #66a3ce inset 
+				&:nth-child(5)
+					:box-shadow 3px 0px 0px #99c2de inset 
+
+.wrapper-tabla-top
+	:position relative
+	:text-align right 
+	.link-tabla-top
+		:display inline-block
+		:background-color $blue-america
+		:padding 4px 13px
+		:color white
+	li
+		:list-style-type none
+		:padding-left 10px
+		:border-top 1px solid #cbcbcb
+		:height 42px
+		img
+			:display inline-block
+			:vertical-align middle
+			:margin-right 15px
+		span
+			:display inline-block 
+			:vertical-align middle
+			:text-transform uppercase
+			:line-height 42px
+		&:first-child
+			:border none
+		&:nth-child(1)
+			:box-shadow 3px 0px 0px rgb(0, 102, 173) inset
+		&:nth-child(2)
+			:box-shadow 3px 0px 0px #3385bd inset 
+		&:nth-child(3)
+			:box-shadow 3px 0px 0px #66a3ce inset 
+		&:nth-child(4)
+			:box-shadow 3px 0px 0px #99c2de inset 
+	ul
+		:padding 0
+		:margin 0
+
+.table-top
+	:width 100%
+	:margin-top 8px
+	.headboard-table-top
+		:background-color #bcbcbc
+		.title-1
+			:padding-left 8px
+		.title-3
+			:width 20%
+			h5
+				:text-align center
+		.title-2
+			:width 24%
+			h5
+				:text-align center
+
+		h5
+			:margin 0
+			:text-transform uppercase
+			:color white
+			:font-size 17px
+			:font-weight 300
+			:line-height 1-25em
+			:text-align left
+	.content-table-top
+		:height 40px
+	.nombre-table-top
+		:padding-left 10px
+		:text-align left
+	.equipo-table-top
+		:text-align center
+	.goles-table-top
+		:text-align center
+		span
+			color: #FFF
+			border-radius: 50%
+			width: 30px
+			height: 30px
+			background-color: #888
+			display: inline-block
+			text-align: center
+			line-height: 30px
+	tr
+		:border-bottom 1px solid #bfbfbf
+//fixture
+.fixture
+	.wrapper-select
+		:position: relative
+		:display inline-block
+		:margin-bottom 20px
+		:margin-left 10px
+		:height 25px
+		.select-fases
+			:background none
+			:border none
+			:color $blue-america
+			:font-size 16px
+			:position relative
+		i
+			:background white
+			:position absolute
+			:top 0
+			:right 0
+			:width 15px
+			:height 100%
+			:display block
+			:pointer-events none
+			:line-height 26px
+			:font-size 10px
+			:color $blue-america
+			:text-align center
+	.social-detail
+		:margin-top 30px
+	.wrap-tabs
+		:max-width 660px
+		:margin auto
+		.header-tab
+			:margin-top 15px
+			:margin-bottom 25px
+			ul 	
+				:padding 0 
+				:width auto
+
+			.item-header-tab.active
+				:background-color #0066AD
+				:padding 0 4px
+				a
+					:color white
+			li
+				:list-style-type none
+				:display inline-block
+				:padding 0px 4px
+				a
+					:display block
+					:width auto
+					:height 25px
+					:text-transform uppercase
+					:line-height 25px
+					:color #707070
+					:text-align center
+					:padding 0px 4px
+					&:hover
+						:text-decoration none
+						:background-color #0066AD
+						:color white
+				&:nth-child(2)
+					:margin 0 50px
+		.content-tab
+			.item-tab
+				:display none
+			.item-tab.active
+				:display block
+.wrapper-table-duo	
+	:text-align center
+	:margin-top 10px
+	.table-duo
+		:margin-bottom 10px
+		&:nth-child(odd)
+			:margin-right 4px
+		&:nth-child(even)
+			:margin-left 4px
+.caption-table-duo 
+	h4 
+		:margin 0
+		:text-transform uppercase
+		:color white
+		:text-align center
+		:font-weight 300
+		:font-size 1.103em
+		:height 25px
+		:line-height 25px
+.table-duo
+	:max-width 300px
+	:display inline-block
+	:height 180px
+	:border-top 5px solid $blue-america
+	ul
+		:padding 0
+	li 
+		:list-style-type none
+	.fecha-table-duo
+		:margin-top 15px
+		time
+			:display block 
+			:text-align center
+	.vs-table-duo,
+	.resultado-table-duo
+		:font-size 0
+		ul
+			li 
+				:font-size 14.5px
+				:display table-cell
+				:vertical-align middle
+				:width 150px
+				:text-align center
+	.vs-table-duo
+		ul
+			:position relative
+			li
+				:height 110px
+				span
+					:display block
+					:text-align center
+			&:before
+				:content "vs"
+				:width 30px
+				:height 30px
+				:text-transform uppercase
+				:text-align center
+				:color white 
+				:background-color: #888888
+				:position absolute
+				:border-radius 50%
+				:font-size 1rem
+				:left 0
+				:right 0
+				:bottom 0
+				:top 0
+				:margin auto
+				:line-height 31px
+				:text-indent 1px
+	.resultado-table-duo
+		ul
+			:border-top 1px solid #bfbfbf 
+			:position relative
+			li 
+				:height 30px
+				:font-size 24px
+			&:before
+				:content ""
+				:width 1px 
+				:height 100%
+				:position absolute
+				:left 0
+				:right 0
+				:margin auto
+				:background-color: #bfbfbf
+.wrapper-slider-fechas
+	:position relative
+	:padding 0px 30px 0px 75px
+	:margin-bottom 25px
+	ul
+		:padding 0
+		:margin 0
+		:display inline-block
+		:position relative
+	.item
+		:display inline-block
+		:vertical-align middle
+		:list-style-type none
+		:text-align center
+		a
+			:width 25px
+			:height 25px
+			:display inline-block
+			:color #707070
+			:border-radius 50%
+			:line-height 25px
+			:font-size 14px
+			&:hover
+				:text-decoration none
+		&.active,&:hover
+			a 
+				:background-color #0066AD
+				:color white
+	.owl-prev, .owl-next
+		:position absolute
+		:top 4px
+	.owl-next
+		:left 102%
+		color : #0066AD
+	.owl-prev
+		:right 102%
+		color : #0066AD
+.text-slider-fechas
+	:text-transform uppercase
+	:display inline-block
+	:position absolute
+	:top 0
+	:left 0
+
+//EQUIPOS
+.list-items
+	ul
+		:font-size 0
+		:padding 0
+		:padding 30px 0px
+		:text-align center
+	li 
+		:list-style-type none
+		:width 24%
+		:display inline-block
+		:font-size 14.5px
+	.content-equipos
+		:display table-cell
+		:text-align center
+		:height 130px
+		:vertical-align middle
+		:width 180px
+		&:hover
+			:text-decoration none
+		span
+			:text-transform uppercase
+			:color black
+			:margin-top 5px
+			:display block
+.menu-mas
+	:background-color white
+	:position relative
+	:padding-right 50px
+	:height 50px
+	&.box
+		:margin-bottom 10px
+	button
+		:background none
+		:border none
+		:width 50px
+		:height 50px
+		:text-align center
+		:position absolute
+		:z-index 1
+		:right 0
+		:top 0
+		:font-size 27px
+		:font-weight 900
+		:color #0066AD
+		:line-height 50px
+		:z-index 9999
+		:box-shadow 0px 0px 35px -5px rgba(0, 0, 0, 0.5) inset
+		span 
+			:position absolute
+			:top -5px
+			:margin auto
+			:width 20px 
+			:height 20px
+			:left 0
+			:right 0
+	ul 
+		:padding 0
+		:margin 0
+	.visible-links
+		li 
+			:list-style-type none
+			:display table-cell
+			:padding 0px 10px
+			:height 50px
+			:vertical-align middle
+			a
+				:display table-cell
+				:vertical-align middle
+				:text-align center
+				:font-size 15px
+				:padding 0px 5px
+				:border-bottom 3px solid transparent
+				:height 48px
+				&:hover
+					:text-decoration none
+			&.active
+				a
+					:border-color #daa926
+					:font-weight 900
+	.hidden-links
+		:background-color white
+		:border 1px solid #BFBFBF
+		:right 0
+		:padding 0px 10px
+		:z-index 1
+		li
+			:display block
+			a
+				:display table-cell
+				:vertical-align middle
+				:height 40px
+				:text-align center
+
+
+//pruebas
+.menu-blocks
+	:position relative
+	:min-width 250px
+	a
+		:display block
+	button
+		:position absolute
+		:height 100%
+		:right 0
+		:border 0
+		:outline none
+		:width 40px
+		:background-color white
+		&:after
+			:content attr(count)
+			:position absolute
+			:width 30px
+			:height 30px
+			:left -16px
+			:top 0
+			:margin auto
+			:bottom 0
+			:text-align center
+			:font-size 14px
+			:line-height 28px
+			:color white
+			:border-radius 50%
+			color: rgb(0, 72, 146) 
+			font-weight: bold
+			background-color: #FFFFFF
+			box-shadow: 0 1px 5px rgba(0,0,0,0.7)
+	.hamburger
+		:position relative
+		:width 8px
+		:height 8px
+		:background-color $blue-america
+		:margin auto
+		:border-radius 50%
+		&:before,
+		&:after
+			:content ""
+			:position absolute
+			:left 0
+			:width 8px
+			:height 8px
+			:background-color $blue-america
+			:border-radius 50%
+		&:before
+			:top -10px
+		&:after
+			:bottom -10px
+	.hidden-links
+		:right 0
+		:top 100%
+		:background-color $blue-america
+		:text-align left
+		:z-index 1
+		li
+			:display block
+			.active
+				:background-color $blue-america
+				:color white
+.hidden-links
+	:position absolute
+
+.visible-links
+	:display inline-table
+	li
+		:display table-cell
+.hidden
+	visibility: hidden
+
+
+.none480
+	.breadcrumb-social
+		.social-detail
+			:display inline-block

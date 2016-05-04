@@ -1,0 +1,204 @@
+@import ../config/color
+@import ../mixins/css3-prefix
+@import ../mixins/box-shadow
+@import ../mixins/border-radius
+@import ../mixins/text-shadow
+@import ../config/grid
+
+//VARS
+$h : 140px
+
+//Out Fixture
+#outFixture
+    padding:0.5em 2.5em 1.5em
+    margin-bottom:1em
+    background: url('../img/dbg_widget.jpg') center top no-repeat
+    @include border-radius(5px)
+    height:$h + 87px
+    overflow:hidden
+    background-size:cover
+    position:relative
+    #logoDataFactory
+        position:absolute
+        right:-7px
+        bottom:0
+        display:inline-block
+    .topFixture
+        width:100%
+        height:45px
+    h4
+        margin:0.25em 0 0 -0.75em
+        padding:0
+        color:#fefffd
+        font-size:1.75em
+        line-height:1
+        font-family: 'titillium_weblight', arial
+        @include text-shadow(1px, 1px, 1px, rgba(0,0,0,0.5))
+        float:left
+        width:15%
+    nav
+        width:100%
+        float:left
+        margin:0 -0.75em 0 0
+        padding:0
+        text-align:left
+        ul
+            margin:0
+            padding:0
+            list-style:none
+            li
+                display:inline-block
+                font-family: 'titillium_weblight', arial
+                @include text-shadow(1px, 1px, 1px, rgba(0,0,0,0.5))
+                padding:0.25em 0.75em 0.5em
+                margin:0 -2px
+                color:white
+                cursor:pointer
+                border-bottom:3px solid #bf6c88
+                font-size: 14.5px!important
+                &.active
+                    color:#dcd270
+                    border-color:#dcd270
+                    cursor:default
+        select
+            display:none
+            width: 180px
+            background-color: transparent
+            color: #dcd270
+            height: 1.8em
+            cursor: pointer
+            @include border-radius(0px)
+            border: 0 none
+            border-bottom: 3px solid #dcd270
+
+@media (max-width: 1040px)
+    #outFixture
+        h4
+            font-size:1.5em
+        nav
+            ul
+                display:none
+            select
+                display:inline-block
+                width: 140px
+@media (max-width: 600px)
+    #outFixture
+        nav
+            select
+                display:inline-block
+                width: 140px
+
+//Fixture Result
+.rppWR-wrap
+    min-height:$h
+    font-size: 1em
+.rppWR-box_result
+    @include border-radius(5px)
+    //border:1px solid $border-color
+    background-color:white
+    width:92%
+    margin:0 4%
+    min-height:$h
+    @include box-shadow(1px, 3px, 2px, rgba(0,0,0,0.2))
+    //float:left
+.rppWR-header_result
+    @include border-radius(4px 4px 0 0)
+    background-color: $blue
+    color:white
+    text-align:center
+    font-size:0.85em
+    padding: 0.25em 0
+    line-height:1
+.rppWR-time_result
+    background-color: $blue-dark
+    color:white
+    font-size:0.75em
+    text-align:center
+    padding: 0.25em 0
+    height:21px
+    overflow:hidden
+.rppWR-status_result
+    position:relative
+    background-color:#c52638
+    color:white
+    text-transform: uppercase
+    font-size:0.9em
+    padding: 0.35em 0.25em 0.35em 2.5em
+    min-height:1.75em
+    &:after
+        font-family: 'iconfutbol'
+        content: "b"
+        font-size:20px!important
+        position:absolute
+        left:0.25em
+        top:0.1em
+        font-style: normal
+        font-weight: normal
+        font-variant: normal
+        text-transform: none
+        speak: none
+        line-height: 1
+        -webkit-font-smoothing: antialiased
+        -moz-osx-font-smoothing: grayscale
+    &.rppWR-statusid-0
+        background-color: #414439
+        &:after
+            top:0.1em
+            content: "c"
+    &.rppWR-statusid-1
+        background-color: #008846
+        &:after
+            top:0.1em
+            -webkit-animation:icon-spin 2s infinite linear
+            animation:icon-spin 2s infinite linear
+            content: "a"
+.rppWR-table
+    border-collapse: collapse
+    border-spacing: 0
+    width: 100%
+    img
+        max-width:none
+    td
+        padding:0.25em 0
+        margin:0
+        border-bottom:1px solid $border-color
+        vertical-align:middle
+        font-size:0.85em
+    .rppWR-td1
+        width:20%
+        text-align:center
+    .rppWR-td2
+        width:60%
+        text-align:left
+        text-transform:uppercase
+        font-weight:bold
+    .rppWR-td3
+        width:20%
+        text-align:center
+        font-size:1.4em
+        font-weight:bold
+    tr
+        &:last-child
+            td
+                border-bottom: 0 none
+.loader_widget
+    width:100%
+    background: url('../img/loader_widget.gif') no-repeat center 50px
+    height:100px
+    text-align:center
+
+//CAROUSEL
+.rppWR-wrap
+    .owl-buttons
+        .owl-prev, .owl-next
+            position:absolute
+            top:30%
+            z-index:3
+            color:white
+            font-size:3em
+            &:hover
+                color: #e3d663
+        .owl-prev
+            left:-0.5em
+        .owl-next
+            right:-0.5em

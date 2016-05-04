@@ -1,0 +1,38 @@
+          <div class="wrap group">
+                <div class="content group">
+                    {{ partial('partials/nota/header/index' ~ model.package) }}                
+                    <div class="entry-content group">
+                        {{ partial('partials/nota/detalle/social') }}
+                        {{ partial('partials/nota/detalle/socialmobile') }}
+                        <div class="cont ajust_win">
+                            {{ partial('partials/nota/detalle/open/' ~ model.package ) }} 
+                            {{ partial('partials/nota/detalle/content/'~model.package) }}                            
+                            <!-- .social-share -->                            
+                            {{ partial('partials/nota/tags/index'~model.package , [] , trackurl ) }}
+                        </div>
+                        <!-- .cont -->
+                    </div>
+                    <!-- .entry-content -->
+                    <div class="news-comments">
+                        <h2 class="panel-title">Dinos que opinas</h2>
+                        <div class="fb-comments" data-href="{{nUrl(model.nid)}}" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+                    </div>
+                    <!-- .comments -->
+
+                   {{ partial('partials/nota/ads/doble1') }}
+                    <!-- .pub-wrap -->
+                    {{ partial('partials/nota/sugeridas/index' , [] , trackurl ) }}
+                    <!-- .related-news -->
+
+                </div>
+                <!-- .content -->
+                <aside class="sidebar">
+
+                    {{ partial('partials/ads/right') }}
+                    <!-- pub-300 -->                   
+                    {{ partial('partials/sidebar/recomendados' ,[] , trackurl ) }}
+                    {{ partial('partials/sidebar/calientes' , ['slug':'home'] , trackurl ) }}
+
+                </aside>
+                <!-- .sidebar -->
+            </div>

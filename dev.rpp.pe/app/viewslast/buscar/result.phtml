@@ -1,0 +1,5 @@
+{% for  key,item in response.docs %}
+    {{partial('partials/portada/flujo/box/resultado',['nid':item.id , 'position' : key + 1, 'lazymt': 'x-lazy'])}}
+    <?php if($key >= 50) break;?>
+{% endfor %}
+

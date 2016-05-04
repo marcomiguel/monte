@@ -1,0 +1,32 @@
+<?php if(@\Rpp\Services\Get\Destacados::portada($slug)->cabecera['slug']):?>
+<?php $cron = \Rpp\Services\Get\Destacados::portada($slug)->cabecera['slug'];?>
+
+<?php if( $this->_view->exists('partials/portada/bloque/cronologico/cron_'.$cron) ) :?>
+  <?php $destacadas = @\Rpp\Services\Get\Destacados::portada($slug)->cabecera;  ?>
+  {{ partial('partials/portada/bloque/cronologico/cron_' ~ cron , ['destacadas' : destacadas  , 'nombre' : getGrilla(slug).cabecera['nombre'] ]) }}
+
+<?php elseif(!empty(@\Rpp\Services\Get\Destacados::portada($slug)->cabecera['destacadas'])): ?>
+<?php $destacadas = @\Rpp\Services\Get\Destacados::portada($slug)->cabecera;  ?>
+{{ partial('partials/portada/bloque/cronologico/cron_general' , ['destacadas' : destacadas  , 'nombre' : getGrilla(slug).cabecera['nombre'] ]) }}
+<?php else :?>
+
+<section class="especial group bg_tema tema_{{ getGrilla(slug).cabecera['slug'] }}">
+    <h1><a href="{{host}}/tema-{{ getGrilla(slug).cabecera['slug'] }}">{{ getGrilla(slug).cabecera['nombre'] }}</a></h1>
+    <div class="articles group">
+
+<?php foreach (\Rpp\Services\Get\Flow::tag(@\Rpp\Services\Get\Destacados::portada($slug)->cabecera['slug'],1) as $e => $item):?>
+{{ partial('partials/portada/bloque/tag/tag_item', [ 'nid' : item._id , 'class' : 'noborder' , 'title_h' : 'h2' , 'img_size' : 'small']) }}
+<?php endforeach;?>
+
+<?php foreach (\Rpp\Services\Get\Flow::tag(@\Rpp\Services\Get\Destacados::portada($slug)->cabecera['slug'],2,1) as $e => $item):?>
+{{ partial('partials/portada/bloque/tag/tag_item', [ 'nid' : item._id , 'class' : '' , 'title_h' : 'h2' , 'img_size' : 'small']) }}
+<?php endforeach;?>
+
+    </div>
+
+{{ partial('partials/ads/auspiciado1') }}
+
+</section>
+<?php endif;?>
+
+<?php endif;?>

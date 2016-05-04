@@ -1,0 +1,13 @@
+<div class="box-mod box-liketoday">
+<div class="box-header">
+  <div class="title">Un día como hoy</div>
+  <div class="info-r"><span><?php echo utf8_encode(ucfirst(strftime('%e de %B',  strtotime(date("Y-m-d")) )) );?></span></div>
+</div>
+<?php foreach (\Rpp\Services\Get\Flow::tag($tag,$cantidad) as $e => $item):?> 
+<figure><img src="{{ cdn_image(getNode(item._id).imagen_portada['hash'], 'medium' ) }}" alt="{{ getNode(item._id).imagen_portada['alt'] }}" >
+  <figcaption>
+    <h3><a href="{{nUrl(item._id)}}">{{ getNode(item._id).titulo_corto }}</a></h3>
+  </figcaption>
+</figure>
+<?php endforeach;?>
+</div>

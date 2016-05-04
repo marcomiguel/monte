@@ -1,0 +1,402 @@
+@import ../config/color
+@import ../config/grid
+@import ../mixins/box-shadow
+@import ../mixins/border-radius
+@import ../mixins/text-shadow
+@import ../mixins/clearfix
+@import ../mixins/background-gradient
+@import ../mixins/arrow
+@import ../mixins/module-color
+@import ../extends/no-list
+@import ../extends/module
+@import ../mixins/css3-prefix
+
+//Modules
+.box
+    background-color: $bg-second
+    border: 1px solid $border-color
+    margin-bottom: $pad
+    @include css3-prefix('transition', 'box-shadow .5s ease-in-out')
+    &.box-inner, .box-inner
+        padding: $pad
+        header
+            p
+                margin:0 0 0.25em
+        h1
+            //font-size:1.5em
+            font-size:1.8em
+            font-weight:bold
+            font-family: 'titillium_webbold', arial
+    .img-mask
+        display:none
+    &.prominent
+        h1
+            //font-size:2em
+            font-size:1.8em
+        .media
+            a
+                display:block
+                overflow:hidden
+                position:relative
+
+    &.firstnew
+        overflow:hidden
+        h1
+            //font-size:2em
+            font-size:2.3em
+            line-height:1
+        .img-mask
+            display:block
+            visibility:hidden
+        .img-progress
+            width:130%
+            max-width:130%
+            position:absolute
+            left:0
+            top:0
+            z-index:2
+
+    &:hover
+        @include box-shadow(0px, 1px, 12px, rgba(black, 0.5))
+
+.box-gallery
+    &.firstnew
+        .img-progress
+            position:static
+
+.body-full > .box
+    @include clearfix()
+    .box-inner
+        @include clearfix()
+
+.box-gallery
+    background-color: $blue
+    color: white
+    h1,h2,h3,h4
+        color: white
+        font-family: 'titillium_webregular', arial !important
+        a
+            color: white
+    .tag-time
+        .tag
+            span
+                padding:0.175em 0.5em
+                background-color: $yellow
+                @include border-radius()
+                color: $blue
+                font-size: 0.65em
+            a
+                color:$blue
+        time
+            padding-top:0.25em
+            color: $gray-light
+
+
+.tag-time
+    @include clearfix()
+    margin-bottom:0.25em
+    .tag, time
+        float:left
+    .tag
+        width:65%
+        padding-right: $pad/1.75
+        text-align:left
+        margin:0
+        padding:0
+        font-size:1.4em
+        text-transform:capitalize
+        span
+            line-height:1em
+            font-size: 0.75em
+            display:inline-block
+            vertical-align: top
+        i
+            margin-right: 0.25em
+        a
+            color: $color-base
+    time
+        width:35%
+        padding-left: $pad/1.75
+        padding-top:0.15em
+        text-align:right
+        font-size:0.85em
+
+.thumbs-gallery
+    @include clearfix()
+    figure
+        width:50%
+        float:left
+        padding-top:0.3125em
+        padding-bottom:0.3125em
+        &.left-img
+            padding-right:0.15625em
+        &.right-img
+            padding-left:0.15625em
+
+.aside-figure
+    background-color: $blue
+    width:100%
+    min-height:1em
+    display:block
+    color:white
+    @include clearfix()
+    &:hover
+        color:white
+    .left-figure
+        background-color: $green
+        display:block
+        float:left
+        min-width:1em
+        padding: 0.25em 0.35em
+        font-size:1.2em
+    .middle-figure
+        display:block
+        float:left
+        font-size: 0.8em
+        padding: 0.6em 0.25em 0.25em 0.75em
+    .right-figure
+        display:block
+        float:right
+        font-size: 0.8em
+        padding: 0 1em 0.25em 1em
+        i
+            font-size: 1.7em
+            margin-left: 0.35em
+            position:relative
+            top: 0.15em
+
+//Team VS
+.team-vs
+    border-bottom:1px solid $border-color
+    margin-bottom:0.75em
+    padding-bottom:0.75em
+    .time-vs
+        text-align: center
+        font-size: 0.9em
+    .shield-vs
+        text-align:center
+        .shield, .vs
+            display: inline-block
+    .shield
+        width: 25%
+    .vs
+        width: 45%
+        font-size: 3em
+    .team-vs-name
+        text-align:center
+        .team-name
+            display:inline-block
+            width: 47%
+            h2
+                font-size:1.2em
+            &.team-left
+                text-align:left
+            &.team-right
+                text-align:right
+
+//Figure
+.gallery-flow, .gallery-inner, .gallery-out
+    position:relative
+.gallery-flow
+    min-height:150px
+    margin-bottom:2em
+    figure
+        a
+            display:block
+            min-height:150px
+    span.gallery-trigger
+        display:inline-block
+        position:absolute
+        top:50%
+        margin-top: -1em
+        z-index:5
+        background-color: $blue-dark
+        padding:0.4em 1em
+        cursor:pointer
+        &.prev
+            left:-0.5em
+            @include arrow-left(82%, 82%, $blue-dark, 0.56em)
+        &.next
+            right:-0.5em
+            @include arrow-right(82%, 82%, $blue-dark, 0.56em)
+        i
+            font-size:2.25em
+            color:white
+    .gallery-inner
+        //position:absolute
+        //left:0
+        //top:0
+        //z-index:2
+        //opacity:0
+        //overflow:hidden
+        //display:none
+        //@include css3-prefix('transition', 'opacity 1s ease-in-out')
+        //.img-swipe
+        //    width:100%
+        //    height:auto
+        .title-tag
+            @include background-gradient(transparent,black)
+            position:absolute
+            bottom:-1px
+            left:0
+            width:100%
+            padding: 0 0.5em 1.65em
+            text-align:center
+            h1,h2
+                color:white
+                margin-bottom:0
+                font-size:2.5em
+                letter-spacing:2px
+                a
+                    color:white
+                    @include text-shadow(1px, 1px, 4px, rgba(black,.4))
+            h3,h4,h5,h6
+                background-color:yellow
+                display:inline-block
+                color:black
+                font-size:1.1em
+                padding:0.5em 1em
+                margin:0 0 0.75em
+                @include border-radius()
+                a
+                    color:white
+
+        //&.active
+        //    position:relative
+        //    z-index:3
+        //    opacity:1
+    .owl-pagination
+        display:block
+        position:absolute
+        width:100%
+        bottom:-1.5em
+        left:0
+        z-index:3
+        text-align:center
+        >div
+            display:inline-block
+            background-color:white
+            height:0.8em
+            width:0.8em
+            @include border-radius(0.4em)
+            margin:0 0.15em
+            @include box-shadow(0px, 1px, 4px, rgba(black, 0.5))
+            &.active
+                background-color:$blue-dark
+
+    .owl-buttons>div
+        display:inline-block
+        position:absolute
+        top:50%
+        margin-top: -1em
+        z-index:5
+        background-color: $blue-dark
+        padding:0.4em 1em
+        cursor:pointer
+        color:white
+        &.owl-prev
+            left:-0.5em
+            @include arrow-left(82%, 82%, $blue-dark, 0.56em)
+        &.owl-next
+            right:-0.5em
+            @include arrow-right(82%, 82%, $blue-dark, 0.56em)
+        i
+            font-size:2.25em
+            color:white
+
+.share-social
+    ul
+        padding:1.5em
+        margin:0
+        li
+            display:inline-block
+            margin:0 0.15em
+            padding:0
+            a
+                display:inline-block
+                color:white
+                @include border-radius(1.25em)
+                padding:0.25em 0 0
+                width:1.65em
+                height:1.65em
+                text-align:center
+                font-size:1.5em
+                &.facebook
+                    background-color:$color-facebook
+                &.twitter
+                    background-color:$color-twitter
+                &.gplus
+                    background-color:$color-gplus
+                &.youtube
+                    background-color:$color-youtube
+                &.vine
+                    background-color:$color-vine
+
+.module
+    @extend .module
+.module-blue
+    @include module-color($blue)
+.module-yellow
+    @include module-color(#DAA926)
+.module-red
+    @include module-color($red)
+.module-green
+    @include module-color($green)
+.module-pink
+    @include module-color($pink)
+
+.module
+    @include css3-prefix('transition', 'box-shadow .5s ease-in-out')
+    &:hover
+        @include box-shadow(0px, 1px, 12px, rgba(black, 0.5))
+    .box
+        &:hover
+            @include box-shadow(0px, 0px, 0px, rgba(black, 0))
+    &.related-news-full
+        &:hover
+            @include box-shadow(0px, 0px, 0px, rgba(black, 0))
+
+.flow-news
+    ul
+        @extend .no-list
+        li
+            display:block
+            padding:$pad
+            @include clearfix()
+            border-bottom:1px solid $border-color
+            figure
+                float:left
+                margin: 0 0.75em 0.5em 0
+                img
+                    border:1px solid $border-color
+            &:last-child
+                border-bottom:0 none
+            h2,h3,h4,h5,h6
+                font-size:1.05em
+                margin:0
+                a
+                    color: rgb(112, 112, 112)
+                    &:hover
+                        text-decoration:none
+
+.girl10-news, .goals, .related-news-full
+    ul
+        @extend .no-list
+        figure
+            min-height:150px
+        li
+            border-bottom: 1px solid $border-color
+            &:last-child
+                border-bottom: 0 none
+            h2
+                position:relative
+                margin:-2.5em 0.75em 1em
+                padding:0
+                background-color:white
+                font-size:1.3em
+                font-family: 'titillium_weblight', arial
+                span
+                    display:block
+                    padding:0.5em
+                    background-color:white
+                    padding:0.5em

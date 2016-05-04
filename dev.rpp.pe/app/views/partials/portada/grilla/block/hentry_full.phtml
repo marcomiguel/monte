@@ -1,0 +1,22 @@
+
+<article class="main-article hnews group">
+    <div class="entry-cont ">
+        <h1 class="entry-title"><a class="url" {{ partial('partials/portada/grilla/block/url/' ~ item['tipo'] , [ 'nid' : item['nid'] ] ) }} >{{item['titulo']}}</a></h1>
+        
+        <p>{{item['bajada']}}</p>
+
+        
+        <figure class="hmedia">
+            
+            <a {{ partial('partials/portada/grilla/block/url/' ~ item['tipo'] , [ 'nid' : item['nid'] ] ) }}>
+                <img class="photo" src="{{ cdn_image(item['imagen_portada']['hash'],'large') }}" alt="{{ item['imagen_portada']['alt'] }}">
+            </a>
+            <figcaption class="fn hide">{{item['titulo']}}</figcaption>
+        </figure>
+        
+
+        <footer class="hide">
+            <p class="source-org vcard"><a class="fn url org" href="{{host}}">RPP Noticias</a></p>
+        </footer>
+    </div><!-- .entry-cont -->
+</article>

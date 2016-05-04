@@ -1,0 +1,19 @@
+extends layouts/article
+
+block variables
+  - var pageType = "page404"
+  - var pageTitle = "404"
+  - var x = "lazy"
+
+block container
+  .col-primary
+    .content-404
+      h1 Página <br> no encontrada
+      form(class="search-form" action="/buscar", method="POST", onsubmit='fn(this, event, {"method":"search"})')
+        input(class="search-input" type='search', name='b', placeholder='Ingrese su búsqueda y presione enter...')
+        button
+          span.icon-magnifier
+
+  aside(class="col-secondary sidebar")
+    include helpers/like-today
+    include components/recommended

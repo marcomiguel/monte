@@ -1,0 +1,1 @@
+<img src="<?php echo $foto['url']; ?>" alt="<?php echo $foto['alt']; ?>">

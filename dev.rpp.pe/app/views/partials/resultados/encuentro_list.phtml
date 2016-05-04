@@ -1,0 +1,3 @@
+<?php foreach (Rpp\Services\Get\Resultados::get_fecha($this->model->torneo)->{$this->model->fase}->{$fecha} as $encuentro): ?>
+	                     {{ partial('partials/resultados/encuentro',['match': encuentro ]) }}
+<?php endforeach;?>

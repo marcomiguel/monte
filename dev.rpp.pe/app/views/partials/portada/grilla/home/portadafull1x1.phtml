@@ -1,0 +1,11 @@
+<section id="featured" class=" group">
+    {{ partial('partials/portada/grilla/home/hp_'  ~ model.hora_planeta ) }}
+	<div class="feat-fin">
+    <?php foreach ( @\Rpp\Services\Get\Destacados::portada($slug)->destacadas as $position => $item ): ?>   
+     {{ partial('partials/portada/grilla/block/hentry_main', [ 'item' : item ]) }}
+    <?php Rpp\Services\Get\Flow::unset_home($item['nid']); ?>
+    <?php Rpp\Services\Get\Destacados::delete($slug,$position); ?>
+    <?php break;endforeach;?>
+	</div>
+</section><!-- .featured -->
+

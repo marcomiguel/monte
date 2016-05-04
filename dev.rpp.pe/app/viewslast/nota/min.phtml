@@ -1,0 +1,123 @@
+<?php if($this->model->tipo == 'galeria'):?>
+
+{% cache "nota.header.geleria." ~ model.nid ~ "." ~ model.position 0 %}
+{{ partial('partials/nota/header/index' ~ model.package) }}
+<div class="wrap-galeria">
+	<div class="galeria-full">
+    <div class="galeria">
+      <div class="slide state" 
+              data-params='{
+                   "baseurl": "{{host}}{{nUrl(model.nid)}}"
+                            }'
+              data-vars='{
+                   "comscore" : {
+                                  "site" : "rpp",
+                                  "name" : "{{model.comscore}}"
+                                },
+                    "posicion" : {{model.position}},
+                    "params" : "<?php echo implode('&',load_ref('='))?>",
+                    "epl_tag" : [ "Top","Right" ]
+                            }'>
+
+        <?php $zise = count(\Rpp\Services\Get\Content::part($this->model->nid,'galeria'))?>
+        <div class="content">
+          <div class="inner">
+            <?php foreach (\Rpp\Services\Get\Content::part($this->model->nid,'galeria') as $v => $key) :?>
+            <div class="item">
+              <figure class="hmedia">
+
+                <?php if($this->model->position == $v):?>
+                <img class="photo" src="{{ cdn_image(getPart(model.nid,'contenido')[key]['foto']['hash'],'large') }}" alt="{{ getPart(model.nid,'contenido')[key]['foto']['alt'] }}">
+                <?php else :?>
+                <img class="photo" src="" data-src="{{ cdn_image(getPart(model.nid,'contenido')[key]['foto']['hash'],'large') }}" alt="{{ getPart(model.nid,'contenido')[key]['foto']['alt'] }}">
+                <?php endif;?>
+              </figure>
+ <figcaption>{{ getPart(model.nid,'contenido')[key]['foto']['alt'] }} {% if not(getPart(model.nid,'contenido')[key]['via'] is empty) %} | <strong>Fuente:</strong> {{ getPart(model.nid,'contenido')[key]['via'] }} {% endif %} {% if not(getPart(model.nid,'contenido')[key]['credito'] is empty) %} | <strong>Fotógrafo:</strong> {{ getPart(model.nid,'contenido')[key]['credito'] }} {% endif %}</figcaption>
+            </div>
+            <?php \Rpp\Services\Get\Content::unset_part($this->model->nid,'contenido',$key);  ?>
+            <?php endforeach;?>
+
+          </div>
+        </div>
+
+        <div class="arrows">
+          <a href="#prev" class="prev">
+            <span>
+              <i class="icon-13"></i>
+            </span>
+          </a>
+          <a href="#next" class="next">
+            <span>
+              <i class="icon-14"></i>
+            </span>
+          </a>
+        </div>
+        <div class="pagers">
+          <div class="text-pager">
+            <p>
+              Foto <span class="g-num">1</span> de <span class="g-total">{{zise}}</span>
+            </p>
+          </div>
+     
+          <ul class="pager-circle">
+             <?php for ($i=1; $i <= $zise ; $i++ ):?>
+                <li data-pager="{{i}}" class="page"></li>
+             <?php endfor;?>
+          </ul>
+
+              <div class="social-state">
+                <span>Compartir: </span>
+                <a  class="fc" href="javascript: void(0);" onclick="rpp.shareSocial(this, 'facebook', 'http://rpp.pe{{nUrl(model.nid)}}')">
+                  <i class="icon-1"></i>
+                </a>
+                <a class="tw" href="javascript: void(0);" onclick="rpp.shareSocial(this, 'twitter', '{{host}}/p/{{model.nid}}')">
+                  <i class="icon-5"></i>
+                </a>
+              </div>
+
+        </div>
+
+      </div>
+    </div> 
+  </div>
+  <div class="sidebar-galeria">
+    {{ partial('partials/ads/right') }}
+  </div>
+</div>
+{% endcache %}
+
+
+
+  {% cache "nota.wrap.group." ~ model.nid 0 %}
+  <!-- <div class="entry-content group"> -->
+   <div class="group">
+        {{ partial('partials/nota/detalle/social') }}
+        {{ partial('partials/nota/detalle/socialmobile') }}
+        <div class="cont ajust_win">
+            {{ partial('partials/nota/detalle/open/' ~ model.package ) }} 
+            {{ partial('partials/nota/detalle/content/'~model.package) }}                            
+            <!-- .social-share -->                            
+            {{ partial('partials/nota/tags/index'~model.package , [] , trackurl ) }}
+        </div>
+        <!-- .cont -->
+    </div>
+<?php if(!(@\Rpp\Services\Get\Content::part($this->model->nid,'comentariosfb')===false)) :?>    
+    <!-- .entry-content -->
+    <div class="news-comments" id="ancla-comments">
+        <h2 class="panel-title">¿Qué opinas?<a name="section-comment"></a></h2>
+        <div id="fbCommentPage" class="fb-comments" data-href="{{host}}{{nUrl(model.nid)}}" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+    </div>
+<?php endif;?>
+    <!-- .comments -->
+   {% endcache %} 
+
+<?php else: ?>
+    <div class="content group">
+       {{ partial('partials/nota/tipo/nota/ncache') }}   
+       {{ partial('partials/ads/interna_full' , ['position':9]) }}
+        <!-- .pub-wrap -->
+        {{ partial('partials/nota/sugeridas/index' , [] , trackurl ) }}
+        {{ partial('partials/ads/interna_full' , ['position':10]) }}
+        <!-- .related-news -->
+    </div>
+<?php endif;?>

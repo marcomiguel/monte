@@ -1,0 +1,79 @@
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?>
+<!--Head-->
+{{ partial('partials/head/indexportada') }}
+<body data-bg="{{model.epl_kvs}}"  data-x="slide, lazy, media, sticky" class="radio-live" >
+  {{ partial('partials/head/epl') }}
+  {{ partial('partials/head/comscore') }}
+    <div id="wrap">
+        <!--Header-->
+        {{ partial('partials/header/index') }}
+        <div id="content" role="main">
+        <div class="grid pad">
+          <div class="story">
+            
+            <div class="col-primary main">
+              <div class="box-mod pt10">
+                <div class="story-top">
+                </div>
+                <header class="story-header">
+                  <h1>RESUMEN DE LA HORA</h1>
+                  <!-- audio-->
+                  <?php $resume=\Rpp\Services\Get\Resumehour::last();?>
+                  <?php $hash_mp3 = @$resume->lista[0]['hash'];?>
+                  <?php $url_mp3 = \Rpp\Services\Get\Resumehour::get_conf()->endpoint->raiz . $hash_mp3; ?>
+                  <div itemprop="audio" itemscope itemtype="http://schema.org/AudioObject" class="media">
+                    <meta itemprop="encodingFormat" content="mp3">
+                    <meta itemprop="contentUrl" content="{{url_mp3}}">
+                    <meta itemprop="duration" content="T0M15S">
+                    <figure class="cover-media"><a href="#escuchar" data-x='{"type":"audio","video_source":"{{url_mp3}}","video_img":"http://s.rpp-noticias.io/images/envivo.jpg","playlist":"null","hash":"{{hash_mp3}}","rtag":"https://pubads.g.doubleclick.net/gampad/ads?sz=400x300&iu=/1028310/RPP_Video&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]"}' class="cover x-media big"><img src="http://s.rpp-noticias.io/images/envivo.jpg" alt="X-DEMO-CONTENT"><span class="icon-volume-up"></span></a>
+                      <figcaption itemprop="description">{{resume.nombre}}</figcaption>
+                    </figure>
+                  </div>
+                </header>
+              </div>
+
+  <div class="comments box-mod">
+    <div class="box-header">
+      <div class="title">¿Qué opinas?<a name="section-comment"></a></div>
+    </div>
+    <div data-href="{{host}}/el-gran-resumen-de-la-hora" data-numposts="5" data-width="100%" class="fb-comments"></div>
+    <div id="fb-root"></div>
+    <script type="text/javascript">
+         (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.4&appId=1065644730116597";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+  </div>
+
+            </div>
+
+
+            
+
+            <aside role="complementary" class="col-secondary sidebar x-sticky">
+              <div data-x='{"fixto":".col-primary"}' class="x-column-fix">
+                  {{ partial('partials/sidebar/radioenvivo') }}
+                  {{ partial('partials/ads/right') }}
+                  {{ partial('partials/ads/right1') }}
+                  <?php $sdb = 'mas-leidas';?>
+                  <?php $nombre = 'Las noticias más leídas';?>
+                  <?php $cantidad = 10;?>
+                  <?php $tipo ='solo_titular';?>
+                  <?php $script =  '';  ?>
+                   {{partial('partials/portada/sidebar/' ~ tipo ~ '/index_' ~ sdb ,['tag':  sdb , 'nombre': nombre , 'cantidad': cantidad ,'slug' : 'home' , 'script' : script ]) }}
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+      {{ partial('partials/footer/index') }}
+        {{ partial('partials/footer/scripts') }}
+        {{ partial('partials/footer/tracking') }}
+
+</div>
+
+</body>

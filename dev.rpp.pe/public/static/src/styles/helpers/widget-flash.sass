@@ -1,0 +1,404 @@
+@font-face
+	font-family: 'Myriad Pro'
+	src: url('../fonts/MyriadPro-Regular.eot')
+	src: url('../fonts/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/MyriadPro-Regular.woff') format('woff'), url('../fonts/MyriadPro-Regular.ttf') format('truetype'), url('../fonts/MyriadPro-Regular.svg#MyriadPro-Regular') format('svg')
+	font-weight: normal
+	font-style: normal
+
+@font-face
+	font-family: 'Myriad Pro'
+	src: url('../fonts/MyriadPro-Bold.eot')
+	src: url('../fonts/MyriadPro-Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/MyriadPro-Bold.woff') format('woff'), url('../fonts/MyriadPro-Bold.ttf') format('truetype'), url('../fonts/MyriadPro-Bold.svg#MyriadPro-Bold') format('svg')
+	font-weight: bold
+	font-style: normal
+
+@font-face
+	font-family: 'Myriad Pro'
+	src: url('../fonts/MyriadPro-Semibold.eot')
+	src: url('../fonts/MyriadPro-Semibold.eot?#iefix') format('embedded-opentype'), url('../fonts/MyriadPro-Semibold.woff') format('woff'), url('../fonts/MyriadPro-Semibold.ttf') format('truetype'), url('../fonts/MyriadPro-Semibold.svg#MyriadPro-Semibold') format('svg')
+	font-weight: 600
+	font-style: normal
+
+#widget-flash
+	width: 100%
+	height: 290px
+	background: #fff url(../img/flash-electoral-2016/bg-flash-electoral-2016.jpg) 0 0 repeat-x
+	padding: 10px 15px
+	position: relative
+	margin: 0px auto 10px auto
+	border-top: 2px solid #0060ab;
+	.loader_widget
+		position: absolute
+		top: 35%
+	h1.wf-title
+		color: #972828
+		font-size: 24px
+		font-weight: bold
+		font-family: 'Myriad Pro'
+		text-transform: uppercase
+		display: inline-block
+		margin: 0
+	nav.wf-menu
+		display: inline-block
+		float: right
+		ul
+			list-style: none
+			text-transform: uppercase
+			margin: 0
+			li
+				display: inline-block
+				font-size: 16px
+				font-weight: 500
+				padding: 0 5px
+				a
+					color: #544949
+					font-family: 'Myriad Pro'
+					font-weight: 600
+				a:hover
+					color: #972828
+			li.this
+				a
+					color: #972828
+			li.special
+				margin-left: 20px
+				a
+					color: #544949
+	.results
+		width: 100%
+		overflow: hidden
+		.resultados-encuestadora
+			width: 940px
+			margin: 0 auto
+			text-align: center
+		.candidato
+			// width: 16.666%
+			display: inline-block
+			vertical-align: middle
+			margin-right: 32px
+			.img-c
+				width: 99px
+				height: 99px
+				border-radius: 50%
+				margin: 0 auto
+				background: #fff url(../img/flash-electoral-2016/sprite_candidatos.png)
+				background-repeat: no-repeat
+				background-position: 0px 133px
+				margin-bottom: 5px
+			// fotos
+			.img-c-fujimori
+				background-position: 0 -168px;
+			.img-c-kuczynski
+				background-position: -802px -168px;
+			.img-c-barnechea
+				background-position: -348px -168px;
+			.img-c-mendoza
+				background-position: -1045px -168px;
+			.img-c-garcia
+				background-position: -114px -168px;
+			.img-c-toledo
+				background-position: -235px -168px;
+			.img-c-olivera
+				background-position: -584px -168px;
+			.img-c-araoz
+				background-position: -465px -168px;
+			.img-c-hilario
+				background-position: -926px -168px;
+			.img-c-santos
+				background-position: -698px -168px;
+			.datos-c
+				background-color: transparent
+				font-family: 'Myriad Pro'
+				font-weight: 600
+				text-transform: uppercase
+				width: 115px
+				text-align: center
+				margin: 0 auto
+				padding: 2px 0
+				.nombre-c
+					color: #373737
+					font-size: 14px
+				.partido-c
+					color: #484848
+					font-size: 12.5px
+			.porcentaje-c
+				width: 115px
+				margin: 0 auto
+				text-align: center
+				font-size: 37px
+				line-height: 37px
+				font-family: 'Myriad Pro'
+				font-weight: 600
+				color: #fff
+				.barra-total
+					width: 115px
+					height: 7px
+					background-color: #e6edf1
+					position: relative
+					.barra-c
+						position: absolute
+						background-color: #fff
+						width: 0%
+						height: 7px
+		// segunda vuelta
+		.candidato.no-segunda
+			margin-top: 36px
+		.candidato.segunda
+			.img-c
+				width: 134px
+				height: 133px
+			// fotos
+			.img-c-fujimori
+				background-position: 0 0;
+			.img-c-kuczynski
+				background-position: -1088px 0;
+			.img-c-barnechea
+				background-position: -472px 0;
+			.img-c-mendoza
+				background-position: -1420px 0;
+			.img-c-garcia
+				background-position: -158px 0;
+			.img-c-toledo
+				background-position: -318px -2px;
+			.img-c-olivera
+				background-position: -794px 0;
+			.img-c-araoz
+				background-position: -631px 0;
+			.img-c-hilario
+				background-position: -1258px 0;
+			.img-c-santos
+				background-position: -950px 0;
+			.datos-c
+				background-color: #fff
+				text-transform: uppercase
+				font-family: 'Myriad Pro'
+				font-weight: 600
+				width: 115px
+				text-align: center
+				margin: 0 auto
+				color: #fff
+				padding: 2px 0
+				.nombre-c
+					font-size: 15px
+				.partido-c
+					font-size: 13px
+		.candidato.segunda.orange
+			.datos-c
+				background-color: #ff6029
+				.nombre-c, .partido-c
+					color: #fff
+		.candidato.segunda.yellow
+			.datos-c
+				background-color: #e2b013
+				.nombre-c, .partido-c
+					color: #fff
+		.candidato.segunda.red
+			.datos-c
+				background-color: #c90606
+				.nombre-c, .partido-c
+					color: #fff
+		.candidato.segunda.brown
+			.datos-c
+				background-color: #683909
+				.nombre-c, .partido-c
+					color: #fff
+		.candidato.segunda.blue
+			.datos-c
+				background-color: #003f72
+				.nombre-c, .partido-c
+					color: #fff
+		.candidato.segunda.green
+			.datos-c
+				background-color: #024c02
+				.nombre-c, .partido-c
+					color: #fff
+		.candidato.segunda.mustard
+			.datos-c
+				background-color: #6d5103
+				.nombre-c, .partido-c
+					color: #fff
+		.candidato.segunda.lightblue
+			.datos-c
+				background-color: #02748e
+				.nombre-c, .partido-c
+					color: #fff
+		.candidato.segunda.turquoise
+			.datos-c
+				background-color: #548c61
+				.nombre-c, .partido-c
+					color: #fff
+		.candidato.segunda.purple
+			.datos-c
+				background-color: #6b1972
+				.nombre-c, .partido-c
+					color: #fff
+		// colores
+		.candidato.orange // fujimori
+			.img-c
+				// background-color: #ff894a
+				background-color: rgba(255,137,74,0.3)
+			.porcentaje-c .barra-total .barra-c
+				background-color: #ff6029
+			.porcentaje-c
+				color: #ff6029
+		.candidato.yellow // kuczynski
+			.img-c
+				// background-color: #f5cc36
+				background-color: rgba(245,204,54,0.3)
+			.porcentaje-c .barra-total .barra-c
+				background-color: #e2b013
+			.porcentaje-c
+				color: #e2b013
+		.candidato.red // barnechea
+			.img-c
+				// background-color: #ea2626
+				background-color: rgba(234,38,38,0.3)
+			.porcentaje-c .barra-total .barra-c
+				background-color: #c90606
+			.porcentaje-c
+				color: #c90606
+		.candidato.brown // mendoza
+			.img-c
+				// background-color: #965a20
+				background-color: rgba(150,90,32,0.3)
+			.porcentaje-c .barra-total .barra-c
+				background-color: #683909
+			.porcentaje-c
+				color: #683909
+		.candidato.blue // garcia
+			.img-c
+				// background-color: #00569d
+				background-color: rgba(0,86,157,0.3)
+			.porcentaje-c .barra-total .barra-c
+				background-color: #003f72
+			.porcentaje-c
+				color: #003f72
+		.candidato.green // toledo
+			.img-c
+				// background-color: #007600
+				background-color: rgba(0,118,0,0.3)
+			.porcentaje-c .barra-total .barra-c
+				background-color: #024c02
+			.porcentaje-c
+				color: #024c02
+		.candidato.mustard // olivera
+			.img-c
+				// background-color: #9c7e0b
+				background-color: rgba(156,126,11,0.3)
+			.porcentaje-c .barra-total .barra-c
+				background-color: #6d5103
+			.porcentaje-c
+				color: #6d5103
+		.candidato.lightblue // araoz
+			.img-c
+				// background-color: #00a0cc
+				background-color: rgba(0,160,204,0.3)
+			.porcentaje-c .barra-total .barra-c
+				background-color: #02748e
+			.porcentaje-c
+				color: #02748e
+		.candidato.turquoise // hilario
+			.img-c
+				// background-color: #7ac48c
+				background-color: rgba(122,196,140,0.3)
+			.porcentaje-c .barra-total .barra-c
+				background-color: #548c61
+			.porcentaje-c
+				color: #548c61
+		.candidato.purple // santos
+			.img-c
+				// background-color: #8f428f
+				background-color: rgba(143,66,143,0.3)
+			.porcentaje-c .barra-total .barra-c
+				background-color: #6b1972
+			.porcentaje-c
+				color: #6b1972
+	.mesas
+		color: #9b4d4d
+		font-size: 14px
+		position: absolute
+		bottom: 5px
+		right: 10px
+		font-family: 'Myriad Pro'
+		p
+			margin: 0
+
+@media (max-width: 650px)
+	#widget-flash
+		height: inherit !important
+		min-height: 290px
+		background: #fff url(../img/flash-electoral-2016/bgmovil-flash-electoral-2016.jpg) 0 0 repeat-y
+		padding: 5px
+		.wf-top
+			margin-top: 10px
+		h1.wf-title
+			text-align: center
+			width: 100%
+			font-size: 32px !important
+			line-height: 32px
+		nav.wf-menu
+			// float: left
+			ul
+				margin-top: 15px
+				li
+					font-size: 1.5rem
+				li.special
+					margin-left: 0
+		.results
+			.candidato
+				margin-right: 0
+				margin-bottom: 15px
+				margin-right: 15px !important
+				width: 110px !important
+			.resultados-encuestadora
+				width: 100%
+				padding-left: 8%
+		.mesas
+			position: relative
+			bottom: inherit
+			right: inherit
+			text-align: center
+@media (max-width: 768px)
+	#widget-flash
+		height: 290px
+		h1.wf-title
+			font-size: 20px
+			text-align: center
+			display: block
+			margin: 3px 0
+		nav.wf-menu
+			float: inherit
+			text-align: center
+			display: block
+		.results
+			.candidato
+				margin-right: 2px
+				// width: 100px
+				width: 111px
+				vertical-align: inherit
+				.img-c
+					transform: scale(0.75)
+				.porcentaje-c
+					width: 95px
+					font-size: 26px
+					// line-height: 32px
+					.barra-total
+						width: 95px
+			.candidato.segunda
+				margin-top: -20px
+				.img-c
+					margin-left: -18px
+				.datos-c
+					width: 95px
+					.nombre-c
+						font-size: 13px
+			.candidato.no-segunda
+				margin-top: 0
+			.resultados-encuestadora
+				width: 100% !important
+@media (max-width: 667px)
+	#widget-flash
+		.results
+			.candidato
+				width: 100px
+				.img-c
+					transform: scale(0.7)

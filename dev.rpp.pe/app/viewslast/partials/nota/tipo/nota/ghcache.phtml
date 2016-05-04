@@ -1,0 +1,5 @@
+{% cache "nota.header.galeria." ~ model.nid ~ "." ~ model.position 0 %}
+
+{{ partial('partials/nota/header/index' ~ model.package, ['plantjp' : '2']) }} 
+
+{% endcache %} 

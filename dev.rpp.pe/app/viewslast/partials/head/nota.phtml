@@ -1,0 +1,38 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{model.titulo}} </title>
+    {{ partial('partials/head/metas') }}
+    {{ partial('partials/head/og') }}
+    {{ partial('partials/head/twittercard') }}
+    {{ partial('partials/head/dublin') }}
+
+    <!-- Canonical -->
+    <link rel="canonical" href="{{host}}{{model.urlcanonical}}"/>
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ehost}}/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ehost}}/images/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ehost}}/images/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ehost}}/images/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ehost}}/images/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ehost}}/images/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ehost}}/images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ehost}}/images/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ehost}}/images/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ehost}}/images/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="{{ehost}}/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{ehost}}/images/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="{{ehost}}/images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="{{ehost}}/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="{{ehost}}/images/favicons/manifest.json">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ehost}}/static/css/main.css?v={{eversion}}">
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" type="text/css" href="{{ehost}}/static/css/ie.css?v={{eversion}}">
+    <![endif]-->
+    <script id="navegg" type="text/javascript" src="//tag.navdmp.com/tm22924.js" ></script>
+    {{ partial('partials/head/cxense') }}
+</head>

@@ -1,0 +1,145 @@
+/*
+Author: JPC
+DATE: 02-2016 
+*/
+/* Encuesta */
+.e-encuesta{ width: 100%; padding: 0 10px; margin-bottom: 20px; height: 230px; color:#545454; }
+.e-encuesta a:hover{ text-decoration: none; }
+.e-titulo{ display: block; position: relative; background-color: #D1D1D1; width: 4.807692308%;/*50px*/ text-align: center; padding: 22px 11px; height: 100%; word-break: break-all; color: #7C2325; font-size: 24px; float: left; font-weight: bold; line-height: 0.85em; overflow: hidden; }
+.e-titulo:hover{ text-decoration: none; }
+.e-titulo .e-rotate90 { display: block; width: 160px; margin-top: 175px; margin-left: 2px; -moz-transform:rotate(-90deg); -moz-transform-origin: top left; -webkit-transform: rotate(-90deg); -webkit-transform-origin: top left; -o-transform: rotate(-90deg); -o-transform-origin:  top left; transform-origin:  top left; transform: rotate(-90deg); filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1); }
+.e-openout{ opacity: 0; display: block; height: 0; width:100%; overflow: hidden; }
+.e-titulo:hover .e-rotate90{ color:#206baf; text-decoration: none; }
+.e-titulo:before,
+.e-titulo:after{ content: ''; position: absolute; left: 0; background-color: white; width: 70px; height: 10px; }
+.e-titulo:before{ top:0; }
+.e-titulo:after{ bottom:0; }
+.e-sombra{ position: relative; width: 2.403846154%;/*25px*/ height: 100%; background-color: #A9A9A9; float: left; overflow: hidden; }
+.e-sombra:before,
+.e-sombra:after{ content: ''; position: absolute; left: 0; width: 0; height: 0; border-left: 0 solid transparent; border-right: 25px solid transparent; }
+.e-sombra:before{ top:0; border-top: 10px solid white; }
+.e-sombra:after{ bottom:0; border-bottom: 10px solid white; }
+.e-contenido{ position: relative; width: 92.788461538%;/*965px*/height: 100%; background-color: #D1D1D1; float: left; color: #545454; }
+.e-candidato{ float: left; width: 33%; height: 100%; text-align: center; }
+.e-middle{ position: relative; width: 34%; }
+.e-middle:after,
+.e-middle:before{ content: ''; background-color: #A9A9A9; width: 2px; position: absolute; top: 0; height: 100%; }
+.e-middle:after{ right: -1px; }
+.e-middle:before{ left: -1px; }
+.e-candidato-arriba{ padding: 5px 0; }
+.e-candidato-arriba strong{ color:#7C2325; font-size: 20px; font-weight: bold; }
+.e-candidato-arriba time{ font-size: 14px; color: #545454; }
+.e-candidato-medio{ width: 100%; overflow: hidden; }
+.e-candidato-dentro{ float: left; width: 50%; text-align: center; padding: 5px 0 10px; }
+.e-candidato-dentro figure{ margin: 0; padding: 0; }
+.e-candidato-dentro figcaption{ text-transform: uppercase; font-size: 15px; font-weight: bold; }
+.e-candidato-dentro h2{ margin:0;padding:0; text-transform: uppercase; font-size: 15px; font-weight: bold; color: #545454; }
+.e-candidato-dentro h2 a, .e-candidato-dentro h2 a:hover{color: #545454;}
+.e-candidato-dentro strong{ color: #7C2325; font-size: 36px; font-weight: bold; line-height: 1; }
+.e-candidato-dentro img{ display: inline-block; }
+.e-candidato-abajo{ font-size: 13px; color: #7C2325; letter-spacing: -1px; line-height: 1; }
+.e-candidato-abajo strong{ text-transform: uppercase; }
+.e-candidato-abajo strong,
+.e-candidato-abajo .e-sep,
+.e-candidato-abajo strong a,
+.e-candidato-abajo strong a:hover{ color: #545454; }
+.e-encuesta:hover .e-first{ position: relative; }
+.e-enlace{ border-top:2px solid #A9A9A9; position: absolute; left:0; bottom:0px; display: none; background-color: #D1D1D1; color:#206baf; font-size: 16px; text-align: right; padding: 0 10px 0 0; line-height: 30px; width:100%; height: 30px; overflow: hidden; }
+.e-enlace:hover{ text-decoration: none; }
+/* Encuesta Hover */
+.e-encuesta .e-titulo,
+.e-encuesta .e-titulo:before,
+.e-encuesta .e-titulo:after,
+.e-encuesta .e-openout,
+.e-encuesta .e-sombra,
+.e-sombra:before,
+.e-sombra:after,
+.e-contenido{
+    -webkit-transition: width ease-in 0.25s, height ease-in 0.25s, border ease-in 0.25s, opacity ease-in 0.15s, background-color ease-in 0.25s;
+    -moz-transition: width ease-in 0.25s, height ease-in 0.25s, border ease-in 0.25s, opacity ease-in 0.15s, background-color ease-in 0.25s;
+    -o-transition: width ease-in 0.25s, height ease-in 0.25s, border ease-in 0.25s, opacity ease-in 0.15s, background-color ease-in 0.25s;
+    transition: width ease-in 0.25s, height ease-in 0.25s, border ease-in 0.25s, opacity ease-in 0.15s, background-color ease-in 0.25s;
+}
+.e-encuesta:hover .e-titulo .e-rotate90{ color:#206baf; }
+.e-encuesta:hover .e-titulo{ width: 7.211538462%; }
+.e-encuesta:hover .e-titulo:before,
+.e-encuesta:hover .e-titulo:after{ height: 0; }
+.e-encuesta:hover .e-openout{ opacity: 1; height: 25px; }
+.e-encuesta:hover .e-sombra{ width: 0%; background-color: #666; }
+.e-encuesta:hover .e-sombra:before,
+.e-encuesta:hover .e-sombra:after{ border-right-width: 0px }
+.e-encuesta:hover .e-first:after{ content: ''; background-color: #A9A9A9; width: 2px; position: absolute; top: 0; left:0; height: 100%; }
+
+/* MEDIA QUERIRES */
+/* Encuesta */
+@media only screen and (max-width: 1023px) and (min-width: 768px) {
+    /* Encuesta */
+    .e-titulo{ padding-top: 110px; }
+    .e-titulo .e-rotate90 { margin-left: -1px; }
+    .e-encuesta{ height: 440px; }
+    .e-contenido{ padding-bottom: 30px; }
+    .e-last, .e-middle{ width: 50%; height: 58%; }
+    .e-middle:before{ display: none; }
+    .e-first{ position: relative; height: 42%; width: 100%; }
+    .e-first .e-candidato-dentro figure,
+    .e-first .e-candidato-dentro .e-info{ display: inline-block; }
+    .e-first .e-candidato-dentro .e-info{ vertical-align: top; padding-top: 4%; }
+    .e-first:before{ content: ''; background-color: #A9A9A9; width: 100%; position: absolute; bottom: 0; left: 0; height: 2px; }
+    .e-enlace{ display: block; }
+    /* Encuesta Hover */
+    .e-encuesta:hover .e-titulo{ width: 4.807692308%; }
+    .e-encuesta:hover .e-titulo .e-rotate90{ color:#7C2325; }
+    .e-encuesta:hover .e-titulo:before,
+    .e-encuesta:hover .e-titulo:after{ height: 10px; }
+    .e-encuesta:hover .e-openout{ opacity: 0; height: 0px; }
+    .e-encuesta:hover .e-sombra{ width: 2.403846154%; background-color: #A9A9A9; }
+    .e-encuesta:hover .e-sombra:before,
+    .e-encuesta:hover .e-sombra:after{ border-right-width: 25px }
+    .e-encuesta:hover .e-first:after{ display:none; }
+    .e-encuesta:hover .e-contenido{ width: 92.788461538%; }
+}
+@media only screen and (max-width: 767px) {
+    /* Encuesta */
+    .e-encuesta{ height: 550px; }
+    .e-contenido{ padding-bottom: 30px; }
+    .e-titulo{ width: 8.807692308%; padding: 165px 18px 0; }
+    .e-titulo:before,
+    .e-titulo:after{ width: 70px; }
+    .e-titulo .e-rotate90 { margin-left: -1px; }
+    .e-sombra{ width: 4.403846154%; }
+    .e-sombra:before,
+    .e-sombra:after{ border-right-width: 20px; }
+    .e-contenido{ width: 86.788461538%;/*965px*/ }
+    .e-candidato{ position: relative; height: 33%; width: 100%; }
+    .e-candidato .e-candidato-dentro figure,
+    .e-candidato .e-candidato-dentro .e-info{ display: inline-block; }
+    .e-middle:after, .e-first:before{ display: none; }
+    .e-candidato .e-candidato-dentro .e-info{ vertical-align: top; padding-top: 4%; }
+    .e-candidato:before{ content: ''; background-color: #A9A9A9; width: 100%; position: absolute; top: 0; left: 0; height: 2px; }
+    .e-enlace{ display: block }
+    /* Encuesta Hover */
+    .e-encuesta:hover .e-titulo{ width: 8.807692308%; }
+    .e-encuesta:hover .e-titulo .e-rotate90{ color:#7C2325; }
+    .e-encuesta:hover .e-titulo:before,
+    .e-encuesta:hover .e-titulo:after{ height: 10px; }
+    .e-encuesta:hover .e-openout{ opacity: 0; height: 0px; }
+    .e-encuesta:hover .e-sombra{ width: 4.403846154%; background-color: #A9A9A9; }
+    .e-encuesta:hover .e-sombra:before,
+    .e-encuesta:hover .e-sombra:after{ border-right-width: 20px }
+    .e-encuesta:hover .e-first:after{ display:none; }
+    .e-encuesta:hover .e-contenido{ width: 86.788461538%; }
+}
+@media only screen and (max-width: 568px) {
+    /* Encuesta */
+    .e-titulo{ padding: 240px 10px 0; }
+    .e-encuesta{ height: 690px; }
+    .e-candidato-dentro strong { font-size: 30px; }
+    .e-candidato .e-candidato-dentro figure,
+    .e-candidato .e-candidato-dentro .e-info{ display: block; }
+    .e-candidato .e-candidato-dentro .e-info{ vertical-align:none; padding-top: 0px }
+}
+@media only screen and (max-width: 480px) {
+    /* Encuesta */
+    .e-titulo{ padding-left: 6px; padding-right: 6px }
+    .e-sombra:before, .e-sombra:after{ border-right-width: 15px; }
+}

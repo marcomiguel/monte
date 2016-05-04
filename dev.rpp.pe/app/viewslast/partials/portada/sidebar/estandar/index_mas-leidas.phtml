@@ -1,0 +1,10 @@
+{% cache "portada.masleidas." ~ slug 1200 %}
+<div class="box-mod box-row brand-{{tag}}">
+	<div class="box-header">
+	  <h3 class="title">{{nombre}}</h3>
+	</div>
+	<?php $cantle=1; foreach (\Rpp\Services\Get\Visitas::ranking($slug,$cantidad) as $e => $item):?> 
+		{{ partial('partials/portada/bloque/tag/tag_thumb', [ 'nid' : item['nid'], 'img_size' : 'small']) }}
+	<?php $cantle++; endforeach;?>
+</div>
+{% endcache %} 

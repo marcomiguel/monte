@@ -1,0 +1,2347 @@
+@media screen and (max-width: 1060px) { /* 1024 */
+
+	#envivo{
+		padding-left: 30px!important;
+	}
+	.wrap-galeria .galeria{
+		width: auto;
+	}
+	.third-article .hmedia img,
+	.second-article .hmedia img,
+	.main-article .hmedia img,
+	.cont-col article .hmedia img,
+	.gallery-main .main-article .hmedia img{
+		width: 100%;
+	}
+
+	.tag-especial .feat-title{
+		margin: 0px 0px 0px 0px;
+		padding-left: 7px;
+	}
+	.wrap-galeria .item img{
+		width: 580px;
+		min-height: 325px;
+	}
+	.galeria-full .arrows{
+		padding-bottom: 325px;
+	}
+	.envivo{
+		top: 105px;
+	}
+	.body-cb .wd time{
+		margin-top: 0;
+	}
+	.wid-mini .team-home span, .wid-mini .team-visitor span{
+		height: 20px;
+		line-height: 20px;
+		font-size: 20px;
+	}
+
+
+	.wrap-galeria .sidebar-galeria.fixrelative{
+		width: 830px;
+	}
+	.header-scroll .w-menu-scroll{
+		max-width: 920px;
+	}
+	.wid-mini .team-home span, .wid-mini .team-visitor span{
+		position: static;
+		background: none;
+		color: #444444;
+		width: 100%;
+		text-align: center;
+	}
+
+
+	.body-cb article{
+		width: 21.7%
+	}
+	.wid-mini .team-visitor span::after,.wid-mini .team-home span::after{
+		content: none;
+	}
+	.wid-mini .team-visitor img,.wid-mini .team-home img{
+		margin: 0;
+	}
+	.wid-mini .team-home, .wid-mini .team-visitor{
+		text-align: center;
+	}
+
+	.pub{
+		overflow: hidden;
+	}
+	.cint-banner{
+		display: none;
+	}
+	/* PUB */
+
+	.content .cont-col .pub-300 {
+		display: none; /* ocultando publicidad cuadrada en el flujo */
+	}
+
+	.left-pub,
+	.right-pub {
+		margin-top: -270px;
+	}
+
+	.left-pub {
+		margin-left: -580px;
+	}
+
+	.right-pub {
+		margin-right: -580px;
+	}
+
+
+	/* GENERAL */
+
+	.wrapper {
+		width: 920px;
+	}
+
+	article .hmedia img {
+		height: auto;
+		width: 100%;
+	}
+
+	/* HEADER */
+
+	.header-main h1 {
+		margin-left: 10px;
+	}
+
+	#envivo {
+		margin-left: 17px;
+	}
+
+	.touch #envivo {
+		margin-left: 15px;
+		padding-left: 10px;
+		padding-right: 10px;
+		min-width: 312px;
+	}
+
+	.touch .header-main .social-icons {
+		margin-left: 15px;
+	}
+
+	.header-main .social-icons {
+		margin-left: 17px;
+	}
+
+	.touch .header-main .search {
+		margin-left: 0;
+	}
+
+	.touch .search input[type="text"] {
+		width: 175px;
+	}
+
+	.tags-mini ul {
+		width: 409px;
+	}
+
+	#search-mini {
+		float: right;
+		margin-right: 10px;
+	}
+
+	.main-menu {
+		height: 30px;
+		overflow: hidden;
+		padding-right: 58px;
+		position: relative;
+	}
+
+	.main-menu .more {
+		display: block;
+		position: absolute;
+		right: 0;
+	}
+
+	.submenu-section .live-prog {
+		margin-right: 15px;
+	}
+
+	.submenu-section .submenu-items {
+		width: 665px;
+	}
+
+	.submenu-section .submenu-items li {
+		width: 166px;
+	}
+
+
+	/* FEATURED SECTION */
+
+	.feat-title {
+		margin-right: 8px;
+	}
+
+	.feat-content {
+		margin-right: 8px;
+		width: 585px;
+	}
+
+	.feat-block .main-article .entry-cont p,
+	.feat-block .main-article .entry-cont h1 {
+		width: 175px;
+	}
+
+	.feat-block .main-article .entry-cont h1 {
+		font-size: 24px;
+	}
+
+	.feat-block .col-3 {
+		margin-left: 7px;
+		padding-left: 7px;
+		width: 193px;
+	}
+
+	.feat-block .col-3:first-child {
+		width: 185px;
+	}
+
+	.main-article .hmedia {
+		width: 400px;
+	}
+
+	.feat-block .second-article {
+		margin-left: 7px;
+		padding-left: 7px;
+		width: 293px;
+	}
+
+	.feat-block .second-article:first-child {
+		width: 285px;
+	}
+
+	.feat-sidebar {
+		margin-left: 7px;
+	}
+
+	/* Fin del mundo */
+
+	.feat-fin .main-article .hmedia {
+		margin-left: 0;
+		width: 100%;
+	}
+
+	/* Alertas */
+
+	.alerta.alertafoto .alerta-wrap .alerta-cont {
+		width: 541px;
+	}
+
+	.alerta.alertadeporte .alerta-wrap .alerta-cont {
+		width: 661px;
+	}
+
+	.alerta.alertadeporte .alerta-wrap .alerta-deporte-wrap {
+		margin-right: 15px;
+		width: 536px;
+	}
+
+	.alerta.alertadeporte .alerta-wrap .alerta-deporte-wrap .alerta-cont {
+		margin-right: 30px;
+		width: 326px;
+	}
+
+
+	/* ESPECIAL */
+
+	.especial .articles {
+		width: 575px;
+	}
+
+	.especial article {
+		margin-left: 7px;
+		padding-left: 6px;
+		width: 186px;
+	}
+
+	.especial .noborder {
+		width: 179px;
+	}
+
+
+	/* FLUJO */
+
+	.content {
+		width: 603px;
+	}
+
+	.content .especial {
+		margin-right: 8px;
+	}
+
+	.content #col-1 {
+		margin-right: 8px;
+		width: 285px;
+	}
+
+	.content #col-2 {
+		margin-left: 7px;
+		margin-right: 8px;
+		width: 285px;
+	}
+
+	.sidebar {
+		margin-left: 7px;
+	}
+
+
+	/* GALLERY MAIN */
+
+	.gallery-main .main-article .hmedia {
+		margin-left: 15px;
+		width: 600px;
+	}
+
+	.gallery-main h2,
+	.gallery-main p {
+		width: 285px;
+	}
+
+	#more-galleries {
+		width: 275px;
+	}
+
+	.gallery-main .main-article #more-galleries .hmedia {
+		margin-left: 0;
+		width: 140px;
+	}
+
+
+	/* NOTA */
+
+	.single-cont header {
+		margin-right: 8px;
+	}
+
+	.social-share {
+		margin-right: 15px;
+	}
+
+	.social-share-horizontal ul li {
+		margin-right: 20px;
+	}
+
+	.cont {
+		width: 600px;
+	}
+
+	.news-comments {
+		margin-right: 8px;
+	}
+
+	.pub-wrap {
+		margin-left: 10px !important;
+		margin-right: 8px !important;
+	}
+
+	.pub.col-2 {
+		float: none;
+		margin-bottom: 10px;
+		width: 100%;
+	}
+
+	.related-news {
+		margin-right: 8px;
+	}
+
+	/* Gallery full */
+
+	.gallery-single #carouselfull,
+	.gallery-single #carouselnormal {
+		top: 406px;
+	}
+
+	/* Gallery cont */
+
+	.cont .gallery-nav a {
+		margin-top: -15%;
+	}
+
+	.cont .gallery-single #carouselnormal {
+		top: 189px;
+	}
+
+
+	/* CATEGORÃAS */
+
+	.category .content article {
+		margin-right: 8px;
+	}
+
+	.category .content article .hmedia {
+		margin-right: 15px;
+		width: 185px;
+	}
+
+	.category .content article .hmedia img {
+		width: 185px;
+	}
+
+	.category .content article .entry-cont {
+		width: 385px;
+	}
+
+
+	/* SEARCH & 404 */
+
+	.noresult,
+	.notfound {
+		margin-right: 8px;
+	}
+
+
+	/* ENVIVO */
+
+
+
+
+	/* CLIMA */
+
+	.weather-header,
+	.weather-map,
+	.weather-table,
+	.weather .social-share-horizontal {
+		margin-right: 8px;
+	}
+
+	#mapaPeru {
+		height: 487px;
+		width: 355px;
+	}
+
+	.weather-side {
+		margin-left: 15px;
+	}
+
+	.weather-table {
+		overflow: scroll;
+	}
+
+	.weather-table table {
+		width: 700px;
+	}
+
+}
+
+@media screen and (max-width: 940px) { /* 768 */
+
+
+	.wrap-galeria{
+		display: block;
+	}
+	.wrap-galeria .item img{
+		width: 430px;
+		min-height: 240px;
+	}
+	.galeria-full .arrows{
+		padding-bottom: 240px;
+	}
+	.body-cb .block-right figure{
+		display: none;
+	}
+
+	.envivo{
+		top: 77px;
+	}
+
+	.wrap-galeria .sidebar-galeria.fixrelative{
+		width: 1840px;
+	}
+	.ads{
+		overflow: hidden!important;
+	}
+	.i-back{
+		width: 30px;
+	}
+	.sidebar-branding figcaption{
+		padding: 7px 10px 14px 10px;
+	}
+	.sidebar-branding article h2{
+		padding: 0px 10px;
+	}
+	.content.group > .group{
+		padding-bottom: 70px;
+		position: relative;
+	}
+	.content.group > .group.ttl-new{
+		padding-bottom: 0px;
+	}
+	/*Sociales*/
+	.social-share{
+		display: block;
+		margin: 0;
+		width: 100%;
+		float: none;
+		top: auto;
+		position: absolute;
+		bottom: 20px;
+		left: 0;
+		height: 50px;
+	}
+	.socials{
+		padding-right: 100px;
+		position: relative;
+		height: 50px;
+	}
+	.social-share .panel-title{
+		display: none;
+	}
+	.socials li span{
+		display: none;
+		margin:0;
+	}
+	.socials li.comentar{
+		line-height: 50px;
+		height: 50px;
+		width: 100px;
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	.socials li.comentar a{
+		height: auto;
+	}
+	.social-share ul.socials li{
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0;
+		width: 18%;
+	}
+	.social-share ul.socials li.comentar{
+		margin-top: 0px;
+		width: 100px;
+		padding: 0;
+	}
+	.social-share ul li a > span{
+		height: auto;
+		margin-right: 0px;
+	}
+	.socials li.comentar a span{
+		margin-top: 0;
+	}
+	/*Fin sociales*/
+	/* PUB */
+	.body-cb article{
+		width: 19.5%
+	}
+	.body-cb article:first-child{
+		padding-bottom: 7px;
+	}
+	.left-pub {
+		margin-left: -503px;
+	}
+
+	.right-pub {
+		margin-right: -503px;
+	}
+
+	/* GENERAL */
+
+	.wrapper {
+		width: 766px;
+	}
+
+	/* HEADER */
+
+	#envivo {
+		height: 31px;
+		line-height: 31px;
+		margin-left: 20px;
+		min-width: 0;
+		overflow: hidden;
+		padding:0;
+
+		width: 90px;
+	}
+
+	.touch #envivo {
+		min-width: 0;
+		padding-left: 8px;
+		padding-right: 8px;
+	}
+
+
+
+	#envivo span {
+		margin-right: 5px;
+		margin-top: 6px;
+	}
+	#envivo strong,
+	#envivo-mini strong{
+		display: none;
+	}
+
+	.header-main .social-icons {
+		margin-left: 50px;
+	}
+
+	.header-main .search {
+		margin-left: 20px;
+	}
+
+	.touch .header-main .search {
+		margin-left: 0;
+	}
+
+	.header-main .search input[type="text"] {
+		width: 197px;
+	}
+
+	.touch .header-main .search input[type="text"] {
+		width: 189px;
+	}
+
+	.main-menu li a {
+		font-size: 12px;
+		padding: 7px 10px;
+	}
+
+	#envivo-mini {
+		margin-left: 15px;
+	}
+
+	.tags-mini {
+		width: 280px;
+	}
+
+	.tags-mini:before,
+	.tags-mini:after {
+		border-top: 1px solid #0060ab;
+		content: "";
+		display: block;
+		margin-left: -100%;
+		margin-top: -18px;
+		position: absolute;
+		top: 17px;
+		width: 100%;
+	}
+
+	.tags-mini:after {
+		margin-left: 0;
+		margin-right: -100%;
+		right: 0;
+	}
+
+	.tags-mini ul {
+		width: 100%;
+	}
+
+	.tags-mini ul li:first-child {
+		margin-left: 10px;
+	}
+
+	.submenu-section .live-prog {
+		margin-right: 10px;
+		margin-top: 0;
+	}
+
+	.submenu-section .submenu-items {
+		width: 516px;
+	}
+
+	.submenu-section .submenu-items li {
+		width: 172px;
+	}
+
+
+	/* FEATURED SECTION */
+
+	.feat-title {
+		margin-left: 8px;
+		margin-right: 5px;
+	}
+
+	.feat-content {
+		margin-left: 8px;
+		margin-right: 5px;
+		width: 440px;
+	}
+
+	.feat-block .main-article .entry-cont p,
+	.feat-block .main-article .entry-cont h1 {
+		width: auto;
+	}
+
+	.feat-block .main-article .entry-cont p {
+		display: none;
+	}
+
+	.feat-block .main-article .entry-cont .cat {
+		display: block;
+	}
+
+	.feat-block .col-3 {
+		margin-left: 5px;
+		padding-left: 4px;
+		width: 145px;
+	}
+
+	.feat-block .col-3:first-child {
+		width: 140px;
+	}
+
+	.main-article .hmedia {
+		float: none;
+		margin-bottom: 5px;
+		margin-left: 0;
+		width: 100%;
+	}
+
+	.feat-block .second-article {
+		margin-left: 5px;
+		padding-left: 4px;
+		width: 220px;
+	}
+
+	.feat-block .second-article:first-child {
+		width: 215px;
+	}
+
+	.feat-sidebar {
+		margin-left: 5px;
+		margin-right: 8px;
+	}
+
+	.feat-sidebar .pub > img,
+	.feat-sidebar .pub > div {
+		margin-bottom: 10px;
+	}
+
+	.third-article .author .photo {
+		float: none;
+		margin-bottom: 5px;
+	}
+
+	/* Fin del mundo */
+
+	.feat-fin .main-article .hmedia {
+		margin-bottom: 0;
+	}
+
+	/* Alertas */
+
+	.alerta.alertafoto .alerta-wrap .alerta-cont {
+		width: 387px;
+	}
+
+	.alerta.alertadeporte .alerta-wrap .alerta-cont {
+		width: 507px;
+	}
+
+	.alerta.alertadeporte .alerta-wrap .alerta-deporte-wrap h2 {
+		font-size: 24px;
+	}
+
+	.alerta.alertadeporte .alerta-wrap .alerta-deporte-wrap {
+		margin-right: 10px;
+		width: 387px;
+	}
+
+	.alerta.alertadeporte .alerta-wrap .alerta-deporte-wrap .alerta-cont {
+		margin-right: 15px;
+		width: 200px;
+	}
+
+	.alerta.alertadeporte .alerta-wrap .alerta-marcador {
+		width: 172px;
+	}
+
+
+	/* ESPECIAL */
+
+	.especial {
+		margin-left: 8px;
+		margin-right: 8px;
+	}
+
+	.especial .articles {
+		width: 428px;
+	}
+
+	.especial article {
+		margin-left: 5px;
+		padding-left: 5px;
+		width: 138px;
+	}
+
+	.especial .noborder {
+		width: 132px;
+	}
+
+	/* FLUJO */
+
+	.content {
+		width: 453px;
+	}
+
+	.content .especial {
+		margin-right: 5px;
+	}
+
+	.content #col-1 {
+		margin-left: 8px;
+		margin-right: 5px;
+		width: 215px;
+	}
+
+	.content #col-2 {
+		margin-left: 5px;
+		margin-right: 5px;
+		width: 215px;
+	}
+
+	.content .cont-col article .entry-comments {
+		font-size: 12px;
+	}
+
+	.content .cont-col article .auspicio p {
+		float: none;
+		margin-bottom: 5px;
+		margin-right: 0;
+		padding-top: 0;
+	}
+
+	.content .cont-col article .asociado {
+		float: none;
+		margin-bottom: 30px;
+		width: 215px;
+	}
+
+	.sidebar {
+		margin-left: 5px;
+		margin-right: 8px;
+	}
+
+
+	/* GALLERY MAIN */
+
+	.gallery-main {
+		margin-left: 8px;
+		margin-right: 8px;
+	}
+
+	.gallery-main .main-article {
+		float: left;
+	}
+
+	.gallery-main .main-article .hmedia {
+		float: left;
+		height: 249px; /* Alto fijo para evitar se rompa #more-galleries mientras caga la imagen */
+		margin-left: 0;
+		width: 440px;
+	}
+
+	.gallery-main .entry-cont {
+		float: left;
+		margin-bottom: 0;
+		width: 440px;
+	}
+
+	.gallery-main h2,
+	.gallery-main p {
+		text-align: left;
+		width: 100%;
+	}
+
+	#more-galleries {
+		float: left;
+		margin-left: 10px;
+		margin-top: -254px; /* Misma altura de la imagen principal + el margin-bottom */
+		width: 300px;
+	}
+
+	.gallery-main .main-article #more-galleries .hmedia {
+		height: auto;
+		margin-bottom: 0;
+	}
+
+	.gallery-main .main-article #more-galleries .entry-cont {
+		float: none;
+		width: auto;
+	}
+
+
+	/* NOTA */
+
+	.single-cont header {
+		margin-left: 8px;
+		margin-right: 5px;
+	}
+	.single-cont .hnews.group > header,
+	.hnews .content.group > header{
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.wrap-galeria .galeria-full > header{
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.single-cont header h1 {
+		font-size: 28px;
+	}
+
+	.social-share-horizontal {
+		display: none;
+		float: none;
+		margin-left: 8px;
+		margin-right: 5px;
+		width: auto;
+	}
+
+	.social-share-mobile {
+		/*display: block;*/
+		margin-left: 8px;
+		margin-right: 5px;
+	}
+
+	.social-share-mobile ul .whatsapp-share {
+		display: none;
+	}
+
+	.touch .social-share-mobile ul .whatsapp-share {
+		display: inline-block;
+	}
+
+	.cont {
+		padding-left: 0;
+		margin-left: 8px;
+		margin-right: 5px;
+		width: auto;
+	}
+
+	.cont .left {
+		margin-right: 10px;
+	}
+
+	.cont .left img,
+	.cont .left figcaption {
+		width: 220px !important;
+	}
+
+	.cont .right {
+		margin-left: 10px;
+	}
+
+	.cont .right img,
+	.cont .right figcaption {
+		width: 220px !important;
+	}
+
+	.social-post {
+		width: 440px;
+	}
+
+	.news-comments {
+		margin-left: 8px;
+		margin-right: 5px;
+	}
+
+	.pub-wrap {
+		margin-left: 8px !important;
+		margin-right: 5px !important;
+	}
+
+	.related-news {
+		margin-left: 8px;
+		margin-right: 5px;
+	}
+
+	/* Gallery Full */
+
+	.gallery-single #carouselfull,
+	.gallery-single #carouselnormal {
+		height: 75px;
+		top: 345px;
+	}
+
+	.gallery-single #carouselfull li,
+	.gallery-single #carouselnormal li,
+	.gallery-single #carouselfull li img,
+	.gallery-single #carouselnormal li img {
+		width: 96px !important;
+		height: auto !important;
+	}
+
+	/* Gallery cont */
+
+	.cont .gallery-single #carouselnormal {
+		top: 173px;
+	}
+
+
+	/* CATEGORÃAS */
+
+	.category .content article {
+		margin-left: 8px;
+		margin-right: 5px;
+	}
+
+	.category .content article .hmedia {
+		margin-right: 10px;
+		width: 140px;
+	}
+
+	.category .content article .hmedia img {
+		width: 140px;
+	}
+
+	.category .content article .entry-cont {
+		width: 290px;
+	}
+
+	.feat-block .main-article .entry-cont .author p {
+		display: block;
+	}
+
+
+	/* TAG */
+
+	.social-share-horizontal ul li {
+		margin-right: 15px;
+	}
+
+
+	/* ARCHIVO */
+
+	.nav-news .btn .date-text {
+		display: none;
+	}
+
+	/* SEARCH & 404 */
+
+	.noresult,
+	.notfound {
+		margin-left: 8px;
+		margin-right: 5px;
+	}
+
+	.notfound h1 {
+		font-size: 36px;
+		margin-bottom: 30px;
+		width: 250px;
+	}
+
+	.notfound .search,
+	.notfound .search input[type="text"] {
+		width: 245px;
+	}
+
+
+	/* PROGRAMACIÃ“N */
+
+	.programacion-table {
+		border-right: 2px solid #dcdcdc;
+		overflow: scroll;
+	}
+
+	.programacion-table table {
+		width: 1020px;
+	}
+
+
+	/* ENVIVO */
+
+	.media-player {
+		width: 100%;
+	}
+
+
+	/* CLIMA */
+
+	.weather-header,
+	.weather-map,
+	.weather-table {
+		margin-left: 8px;
+		margin-right: 5px;
+	}
+
+	.weather-map #mapaPeru {
+		float: none;
+		margin-bottom: 15px;
+	}
+
+	#mapaPeru {
+		height: 605px;
+		width: 440px;
+	}
+
+	.weather-side {
+		float: none;
+		margin-left: 0;
+		width: auto;
+	}
+
+	.weather-time,
+	.weather-hour {
+		float: left;
+		margin-bottom: 0;
+		width: 215px;
+	}
+
+	.weather-hour {
+		margin-left: 10px;
+	}
+
+
+
+	/* FOOTER */
+
+	.footer-brands p {
+		margin-top: 0;
+	}
+
+	.footer-brands ul {
+		margin-left: 0;
+		margin-top: 10px;
+	}
+
+	.footer-links {
+		margin-left: 0;
+		margin-top: 15px;
+		width: 630px;
+	}
+
+	.lucuma-labs {
+		margin-top: 16px;
+	}
+
+	.hnews .gallery-single iframe{
+		height: 450px!important;
+	}
+
+}
+
+
+@media screen and (max-width: 768px) { /* FLUID */
+
+	.galeria-full .galeria .hmedia{
+		position: relative;
+		padding-bottom: 56.4%;
+	}
+
+	.wrap-galeria .item img{
+		min-height: initial;
+		position: absolute;
+		top: 0;
+		left: 0;
+
+	}
+	.wrap-galeria .ads-sidebar{
+		min-height: initial;
+	}
+	.main-article .hmedia img{
+		width: 100%;
+	}
+	.cont-col article .hmedia img{
+		max-width: 100%;
+	}
+	.galeria-full{
+		padding-right: 10px;
+	}
+	.galeria-full .galeria{
+		margin-bottom: 20px;
+	}
+	.wrap-galeria .ads-sidebar{
+		padding: 0;
+		margin: auto;
+	}
+	.wrap-galeria .item img{
+		width: 100%;
+	}
+	.galeria-full .arrows{
+		padding-bottom: 56%;
+	}
+	.envivo{
+		top: 0;
+		left: 160px;
+		padding-right: 10px;
+		min-height: 90px;
+	}
+	.wrapper-item-cb.txt{
+		min-height: 80px;
+		max-height: 80px;
+	}
+	.wid-mini time{
+		text-align: left;
+	}
+	/*Galeria*/
+	.wrap-galeria .galeria-full,
+	.wrap-galeria .sidebar-galeria{
+		display: block;
+		width: 100%;
+	}
+	.galeria-full .galeria{
+		margin-left: 0px;
+	}
+	/*FIN Galeria*/
+
+	.wrap-galeria .ads-sidebar{
+		text-align: center;
+	}
+
+	.nav-rpp .main-menu.main-menu{
+		display: block;
+	}
+
+	.w-c{
+		display: none;
+	}
+	.header-main{
+		position: relative;
+		overflow: visible;
+	}
+	.header-main .search{
+		display: none;
+	}
+	.header-main .w-c{
+		width: 270px;
+		position: absolute;
+		top: 100%;
+		right: 0;
+		z-index: 999;
+	}
+	.header-main .main-menu .more{
+		display: none;
+	}
+	.header-main .main-menu{
+		height: auto;
+		font-size: 0;
+		padding-right: 0;
+		width: 270px;
+	}
+	.header-main .main-menu li{
+		display: inline-block;
+		float: none;
+		width: 50%;
+	}
+	.block-complement{
+		display: block;
+		opacity: 1;
+		right: 0;
+	}
+	.main-menu .more{
+		display: none;
+	}
+	.header-main .main-menu .more{
+		display: none!important;
+	}
+	.main-menu{
+		background-color: #003E6F;
+		padding-top: 10px;
+	}
+	.main-menu li{
+		border: none;
+	}
+	.main-menu li a{
+		text-transform: none;
+	}
+	.search-mn{
+		display: block;
+	}
+	.header-main .controls-responsive{
+		display: block;
+	}
+
+	.header-main .i-back{
+		display: block;
+	}
+
+	.txt-center{
+		display: none;
+	}
+	.feat-fin h1 .url{
+		font-size: 35px;
+		line-height: 1;
+	}
+	/*Redes Sociales*/
+	.social-share{
+		display: none;
+	}
+	.social-share.fix-bottom{
+		display: block;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: #fff;
+		z-index: 3;
+		box-shadow: 0px -2px 6px rgba(128, 128, 128, 0.34);
+	}
+	/*Fin redes sociales*/
+	.entry-content{
+		padding-bottom: 0;
+	}
+	.brand-cb{
+		display: none;
+	}
+	.wrapper-item-cb{
+		min-height: auto;
+	}
+
+	.body-cb article{
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		overflow: hidden;
+		padding-bottom: 0;
+		text-align: left;
+	}
+	.body-cb article:first-child{
+		padding-bottom: 0;
+	}
+	.body-cb article figure{
+		float: left;
+	}
+	.body-cb article figure img{
+		width: 140px;
+	}
+	.body-cb{
+		background-size: cover;
+		text-align: center;
+	}
+	.body-cb time{
+		margin-top: 5px;
+	}
+	.body-cb .block-right{
+		max-width: 100%;
+		border: none;
+		padding-left: 0;
+	}
+	.body-cb .block-right article{
+		padding: 0;
+		margin-bottom: 10px;
+		padding-bottom: 10px;
+	}
+	.wid-mini{
+		text-align: center;
+		display: block;
+	}
+	.body-cb article figure{
+		margin-right: 10px;
+	}
+	.wid-mini .team-home, .wid-mini .team-visitor{
+		width: 260px;
+		display: table-cell;
+	}
+	.cont .gallery-single #carouselnormal,
+	.gallery-single #carouselfull{
+		display: none!important;
+	}
+	.poder .feat-title:after{
+		content: none!important;
+		display: none!important;
+	}
+	.tag-especial.poder .feat-title h1{
+		text-align: left;
+	}
+
+
+	/* PUBLICIDAD ANCHO MIENTRAS */
+
+	.pub-980 img {
+		height: 100px;
+		width: 320px;
+	}
+
+	/* BORRAR HASTA AQUÃ PUBLICIDAD ANCHO MIENTRAS */
+
+
+	/* PUB */
+
+	.content .cont-col .pub-300 {
+		display: block; /* mostrando publicidad cuadrada en el flujo */
+	}
+
+	.left-pub,
+	.right-pub {
+		display: none;
+	}
+
+	/* GENERAL */
+
+	.wrapper {
+		width: 100%;
+	}
+
+	h2 {
+		font-size: 16px;
+	}
+
+	/* HEADER */
+
+	.header-main h1 {
+		background-size: 100%;
+		height:40px;
+		width: 121px;
+	}
+
+	#envivo {
+		margin-left: 15px;
+		margin-top: 4px;
+	}
+
+	.header-main .social-icons {
+		display: none;
+		margin-left: 15px;
+		margin-top: 5px;
+	}
+
+	.header-main .search {
+		float: right;
+		margin-left: 0;
+		margin-top: 5px;
+		margin-right: 10px;
+		width: 38%;
+	}
+
+	.header-main .search input[type="text"],
+	.touch .header-main .search input[type="text"] {
+		width: 100%;
+	}
+
+	.main-tags {
+		padding: 0;
+	}
+
+	.main-tags p {
+		display: none;
+	}
+
+	.main-tags ul {
+		height: 40px;
+		line-height: 38px;
+	}
+
+	.main-tags ul li a {
+
+	}
+
+	.tags-mini {
+		display: none;
+	}
+
+	.more-items,
+	.more-section .more-items li,
+	.submenu-section .submenu-items,
+	.submenu-section .submenu-items li {
+		float: none;
+	}
+
+	.more-section {
+		border-top: none;
+        overflow-y: auto;
+	}
+
+	.more-section .more-items li {
+		border-left: none;
+		border-top: 1px solid #668b69;
+	}
+
+	.more-section .more-items li:first-child {
+		border-top: none;
+	}
+
+	.more-section .more-items li a {
+		padding: 10px 5px;
+		padding-right: 25px;
+		position: relative;
+	}
+
+	.more-section .more-items li a span {
+		font-size: 15px;
+		margin-top: -8px;
+		position: absolute;
+		right: 5px;
+		top: 50%;
+	}
+
+	.more-section .more-items li a span:before {
+		content: "w";
+	}
+
+	.more-section .more-items li a.active span:before {
+		content: "v";
+	}
+
+	.more-items {
+		padding: 10px;
+	}
+
+	.submenu-section {
+		padding: 0 5px;
+		position: static;
+	}
+
+	.submenu-section .live-prog {
+		display: none;
+	}
+
+	.submenu-section .submenu-items,
+	.more-section .more-items li {
+		width: auto;
+	}
+
+	.more-section .more-items li {
+		margin: 0;
+	}
+
+	.submenu-section .submenu-items li {
+		border-top: none;
+	}
+
+	.more-section .more-items li:first-child a {
+		padding-top: 0;
+	}
+
+	/* Traffic Mobile */
+
+	.traffic-mobile {
+		/*display: block;*/
+	}
+
+
+	/* FEATURED SECTION */
+
+	.feat-content {
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 10px;
+		padding-right: 10px;
+		width: 100%;
+	}
+
+	.feat-block .col-3,
+	.feat-block .col-3:first-child,
+	.feat-block .second-article,
+	.feat-block .second-article:first-child {
+		border-left: none;
+		margin-left: 0;
+		padding-left: 0;
+		width: 100%;
+	}
+
+	.feat-block .col-3,
+	.feat-block .second-article {
+		border-top: 1px dotted #999;
+		margin-top: 10px;
+		min-height: 0;
+		padding-top: 10px;
+	}
+
+	.feat-block .col-3:first-child,
+	.feat-block .second-article:first-child {
+		border-top: none;
+		margin-top: 0;
+		padding-top: 0;
+	}
+
+	.feat-block .col-3 .third-article .hmedia,
+	.feat-block .second-article .hmedia {
+		float: left;
+		margin-bottom: 0;
+		margin-right: 10px;
+		width: 140px;
+	}
+
+	.feat-sidebar {
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 10px;
+		padding-right: 10px;
+		width: 100%;
+	}
+
+	.third-article .author .photo {
+		float: left;
+		margin-bottom: 0;
+	}
+
+	/* Fin del mundo */
+
+	.feat-fin h1 {
+		font-size: 45px;
+	}
+
+	/* Alertas */
+
+	.alerta.alertafoto a:hover,
+	.alerta.alertadeporte a:hover {
+		text-decoration: none;
+	}
+
+	.alerta.alertafoto .alerta-wrap .alerta-cont,
+	.alerta.alertadeporte .alerta-wrap .alerta-cont,
+	.alerta.alertadeporte .alerta-wrap .alerta-deporte-wrap,
+	.alerta.alertadeporte .alerta-wrap .alerta-deporte-wrap .alerta-cont {
+		float: none;
+		margin-bottom: 10px;
+		margin-right: 0;
+		width: 100%;
+	}
+
+	.alerta.alertafoto .alerta-wrap .alerta-cont h2 {
+		font-size: 24px;
+	}
+
+	.alerta.alertafoto .alerta-wrap img,
+	.alerta.alertadeporte.full .alerta-wrap img {
+		float: none;
+		height: auto;
+		width: 100%;
+	}
+
+	.alerta.alertadeporte.full .alerta-wrap .alerta-marcador {
+		float: none;
+		margin: 0 auto;
+	}
+
+
+	/* ESPECIAL */
+
+	.especial {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.especial .articles {
+		float: none;
+		width: 100%;
+	}
+
+	.especial article,
+	.especial .noborder {
+		border-left: none !important;
+		border-top: 1px dotted #999;
+		float: none;
+		margin-left: 2%;
+		margin-top: 10px;
+		min-height: 0;
+		padding-left: 0;
+		padding-top: 10px;
+		width: 96%;
+	}
+
+	.especial .noborder {
+		border-top: none !important;
+		margin-top: 0;
+		padding-top: 0;
+	}
+
+	.especial article .hmedia {
+		float: left;
+		margin-bottom: 0;
+		margin-right: 10px;
+		width: 140px;
+	}
+
+	.especial .pub {
+		float: none;
+		margin-top: 10px;
+		margin-bottom: 0;
+	}
+
+	/* Especial Chespirito */
+
+	.especial.chespirito article {
+		border-top: 1px solid #550909;
+	}
+
+	/* Especial OcurriÃ³ 2014 */
+
+	.especial.ocurrio-2014 article {
+		border-top: 1px dotted #000;
+	}
+
+	/* FLUJO */
+
+	.content {
+		width: 100%;
+	}
+
+	.content .especial {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.content #col-1,
+	.content #col-2 {
+		margin-left: 0;
+		margin-right: 0;
+		width: 100%;
+	}
+
+	.content .cont-col article .entry-comments {
+		font-size: 14px;
+	}
+
+	.cont-col .entry-cont {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	.cont-col .entry-cont h2 {
+		font-size: 18px;
+	}
+
+	.content .cont-col article .asociado {
+		float: left;
+		margin: 0;
+		width: 100%;
+	}
+
+
+	/* SIDEBAR */
+
+	.sidebar {
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 10px;
+		padding-right: 10px;
+		width: 100%;
+	}
+
+    .sidebar-panel {
+        width: 100%;
+    }
+
+
+	#traffic-sidebar {
+		display: none;
+	}
+
+	.pin-container {
+		min-height: 0 !important;
+	}
+
+
+	/* GALLERY MAIN */
+
+	.gallery-main {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	.gallery-main .main-article {
+		float: none;
+		margin-bottom: 0;
+		margin-right: 0;
+		width: 100%;
+	}
+
+	.gallery-main .main-article .hmedia {
+		float: none;
+		height: auto;
+		width: 100%;
+	}
+
+	.gallery-main .entry-cont {
+		float: none;
+		margin-bottom: 20px;
+		width: 100%;
+	}
+
+	#more-galleries {
+		float: none;
+		margin-left: 0;
+		margin-top: 0;
+		width: 100%;
+	}
+
+	.gallery-main .main-article #more-galleries .hmedia {
+		float: left;
+	}
+
+
+	/* NOTA */
+
+	.single-cont header,
+	.social-share-mobile,
+	.news-comments,
+	.related-news {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	.single-cont .hnews.group > header,
+	.hnews .content.group > header{
+		padding-left: 0;
+		padding-right: 0;
+		padding-bottom: 10px;
+	}
+
+	.pub-wrap {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+
+	.cont {
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 10px;
+		padding-right: 10px;
+		width: 100%;
+	}
+
+	.cont .main-photo {
+		margin-left: -10px;
+		margin-right: -10px;
+	}
+
+	.cont .left .entry-cont p,
+	.cont .right .entry-cont p {
+		display: none;
+	}
+
+	.cont .left .entry-cont .cat,
+	.cont .right .entry-cont .cat {
+		display: block;
+	}
+
+	.cont .left,
+	.cont .right {
+		float: none;
+		margin-left: 0;
+		margin-right: 0;
+		width: 100%;
+	}
+
+	.cont .left article,
+	.cont .right article {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.cont .left img,
+	.cont .left figcaption,
+	.cont .right img,
+	.cont .right figcaption {
+		width: 100% !important;
+	}
+
+	.social-post {
+		text-align: center;
+		width: 100%;
+	}
+
+	/* Gallery full */
+
+	.gallery-single {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.gallery-nav a {
+		left: 10px !important;
+		opacity: 1;
+	}
+
+	.gallery-nav a.btn-next {
+		opacity: 1;
+		left: auto !important;
+		right: 10px !important;
+	}
+
+	.gallery-single #carouselfull,
+	.cont .gallery-single #carouselnormal {
+		position: relative;
+		top: auto;
+	}
+
+	.gallery-single #carouselfull .flex-direction-nav a,
+	.gallery-single #carouselnormal .flex-direction-nav a {
+		opacity: 1;
+	}
+
+	.gallery-single #carouselfull .flex-prev,
+	.gallery-single #carouselnormal .flex-prev {
+		left: 20px;
+	}
+
+	.gallery-single #carouselfull .flex-next,
+	.gallery-single #carouselnormal .flex-next {
+		right: 20px;
+	}
+
+	/* Gallery cont */
+
+	.cont .gallery-single {
+		margin-left: -10px;
+		margin-right: -10px;
+	}
+
+
+	/* CATEGORÃAS */
+
+	.category .content article {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.category .content article .hmedia {
+		float: none;
+		margin-right: 0;
+		width: 100%;
+	}
+
+	.category .content article .hmedia img {
+		width: 100%;
+	}
+
+	.category .content article .entry-cont {
+		float: none;
+		padding-left: 10px;
+		padding-right: 10px;
+		width: 100%;
+	}
+
+
+	/* TAG */
+
+
+
+	.tag-especial .feat-title h1 {
+		font-size: 24px;
+		margin-bottom: 0px;
+	}
+
+	.tag-especial.noskin .feat-title h1 {
+		font-size: 24px;
+	}
+
+	.feat-title {
+		border-top: none;
+		border-bottom: 4px solid #0060ab;
+		margin-left: 10px;
+		margin-right: 10px;
+		margin-top: 0;
+		padding-bottom: 5px;
+	}
+	.feat-title.cade-2015{
+		border-top: 4px solid #0060ab;
+		border-bottom: none;
+	}
+
+	.feat-title h1 {
+		display: block;
+		position: static;
+		padding-right: 0;
+	}
+
+	.tag-desc {
+		margin-bottom: 10px;
+		padding-bottom: 10px;
+	}
+
+	.tag-desc img {
+		margin-bottom: 0;
+	}
+
+	/* SEARCH & 404 */
+
+	.noresult,
+	.notfound {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	.noresult {
+		border-bottom: 1px solid #e2e2e2;
+		border-top: none;
+		margin-bottom: 10px;
+		padding-bottom: 30px;
+		padding-top: 0;
+	}
+
+	.notfound {
+		margin-bottom: 10px;
+		padding-bottom: 50px;
+		padding-top: 50px;
+	}
+
+
+	/* CLIMA */
+
+	.weather-header,
+	.weather-map {
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	.weather-header {
+		margin-bottom: 25px;
+	}
+
+	.weather-header label {
+		left: 10px;
+		top: 10px;
+	}
+
+	.weather-header h1 {
+		font-size: 28px;
+	}
+
+	.weather-map #mapaPeru {
+		margin: 0 auto 25px;
+	}
+
+	.weather-time,
+	.weather-hour {
+		width: 48%;
+	}
+
+	.weather-hour {
+		margin-left: 4%;
+	}
+
+	.weather-hour-header {
+		width: 215px;
+	}
+
+	.weather-table {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+
+	/* FOOTER */
+
+	.footer-brands p {
+		float: none;
+		text-align: center;
+	}
+
+	.footer-brands ul {
+		margin-top: 0;
+		text-align: center;
+	}
+
+	.footer-brands ul li {
+		display: inline;
+		float: none;
+		margin-left: 0;
+		margin-right: 0;
+		margin-top: 0;
+	}
+
+	.footer-brands ul li a {
+		display: inline-block;
+		margin: 25px 25px 0 !important;
+	}
+
+	.footer-corp .wrapper {
+		position: relative;
+	}
+
+	.footer-links {
+		margin-top: 0;
+		width: 100%;
+	}
+
+	.footer-links ul li {
+		border-left: none;
+		border-right: 1px solid #666;
+		line-height: 1;
+		margin-left: 0;
+		margin-right: 5px;
+		margin-top: 5px;
+		padding-left: 0;
+		padding-right: 5px;
+	}
+
+	.footer-links ul li:last-child {
+		border-right: none;
+		margin-right: 0;
+		padding-right: 0;
+	}
+
+	.grupo-rpp {
+		background-size: auto 100%;
+		bottom: 0;
+		height: 36px;
+		left: 10px;
+		position: absolute;
+		width: 120px;
+	}
+	.cab-360 h4{
+		font-size: 24px;
+	}
+	.wid-mini{
+		text-align: left;
+		display: block;
+		padding-left: 140px;
+	}
+	.wid-mini .team-home, .wid-mini .team-visitor{
+		text-align: left;
+		display: block;
+		height: 30px;
+		width: 100%;
+		position: relative;
+	}
+	.wid-mini .team-visitor img, .wid-mini .team-home img{
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.wid-mini .team-home span, .wid-mini .team-visitor span{
+		display: inline-block;
+		width: auto;
+		vertical-align: middle;
+		height: auto;
+		position: absolute;
+		top:0;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+		left: auto;
+		padding-right: 0;
+	}
+	.wid-mini .nom-cb{
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.body-cb .block-right{
+		display: block;
+		padding: 0px 10px;
+	}
+
+	.hnews .gallery-single iframe{
+		height: 400px!important;
+	}
+
+}
+
+@media screen and (max-width: 567px) { /* ADICIONAL */
+	.socialRpp{
+		display: none;
+	}
+	.right10,
+	.left10{
+		float: none;
+		display: block;
+		width: 100%;
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	.wrapper-relatedframe{
+		overflow: hidden;
+		padding: 10px 0px;
+	}
+	.wrapper-relatedframe-img{
+		float: left;
+		margin-right: 10px;
+	}
+	.wrapper-relatedframe-img img,
+	.bloque .wrapper-relatedframe-img img{
+		width: 141px;
+	}
+	.wrapper-relatedframe-description span{
+		display: none;
+	}
+	/* HEADER */
+
+	#envivo,
+	#envivo-mini {
+		font-weight: bold;
+		margin-left: 10px;
+		width: 95px;
+	}
+
+	#envivo-mini span {
+		margin-right: 5px;
+	}
+
+	.header-main .social-icons {
+		display: none;
+	}
+
+	.header-main .search {
+		width: 40%;
+	}
+
+	#search-mini {
+		display: none;
+	}
+
+	.search-mini-mobile {
+		display: block;
+	}
+
+
+	/* NOTA */
+
+	/* Gallery full */
+
+	.gallery-nav a {
+		border: 2px solid rgba(105,105,105,0.75);
+		height: 25px;
+		margin-top: -10%;
+		width: 25px;
+	}
+
+	.gallery-nav a:before {
+		font-size: 15px;
+		line-height: 22px;
+	}
+	.asideAds{
+		float: none;
+		display: block;
+		margin:  auto;
+		text-align: center;
+	}
+
+	.hnews .gallery-single iframe{
+		height: 350px!important;
+	}
+
+}
+
+@media screen and (max-width: 480px) { /* 480 */
+	.cont{
+		overflow: hidden;
+	}
+	.wrap-galeria .item img{
+		max-height: auto;
+		min-height: initial;
+	}
+	.galeria .social-state span{
+		display: none;
+	}
+	.perured{
+		width: 300px;
+		margin: auto;
+	}
+	.feat-sidebar{
+		padding: 0;
+	}
+	.sidebar-branding{
+		width: 100%;
+	}
+	.sidebar-branding figure a{
+		height: auto;
+	}
+	.sidebar-branding figure a img{
+		width: 100%;
+	}
+	.header-main .search {
+		display: none;
+	}
+
+	.search-mobile {
+		display: block;
+	}
+	/*.body-cb article figure{
+		max-width: 100%;
+		width: 100%;
+		display: block;
+		float: none;
+		text-align: center;
+	}
+	.body-cb article figure a{
+		display: inline-block;
+	}*/
+	.logo-rpp img{
+		width: 130px;
+		height: auto;
+	}
+	.sidebar-branding article h2{
+		padding: 0px 10px;
+	}
+	.sidebar-branding figcaption{
+		padding: 7px 10px 14px;
+	}
+
+	.hnews .gallery-single iframe{
+		height: 250px!important;
+	}
+
+}
+
+@media screen and (max-width: 479px) { /* 480 */
+
+	/* FEATURED SECTION */
+	.third-article h2.entry-title{
+		height: auto;
+	}
+	#featured .feat-block .col-3 .third-article .hmedia {
+		margin-bottom:0px;
+	}
+
+	#featured .third-article .author {
+		clear: both;
+		margin-bottom: 0;
+	}
+
+	/* SINGLE */
+
+	/*.single-cont header .cat a {
+		display: block;
+	}
+
+	.single-cont header .cat time {
+		display: block;
+		float: none;
+		text-align: left;
+	}*/
+
+	/* CLIMA */
+
+	.weather-header h1 {
+		padding-left: 0;
+		text-align: left;
+	}
+
+	.weather-header label {
+		float: left;
+		margin-right: 10px;
+		position: static;
+	}
+
+	.weather-header time {
+		clear: both;
+		display: block;
+		float: none;
+		padding-top: 10px;
+		text-align: left;
+	}
+
+	#mapaPeru {
+		height: 413px;
+		width: 300px;
+	}
+
+	.weather-time,
+	.weather-hour {
+		float: none;
+		margin-left: 0;
+		width: auto;
+	}
+
+	.weather-time {
+		margin-bottom: 25px;
+	}
+
+}
+
+@media screen and (max-width: 320px) { /* 320 */
+
+	/* NOTA */
+
+	/* Gallery full */
+
+	.gallery-nav a {
+		margin-top: -20%;
+	}
+
+	.hnews .gallery-single iframe{
+		height: 200px!important;
+	}
+
+}

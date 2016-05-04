@@ -1,0 +1,18 @@
+<section id="featured" class="group">
+
+{{ partial('partials/portada/bloque/tag/cabecera' , ['slug': model.tag_slug_portada ] ) }}
+
+<?php $order = @\Rpp\Services\Get\Destacados::portada($this->model->tag_slug_portada)->tipo['slug'] ;?>
+<?php $namespace = @\Rpp\Services\Get\Destacados::portada($this->model->tag_slug_portada)->tipo['namespace'] ;?>
+<?php if($order=='' || $order=='ninguna'){ $order='index'; } ?>
+{{ partial('partials/portada/grilla/home/' ~ order , [ 'slug': model.tag_slug_portada ,  'ads' : '300x380' , 'namespace' : namespace ] ) }}
+<!-- feat-content -->
+
+</section>
+
+{{ partial('partials/portada/bloque/tag/campana_cuerpo' , ['slug': model.tag_slug_portada ] ) }}
+
+{{ partial('partials/ads/middle1') }}
+<!-- pub-980 -->
+
+{{ partial('partials/portada/bloque/tag/medio' , ['slug': model.tag_slug_portada ] ) }}

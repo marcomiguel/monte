@@ -1,0 +1,99 @@
+<link rel="stylesheet" type="text/css" href="{{host}}/elecciones-peru-2016/css/elecciones.css?v={{eversion}}">
+<div class="widget-cabecera">
+<div class="widget-cb content-automatic">
+     <div class="header">
+        <div class="mod-cb-especial group">
+            <div class="mod-cb-logo">
+                <h1>
+                    <a href="{{host}}/elecciones-peru-2016">
+                        <img src="{{ehost}}/images/logo_modulo_votaperu.gif" alt="Elecciones Perú 2016" />
+                        <span class="hide">Elecciones Perú 2016</span>
+                    </a>
+                </h1>
+                <figure class="figure_ttl-new hide" >
+                    <a href="http://ads.us.e-planning.net/ei/3/17632/Home/Ultimas?it=i&amp;rnd=$RANDOM" target="_blank"><img src="http://ads.us.e-planning.net/eb/3/17632/Home/Ultimas?o=i&amp;rnd=$RANDOM
+    " alt="Logo Caja Arequipa"></a>
+                </figure>
+            </div>
+            <ul class="mod-cb-nav">
+                <li class="active"><a href="{{host}}/elecciones-peru-2016">noticias</a></li>
+                <li><a href="{{host}}/elecciones-peru-2016/candidatos.html">candidatos</a></li>
+                <li><a href="{{host}}/elecciones-peru-2016/redes">en redes</a></li>
+                <li><a href="{{host}}/elecciones-peru-2016/encuesta">encuestas</a></li>
+                <li ><a href="http://rpp.pe/politica/congreso/elecciones-peru-2016-estos-son-los-candidatos-al-congreso-noticia-940142">lista congreso</a></li>
+                <li><a href="{{host}}/elecciones-peru-2016/comparaya.html">Compara Ya</a></li>
+                <li><a href="{{host}}/elecciones-peru-2016/gps-electoral.html">GPS Electoral</a></li>
+            </ul>
+        </div>
+     </div>
+     <div class="body-cb">
+     <?php if(!is_array($destacadas['destacadas'])) $destacadas['destacadas'] = array();?>
+     <?php $e=1; foreach ($destacadas['destacadas'] as $v => $item):?>
+      
+       <article >
+       <figure>
+ 
+     {{ partial('partials/portada/grilla/block/icon/' ~ item['tipo'] ) }}
+
+     <a href="{{nUrl(item['nid'])}}">
+
+       <img src="{{ cdn_image(item['imagen_portada']['hash'], 'small' ) }}" alt="{{ item['imagen_portada']['alt'] }}" width="221" height="127">
+       </a>
+        
+        <?php if(@$item['envivo']): ?>
+         <span class="envivo-animate">En vivo</span>
+        <?php endif; ?>
+
+       </figure>
+          <div class="wrapper-item-cb txt">
+           <time>{{date('d/m/Y G:i' , item['fecha_publicacion'])}}</time>
+           <a href="{{nUrl(item['nid'])}}">
+           <p>  {{item['titulo']}} </p>
+           </a>
+          </div>
+       </article>
+       <?php unset($destacadas['destacadas'][$v])?>
+       <?php if($e >= 3) break;?>
+       <?php $e++ ;?>
+       <?php endforeach; ?>
+
+
+<?php if(@$destacadas['publicidad']):?>
+    <div class="block-right">
+         <div class="wrap-ads">
+                     <script type="text/javascript">eplAD4M("Auspiciado2");</script>
+         </div>
+    </div>
+<?php else:?>
+      <div class="block-right">
+
+  <?php $e=1; foreach ($destacadas['destacadas'] as $v => $item):?>
+         <article>
+           <figure>
+             {{ partial('partials/portada/grilla/block/icon/' ~ item['tipo'] ) }}
+             
+             <a href="{{nUrl(item['nid'])}}">
+               <img src="{{ cdn_image(item['imagen_portada']['hash'], 'small' ) }}" alt="{{ item['imagen_portada']['alt'] }}" width="140" height="79">
+             </a>
+           </figure>
+           <time>{{date('d/m/Y G:i' , item['fecha_publicacion'])}}</time>
+           <a href="{{nUrl(item['nid'])}}">
+             <p>{{item['titulo']}}</p>
+           </a>
+         </article>
+  <?php if($e >= 2) break;?>
+  <?php $e++ ;?>
+  <?php endforeach; ?>
+
+              </div>
+<?php endif; ?>
+
+    </div>
+
+<?php if(@$destacadas['encuesta']):?>    
+{{ partial('votaperu/elecciones_sondeo' ) }}
+<?php endif; ?>
+
+   </div>
+</div>
+

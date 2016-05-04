@@ -1,0 +1,43 @@
+<div class="media widen " itemref="article-body organization" >
+
+  <div  data-x='{"comscore" : "{{model.comscore}}" , "page": <?=$this->model->position;?>, "lazy":true,"urlState":"{{host}}{{nUrl(model.nid)}}"}' itemscope itemtype="http://schema.org/ImageGallery" class="x-slide x-slide-large">
+    <meta itemprop="creator" content="<?=date(DATE_ATOM,\Rpp\Services\Get\Content::node($this->model->nid)->fecha_publicacion);?>">
+    <meta itemprop="datePublished" content="<?=date(DATE_ATOM,\Rpp\Services\Get\Content::node($this->model->nid)->fecha_publicacion);?>">
+    <div class="x-wrapper">
+      <div class="x-container">
+        <?php foreach (\Rpp\Services\Get\Content::part($this->model->nid,'galeria') as $v => $key) :?>
+        <div class="x-item">
+
+            <div class="social">
+                <ul>
+                    <li>Compartir:</li>
+                    <li class="fb"><a onclick="fn(this, event, {'method':'wopen'})" href="https://www.facebook.com/dialog/feed?display=popup&amp;app_id=185239485185&amp;link={{host}}{{nUrl(model.nid)}}/<?=$this->model->position;?>&amp;picture={{ cdn_image(getPart(model.nid,'contenido')[key]['foto']['hash'],'large') }}&amp;name=<?=urlencode(\Rpp\Services\Get\Content::node($this->model->nid)->titulo);?>&amp;description=<?=urlencode(\Rpp\Services\Get\Content::node($this->model->nid)->bajada);?>&amp;caption=rpp.pe<?=urlencode(" | POR RPPNOTICIAS");?>&amp;redirect_uri=http://rpp.pe/html/mam/timemachine_share.html&amp;cancel_url=&amp;ref=click_share_sb"><span class="icon-facebook"></span></a></li>
+                    <li class="tw"><a onclick="fn(this, event, {'method':'wopen'})" href="https://twitter.com/intent/tweet?original_referer={{host}}&amp;text={{getNode(model.nid).titulo}}&amp;url={{host}}{{nUrl(model.nid)}}&amp;via=rpp"><span class="icon-twitter"></span></a></li>
+                </ul>
+            </div>
+          <figure itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject" class="cover shadow-type-1">
+            <meta itemprop="datePublished" content="<?=date(DATE_ATOM,\Rpp\Services\Get\Content::node($this->model->nid)->fecha_publicacion);?>">
+
+
+            <img  src="{{ehost}}/static/img/placeholder.gif" data-src="{{ cdn_image(getPart(model.nid,'contenido')[key]['foto']['hash'],'large') }}" alt="{{ getPart(model.nid,'contenido')[key]['foto']['alt'] }}">
+            <figcaption itemprop="caption description">{{ getPart(model.nid,'contenido')[key]['foto']['alt'] }} 
+                {% if not(getPart(model.nid,'contenido')[key]['via'] is empty) %}
+                | Fuente: {{ getPart(model.nid,'contenido')[key]['via'] }}
+                {% endif %}
+                {% if not(getPart(model.nid,'contenido')[key]['credito'] is empty) %}
+                | Fotógrafo: {{ getPart(model.nid,'contenido')[key]['credito'] }}            
+                {% endif %}</figcaption>
+          </figure>
+
+
+        </div>
+        <?php //\Rpp\Services\Get\Content::unset_part($this->model->nid,'contenido',$key);  ?>
+        <?php endforeach;?>
+      </div>
+    </div>
+    <div class="x-arrows"><a href="#prev" class="x-prev"><span class="icon-chevron-left icon-prev"></span></a><a href="#next" class="x-next"><span class="icon-chevron-right icon-next"></span></a></div>
+    
+    <div class="x-pager-text"></div>
+  </div>
+</div>
+

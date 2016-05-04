@@ -1,0 +1,40 @@
+     
+        <div class="weather-side group">
+            <div class="weather-time">
+                <h2>Pronóstico del Tiempo:</h2>
+                <div class="weather-time-header group">
+                    <div class="weather-time-main">
+                        <span class="w{{clima(model.slug).item['condition']['code']}}"></span> {{clima(model.slug).item['condition']['text']}}
+                    </div>
+                    <div class="weather-time-data">
+                        <strong class="actual">{{clima(model.slug).item['condition']['temp']}}ºC</strong>
+                        <?php $current = @\Rpp\Services\Get\Climas::get($this->model->slug)->item['forecast'][0]?>
+                        Min: <strong>{{current['low']}}ºC</strong><br>
+                        Max: <strong>{{current['high']}}ºC</strong>
+                    </div>
+                </div>
+               <?php $cobertura = 100 - @\Rpp\Services\Get\Climas::get($this->model->slug)->atmosphere['visibility']; ?>
+                <ul>
+                    <li>Cobertura nubosa: <strong>{{cobertura}}%</strong></li>
+                    <li>Humedad relativa: <strong>{{clima(model.slug).atmosphere['humidity']}}%</strong></li>
+                    <li>Precipitaciones: <strong>{{clima(model.slug).atmosphere['rising']}}</strong></li>
+                    <li>Velocidad del viento: <strong>{{clima(model.slug).wind['speed']}} Km/h</strong></li>
+                    <li>Presión atmosférica: <strong>{{clima(model.slug).atmosphere['pressure']}}hPa</strong></li>
+                </ul>
+            </div>
+            <div class="weather-hour">
+                <h2>Horario de Aurora y Ocaso:</h2>
+                <div class="weather-hour-header">
+                    <span class="w1"></span>
+                    <span class="w12"></span>
+                </div>
+                <ul>
+                    <li>
+                        <span class="w1"></span> Salida del sol: <strong>{{clima(model.slug).astronomy['sunrise']}}</strong>
+                    </li>
+                    <li>
+                        <span class="w12"></span> Puesta del sol: <strong>{{clima(model.slug).astronomy['sunset']}}</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>

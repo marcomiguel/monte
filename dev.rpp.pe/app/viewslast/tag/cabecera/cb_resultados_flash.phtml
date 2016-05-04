@@ -1,0 +1,27 @@
+<link rel="stylesheet" type="text/css" href="{{ehost}}/elecciones-peru-2016/css/elecciones-restructured.css?v={{eversion}}">
+
+<div class="box-mod wrap-especial in-content" id="menu-votaperu">
+    <div class="box-header">
+        <h3 class="title">
+            <a href="{{host}}/elecciones-peru-2016">
+                <span class="hide">Elecciones Perú 2016</span>
+                <img src="{{ehost}}/elecciones-peru-2016/img/logo_header.gif" alt="Elecciones Perú 2016">
+            </a>
+            <button
+                class="especial-btn"
+                type="button"
+                onclick='fn(this, event, {"method":"toggleClass", "to": "#menu-votaperu"})'>
+                <span class="icon-chevron-down"></span>
+            </button>
+        </h3>
+        <figure class="pull-right">
+            <ul class="nav">
+                <li><a href="{{host}}/elecciones-peru-2016">noticias</a></li>
+                <li class="<?php if(@$portada=='presidenciales'){ echo 'active'; } ?>" ><a href="{{host}}/elecciones-peru-2016/resultados-presidenciales">resultados presidenciales</a></li>
+                <li class="<?php if(@$portada=='congreso'){ echo 'active'; } ?>" ><a href="{{host}}/elecciones-peru-2016/resultados-congreso">congreso</a></li>
+                <li class="<?php if(@$portada=='andino'){ echo 'active'; } ?>" ><a href="{{host}}/elecciones-peru-2016/resultados-parlamento-andino">parlamento andino</a></li>
+                <li><a href="{{host}}/elecciones-peru-2016/redes">en redes</a></li>
+            </ul>
+        </figure>
+    </div>
+</div>

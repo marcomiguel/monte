@@ -1,0 +1,8 @@
+<header>
+ <p class="cat">
+  {{ partial('partials/nota/header/categoriapreview' ,[ 'nombre' : notapreview.categoria['nombre'] , 'tipo' : notapreview.tipo])}}
+  {{ partial('partials/nota/header/pubtime',['fecha_publicacion': notapreview.fecha_publicacion ])}}
+</p>
+{{ partial('partials/nota/header/titulo',['titulo': notapreview.titulo   ]) }}
+ {{ partial('partials/nota/header/bajada',['bajada': notapreview.bajada ]) }} 
+</header>

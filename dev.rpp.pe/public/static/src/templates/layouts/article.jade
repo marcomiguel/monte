@@ -1,0 +1,13 @@
+extends base
+
+block main
+  block main-header
+    include ../components/header
+
+  #content(role='main')
+    .grid.pad
+      block container
+        |content
+
+  include ../components/footer
+  include ../helpers/footer-js

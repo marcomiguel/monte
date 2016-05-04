@@ -1,0 +1,39 @@
+<?php 
+$gene_img['type']='video';
+$gene_img['video_source'] ="https://www.youtube.com/watch?v=".$contenido['youtube']['id'];
+if(empty($contenido['youtube']['url_cover'])){
+$gene_img['video_img'] =  "http://img.youtube.com/vi/".$contenido['youtube']['id']."/0.jpg"; 
+} else{
+$gene_img['video_img'] =  $contenido['youtube']['url_cover']; 
+}
+if(!isset($contenido['youtube']['playlist'])){ $contenido['youtube']['playlist']='[]'; }
+$gene_img['playlist'] =json_encode($contenido['youtube']['playlist']);  
+$gene_img['hash'] ='undefined';
+$gene_img['rtag'] = @$this->model->preroll;
+$gene_img['section'] = @$this->model->epl_sec;
+$gene_img['vtemas'] = @$this->model->epl_kvs;
+$jsongene_img=json_encode($gene_img);
+?>
+<!-- youtube-->
+<div itemprop="video" itemscope itemtype="http://schema.org/VideoObject" class="media">
+<meta itemprop="encodingFormat" content="mp4">
+    <meta itemprop="uploadDate" content="<?=date(DATE_ATOM,@\Rpp\Services\Get\Content::node($this->model->nid)->fecha_publicacion);?>">
+  <meta itemprop="contentUrl" content="<?=$gene_img['video_source'];?>">
+<figure>
+  <div class="cover cover-media">
+    <a href="#video" data-x='<?=$jsongene_img;?>' class="x-media big">
+      <img src="<?=$gene_img['video_img'];?>" alt="<?php echo @$contenido['youtube']['descripcion']; ?>"><span class="icon-video"></span>
+    </a>
+  </div>
+  <figcaption itemprop="description">
+    <?php echo @$contenido['youtube']['descripcion']; ?> {% if not(contenido['via'] is empty) %}
+    | <strong>Fuente:</strong> {{ contenido['via'] }}
+    {% endif %}
+    {% if not(contenido['credito'] is empty) %}
+    | <strong>Fotógrafo:</strong> {{ contenido['credito'] }}
+    {% endif %}
+  </figcaption>
+</figure>
+</div> 
+
+

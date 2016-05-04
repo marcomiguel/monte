@@ -1,0 +1,82 @@
+<div class="widget-cabecera">
+<div class="widget-cb content-automatic">
+     <div class="header">
+        <?php $imgcb = !empty(@\Rpp\Services\Get\Tags::get_tag($tag)->personalidad['imagenes']['url_1020x51']);?>
+        <h1 class="titulo-especial">
+        <a data-size-title="{{imgcb*1}}" class="module-automatic" style="background:transparent url('<?php echo @\Rpp\Services\Get\Tags::get_tag($tag)->personalidad['imagenes']['url_1020x51'] ?>') left top no-repeat;" href="{{host}}/tema-{{ tag }}"></a>
+        <a data-size-title="{{!imgcb*1}}" class="module-automatic-widget" href="{{host}}/tema-{{ tag }}">{{nombre}}</a>
+        </h1>
+     </div>
+     <div class="body-cb">
+         <?php if(!is_array($destacadas['destacadas'])) $destacadas['destacadas'] = array();?>
+              <?php $e=1; foreach ($destacadas['destacadas'] as $v => $item):?>
+              <?php $df_id = @\Rpp\Services\Get\Content::part($item['nid'],'datafactory')?>
+       <article >
+       <figure>
+ 
+     {{ partial('partials/portada/grilla/block/icon/' ~ item['tipo'] ) }}
+
+     <a href="{{nUrl(item['nid'])}}">
+
+       <img src="{{ cdn_image(item['imagen_portada']['hash'], 'small' ) }}" alt="{{ item['imagen_portada']['alt'] }}" width="221" height="127">
+       </a>
+        
+        <?php if(@$item['envivo']): ?>
+         <span class="envivo-animate">En vivo</span>
+        <?php endif; ?>
+
+       </figure>
+          <div class="wrapper-item-cb txt">
+           <time>{{date('d/m/Y G:i' , item['fecha_publicacion'])}}</time>
+           <a href="{{nUrl(item['nid'])}}">
+           <p>	{{item['titulo']}} </p>
+           </a>
+          </div>
+          <?php if($df_id):?>
+         <div class="wrapper-item-cb wd">
+           <div class="wid-mini" id="wid-mini-{{getPart(item['nid'],'datafactory')}}">
+           </div>
+           <script>
+             rppWR.read({events: 'champions', type: 'mam', matchId: '{{getPart(item['nid'],'datafactory')}}'}).renderMaM({id:'#wid-mini-{{getPart(item['nid'],'datafactory')}}',url:'{{host}}{{nUrl(item['nid'])}}'});
+           </script>
+         </div>
+          <?php endif;?>
+       </article>
+       <?php unset($destacadas['destacadas'][$v])?>
+       <?php if($e >= 3) break;?>
+       <?php $e++ ;?>
+             <?php endforeach; ?>
+
+           <?php if(@$destacadas['publicidad']):?>
+             <div class="block-right">
+         <div class="wrap-ads">
+                     <script type="text/javascript">eplAD4M("Auspiciado2");</script>
+         </div>
+       </div>
+
+           <?php else:?>
+       <div class="block-right">
+        <?php $e=1; foreach ($destacadas['destacadas'] as $v => $item):?>
+         <article>
+           <figure>
+
+             {{ partial('partials/portada/grilla/block/icon/' ~ item['tipo'] ) }}
+             
+             <a href="{{nUrl(item['nid'])}}">
+               <img src="{{ cdn_image(item['imagen_portada']['hash'], 'small' ) }}" alt="{{ item['imagen_portada']['alt'] }}" width="140" height="79">
+             </a>
+           </figure>
+           <time>{{date('d/m/Y G:i' , item['fecha_publicacion'])}}</time>
+           <a href="{{nUrl(item['nid'])}}">
+             <p>{{item['titulo']}}</p>
+           </a>
+         </article>
+       <?php if($e >= 2) break;?>
+       <?php $e++ ;?>
+       <?php endforeach; ?>
+       </div>
+      <?php endif; ?>
+     </div>
+     {{ partial('partials/portada/bloque/cronologico/df_widget', ['campeonato' : 'champions'] ) }} 
+   </div>
+</div>

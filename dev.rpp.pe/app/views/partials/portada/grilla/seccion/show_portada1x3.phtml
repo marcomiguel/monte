@@ -1,0 +1,30 @@
+<div class="feat-content">
+    <div class="feat-block group">
+    <?php foreach ( @\Rpp\Services\Get\Destacados::portada($slug)->destacadas as $position => $item ): ?>
+     {{ partial('partials/portada/grilla/block/hentry', [ 'item' : item ]) }}
+     <?php $unset = 'unset_'.$namespace ;?>
+     <?php Rpp\Services\Get\Flow::$unset($slug,$item['nid']); ?>
+     <?php Rpp\Services\Get\Destacados::delete($slug,$position); ?>
+     <?php break;endforeach;?>
+    </div>
+
+    <!-- .feat-block -->
+    <div class="feat-block group">
+    <?php foreach ( @\Rpp\Services\Get\Destacados::portada($slug)->destacadas as $position => $item): ?> 
+     <?php if($position>=4) break; ?>     
+     <?php if(empty(@$item['nid'])) continue;?>   
+     <div class="col-3">            
+      {{ partial('partials/portada/grilla/block/hentry_group', [ 'item' : item , 'class' : 'third' , 'img_size' : 'small']) }}
+      <?php Rpp\Services\Get\Flow::$unset($slug,$item['nid']); ?>
+     </div>       
+    <?php endforeach;?>           
+    </div>
+    <!-- .feat-block -->
+</div>
+
+<aside class="feat-sidebar">
+    {{ partial('partials/ads/right') }}
+
+    <!-- pub-300 -->
+    {{ partial('partials/portada/grilla/block/tag_portada') }}
+</aside>

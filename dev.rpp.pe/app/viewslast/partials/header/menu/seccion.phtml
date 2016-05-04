@@ -1,0 +1,13 @@
+<div class="hdr-foot">
+  <div data-x='{"variableWidth":true}' class="x-slide grid temas">
+    <nav class="x-wrapper">
+      <ul class="x-container">
+        <?php foreach (\Rpp\Services\Get\Categorias::get_categoria_arbol($this->model->slug_seccion) as $categoria) : ?>
+                 <li class="x-item"> <a href="/{{categoria.path}}"><?php if(empty($categoria->alias)):?>{{categoria.nombre}}<?php else :?>{{categoria.alias}}<?php endif;?></a></li>
+        <?php endforeach;?>
+        
+      </ul>
+    </nav>
+    <div class="x-arrows"><a href="#prev" class="x-prev"><span class="icon-chevron-left icon-prev"></span></a><a href="#next" class="x-next"><span class="icon-chevron-right icon-next"></span></a></div>
+  </div>
+</div>

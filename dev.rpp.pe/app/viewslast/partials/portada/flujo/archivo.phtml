@@ -1,0 +1,44 @@
+<?php $e=0;$ads=1;?>
+<?php if($this->model->mode == 'ultimas'): ?>
+	<?php foreach (\Rpp\Services\Get\Archivo::ultimas($this->model->intervalo,300,1) as $item) : ?>
+	{{partial('partials/portada/flujo/box/tag',['nid':item._id , 'position' : e+1])}}
+
+    <?php if($e%10==0): ?>
+    <?php $ads_type = 'sync_';?>
+    <?php if($ads > 3) $ads_type = ''; ?>
+   	{{partial('partials/ads/' ~ ads_type ~ 'interna', [ 'position': ads ])}}
+   	<?php $ads++;?>
+	<?php endif;?>
+  
+	<?php $e++;?>
+	<?php endforeach;?>
+<?php elseif ($this->model->mode == 'seccion'):?>
+	<?php foreach (\Rpp\Services\Get\Archivo::seccion($this->model->slug,$this->model->fecha,300) as $item) : ?>
+	    {{partial('partials/portada/flujo/box/tag',['nid':item._id , 'position' : e+1])}}
+
+
+    <?php if($e%10==0): ?>
+    <?php $ads_type = 'sync_';?>
+    <?php if($ads > 3) $ads_type = ''; ?>
+   	{{partial('partials/ads/' ~ ads_type ~ 'interna', [ 'position': ads ])}}
+   	<?php $ads++;?>
+	<?php endif;?>
+
+	<?php $e++;?>
+	<?php endforeach;?>
+<?php elseif ($this->model->mode == 'home'):?>
+	<?php foreach (\Rpp\Services\Get\Archivo::general($this->model->fecha,100) as $item) : ?>
+	    {{partial('partials/portada/flujo/box/archivo',['nid':item._id , 'position' : e+1])}}
+
+
+    <?php if($e%10==0): ?>
+    <?php $ads_type = 'sync_';?>
+    <?php if($ads > 3) $ads_type = ''; ?>
+   	{{partial('partials/ads/' ~ ads_type ~ 'interna', [ 'position': ads ])}}
+   	<?php $ads++;?>
+	<?php endif;?>
+	    
+	<?php $e++;?>
+	<?php endforeach;?>
+<?php endif;?>
+

@@ -1,0 +1,30 @@
+<!--Head-->
+{{ partial('partials/head/index') }}
+<body data-bg="{{model.epl_kvs}}" >
+<div id="contenedor_div">
+    <!--Header-->
+
+    <div class="wrapper body group">
+
+
+
+        <div class="wrap group">
+
+           {{ partial('index2/body_central' ) }}
+
+            <!-- .content -->
+
+            <!-- .sidebar -->
+        </div>
+
+       {{ partial('partials/ads/middle2') }}
+
+
+    </div>
+    <!--Footer-->
+    {{ partial('partials/footer/index' , [] , trackurl) }}
+    <div id="pad-swipe-nav"></div>
+    {{ partial('partials/footer/scripts') }}
+    {{ partial('partials/footer/tracking') }}
+</div>
+</body>

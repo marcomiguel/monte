@@ -1,0 +1,20 @@
+<div class="sidebar-panel dia-sidebar sb_{{tag}}">
+ <h2 class="panel-title"> <a  href="{{host}}/tema-{{ tag }}">{{nombre}}</a></h2>
+<?php foreach (\Rpp\Services\Get\Flow::tag($tag,$cantidad) as $e => $item):?> 
+<article class=" hnews group">
+	<figure class="hmedia">
+		<a href="{{nUrl(item._id)}}{{TrackUrl(1)}}">
+			
+			<img class="photo" src="{{ cdn_image(getNode(item._id).imagen_portada['hash'], 'medium' ) }}" alt="{{ getNode(item._id).imagen_portada['alt'] }}" width="300">
+		</a>
+		<figcaption class="fn hide">{{ getNode(item._id).titulo_corto }}</figcaption>
+	</figure>
+	<div class="entry-cont ">
+		<footer class="hide">
+			<p class="source-org vcard"><a class="fn url org" href="{{host}}">RPP Noticias</a></p>
+		</footer>
+		
+	</div><!-- .entry-cont -->
+</article>
+<?php endforeach;?>
+</div>

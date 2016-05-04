@@ -1,0 +1,14 @@
+<?php $galerias = array(); ?>
+<?php foreach ($this->notapreview->contenido as $v => $contenido) :?>
+<?php if ($contenido['tipo'] == "photo"): ?>
+<?php $item['src']=  $contenido['foto']['url'];?>
+<?php $item['caption']= $contenido['foto']['alt'];?>
+<?php if(!empty($contenido['via'])) $item['caption'] .= ' | Fuente: '.$contenido['via']?>
+<?php if(!empty($contenido['credito'])) $item['caption'] .= ' | Fotógrafo: '.$contenido['credito']?>  
+<?php $galerias[]=$item; ?>
+<?php unset($this->notapreview->contenido[$v]); ?>
+<?php endif;?>
+<?php endforeach;?>
+<div class="media widen " itemref="article-body organization" >
+  <div  data-x='{"comscore" : "{{model.comscore}}", "ads":"Right", "page": 1 , "urlState":"{{host}}", "title": "<?=urlencode(\Rpp\Services\Get\Content::node($this->model->nid)->titulo);?>","urlVisor":"{{host}}"}' data-sources='<?=json_encode($galerias,JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE)?>' itemscope itemtype="http://schema.org/ImageGallery" class="x-gallery x-gallery-large">
+</div>

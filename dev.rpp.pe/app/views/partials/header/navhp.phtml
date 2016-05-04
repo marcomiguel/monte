@@ -1,0 +1,104 @@
+<div class="header-main group">
+    <a href="/" class="i-back">
+        <i class="icon-13"></i>
+    </a>
+    <h1><a href="/">RPP Noticias</a></h1>
+    <a id="envivo" href="/radioenvivo"><embed class="icn-vivo" src="{{ehost}}/images/envv.svg" type="image/svg+xml"/>En Vivo:<strong></strong></a>
+    <ul class="social-icons group">
+        
+       <!-- <li class="fb"><a href="https://www.facebook.com/rppnoticias" target="_blank" ><i class="icon-1"></i><span>Facebook</span></a></li>
+
+        <li class="tw"><a href="https://twitter.com/rppnoticias" target="_blank" ><i class="icon-5"></i><span>Twitter</span></a></li>
+
+        <li class="yt"><a href="https://www.youtube.com/user/RPPNOTICIAS" target="_blank" ><i class="icon-3"></i><span>Youtube</span></a></li> -->
+        
+        <!-- <li class="wa"><a href="#"><i class="icon-18"></i><span>WhatsApp</span></a></li> -->
+    </ul>
+    <div class="controls-responsive">
+        <i class="icon-hamburguesa"></i>
+        <i class="icon-cancel none"></i>
+    </div>
+
+    <!-- Inicio Hora del planeta Desktop -->
+    <div id="hora-planeta-d">
+      <div id="logo-hp">
+        <img src="{{host}}/hora-planeta/images/logo-hp.png" alt="La hora del planeta">
+      </div>
+      <div id="clock-hp-d" class="clock-hp">
+        <div>
+          <span class="days"></span>
+          <div class="smalltext">DÍAS</div>
+        </div>
+        <div>
+          <span class="hours"></span>
+          <div class="smalltext">HORAS</div>
+        </div>
+        <div>
+          <span class="minutes"></span>
+          <div class="smalltext">MIN</div>
+        </div>
+        <div>
+          <span class="seconds"></span>
+          <div class="smalltext">SEG</div>
+        </div>
+      </div>
+    </div>
+    <!-- Fin Hora del planeta Desktop -->
+
+
+    <form class="search" id="search" action="/buscar" method="POST">
+        <input name="texto" type="text" placeholder="BUSCAR">
+        <button><span class="icon-9"></span> Buscar</button>
+    </form>
+
+  <div class="w-c">
+        <form class="search-mn" id="search2" action="/buscar" method="POST">
+            <input name="texto" type="text" placeholder="BUSCAR">
+            <button><span class="icon-9"></span></button>
+        </form>
+
+       {{ partial('partials/header/menu'  ,[] ) }}
+
+
+        <div class="block-complement">
+            <div class="icons-responsive">
+                <h5>Servicios</h5>
+                <a href="/tema-rotafono">
+                    <i class="icon-rotafono"></i>
+                    <span>Rotafono</span>
+                </a>
+                <a href="/tema-trafico">
+                    <i class="icon-trafico"></i>
+                    <span>Tráfico</span>
+                </a>
+                <a href="/virales/cine">
+                    <i class="icon-cine"></i>
+                    <span>Cine</span>
+                </a>
+                <a href="/tema-clima">
+                    <i class="icon-cloud-sun"></i>
+                    <span>Clima</span>
+                </a>
+            </div>
+
+            <div class="socials-responsive">
+                <h5>RPP Noticias en Redes</h5>
+                <a href="https://www.facebook.com/rppnoticias" class="fb-responsive" target="_blank">
+                    <i class="icon-1"></i>
+                </a>
+                <a href="https://twitter.com/rppnoticias" class="tw-responsive" target="_blank">
+                    <i class="icon-5"></i>
+                </a>
+                <a href="https://plus.google.com/113482325785133390225" class="go-responsive" target="_blank">
+                    <i class="icon-2"></i>
+                </a>
+                <a href="https://www.youtube.com/user/RPPNOTICIAS" class="you-responsive" target="_blank">
+                    <i class="icon-3"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    {{ partial('partials/header/menu/' ~ model.submenu ,[] ) }}
+</div>  

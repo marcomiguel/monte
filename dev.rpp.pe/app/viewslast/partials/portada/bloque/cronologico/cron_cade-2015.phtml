@@ -1,0 +1,71 @@
+<div class="widget-cabecera">
+
+         <link rel="stylesheet" type="text/css" href="{{ehost}}/styles/cade2015.css">
+         <div class="widget-cb cade-2015">
+            <div class="header-cb">
+                <h1><a href="/tema-cade-2015">CADE 2015</a> </h1>
+            </div>
+        	<div class="body-cb">
+            <?php if($destacadas['envivo']['estado']):?>
+               <div class="body-mamvideo-inner">
+                   <div class="body-mamvideo-video">
+                      {{destacadas['envivo']['embed']['codigo']}}
+                   </div>
+   
+                   <div class="body-mamvideo-mam">
+
+
+                    
+                   <?php $mam_nota = @\Rpp\Services\Get\Mam::incidencias($destacadas['envivo']['evento']['id'])->noticias?>
+                   <?php if(is_array($mam_nota) && count($mam_nota) > 0):?>
+                       <div class="body-header-mam">
+                        <a href="{{host}}{{nUrl(mam_nota[0].nid)}}">Minuto a minuto</a>
+                       </div> 
+                   <?php else:?>
+                       <div class="body-header-mam">
+                        <span>Minuto a minuto</span>
+                       </div>
+                   <?php endif;?>
+
+                       <div class="body-inner-mam">
+                        {{ partial('partials/portada/bloque/cronologico/mam' , ['id':  destacadas['envivo']['evento']['id'] ] ) }}
+                       </div>
+
+
+                   </div>
+               </div>
+           </div>
+
+        <?php else:?>
+
+                <div class="body-cb-inner">
+                <?php if(!is_array($destacadas['destacadas'])) $destacadas['destacadas'] = array();?>
+                <?php $e=1; foreach ($destacadas['destacadas'] as $v => $item):?>
+                    <article class="article{{e}}">
+                        <figure>
+                            {{ partial('partials/portada/grilla/block/icon/' ~ item['tipo'] ) }}
+                            <a href="{{host}}{{nUrl(item['nid'])}}">
+                                <img src="{{ cdn_image(item['imagen_portada']['hash'], 'medium' ) }}" alt="{{ item['imagen_portada']['alt'] }}" width="221" height="127">
+                            </a>
+
+         <?php if(@$item['envivo']): ?>
+          <span class="envivo-animate">En vivo</span>
+         <?php endif; ?>
+
+                        </figure>
+                       <div class="wrapper-item-cb txt">
+                            <p> <a href="{{host}}{{nUrl(item['nid'])}}">{{item['titulo']}}</a></p>
+                       </div>
+                    </article>
+                  <?php if($e >= 5) break;?>
+                  <?php $e++ ;?>
+                <?php endforeach; ?>
+                </div>
+
+        <?php endif;?>
+        	</div>
+        </div>
+
+
+
+

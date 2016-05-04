@@ -1,0 +1,9 @@
+<?php if(@\Rpp\Services\Get\Content::part($this->model->nid,'firmarnoticia')){ ?>
+     <div itemprop="author" itemscope itemtype="https://schema.org/Person" class="story-author">  <div id="author-name" itemprop="name" class="span"><?php echo @\Rpp\Services\Get\Content::part($this->model->nid,'autor')['nombre']; ?></div></div>
+<?php }else{ ?>
+<?php if(@$tipautor!=1){ ?>
+<div itemprop="author" itemscope itemtype="https://schema.org/Person" class="story-author"> <div id="author-name" itemprop="name" class="span">Redacción</div></div>
+<?php }?>
+<?php }?>
+
+

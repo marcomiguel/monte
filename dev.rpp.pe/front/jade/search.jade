@@ -1,0 +1,53 @@
+extends extends/layout.jade
+
+block head
+    include includes/head
+    
+
+block header
+    //Header
+    include includes/header
+    
+block nav    
+    nav.nav-full
+        //Nav main
+        include includes/nav
+    include includes/nav-fix-scrolltop
+block nav-movil
+    include includes/nav-movil
+
+block body 
+    main.wrapper
+
+        //ADS Top
+        include includes/ads-top
+            
+        section.body.archive.body-full
+            .box
+                .box-inner
+                    section.breadcrumb-full
+                        nav.breadcrumb
+                            ul
+                                li
+                                    figure.logo
+                                        a(href="#")
+                                            img(src="img/logo_breadcrumb.png",alt="Logo La10")
+                                li
+                                    a(href="#") Buscador
+                                li Paolo Guerrero
+                                
+                    h3.title-flow Buscador
+                    
+                    aside.sidebar
+                        //Sidebar
+                        include includes/sidebar-search-left
+                    section.content.news-flow
+                        //News cards
+                        include includes/body-search-right
+block footer         
+        //Footer
+        include includes/footer
+        
+block scripts             
+        include includes/script-footer
+        script(src='js/lib/responsive-calendar.min.js')

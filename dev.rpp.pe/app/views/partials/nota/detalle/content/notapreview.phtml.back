@@ -1,0 +1,32 @@
+ {{notapreview.entradilla}} 
+ 
+  <?php foreach ($this->notapreview->contenido as $contenido): ?>                                    
+    {% if contenido['tipo'] == "text" %}
+     <p> {{contenido['texto']}} </p>
+    {% elseif contenido['tipo'] == "photo" %}
+    <?php if ( $this->notapreview->tipo == 'galeria' ):?>
+        {%continue%}
+    <?php endif?>   
+    <figure class="media full">
+    <p> {{contenido['subtitulo']}} </p>
+    {{ partial('partials/nota/contenido/bloque/'~model.package~'imagen',contenido) }}
+    <figcaption class="help-media">{{contenido['texto']}}</figcaption>
+    </figure>
+    {% elseif contenido['tipo'] == "embed" %}
+     <p> {{contenido['subtitulo']}} </p>
+     <p> {{contenido['embed']}} <div>Credito: {{contenido['credito']}} | Via: {{contenido['via']}}</div></p>
+     <p> {{contenido['texto']}} </p>
+    {% elseif contenido['tipo'] == "youtube" %}
+    <p> {{contenido['subtitulo']}} </p>
+<p><div id="swfplayer_{{contenido['youtube']['id']}}" class="nd_galeriaopen_{{contenido['youtube']['id']}}"></div></p>
+<script type="text/javascript">setJW6("swfplayer_{{contenido['youtube']['id']}}", "https://www.youtube.com/watch?v={{contenido['youtube']['id']}}", "http://img.youtube.com/vi/{{contenido['youtube']['id']}}/0.jpg");</script>
+<div>Credito: {{contenido['credito']}} | Via: {{contenido['via']}}</div>
+{% elseif contenido['tipo'] == "video" %}
+<p> {{contenido['subtitulo']}} </p>
+<p><div id="swfplayer" class="nd_galeriaopen_">
+</div></p>
+
+<script type="text/javascript">setJW6("swfplayer", "{{contenido['video']['url']}}", "{{contenido['video']['url_cover']}}");</script>
+<div>Credito: {{contenido['credito']}} | Via: {{contenido['via']}}</div>
+{% endif  %}
+<?php endforeach;?>

@@ -1,0 +1,1 @@
+<cite class="hat"><?php echo $bajada; ?></cite>

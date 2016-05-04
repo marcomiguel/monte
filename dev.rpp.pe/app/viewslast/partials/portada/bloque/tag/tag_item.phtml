@@ -1,0 +1,13 @@
+<div class="cell">
+  <article class="card">
+    <figure class="holder">
+      <a {{ partial('partials/portada/grilla/block/url/' ~ getNode(nid).tipo , [ 'nid' : nid ] ) }} class="cover">
+        {{ partial('partials/generic/lazy_image' , ['content' : cdn_image(getNode(nid).imagen_portada['hash'], img_size ), 'alt': getNode(nid).imagen_portada['alt'] ]) }}
+        {{ partial('partials/portada/grilla/block/icon/' ~ getNode(nid).tipo ) }}
+      </a>
+    </figure>
+    <div class="cont">
+      <{{title_h}}><a {{ partial('partials/portada/grilla/block/url/' ~ getNode(nid).tipo , [ 'nid' : nid ] ) }}>{{ getNode(nid).titulo_corto }}</a></{{title_h}}>
+    </div>
+  </article>
+</div>

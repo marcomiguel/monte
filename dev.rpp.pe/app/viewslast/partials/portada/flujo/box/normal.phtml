@@ -1,0 +1,35 @@
+<?php
+$gene_img['type']='html';
+$gene_img['content'] ='<img src="'.\Rpp\Services\Get\UrlMedia::image(\Rpp\Services\Get\Content::node($nid)->imagen_portada['hash'], 'medium') .'" alt=" '.\Rpp\Services\Get\Content::node($nid)->imagen_portada['alt'].' ">';
+$jsongene_img=json_encode($gene_img, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+
+$tag = 'h3';
+$class = 'class="card"';
+if (isset($lazymt)){
+    $tag = 'h2';
+    $class = '';
+}else {
+    $lazymt = 'x-fit-lazy';
+}
+?>
+
+<?php if(@\Rpp\Services\Get\Content::node($nid)->tipo=='url'):?>
+    <?php $durl= \Rpp\Services\Get\Content::part($nid,'url_externo')?>
+<?php else: ?>
+    <?php $durl=  \Rpp\Services\Get\Content::nurl($nid)?>
+<?php endif; ?>
+
+<article <?=$class;?>>
+    <figure class="holder">
+        <a href="{{durl}}" data-x='<?=$jsongene_img;?>' class="cover <?=$lazymt;?>">
+            <?php $tipo = \Rpp\Services\Get\Content::node($nid)->tipo ?>
+            {{ partial('partials/portada/grilla/block/icon/' ~ tipo ) }}
+        </a>
+        {{ partial('partials/portada/flujo/box/social', [ 'nid' : nid ]) }}
+    </figure>
+    <div class="cont">
+        {{ partial('partials/portada/flujo/box/cat', [ 'nid' : nid ]) }}
+        <<?=$tag;?>><a href="{{durl}}">{{getNode(nid).titulo_corto}}</a></<?=$tag;?>>
+        <p>{{getNode(nid).bajada}}</p>
+    </div>
+</article>

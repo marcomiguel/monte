@@ -1,0 +1,19 @@
+<?php
+$gene_img['type']='html';
+$gene_img['content'] ='<img src="'.\Rpp\Services\Get\UrlMedia::image(\Rpp\Services\Get\Content::node($nid)->imagen_portada['hash'], 'medium') .'" alt=" '.\Rpp\Services\Get\Content::node($nid)->imagen_portada['alt'].' ">';
+$jsongene_img=json_encode($gene_img, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+?>
+<article class="card">
+    <figure class="holder">
+        <a href="{{nUrl(nid)}}{{TrackUrl(position)}}" data-x='<?=$jsongene_img;?>' class="cover x-fit-lazy">
+            <?php $tipo = \Rpp\Services\Get\Content::node($nid)->tipo ?>
+            {{ partial('partials/portada/grilla/block/icon/' ~ tipo ) }}
+        </a>
+        {{ partial('partials/portada/flujo/box/social', [ 'nid' : nid ]) }}
+    </figure>
+    <div class="cont">
+        {{ partial('partials/portada/flujo/box/cat', [ 'nid' : nid ]) }}
+        <h3><a href="{{nUrl(nid)}}{{TrackUrl(position)}}">{{getNode(nid).titulo_corto}}</a></h3>
+        <p>{{getNode(nid).bajada}}</p>
+    </div>
+</article>

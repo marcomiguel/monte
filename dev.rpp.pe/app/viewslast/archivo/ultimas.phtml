@@ -1,0 +1,36 @@
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?>
+<!--Head-->
+{{ partial('partials/head/index') }}
+<body data-bg="{{model.epl_kvs}}"  >
+<div id="contenedor_div">
+    <!--Header-->
+    {{ partial('partials/header/index') }}
+    <main class="wrapper">
+      {{ partial('partials/ads/top2') }}
+      {{ partial('partials/widget/resultados') }}
+      <section class="body archive body-full">
+       <div class="box"> 
+          <div class="box-inner">
+            <h3 class="title-flow">Archivo</h3>
+            {{ partial('partials/sidebar/archivo') }}
+            <section class="content news-flow">
+             <div class="grid">
+                <div class="col-2-2">
+                  <section>
+                     {{ partial('partials/portada/archivo/destacada',[] , trackurl  ) }}
+                     {{ partial('partials/portada/flujo/archivo', [] , trackurl) }}
+                  </section>
+                </div>
+             </div>
+            </section>
+          </div>
+       </div>
+      </section>
+    </main>  
+    <!--Footer-->
+    {{ partial('partials/footer/index' , [] , trackurl) }}
+    <div id="pad-swipe-nav"></div>
+    {{ partial('partials/footer/scripts') }}
+    {{ partial('partials/footer/tracking') }}
+    </div>
+  </body>

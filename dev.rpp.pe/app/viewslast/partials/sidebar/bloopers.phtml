@@ -1,0 +1,21 @@
+  <section class="flow-news module module-green">          
+    <h3>BLOOPERS</h3>
+    <div class="box">
+      <ul>
+      <?php foreach (\Rpp\Services\Get\Flow::tag('bloopers',5) as $position => $item) : ?>
+        <li>
+          <article>
+            <figure class="media"><a href="{{nUrl(item._id)}}{{TrackUrl(position+1)}}"><img src="{{cdn_image( getNode(item._id).imagen_portada['hash'] ,'xsmall')}}" alt="{{getNode(item._id).imagen_portada['alt']}}" ></a></figure>
+            <h2><a href="{{nUrl(item._id)}}{{TrackUrl(position+1)}}">{{getNode(item._id).titulo}}</a></h2>
+          </article>
+        </li>
+      <?php endforeach;?>
+      </ul>
+    </div>
+  </section>
+
+
+
+          
+
+          

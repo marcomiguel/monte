@@ -1,0 +1,45 @@
+<?php if($this->model->scri_bgbanner!=""){ ?>
+<?php if($this->model->epl_kvs==""){ $mikw='rpp'; }else{ $mikw='rpp|'.$this->model->epl_kvs; } ?>
+<script type="text/javascript">
+    var img = new Image();
+    img.onload = function() {
+        if (img.width>1) {
+          $('body').css('background-image', 'url(' + img.src + ')');
+          $('body').css('background-repeat', 'no-repeat');
+          $('body').css('background-position', 'center top');
+          $('body').css('background-attachment', 'fixed');
+          $('a.back').css('height', '1200px');
+        };
+    };
+    img.src = 'http://ads.us.e-planning.net/eb/3/17632/{{model.epl_sec}}/<?php if(!empty($this->model->epl_ss)){ echo $this->model->slug_categoria.'/'; } ?>Back?o=i&rnd=$RANDOM&kw_ctxt=<?=$mikw;?>';
+  </script>
+
+
+<div class="wrap-banner-click">
+
+<a class="banner-left back" target="_blank" href="http://ads.us.e-planning.net/ei/3/17632/{{model.epl_sec}}/<?php if(!empty($this->model->epl_ss)){ echo $this->model->slug_categoria.'/'; } ?>Back?it=i&rnd=$RANDOM&kw_ctxt=<?=$mikw;?>"></a>
+    <a class="banner-right back" target="_blank" href="http://ads.us.e-planning.net/ei/3/17632/{{model.epl_sec}}/<?php if(!empty($this->model->epl_ss)){ echo $this->model->slug_categoria.'/'; } ?>Back?it=i&rnd=$RANDOM&kw_ctxt=<?=$mikw;?>"></a>
+</div>
+
+<?php }else{ ?>
+<script type="text/javascript">
+    var img = new Image();
+    img.onload = function() {
+        if (img.width>1) {
+          $('body').css('background-image', 'url(' + img.src + ')');
+          $('body').css('background-repeat', 'no-repeat');
+          $('body').css('background-position', 'center top');
+          $('body').css('background-attachment', 'fixed');
+          $('a.back').css('height', '1200px');
+        };
+    };
+    img.src = 'http://ads.us.e-planning.net/eb/3/17632/{{model.epl_sec}}/<?php if(!empty($this->model->epl_ss)){ echo $this->model->slug_categoria.'/'; } ?>Back?o=i&rnd=$RANDOM';
+  </script>
+
+
+<div class="wrap-banner-click">
+
+<a class="banner-left back" target="_blank" href="http://ads.us.e-planning.net/ei/3/17632/{{model.epl_sec}}/<?php if(!empty($this->model->epl_ss)){ echo $this->model->slug_categoria.'/'; } ?>Back?it=i&rnd=$RANDOM"></a>
+    <a class="banner-right back" target="_blank" href="http://ads.us.e-planning.net/ei/3/17632/{{model.epl_sec}}/<?php if(!empty($this->model->epl_ss)){ echo $this->model->slug_categoria.'/'; } ?>Back?it=i&rnd=$RANDOM"></a>
+</div>
+<?php } ?>

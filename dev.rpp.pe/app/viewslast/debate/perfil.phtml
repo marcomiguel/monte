@@ -1,0 +1,186 @@
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?>
+<!--Head-->
+{{ partial('partials/head/indexportada') }}
+<script type="text/javascript">
+  user_id = '{{model.user_ga}}';
+</script>
+<body data-bg="{{model.epl_kvs}}"  data-x="slide, lazy, media, sticky" class="radio-live" >
+  {{ partial('partials/head/epl') }}
+  {{ partial('partials/head/comscore') }}
+    <div id="wrap">
+        <!--Header-->
+        {{ partial('partials/header/index') }}
+        <div id="content" role="main">
+        <div class="grid pad">
+
+
+<link rel="stylesheet" type="text/css" href="{{ehost}}/elecciones-peru-2016/css/elecciones-restructured.css?v={{eversion}}">
+
+<div class="box-mod wrap-especial in-content" id="menu-votaperu">
+    <div class="box-header">
+        <h3 class="title">
+            <a href="{{host}}/elecciones-peru-2016">
+                <span class="hide">Elecciones Perú 2016</span>
+                <img src="{{host}}/elecciones-peru-2016/img/logo_header.gif" alt="Elecciones Perú 2016">
+            </a>
+            <button
+                class="especial-btn"
+                type="button"
+                onclick='fn(this, event, {"method":"toggleClass", "to": "#menu-votaperu"})'>
+                <span class="icon-chevron-down"></span>
+            </button>
+        </h3>
+        <figure class="pull-right">
+            <ul class="nav">
+                <li ><a href="{{host}}/elecciones-peru-2016">noticias</a></li>
+                <li ><a href="{{host}}/elecciones-peru-2016/candidatos.html">candidatos</a></li>
+                <li ><a href="{{host}}/elecciones-peru-2016/redes">en redes</a></li>
+                <li class="active" ><a href="{{host}}/elecciones-peru-2016/encuesta" >encuestas</a></li>
+                <li ><a href="http://rpp.pe/politica/congreso/elecciones-peru-2016-estos-son-los-candidatos-al-congreso-noticia-940142">lista congreso</a></li>
+                <li><a href="{{host}}/elecciones-peru-2016/comparaya.html">Compara Ya</a></li>
+                <li><a href="{{host}}/elecciones-peru-2016/gps-electoral.html">GPS Electoral</a></li>
+            </ul>
+        </figure>
+    </div>
+</div>
+
+<?php $perfil = \Rpp\Services\Get\Candidatos::candidato($this->model->candidato_slug)?>  
+<div class="story">
+            <div class="col-primary">
+              <div class="flow-row">
+                <div class="row">
+                    <!-- debate -->
+                    <div id="fb-root"></div>
+                    <script>(function(d, s, id) {
+                      var js, fjs = d.getElementsByTagName(s)[0];
+                      if (d.getElementById(id)) return;
+                      js = d.createElement(s); js.id = id;
+                      js.src = "//connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.5";
+                      fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
+                    <link rel="stylesheet" type="text/css" href="{{ehost}}/elecciones-peru-2016/css/debate.css?v={{eversion}}">
+                    <div class="debate-box" id="{{model.candidato_slug}}" >
+                        <div class="debate-box-top">
+                            <div class="breadcrumb">
+                              <ul>
+                                <li>
+                                    <a>
+                                        <span>Debate</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="this">
+                                        <span>{{perfil['nombre']}}</span>
+                                    </a>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="vp-share-perfil">
+    
+                              <div class="vp-fb-boton">
+                                  <div class="fb-like" data-href="{{host}}/elecciones-peru-2016/debate/{{model.candidato_slug}}" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+                              </div>
+                              <div class="vp-tw-boton">
+                                  <a href="https://twitter.com/share" class="twitter-share-button" {count} data-via="rppnoticias">Tweet</a>
+                                  <script>
+                                      ! function(d, s, id) {
+                                          var js, fjs = d.getElementsByTagName(s)[0],
+                                              p = /^http:/.test(d.location) ? 'http' : 'https';
+                                          if (!d.getElementById(id)) {
+                                              js = d.createElement(s);
+                                              js.id = id;
+                                              js.src = p + '://platform.twitter.com/widgets.js';
+                                              fjs.parentNode.insertBefore(js, fjs);
+                                          }
+                                      }(document, 'script', 'twitter-wjs');
+
+                                  </script>
+                              </div>
+
+                            </div>
+                        </div>
+                        <div class="debate-box-perfil">
+                            <div class="img-candidato {{model.candidato_slug}}"></div>
+                            <div></div>
+                            <div class="nombre-candidato">{{perfil['nombre_corto']}}</div>
+                            <div class="partido-candidato">{{perfil['partido']}}</div>
+                        </div>
+                        <div class="debate-sub-nav">
+                            <ul class="nav">
+                                <li>
+                                    <a href="{{host}}{{perfil['url']}}">Perfil</a>
+                                </li>
+                                |
+                                <li>
+                                    <a class="active" href="{{host}}/elecciones-peru-2016/debate/{{model.candidato_slug}}">Votar</a>
+                                </li>
+                                |
+                                <li>
+                                    <a href="{{host}}/elecciones-peru-2016/debate/resultados">Resultados</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="debate-datos">
+                            <h2>¿Qué opinas de la intervención de {{perfil['nombre_corto']}}?</h2>
+                            <div class="debate-votacion">
+                                <div class="votacion-likes">
+                                    <span>Me gusta</span>
+                                    <div class="likes is-like" id="like">
+                                        <a href="#"></a>
+                                    </div>
+                                </div>
+                                <div class="votacion-likes">
+                                    <span>No me gusta</span>
+                                    <div class="likes is-dislike" id="dislike">
+                                        <a href="#"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="debate-gracias">
+                            <p>¡Gracias por tu voto!</p>
+                            <div class="img-gracias"></div>
+                            <p>
+                                <a href="{{host}}/elecciones-peru-2016/debate/resultados">Ver Resultados</a>
+                            </p>
+                        </div>
+                        <div class="debate-share">
+                            <a href="#">Compartir</a>
+                            <div class="popover above">
+                                Comparte en redes sociales
+                              <div class="social">
+                                <ul>
+                                  <li class="fb"><a href="link"><span class="icon-facebook"></span></a></li>
+                                  <li class="tw"><a href="link"><span class="icon-twitter"></span></a></li>
+                                  <li class="yt"><a href="link"><span class="icon-youtube"></span></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- debate -->
+                </div>
+              </div>
+            </div>
+           <aside class="col-secondary sidebar x-sticky">
+           {{ partial('partials/ads/right') }}
+              <div class="box-mod box-row">
+                <div class="title-box-rr">¿Qué opinas?</div>
+                
+              </div>
+            </aside>
+          </div>
+
+          </div>
+        </div>
+        {{ partial('partials/footer/index') }}
+        {{ partial('partials/footer/scripts') }}
+        <script type="text/javascript" src="{{ehost}}/elecciones-peru-2016/debate.js?v={{eversion}}"></script>
+        {{ partial('partials/footer/tracking') }}
+
+</div>
+
+</body>
+
+
+     

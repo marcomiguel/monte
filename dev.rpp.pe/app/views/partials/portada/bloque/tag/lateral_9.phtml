@@ -1,0 +1,18 @@
+<?php $sdb = @\Rpp\Services\Get\Destacados::portada($slug)->lateral_9['slug'];?>
+<?php $nombre = @\Rpp\Services\Get\Destacados::portada($slug)->lateral_9['nombre'];?>
+<?php $cantidad = @\Rpp\Services\Get\Destacados::portada($slug)->lateral_9['cantidad'];?>
+<?php $tipo = @\Rpp\Services\Get\Destacados::portada($slug)->lateral_9['tipo'];?>
+<?php $script =  @\Rpp\Services\Get\Destacados::portada($slug)->lateral_9['script'];  ?>
+<?php if( $tipo ) :?>
+	<?php if( $this->_view->exists('partials/portada/sidebar/'.$tipo.'/index_'.$sdb ) ) :?>
+	{{ partial('partials/portada/sidebar/' ~ tipo ~ '/index_' ~ sdb ,['tag':  sdb , 'nombre': nombre , 'cantidad': cantidad ,'slug' : slug]) }}
+	<?php else: ?>
+	{{ partial('partials/portada/sidebar/' ~ tipo ~ '/index' ,['tag':  sdb , 'nombre': nombre , 'cantidad': cantidad ,'slug' : slug , 'script' : script]) }}
+	<?php endif; ?>
+<?php else :?>
+	<?php if( $this->_view->exists('partials/portada/sidebar/sdb_'.$sdb ) ) :?>
+	{{ partial('partials/portada/sidebar/sdb_' ~ sdb ,['tag':  sdb , 'nombre': nombre , 'cantidad': cantidad ,'slug' : slug]) }}
+	<?php else :?>
+	{{ partial('partials/portada/sidebar/sdb_generico' ,['tag':  sdb , 'nombre': nombre , 'cantidad': cantidad]) }}
+	<?php endif; ?>	
+<?php endif; ?>

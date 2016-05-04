@@ -1,0 +1,40 @@
+<?php $myhost = 'http://s3.amazonaws.com/la10-static' ;?>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{model.titulo}}</title>
+    {{ partial('partials/head/metas') }}
+    {{ partial('partials/head/og') }}
+    {{ partial('partials/head/twittercard') }}
+    {{ partial('partials/head/dublin') }}
+    <link href="https://plus.google.com/117468516439626500474" rel="publisher">
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="{{host}}{{model.url_social}}"/>
+       <script charset="utf-8">
+         var public_key = "f3dbff5f592adc19595f24a4f4b6b7f238134f8e";
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="{{myhost}}/css/rpp_utils.css?f={{eversion}}">
+    <link rel="stylesheet" href="{{myhost}}/css/rpp.css?f={{eversion}}">
+    <script src="{{myhost}}/js/lib/jquery.min.js?f={{eversion}}"></script>
+    <script src="{{myhost}}/js/lazyload.min.js?f={{eversion}}"></script>
+    <script src="{{myhost}}/js/functions.js?f={{eversion}}"></script>
+    
+    {{ partial('partials/head/epl') }}
+
+    <script src="{{myhost}}/js/lib/carousel.min.js?f={{eversion}}"></script>
+    <script src="{{myhost}}/js/rpp_widget_results.min.js?f={{eversion}}"></script>
+    <script src="http://p.jwpcdn.com/player/v/7.0.2/jwplayer.js"></script>
+    <script>jwplayer.key="L/ARBHy5b4pG1YAD0ou40gMzoAVHnOcJetOEvw==";</script>
+    <!--[if lt IE 9]><script src="{{myhost}}/js/rpp_utils_head.min.js?f={{eversion}}"></script><![endif]-->
+    <link rel="icon" type="image/png" href="{{myhost}}/img/favicon.ico">
+  
+
+    {{ partial('partials/head/comscore') }}
+    {{ partial('partials/head/ganalytics') }}
+    {{ partial('partials/ads/intersitial') }}
+    {{ partial('partials/head/gtag_lateral') }}
+  </head>

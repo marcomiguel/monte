@@ -1,0 +1,400 @@
+extends layouts/home
+
+block variables
+  - var pageType = "home"
+  - var pageTitle = "Home"
+  - var x = "slide, columns-fit, lazy, ago, widget, media"
+
+block container
+  .row
+    +ads('980x90')
+  .row
+    #widget-flash
+      //- div.loader_widget
+      //- .wf-top
+      //-   h1.wf-title Flash Electoral
+      //-   nav.wf-menu
+      //-     ul
+      //- .results
+        //- .candidato
+        //-   .img-c
+        //-   .datos-c
+        //-     span.nombre-c Mendoza 
+        //-     span.partido-c FA
+        //-   .porcentaje-c
+        //-     .numero 32.5 %
+        //-     .barra-total
+        //-       .barra-c
+        //- .candidato
+        //-   .img-c
+        //-   .datos-c
+        //-     span.nombre-c Mendoza 
+        //-     span.partido-c FA
+        //-   .porcentaje-c
+        //-     .numero 32.5 %
+        //-     .barra-total
+        //-       .barra-c
+      //- .mesas
+      //-   p Mesas escrutadas: 
+      //-     span#wf-mesas - 
+      //-     span % (
+      //-     span#wf-votos -
+      //-     span  votos)
+  .row.x-widget(data-x='{"events":"eliminatorias","type":"agendaMaM","id":"widget-eliminatorias", "method": "render"}', id="widget-eliminatorias")
+  include components/streaming
+  //.row
+    article.card.card-1x1
+      .cont
+        h1.x-ago(data-x="2016-03-10T08:04:17Z") demo
+        h1
+          a(href='/famosos/chollywood/oscar-matt-damon-hace-llamado-a-la-diversidad-en-hollywood-noticia-900327') Oscar: Matt Damon hace llamado a la diversidad en Hollywood
+        p.
+          En conferencia de prensa, el jefe de Estado negó tajantemente que se haya ordenado un seguimiento a Marisol Espinoza.
+      figure.holder
+        a.cover.big(href='/famosos/chollywood/oscar-matt-damon-hace-llamado-a-la-diversidad-en-hollywood-noticia-900327')
+          img.x-lazy(data-x='{"content":"http://s3-us-west-2.amazonaws.com/dev-rpp-media-v/small/2016/01/25/212421_4041.jpg"}', alt='Oscar: Matt Damon hace llamado a la diversidad en Hollywood', src='http://s3-us-west-2.amazonaws.com/dev-rpp-media-v/small/2016/01/25/212421_4041.jpg', style='opacity: 1; transition: background-color 500ms ease-out 1s;')
+          span.icon-video
+
+  //.row
+    include helpers/main-flow-full
+
+  .row
+    .col-primary
+      include helpers/main-article
+      include helpers/main-flow
+    .col-secondary
+      +ads('300x250')
+      include helpers/rotafono
+      include helpers/sponsor
+
+  .row
+    .box-mod.box-special
+      .box-header.back-image(style="background:transparent url('http://p-gruporpp-media.s3.amazonaws.com/2016/01/21/oscar2_66701.jpg') left top no-repeat;")
+        h3.title
+          a(href="") Copa Libertadores
+      .wrap-slide-mobile
+        .colums-slide-mobile
+          .col-primary
+            .box-grid
+              .row.columns-3
+                .cell
+                  +article-flow({
+                    img: "tmp-001-230.jpg",
+                    icon: "video",
+                    title: "‘Yo soy Nisman’, será lema de marcha por crimen de fiscal",
+                    top: true,
+                    noColumn: true,
+                    renderMaM: true
+                  })
+                .cell
+                  +article-flow({
+                    img: "tmp-002-230.jpg",
+                    icon: "gallery",
+                    title: "‘No fue un error, fue ilegal dañar las Líneas de Nasca’",
+                    top: true,
+                    noColumn: true
+                  })
+                .cell
+                  +article-flow({
+                    img: "tmp-003-230.jpg",
+                    icon: "video",
+                    title: "Canciller: Perú espera compromiso chileno de erradicar espionaje",
+                    top: true,
+                    noColumn: true
+                  })
+          .col-secondary
+            .box-row
+              +article-flow({
+                img: "tmp-001-350.jpg",
+                icon: "video",
+                title: "Esto te puede suceder si desafías a la gravedad [VIDEO]",
+                top: true,
+                noColumn: true,
+                sidebar: true,
+                twoColumn: true
+              })
+              +article-flow({
+                img: "tmp-001-144.jpg",
+                icon: "video",
+                title: "Madre conmueve a miles por su testimonio del cáncer de piel",
+                top: true,
+                noColumn: true,
+                sidebar: true,
+                twoColumn: true
+              })
+
+
+
+  .row
+    .box-mod
+      .especial(id="podcast", data-src="http://dev.rpp.pe/podcast/8fd86ef4f373c4efe097cd5628cf79b4")
+  .row
+    .col-primary
+      .box-grid.box-mod
+        .box-header
+          h3.title Copa Libertadores
+        .row.columns-3
+          .cell
+            +article-flow({
+              img: "tmp-001-230.jpg",
+              icon: "video",
+              cat: "Mundo",
+              title: "‘Yo soy Nisman’, será lema de marcha por crimen de fiscal",
+              top: true,
+              noColumn: true
+            })
+          .cell
+            +article-flow({
+              img: "tmp-002-230.jpg",
+              icon: "gallery",
+              cat: "Perú",
+              title: "‘No fue un error, fue ilegal dañar las Líneas de Nasca’",
+              top: true,
+              noColumn: true
+            })
+          .cell
+            +article-flow({
+              img: "tmp-003-230.jpg",
+              icon: "video",
+              cat: "Perú",
+              title: "Canciller: Perú espera compromiso chileno de erradicar espionaje",
+              top: true,
+              noColumn: true
+            })
+      .box-mod.flow
+        .box-header
+          h3.title Lo Último
+        .box-header.head-brand.cajaarequipa-new
+          h3.title CES 2016
+          figure.pull-right
+            a(href="/", target="_blank") Gracias a: {" "}
+              img(src="http://ads.us.e-planning.net/eb/3/17632/Home/Ultimas?o=i&amp;amp;rnd=$RANDOM", alt="X-DEMO-CONTENT")
+
+        .row.x-columns-fit(data-x={"breakpoints":"480x1x10,768x2x10"})
+          +article-flow({
+            img: "tmp-001-350.jpg",
+            icon: "video",
+            cat: "Perú",
+            title: "1Arequipa: trabajadores del hospital Honorio Delgado",
+            summary: "Desde mañana martes 10 de marzo, los servidores ingresarán a un paro preventivo de 48 horas, en rechazo al contrato de personal."
+          })
+          +article-flow({
+            img: "tmp-002-350.jpg",
+            cat: "Deportes",
+            title: "Champions: Así se jugará la vuelta de octavos de final",
+            summary: "Esta semana tenemos cuatro partidos, de los cuales destaca el Real Madrid (ESP) - Schalke 04 (ALE) y el Chelsea (ING) - Paris Saint"
+          })
+          +article-flow({
+            img: "tmp-003-350.jpg",
+            cat: "Autores",
+            title: "‘Quiero explorar el universo de las relaciones humanas’",
+            summary: "´Raro´ es la segunda novela del periodista y escritor, que se presentará este miércoles en L´ Anfiteatro del restaurante Ántica de Barranco."
+          })
+          +article-flow({
+            img: "tmp-004-350.jpg",
+            cat: "Mundo",
+            title: "El más alto militar EEUU llega a Irak para lucha contra EI",
+            summary: "El jefe del Estado Mayor Conjunto de EEUU, Martin Dempsey llega a Irak en momentos que el grupo yihadista Estado Islámico (EI) controla amplias zonas del norte."
+          })
+          +article-flow({
+            img: "tmp-005-350.jpg",
+            sponsor: true,
+            title: "Peruanos pueden ahorrar hasta S/.54 al mes en consumo de celular",
+            summary: "Los peruanos tienen un consumo medio de 113.71 llamadas al mes, lo que lo convierte en el país que más habla por celular en Latinoamérica, reveló estudio realizado por la aplicación Weplan."
+          })
+          +article-flow({
+            img: "tmp-006-350.jpg",
+            cat: "Actualidad",
+            title: "Chiclayo: Ruptura de tubería genera gran aniego",
+            summary: "El jefe del Estado Mayor Conjunto de EEUU, Martin Dempsey llega a Irak en momentos que el grupo yihadista Estado Islámico (EI) controla amplias zonas del norte."
+          })
+          +article-flow({
+            img: "tmp-001-350.jpg",
+            cat: "Perú",
+            title: "Arequipa: trabajadores del hospital Honorio Delgado",
+            summary: "Desde mañana martes 10 de marzo, los servidores ingresarán a un paro preventivo de 48 horas, en rechazo al contrato de personal."
+          })
+          +article-flow({
+            img: "tmp-002-350.jpg",
+            cat: "Deportes",
+            title: "Champions: Así se jugará la vuelta de octavos de final",
+            summary: "Esta semana tenemos cuatro partidos, de los cuales destaca el Real Madrid (ESP) - Schalke 04 (ALE) y el Chelsea (ING) - Paris Saint"
+          })
+          +article-flow({
+            img: "tmp-003-350.jpg",
+            cat: "Autores",
+            title: "‘Quiero explorar el universo de las relaciones humanas’",
+            summary: "´Raro´ es la segunda novela del periodista y escritor, que se presentará este miércoles en L´ Anfiteatro del restaurante Ántica de Barranco."
+          })
+          +article-flow({
+            img: "tmp-004-350.jpg",
+            cat: "Mundo",
+            title: "El más alto militar EEUU llega a Irak para lucha contra EI",
+            summary: "El jefe del Estado Mayor Conjunto de EEUU, Martin Dempsey llega a Irak en momentos que el grupo yihadista Estado Islámico (EI) controla amplias zonas del norte."
+          })
+          +article-flow({
+            img: "tmp-005-350.jpg",
+            sponsor: true,
+            title: "Peruanos pueden ahorrar hasta S/.54 al mes en consumo de celular",
+            summary: "Los peruanos tienen un consumo medio de 113.71 llamadas al mes, lo que lo convierte en el país que más habla por celular en Latinoamérica, reveló estudio realizado por la aplicación Weplan."
+          })
+          +article-flow({
+            img: "tmp-006-350.jpg",
+            cat: "Actualidad",
+            title: "Chiclayo: Ruptura de tubería genera gran aniego",
+            summary: "El jefe del Estado Mayor Conjunto de EEUU, Martin Dempsey llega a Irak en momentos que el grupo yihadista Estado Islámico (EI) controla amplias zonas del norte."
+          })
+          +article-flow({
+            img: "tmp-001-350.jpg",
+            cat: "Perú",
+            title: "Arequipa: trabajadores del hospital Honorio Delgado",
+            summary: "Desde mañana martes 10 de marzo, los servidores ingresarán a un paro preventivo de 48 horas, en rechazo al contrato de personal."
+          })
+          +article-flow({
+            img: "tmp-002-350.jpg",
+            cat: "Deportes",
+            title: "Champions: Así se jugará la vuelta de octavos de final",
+            summary: "Esta semana tenemos cuatro partidos, de los cuales destaca el Real Madrid (ESP) - Schalke 04 (ALE) y el Chelsea (ING) - Paris Saint"
+          })
+          +article-flow({
+            img: "tmp-003-350.jpg",
+            cat: "Autores",
+            title: "‘Quiero explorar el universo de las relaciones humanas’",
+            summary: "´Raro´ es la segunda novela del periodista y escritor, que se presentará este miércoles en L´ Anfiteatro del restaurante Ántica de Barranco."
+          })
+          +article-flow({
+            img: "tmp-004-350.jpg",
+            cat: "Mundo",
+            title: "El más alto militar EEUU llega a Irak para lucha contra EI",
+            summary: "El jefe del Estado Mayor Conjunto de EEUU, Martin Dempsey llega a Irak en momentos que el grupo yihadista Estado Islámico (EI) controla amplias zonas del norte."
+          })
+          +article-flow({
+            img: "tmp-005-350.jpg",
+            sponsor: true,
+            title: "Peruanos pueden ahorrar hasta S/.54 al mes en consumo de celular",
+            summary: "Los peruanos tienen un consumo medio de 113.71 llamadas al mes, lo que lo convierte en el país que más habla por celular en Latinoamérica, reveló estudio realizado por la aplicación Weplan."
+          })
+          +article-flow({
+            img: "tmp-006-350.jpg",
+            cat: "Actualidad",
+            title: "Chiclayo: Ruptura de tubería genera gran aniego",
+            summary: "El jefe del Estado Mayor Conjunto de EEUU, Martin Dempsey llega a Irak en momentos que el grupo yihadista Estado Islámico (EI) controla amplias zonas del norte."
+          })
+          +article-flow({
+            img: "tmp-005-350.jpg",
+            sponsor: true,
+            title: "Peruanos pueden ahorrar hasta S/.54 al mes en consumo de celular",
+            summary: "Los peruanos tienen un consumo medio de 113.71 llamadas al mes, lo que lo convierte en el país que más habla por celular en Latinoamérica, reveló estudio realizado por la aplicación Weplan."
+          })
+          +article-flow({
+            img: "tmp-006-350.jpg",
+            cat: "Actualidad",
+            title: "Chiclayo: Ruptura de tubería genera gran aniego",
+            summary: "El jefe del Estado Mayor Conjunto de EEUU, Martin Dempsey llega a Irak en momentos que el grupo yihadista Estado Islámico (EI) controla amplias zonas del norte."
+          })
+        .row
+          .foot-flow
+            a(href="#link", class="viewmore")
+              span.icon-reload
+              |Ver más noticias
+    .col-secondary
+      include helpers/campaigns
+      include helpers/viral
+      +ads('300x600')
+      include helpers/weather
+      include helpers/traffic
+      +ads('300x250')
+      include helpers/like-today
+      include helpers/news360
+      +ads('300x250')
+      include components/recommended
+      include components/recommended-top
+
+  .row.great
+    .columns-4
+      .cell
+        .box-mod
+          .box-header
+            .title Tecnología
+          figure
+            a(href="link", class="cover fig-center x-lazy", data-x={type:"html", content: '<img src="../tmp/tmp-001-244.jpg" alt="X-DEMO-CONTENT">'})
+              //+imgtemp("tmp-002-244.jpg")
+              span.icon-play
+          .box-body
+            .row
+              h3
+                a(href="#link") Daniel Abugattás: Ana Jara tiene que estar en la lista congresal sí o sí
+            .row
+              h3
+                a(href="#link") Benítez anuncia que declinará a postular por el Nacionalismo
+            .row
+              h3
+                a(href="#link") Iberico: JNE debe resolver dudas sobre nueva Ley de Partidos
+            .row
+              h3
+                a(href="#link") Flagrancia: sentencian por primera vez tráfico de animales
+      .cell
+        .box-mod
+          .box-header
+            .title Salud
+          figure
+            a(href="link", class="cover fig-center x-lazy", data-x={type:"html", content: '<img src="../tmp/tmp-002-244.jpg" alt="X-DEMO-CONTENT">'})
+              //+imgtemp("tmp-002-244.jpg")
+          .box-body
+            .row
+              h3
+                a(href="#link") Dólar imparable: sube a S/ 3.448, nuevo máximo en 11 años
+            .row
+              h3
+                a(href="#link") Intentan enviar US$ 78 mil falsos a EEUU en cajas de 'Pucca'
+            .row
+              h3
+                a(href="#link") Ingresos del gobierno central cayeron 7.7% en el 2015
+            .row
+              h3
+                a(href="#link") Importación de armas de uso particular creció 38% en 2015
+      .cell
+        .box-mod
+          .box-header
+            .title Mundo
+          figure
+            a(href="link", class="cover fig-center x-lazy", data-x={type:"html", content: '<img src="../tmp/tmp-003-244.jpg" alt="X-DEMO-CONTENT">'})
+              //+imgtemp("tmp-003-244.jpg")
+          .box-body
+            .row
+              h3
+                a(href="#link") Colombia: liberan a 16 guerrilleros de las FARC indultados
+            .row
+              h3
+                a(href="#link") Corea del Norte dice haber creado un licor que no produce resaca
+            .row
+              h3
+                a(href="#link") Marina Litvinenko: "Estoy satisfecha que la justicia implique a Putin"
+            .row
+              h3
+                a(href="#link") Taiwán: llenan de críticas la página de Facebook de Tsai Ing-wen
+      .cell
+        .box-mod
+          .box-header
+            .title Espectáculos
+          figure
+            a(href="link", class="cover fig-center x-lazy", data-x={type:"html", content: '<img src="../tmp/tmp-004-244.jpg" alt="X-DEMO-CONTENT">'})
+              //+imgtemp("tmp-004-244.jpg")
+          .box-body
+            .row
+              h3
+                a(href="#link") Zumba: 'Recibí invitación del Presidente'
+            .row
+              h3
+                a(href="#link") Cartelera: Dos nominadas al Oscar 2016 se estrena esta semana
+            .row
+              h3
+                a(href="#link") Actriz de 'Los Soprano' revela que padece esclerosis múltiple
+            .row
+              h3
+                a(href="#link") Flagrancia: sentencian por primera vez tráfico de animales
+  .row
+    include helpers/widget-df
+  .row
+    include helpers/gallery
+

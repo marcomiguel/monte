@@ -1,0 +1,8 @@
+<div class="tab-resultados">
+  <ul>
+    <li <?php if($this->model->package == 'resultados') : ?>class="act" <?php endif ;?> ><a href="/resultados/fecha/{{model.torneo}}">Resultados</a></li>
+    <li <?php if($this->model->package == 'fixture') : ?>class="act" <?php endif ;?> ><a href="/resultados/fixture/{{model.torneo}}">Fixture</a></li>
+    <li <?php if($this->model->package == 'posiciones') : ?>class="act" <?php endif ;?> > <a href="/resultados/posiciones/{{model.torneo}}">Posiciones</a></li>
+    <li <?php if($this->model->package == 'goleadores') : ?>class="act" <?php endif ;?>> <a href="/resultados/goleadores/{{model.torneo}}">Goleadores</a></li>
+  </ul>
+</div>

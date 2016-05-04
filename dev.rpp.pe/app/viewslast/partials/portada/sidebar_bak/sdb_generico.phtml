@@ -1,0 +1,6 @@
+<div class="sidebar-panel sb_{{ tag }} jpjpjpjp" >
+<h2 class="panel-title"><a href="{{host}}/tema-{{ tag }}">{{nombre}}</a></h2>
+<?php foreach (\Rpp\Services\Get\Flow::tag($tag,$cantidad) as $e => $item) : ?>
+  {{ partial('partials/portada/bloque/tag/tag_item', [ 'nid' : item._id , 'class' : 'left-photo' , 'title_h' : 'h3' , 'img_size' : 'small']) }}
+<?php endforeach;?>
+</div>

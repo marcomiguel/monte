@@ -1,0 +1,88 @@
+.rss-all
+	background-color: #243d55
+	// height: 16px
+	color: #fff
+	padding: 20px 5px 16px 12px;
+	.text
+		display: inline-block
+	.btn-all-subs
+		background-color: #0385c4
+		color: #fff
+		text-align: center
+		border-radius: 4px
+		width: 150px
+		padding: 7px 19px
+		text-transform: uppercase
+		font-size: 1.4rem
+		text-decoration: none
+		margin-left: 35px
+		&:hover
+			background-color: darken(#0385c4, 10%)
+		[class^="icon-"]
+			margin-right: 10px
+			font-size: 18px
+			vertical-align: middle
+.rss-block
+	margin: 15px 0
+	border-top: 2px solid #0060ab
+	border-bottom: 2px solid #dbdbdb
+	padding: 20px 12px
+	ul
+		list-style: none
+		margin: 20px 0 0 0
+		li
+			display: inline-block
+			width: 48%
+			border-bottom: 1px solid #ececec
+			padding-bottom: 8px
+			a
+				border-radius: 50%
+				width: 30px
+				height: 30px
+				text-align: center
+				font-size: 1.8rem
+				line-height: 1.70
+				border: 1px solid #dbdbdb
+				color: #666
+				text-decoration: none
+				float: right
+		li.this, li:hover
+			span
+				color: #0060ab
+			a
+				color: #fff
+				background-color: #0060ab
+				border: 1px solid #0060ab
+		li:nth-child(odd)
+			margin-right: 15px
+.title-box-rr
+	color: #181818
+	font-size: 16px
+	font-weight: bold
+	border-bottom: 1px solid #9abde4
+	padding: 4px 0 10px 4px
+.description-box-rss
+	color: #000
+	margin: 5px 0 28px 0
+	font-size: 16px
+	line-height: 18px
+.question-rss
+	font-weight: 200
+	margin-bottom: 10px !important
+.answer-rss
+	margin-bottom: 16px !important
+	line-height: 22px
+
+@media (max-width: 480px)
+	.rss-all 
+		.text
+			display: block
+			text-align: center
+			margin-bottom: 20px
+		.btn-all-subs
+			display: block
+			margin: 0 auto
+	.rss-block
+		ul
+			li
+				width: 100%

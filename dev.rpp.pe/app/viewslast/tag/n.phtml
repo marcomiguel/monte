@@ -1,0 +1,94 @@
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?>
+<!--Head-->
+{{ partial('partials/head/indexportada') }}
+<link rel="stylesheet" type="text/css" href="{{ehost}}/elecciones-peru-2016/css/votaperu.css?v={{ehost}}">
+<body data-bg="{{model.epl_kvs}}" id='tema' class="tag-{{model.tema}} topics section" data-x="slide, lazy, columns-fit, sticky, media, column-fix, social-native">
+  {{ partial('partials/head/epl') }}
+  {{ partial('partials/head/comscore') }}
+<div id="wrap">
+    <!--Header-->
+    {{ partial('partials/header/indextag_' ~ model.tag_personalidad )  }}
+
+    <div id="content" role="main">
+        {{ partial('partials/ads/top') }}
+        <div class="grid pad submenujchs">
+            
+            {{ partial('tag/cabecera_personalizada_' ~ model.tag_personalidad ) }}
+          <div class="story">
+            <?php $gnamespace = false;?>
+            <div class="col-primary">
+                
+                <?php if(!empty($this->model->tag_info->personalidad)):?>    
+                    <?php $gnamespace = @\Rpp\Services\Get\Destacados::portada($this->model->tag_slug_portada)->tipo['namespace'] ;?>
+                    <div class="box-mod flow noborder<?=$gnamespace;?>">
+                    {{ partial('partials/portada/bloque/tag/cronologico_1' , ['slug': model.tag_slug_portada ] ) }}
+                    {{ partial('partials/portada/grilla/block/tag/ultimo_' ~  gnamespace ) }}                    
+                    {{ partial('partials/portada/flujo/tag_full' , [] ) }}
+                    </div>
+                <?php else:?>
+                   
+                    <div class="flow-row">
+                        <div  class="row">
+                            {{ partial('partials/portada/flujo/tag2' , [] , trackurl) }}
+                        </div>
+                    </div>
+
+                <?php endif;?>
+                
+            </div>
+            <!-- .content -->
+            <aside class="col-secondary sidebar">
+            <?php if($gnamespace=='tag'):?>                 
+                 <?php echo @$this->model->tag_info->personalidad['twitter']['hashtag'] ?>
+                 {{ partial('partials/portada/bloque/tag/lateral_1' , ['slug': model.tag_slug_portada] ) }}
+                 {{ partial('partials/ads/right1') }}
+                 {{ partial('partials/ads/perured') }}
+                 {{ partial('partials/portada/bloque/tag/lateral_2' , ['slug': model.tag_slug_portada] ) }}
+                 {{ partial('partials/portada/bloque/tag/lateral_3' , ['slug': model.tag_slug_portada] ) }}
+                 <!-- #noticia-360 -->
+                 {{ partial('partials/ads/right2') }}
+                 {{ partial('partials/portada/bloque/tag/lateral_4' , ['slug': model.tag_slug_portada] ) }}
+                 {{ partial('partials/portada/bloque/tag/lateral_5' , ['slug': model.tag_slug_portada] ) }}
+                 {{ partial('partials/ads/right3') }}
+                 {{ partial('partials/portada/bloque/tag/lateral_6' , ['slug': model.tag_slug_portada] ) }}
+                 {{ partial('partials/portada/bloque/tag/lateral_7' , ['slug': model.tag_slug_portada] ) }}
+                 <!-- .dia-sidebar -->              
+                 {{ partial('partials/portada/bloque/tag/lateral_8' , ['slug':  model.tag_slug_portada] ) }}
+                 {{ partial('partials/portada/bloque/tag/lateral_9' , ['slug':  model.tag_slug_portada] ) }}  
+            <?php else:?>
+                   {{ partial('partials/ads/right1') }}
+                    <!-- #rotafono -->  
+                     <?php $sdb = 'mas-leidas';?>
+                    <?php $nombre = 'Las noticias más leídas';?>
+                    <?php $cantidad = 10;?>
+                    <?php $tipo ='estandar';?>
+                    <?php $script =  '';  ?>
+                    {{partial('partials/portada/sidebar/' ~ tipo ~ '/index_' ~ sdb ,['tag':  sdb , 'nombre': nombre , 'cantidad': cantidad ,'slug' : 'home' , 'script' : script ]) }}
+                    {{ partial('partials/ads/right2') }}
+                    <!-- pub-300 -->
+                    {{ partial('partials/portada/sidebar/sdb_trafico' , ['tag':''  , 'nombre': ''] ) }}
+                    <!-- .weather-sidebar -->
+                    {{ partial('partials/ads/right3') }}
+            <?php endif;?>
+            </aside>
+            <!-- .sidebar -->
+        </div>
+        </div>
+      </div>
+
+        {{ partial('partials/ads/middle2') }}
+        <!-- pub-980 -->
+
+        {{ partial('partials/portada/bloque/tag/cronologico_2' , ['slug': model.tag_slug_portada ] ) }}
+    
+
+    
+    <!--Footer-->
+    {{ partial('partials/footer/index' , [] , trackurl) }}
+    <script src="{{ehost}}/elecciones-peru-2016/js/highcharts.js"></script>
+    <script src="{{ehost}}/elecciones-peru-2016/js/srcijp.js?v={{eversion}}"></script>
+    {{ partial('partials/resultados_electorales/presidenciales/script') }}
+    {{ partial('partials/footer/scripts') }}
+    {{ partial('partials/footer/tracking') }}
+</div>
+</body>

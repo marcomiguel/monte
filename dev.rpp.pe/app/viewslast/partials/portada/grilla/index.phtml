@@ -1,0 +1,6 @@
+
+<?php $order = @\Rpp\Services\Get\Destacados::portada('home')->tipo['slug'] ;?>
+<?php if($order):?>
+{{ partial('partials/portada/grilla/home/' ~  getGrilla(slug).tipo['slug'] ,['namespace' : 'home']) }}
+<?php endif;?>
+

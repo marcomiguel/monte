@@ -1,0 +1,11 @@
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="rpp.pe" />
+<meta property="og:type" content="<?php if(@$this->model->portada=='home'): ?>website<?php else: ?>article<?php endif;?>">
+<meta property="og:url"  content="{{host}}{{model.url_social}}" />
+<meta property="og:title"  content="{{model.titulo_social}}" />
+<meta property="og:description"  content="<?php echo  htmlentities($this->model->description) ?>" />
+<meta property="og:image"  content="{{model.img_social}}" />
+<meta property="og:updated_time" content="{{date('Y-m-d\TH:i:sP',model.fecha_social)}}" />
+
+<!-- fin Open Graph -->

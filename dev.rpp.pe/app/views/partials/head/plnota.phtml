@@ -1,0 +1,57 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{model.titulo}}</title>
+    {{ partial('partials/head/metas') }}
+    {{ partial('partials/head/og') }}
+    {{ partial('partials/head/pltwittercard') }}
+    {{ partial('partials/head/dublin') }}
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="{{host}}{{model.urlcanonical}}"/>
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ehost}}/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ehost}}/images/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ehost}}/images/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ehost}}/images/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ehost}}/images/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ehost}}/images/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ehost}}/images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ehost}}/images/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ehost}}/images/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ehost}}/images/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="{{ehost}}/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{ehost}}/images/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="{{ehost}}/images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="{{ehost}}/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="{{ehost}}/images/favicons/manifest.json">
+
+  <link rel="stylesheet" type="text/css" href="{{ehost}}/styles/reset.css?v={{eversion}}">
+  <link rel="stylesheet" type="text/css" href="{{ehost}}/styles/jquery.jvectormap.css?v={{eversion}}">
+  <link rel="stylesheet" type="text/css" href="{{ehost}}/styles/icons.css?v={{eversion}}">
+  <link rel="stylesheet" type="text/css" href="{{ehost}}/styles/main.min.css?v={{eversion}}">
+  <link rel="stylesheet" type="text/css" href="{{ehost}}/styles/responsive.css?v={{eversion}}">
+  <link rel="stylesheet" type="text/css" href="{{ehost}}/styles/carousel.css?v={{eversion}}">
+  
+  <script id="navegg" type="text/javascript" src="//tag.navdmp.com/tm22924.js" ></script>
+  {{ partial('partials/head/epl') }}
+
+   <script src="{{ehost}}/scripts/modernizr.custom.js?v={{eversion}}"></script>
+   <!--<script src="http://jwpsrv.com/library/4XUSqnfuEeOW7yIACmOLpg.js"></script>-->
+   <script src="https://apis.google.com/js/platform.js" async defer></script>
+   <script src="http://p.jwpcdn.com/player/v/7.0.2/jwplayer.js"></script> 
+   <script>jwplayer.key="L/ARBHy5b4pG1YAD0ou40gMzoAVHnOcJetOEvw==";</script>
+   <script src="{{ehost}}/scripts/functions.js?v={{eversion}}"></script>
+   <script src="http://platform.linkedin.com/in.js"></script>
+   <!--[if lte IE 8]><link rel="stylesheet" href="{{ehost}}/styles/ie8.css?v={{eversion}}"><![endif]-->
+   <!--[if lte IE 8]><script src="{{ehost}}/scripts/html5shiv.min.js?v={{eversion}}"></script><![endif]-->
+
+   <script src="{{ehost}}/scripts/jquery-1.11.2.min.js?f={{eversion}}"></script>
+   <script src="{{ehost}}/scripts/carousel.js?v={{eversion}}"></script>
+   <script src="{{ehost}}/scripts/rpp-widget.js?v={{eversion}}"></script>
+   
+  {{ partial('partials/head/comscore') }}
+
+  {{ partial('partials/head/plschema') }}
+</head>

@@ -1,0 +1,27 @@
+<div class="wrapper-slider-gallery">
+<div class="container-slider-gallery">
+<div id="gallery1"></div>
+<?php $gal; foreach ($this->notapreview->contenido as $key => $contenido) :?>
+ <?php if ($contenido['tipo'] == "photo"): ?>
+  <?php $gal[] =  "{ 'src': '".$contenido['foto']['url']."' , 'credito' : '".htmlspecialchars($contenido['credito'],ENT_QUOTES)."' , 'description': '".htmlspecialchars($contenido['foto']['alt'],ENT_QUOTES)."'}";
+    unset($this->notapreview->contenido[$key]);
+  ?>
+<?php endif;?>
+<?php endforeach;?>
+<script>
+  rppWR.rppGallery({
+    items : [<?php foreach ($gal as $g): ?>
+                 {{g}},
+                <?php endforeach; ?>],
+    posicion : 1,
+    epl_tag :  ['Intersitial','RightGal','Right2','Top','Top2','Frame2','Right','Right1'],
+    comscore : {
+                site : 'la10-pe',
+                name : 'Portada.preview'
+               },
+    id : '#gallery1'
+  });
+</script>
+</div>
+</div>
+

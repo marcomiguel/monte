@@ -1,0 +1,112 @@
+.card
+  //margin-bottom: 10px
+  background-color: white
+  h2, h3
+    font-size: 1.8rem
+    font-weight: bold
+    line-height: 1.33
+    margin: 0
+  p
+    font-size: 1.6rem
+    line-height: 1.3
+  .holder
+    position: relative
+    .social
+      position: absolute
+      right: 10px
+      bottom: 10px
+      +transition(opacity)
+      opacity: 0
+      li
+        margin-right: 0
+        margin-left: 10px
+        &:first-child
+          margin-left: 0
+  .cont
+    padding: 8px 10px
+    .top-info
+      position: relative
+      +clearfix
+      margin-bottom: 5px
+      .cat
+        float: left
+        font-weight: 700
+        text-transform: uppercase
+        font-size: 1.2rem
+
+
+    .time
+      float: right
+      font-size: 1.2rem
+  .author
+    margin-bottom: 8px
+    font-size: 1.2rem
+    color: #999
+    +clearfix
+    img
+      float: left
+      border-radius: 50%
+      width: 50px
+    .data
+      padding-left: 70px
+    a
+      font-size: 1.4rem
+      display: block
+      font-weight: 700
+      line-height: 1.2
+
+
+
+  .social
+    //position: absolute
+    //right: 10px
+    //bottom: 10px
+    li
+      margin-right: 0
+      margin-left: 10px
+      &:first-child
+        margin-left: 0
+
+.sponsor
+  .by
+    text-transform: none
+    color: #999
+    margin-right: 10px
+    display: inline-block
+.card:hover, .flow-row article:hover
+  .social
+    opacity: 1
+
+    li
+      a:hover
+        //opacity: .9
+        color: white
+        //&:hover
+          opacity: 1
+  li.fb
+    a:hover
+      background-color: $facebook-color
+  li.tw
+    a:hover
+      background-color: $twitter-color
+  li.yt
+    a:hover
+      background-color: $youtube-color
+.x-columns-fit.x-no-fit
+  .card
+    float: inherit
+    width: 100%
+
+.card-1x1
+  //margin-bottom: $pad
+  .cont
+    text-align: center
+    p
+      font-size: 2.1rem
+    h1 a
+      font-size: 5rem
+
+.flujo-author-section
+  .card
+    .author
+      display: none

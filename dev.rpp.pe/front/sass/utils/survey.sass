@@ -1,0 +1,170 @@
+@import ../config/color
+@import ../config/grid
+@import ../mixins/box-shadow
+@import ../mixins/border-radius
+@import ../mixins/text-shadow
+@import ../mixins/clearfix
+@import ../mixins/opacity
+
+.box_encuesta
+	position:relative
+	width: 100%
+	padding: 2.5em 1.5em 0.75em 1.5em
+	background: $gray-survey
+	margin-bottom: 20px
+	@include box-shadow(0px, 1px, 2px, rgba(black, 0.5))
+	&:after
+		content: 'ENCUESTA'
+		position:absolute
+		left:2.25em
+		top:2em
+		font-size:0.65em
+
+.input-group
+	@include clearfix()
+	margin-bottom:0.75em
+	line-height:2.5em
+	font-size:1.375em
+	@include box-shadow(0px, 1px, 2px, rgba(black, 0.5))
+	.form-control
+		background-color: white
+		display:block
+		float: left
+		width: 85%
+		padding:3% 0 0 2%
+		margin-bottom: 0
+		min-height: 2.5em
+		text-transform:uppercase
+		vertical-align:middle
+		line-height:1
+	.input-group-addon
+		position:relative
+		background-color: $gray-survey-dark
+		display:block
+		float:left
+		width:15%
+		min-height: 2.5em
+		text-align:center
+		&:after
+			position:absolute
+			left:30%
+			top:1%
+			font-family: 'FontAwesome'
+			content: "\f096"
+			color:$gray-survey-icon
+			font-size:40px
+			cursor:pointer
+		&:hover
+			&:after
+				content: "\f046"
+				color:$yellow-dark
+
+.input_encuesta
+	position:absolute
+	display:inline-block
+	width:40px
+	height:48px
+	top:10%
+	left:30%
+	z-index:3
+	@include opacity($opacity: 0)
+	cursor:pointer
+
+.progress-bar
+	float: left
+	width: 0%
+	height: 100%
+	font-size: 12px
+	line-height: 20px
+	text-align: center
+	background-color: $yellow-dark
+	@include css3-prefix('transition', 'width 1s ease-in-out')
+
+.progress-bar-lg
+	padding: 10px 16px
+	font-size: 18px
+	height: 60px
+
+.progress
+	position:relative
+	left:0
+	top:0
+	height:60px
+	width:100%
+	padding:0 15% 0 0
+	margin:0 0 0.5em
+	background-color:white
+	@include box-shadow(0px, 1px, 2px, rgba(black, 0.5))
+	.progress-in
+		position: absolute
+		top: 0
+		left: 0
+		color: $gray-survey-txt
+		font-size: 1.35em
+		margin-top: 0.5em
+		padding-left: 0.25em
+
+.claseprogreso
+	&:after
+		display:block
+		width:15%
+		padding:5px 0 0
+		height:60px
+		font-family: 'FontAwesome'
+		content:"\f046"
+		color:$yellow-dark
+		font-size:45px
+		text-align:center
+		background-color:$gray
+		position:absolute
+		right:0
+		top:0
+	&.bg_fail
+		&:after
+			background-color:$gray-survey-ligth
+			content:"\f096"
+			color:$gray-survey-icon
+
+.encuesta-resultados
+	position:relative
+	min-height:8em
+
+.txt_a18-negro
+	margin:1em 0 0
+	font-size:1.15em
+
+.btn_layer_bc
+	background-color: $blue-dark
+	color: white
+	display: inline-block
+	text-transform: uppercase
+	font-size: 1em
+	padding: 0.5em 1.5em
+	@include border-radius()
+	text-decoration: none
+	border: 0 none
+
+.preload_survey
+	text-align:center
+	color:$yellow-dark
+
+.nd_galleria-in-top
+	.img_size100
+		:cursor pointer
+	.fa-chevron-left, .fa-chevron-right
+		:cursor pointer
+		:position absolute
+		:display inline-table
+		:background-color transparent
+		&:before
+			:background-color #fff
+			:color #666
+			:padding 5px 5px 3px
+			:border 1px solid #cecece
+			:box-shadow 1px 1px 1px rgba(168, 168, 168, 0.65)
+	.fa-chevron-left
+		:top 44%
+		:left -10px
+	.fa-chevron-right
+		:right -10px
+		:top 44%

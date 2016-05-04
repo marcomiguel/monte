@@ -1,0 +1,11 @@
+<?php $imgcb = !empty(@\Rpp\Services\Get\Tags::get_tag($tag)->personalidad['imagenes']['url_1020x51']);?>
+<div class="sidebar-panel content-automatic" >
+
+<h2 class="panel-title-bg">
+  <a data-size-title="{{imgcb*1}}" class="module-automatic" style="background:transparent url('<?php echo @\Rpp\Services\Get\Tags::get_tag($tag)->personalidad['imagenes']['url_1020x51'] ?>') left top no-repeat;" href="{{host}}/tema-{{ tag }}"></a>
+  <a data-size-title="{{!imgcb*1}}" class="module-automatic-title" href="{{host}}/tema-{{ tag }}">{{nombre}}</a>
+</h2>
+<?php foreach (\Rpp\Services\Get\Flow::tag($tag,$cantidad) as $e => $item) : ?>
+  {{ partial('partials/portada/bloque/tag/tag_item', [ 'nid' : item._id , 'class' : 'left-photo' , 'title_h' : 'h3' , 'img_size' : 'small']) }}
+<?php endforeach;?>
+</div>

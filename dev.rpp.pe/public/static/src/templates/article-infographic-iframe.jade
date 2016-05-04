@@ -1,0 +1,58 @@
+extends layouts/article
+
+block variables
+  - var pageType = ""
+  - var pageTitle = "Article Infographic Iframe"
+  - var x = "column-fix, lazy, media, slide"
+block container
+  +ads('980x90')
+  .story
+    article(itemscope itemtype="http://schema.org/NewsArticle", itemref="article-body organization")
+      meta(itemprop='datePublished', content='2015-02-05T08:00:00+08:00')
+      meta(itemprop='dateModified', content='2015-02-05T09:20:00+08:00')
+      meta(itemscope, itemprop="mainEntityOfPage", itemType="https://schema.org/WebPage", itemid="--X-DEMO-CONTENT--")
+
+      .story-top
+        +breadcrumb('Política')
+
+
+      header(class="story-header")
+
+        h1(itemprop="headline") Nobel de economía Joseph Stiglitz dice que el TPP podría ahondar la desigualdad
+        p.sumary(itemprop="description") Advertencia. Personalidades alertan de los peligros del acuerdo que engloba al 40% del PBI mundial.  Entre las principales preocupaciones está el encarecimiento de las medicinas. El Congreso peruano deberá decidir si ratifica o no el controvertido acuerdo.
+
+        .story-meta
+          .story-author(itemprop="author", itemscope itemtype="https://schema.org/Person") por #{' '}
+            a(href="#link")
+              #author-name.span(itemprop="name") Jorge Luis Cruz
+          .story-date
+            time(itemprop="datePublished" datetime='2015-08-13T20:33:13+0100') 20 de Enero de 2015 - 8:45am
+          .story-tag
+            a(href="#link") Policiales
+        .infographic.widen
+          iframe(src="https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=13-DFacHCAho646I8gRox4lNwNeicqYKvz1-aFOl8G3A&amp;font=Default&amp;lang=en&amp;initial_zoom=2&amp;height=650", width="100%", height="650", frameborder="0")
+
+    .col-primary.main
+      .section
+        .col-share
+          include helpers/social-share
+        .col-detail(itemprop="articleBody", id="article-body")
+
+
+          p Llamosa advirtió que ratificándose el TPP se estaría otorgando exclusividad en el mercado a las industrias farmacéuticas transnacionales por un periodo de cinco hasta ocho años para que vendan sus medicamentos.
+          p Por ejemplo, un medicamento como el Trastuzumab, (que sirve para tratamiento de cáncer de mama, y los pacientes requieren hasta 40 ampollas que quizá puedan salvarle la vida), se vende actualmente a S/ 5.500 cada ampolla, a pesar que fabricarlo cuesta solo S/ 93,50. De haber competencia podría costar S/ 500.
+          p Llamosa advirtió que ratificándose el TPP se estaría otorgando exclusividad en el mercado a las industrias farmacéuticas transnacionales por un periodo de cinco hasta ocho años para que vendan sus medicamentos.
+          p Por ejemplo, un medicamento como el Trastuzumab, (que sirve para tratamiento de cáncer de mama, y los pacientes requieren hasta 40 ampollas que quizá puedan salvarle la vida), se vende actualmente a S/ 5.500 cada ampolla, a pesar que fabricarlo cuesta solo S/ 93,50. De haber competencia podría costar S/ 500.
+
+
+          // related image width total
+          +related({
+            thumb: false,
+            position: ""
+          })
+        include helpers/tags
+
+      include helpers/comments
+      include helpers/related-news
+
+    include components/sidebar

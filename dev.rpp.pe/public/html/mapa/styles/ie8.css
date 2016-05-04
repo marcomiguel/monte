@@ -1,0 +1,117 @@
+/* Logo Header Scroll */
+.header-main h1 {
+	background: url("../images/rpp-noticias-ie8.png") no-repeat;
+}
+.header-scroll .logotipo {
+	background: url("../images/rpp-noticias-mini-ie8.png") no-repeat;
+}
+
+/* Iconos clima sidebar */
+.weather-forecast li div span {
+	background: url("../images/sprite-weather-ie8.png") no-repeat;
+}
+
+/* Iconos clima clima */
+.weather-time-main span,
+.weather-hour-header span,
+.weather-hour ul li span,
+.weather-table th span {
+	background: url("../images/sprite-weather-ie8.png") no-repeat;
+}
+
+.weather-hour-header .w1 {
+	background-position: -146px 0;
+}
+
+.weather-hour-header .w12 {
+	background-position: -146px -385px;
+}
+
+.weather-hour ul li .w1 {
+	background-position: -182px 0;
+}
+
+.weather-hour ul li .w12 {
+	background-position: -182px -187px;
+}
+
+.weather-table th .w1 {
+	background-position: -146px 0;
+}
+
+.weather-table th .w2 {
+	background-position: -146px -36px;
+}
+
+.weather-table th .w3 {
+	background-position: -146px -69px;
+}
+
+.weather-table th .w4 {
+	background-position: -146px -105px;
+}
+
+.weather-table th .w5 {
+	background-position: -146px -145px;
+}
+
+.weather-table th .w6 {
+	background-position: -146px -175px;
+}
+
+.weather-table th .w7 {
+	background-position: -146px -208px;
+}
+
+.weather-table th .w8 {
+	background-position: -146px -243px;
+}
+
+.weather-table th .w9 {
+	background-position: -146px -280px;
+}
+
+.weather-table th .w10 {
+	background-position: -146px -310px;
+}
+
+.weather-table th .w11 {
+	background-position: -146px -340px;
+}
+
+.weather-table th .w12 {
+	background-position: -146px -376px;
+}
+
+.weather-table th .w13 {
+	background-position: -146px -415px;
+}
+
+.weather-table th .w14 {
+	background-position: -146px -450px;
+}
+
+.weather-table th .w15 {
+	background-position: -146px -483px;
+}
+
+.weather-table th .w16 {
+	background-position: -146px -517px;
+}
+
+.weather-table th .w17 {
+	background-position: -146px -552px;
+}
+
+/* Logos Footer */
+.footer-brands ul li a {
+	background: url("../images/sprite-ie8.png") no-repeat;
+}
+
+.grupo-rpp {
+	background: url("../images/grupo-rpp-ie8.png") no-repeat;
+}
+
+.lucuma-labs span {
+	background: url("../images/lucuma-labs-ie8.png") no-repeat;
+}

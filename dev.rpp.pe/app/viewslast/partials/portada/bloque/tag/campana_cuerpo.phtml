@@ -1,0 +1,21 @@
+<?php if (@\Rpp\Services\Get\Destacados::portada($slug)->campana_cuerpo['slug']): ?>
+<?php $campana_cuerpo = \Rpp\Services\Get\Destacados::portada($slug)->campana_cuerpo['slug'];?>
+<?php if( $this->_view->exists('partials/portada/bloque/tag/campana/'.$campana_cuerpo) ) :?>
+  {{ partial('partials/portada/bloque/tag/campana/' ~ campana_cuerpo ) }}
+<?php else:?>
+  <?php $tipo = @\Rpp\Services\Get\Destacados::portada($slug)->campana_cuerpo['slug'] ?>
+    <?php if ($tipo === "podcast"): ?>
+          <div class="row">
+            <div class="box-mod">
+              <div id="podcast" data-eplsrc="{{model.epl_sec}}"   data-src="{{host}}/podcast/{{ getGrilla(slug).campana_cuerpo['pcid'] }}" class="especial"></div>
+            </div>
+          </div>         
+    <?php else: ?>
+        <div class="cint-banner">
+            <div class="wrapper-cint-banner">
+                <a href="/tema-{{ getGrilla(slug).campana_cuerpo['slug'] }}" target="_blank"><img  src="{{ehost}}/images/{{ getGrilla(slug).campana_cuerpo['slug'] }}.png" alt="{{ getGrilla(slug).campana_cuerpo['nombre'] }}"></a>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endif;?>
+<?php endif;?>

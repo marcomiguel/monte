@@ -1,0 +1,16 @@
+<article>
+  <figure>
+    <a href="{{nUrl(nid)}}?ns_source=self&ns_mchannel=portada.home&ns_campaign=sidebar.auspiciado&ns_linkname=1">
+      <img src="{{ cdn_image(getNode(nid).imagen_portada['hash'], img_size ) }}" alt="{{ getNode(nid).imagen_portada['alt'] }}" width="280">
+    </a>
+    <figcaption>
+      <span>Auspiciado por:</span>
+      <a href="/tema-{{tag}}?ns_source=self&ns_mchannel=portada.home&ns_campaign=sidebar.auspiciado&ns_linkname=1">
+        <img src="{{getPart(nid ,'imagen_branding')['url']}}" alt="">
+      </a>
+    </figcaption>
+  </figure>
+  <h2>
+    <a href="{{nUrl(nid)}}?ns_source=self&ns_mchannel=portada.home&ns_campaign=sidebar.auspiciado&ns_linkname=1">{{ getNode(nid).titulo_corto }}</a>
+  </h2>
+</article>

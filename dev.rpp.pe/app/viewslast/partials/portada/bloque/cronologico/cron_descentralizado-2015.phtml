@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="box-mod box-special">
+        <?php $imgcb = empty(@\Rpp\Services\Get\Tags::get_tag($tag)->personalidad['imagenes']['url_1020x51']) ? '' : 'back-image' ;?>
+
+        <div style="background:transparent url('<?php echo \Rpp\Services\Get\UrlMedia::replace_cdn_raiz(@\Rpp\Services\Get\Tags::get_tag($tag)->personalidad['imagenes']['url_1020x51']) ?>') left top no-repeat;" class="box-header {{imgcb}}">
+            <h3 class="title"><a href="{{host}}/tema-{{ tag }}">{{nombre}}</a></h3>
+        </div>
+               <div class="col-primary">
+            <div class="box-grid">
+                <div class="row columns-3">
+                    <?php if(!is_array($destacadas['destacadas'])) $destacadas['destacadas'] = array();?>
+
+                    <?php $e=1; foreach ($destacadas['destacadas'] as $v => $item):?>
+                        <?php $df_id = @\Rpp\Services\Get\Content::part($item['nid'],'datafactory')?>
+                        <div class="cell">
+                            <article class="card">
+                                <figure class="holder">
+                                    <a href="{{nUrl(item['nid'])}}" class="cover">
+                                        {{ partial('partials/generic/lazy_image' , ['content' : cdn_image(item['imagen_portada']['hash'], 'small'), 'alt': item['imagen_portada']['alt'] ]) }}
+                                        {{ partial('partials/portada/grilla/block/icon/' ~ getNode(item['nid']).tipo ) }}
+                                        <?php if(@$item['envivo']): ?>
+                                            <span class="live-news">En vivo</span>
+                                        <?php endif; ?>
+                                    </a>
+
+                                </figure>
+                                <?php if($df_id):?>
+                                    <div class="cont x-widget wid-mini" data-x='{"events":"peru","type":"mam","matchId":"{{getPart(item['nid'],'datafactory')}}", "method": "renderMaM", "url": "{{host}}{{nUrl(item['nid'])}}", "id": "widget-{{getPart(item['nid'],'datafactory')}}"}' id="widget-{{getPart(item['nid'],'datafactory')}}">
+                                <?php else:?>
+                                    <div class="cont">
+                                <?php endif;?>
+                                    <h2><a href="{{nUrl(item['nid'])}}">{{item['titulo']}}</a></h2>
+                                </div>
+
+                            </article>
+                        </div>
+                        <?php unset($destacadas['destacadas'][$v])?>
+                        <?php if($e >= 3) break;?>
+                        <?php $e++ ;?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-secondary">
+            <div class="box-row">
+
+                <?php if(@$destacadas['publicidad']):?>
+                  {{ partial('partials/ads/auspiciado1') }}
+                <?php else:?>
+                    <?php $e=1; foreach ($destacadas['destacadas'] as $v => $item):?>
+                        {{ partial('partials/portada/bloque/tag/tag_thumb', [ 'nid' : item['nid'], 'img_size' : 'small']) }}
+                        <?php if($e >= 2) break;?>
+                        <?php $e++ ;?>
+                    <?php endforeach; ?>
+
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ partial('partials/portada/bloque/cronologico/df_widget', ['campeonato' : 'peru'] ) }}

@@ -1,0 +1,44 @@
+{{ partial('partials/head/indexp') }}
+  <body data-bg="{{model.epl_kvs}}" >
+  <div id="contenedor_div">
+    <!--Header-->
+    {{ partial('partials/header/index') }}
+    <main class="wrapper">
+      <!--ADS Top-->
+      {{ partial('partials/ads/top2') }}
+      <section class="body archive body-full">
+        <section class="box-404">
+          <h6> <span class="txt1">CSS </span><span class="txt2">test</span></h6>
+          <p>  Ooops! Página no encontrada</p>
+          <section class="search-total">
+            <!--Search-->
+            <section class="search-flow">
+              <div class="search-flow-inner">
+                <form action="#">
+                  <input type="text" value="Buscar tema...">
+                  <button type="button"><i class="icon icon-search"></i></button>
+                </form>
+              </div>
+            </section>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <!--Footer-->
+    {{ partial('partials/footer/index' ,[] , trackurl) }}
+    <div id="pad-swipe-nav">                   </div>
+
+ <?php $myhost = 'http://s3.amazonaws.com/la10-static' ;?>
+ <section id="scripts">
+    <script src="{{myhost}}/js/rpp_utils.min.js?f={{eversion}}"></script>
+     <script src="{{myhost}}/js/rpp_div_fixed.min.js?f={{eversion}}"></script>
+     <!--<script src="{{myhost}}/js/functions.js?f={{eversion}}"></script> -->
+     <script src="{{myhost}}/js/rpp.min.js?f={{eversion}}"></script>
+  </section>
+
+  {{ partial('partials/footer/comscore') }}
+  {{ partial('partials/footer/tracking') }}
+    </div>
+  </body>
+</html> 

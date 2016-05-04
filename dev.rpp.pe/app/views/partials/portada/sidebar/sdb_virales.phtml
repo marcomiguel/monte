@@ -1,0 +1,7 @@
+<div class="sidebar-panel sb_virales" >
+<h2 class="panel-title"><a href="{{host}}/virales">Virales</a></h2>
+<?php $i = 0 ; foreach (\Rpp\Services\Get\Flow::seccion('virales',$cantidad) as $e => $item): $i++; ?>
+{{ partial('partials/portada/bloque/tag/tag_item', [ 'nid' : item._id , 'class' : 'left-photo' , 'title_h' : 'h3' , 'img_size' : 'small']) }}
+<?php if($i>=$cantidad) break;?>
+<?php endforeach;?>
+</div>

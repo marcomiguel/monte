@@ -1,0 +1,56 @@
+<!--Head-->
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?> 
+{{ partial('partials/head/indexportada') }}
+<body data-bg="{{model.epl_kvs}}" data-x="calendar, columns-fit, lazy, sticky, slide" class="archive">
+  {{ partial('partials/head/epl') }}
+  {{ partial('partials/head/comscore') }}
+<div  id="wrap">
+    <!--Header-->
+    {{ partial('partials/header/index') }}
+    <div id="content" role="main">
+      {{ partial('partials/ads/top') }}
+      <div class="grid pad" >
+        <div class="story">
+          <div class="col-primary">
+            <div class="story-top box-mod pt10">
+              <?php $fecha_num= strtotime ( $this->model->fecha ); ?>
+              <h1>Archivo del <?php echo strftime('%d de %B del %Y' , $fecha_num ); ?></h1>
+              
+            </div>
+            <div class="flow">
+              <div data-x='{"breakpoints":"480x1x10,768x2x10"}' class="row x-columns-fit">
+                {{ partial('partials/portada/flujo/archivo', [] , trackurl) }}
+                  
+                  
+              </div>
+ 
+            </div>
+          </div>
+
+          <aside role="complementary" class="col-secondary x-sticky">
+
+            <div data-x='{"fixto":".col-primary"}' class="x-column-fix">
+                {{ partial('partials/ads/right1') }}
+                {{ partial('partials/sidebar/calendario') }}
+                {{  partial('partials/portada/grilla/block/tag_portada' , ['slug':'home'])  }}
+                {{ partial('partials/ads/right2') }}
+                <!-- partial('partials/sidebar/clima') }}          -->
+                {{ partial('partials/ads/right3') }}
+                <?php $sdb = 'mas-leidas';?>
+                  <?php $nombre = 'Las noticias más leídas';?>
+                  <?php $cantidad = 10;?>
+                  <?php $tipo ='estandar';?>
+                  <?php $script =  '';  ?>
+                   {{partial('partials/portada/sidebar/' ~ tipo ~ '/index_' ~ sdb ,['tag':  sdb , 'nombre': nombre , 'cantidad': cantidad ,'slug' : 'home' , 'script' : script ]) }}          
+            </div>
+          </aside>
+        </div>
+        </div>
+    </div>
+    <!--Footer-->
+    {{ partial('partials/footer/index' , [] , trackurl) }}
+    
+    {{ partial('partials/footer/scripts') }}
+    {{ partial('partials/footer/tracking') }}
+</div>
+</body>

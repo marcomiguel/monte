@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-archivo/1.1">
+
+	<url>
+		<loc>{{host}}/sitemap/{{slug}}/archivos/2015</loc>
+		<lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+	</url>
+
+	<url>
+		<loc>{{host}}/sitemap/{{slug}}/archivos/2014</loc>
+		<lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+	</url>
+
+	<url>
+		<loc>{{host}}/sitemap/{{slug}}/archivos/2013</loc>
+		<lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+	</url>
+
+	<url>
+		<loc>{{host}}/sitemap/{{slug}}/archivos/2012</loc>
+		<lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+	</url>
+
+    <url>
+		<loc>{{host}}/sitemap/{{slug}}/archivos/2011</loc>
+		<lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+	</url>
+
+    <url>
+		<loc>{{host}}/sitemap/{{slug}}/archivos/2010</loc>
+		<lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+	</url>
+
+	<url>
+		<loc>{{host}}/sitemap/{{slug}}/archivos/2009</loc>
+		<lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+	</url>
+</urlset>

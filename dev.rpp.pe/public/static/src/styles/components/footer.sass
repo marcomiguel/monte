@@ -1,0 +1,77 @@
+.footer-brands
+  background-color: $color-base-bg
+  padding: 4px 0 4px
+  text-align: center
+  color: #fff
+  font-size: 1.3rem
+  margin-top: 1px
+  .grid
+    position: relative
+  .copy
+    position: absolute
+    top: -12px
+    //background: url(../img/rpp-min.svg?v=21) 0 no-repeat
+    //padding: 15px 0 15px 55px
+    z-index: 100
+    .logo-footer
+      //margin-top: -4px
+      margin-right: 8px
+      //margin-bottom: -5px
+  ul
+    margin: 5px 0 0 0
+    list-style: none
+    display: inline-block
+  li
+    float: left
+    color: #fff
+    margin-bottom: 0
+    line-height: 1
+    border-right: 1px solid #fff
+    &:first-child
+      border-right: 0
+      padding-right: 0
+    &:last-child
+      border-right: 0
+    a
+      display: inline-block
+      margin: 0 5px
+      color: #fff
+.footer-corp
+  background-color: #dedede
+  padding: 10px 10px 12px
+  text-align: center
+  +clearfix
+  .grupo-rpp
+    a
+      background: url(../img/grupo-rpp.png) no-repeat
+      background-size: 100%
+      display: inline-block
+      width: 72px
+      height: 22px
+      vertical-align: middle
+      +indent
+  .info
+    margin: 5px 0 0 0
+    display: inline-block
+    text-align: center
+    ul
+      +clearfix
+      margin: 0
+      list-style: none
+      display: inline-block
+      &:first-child
+       margin-bottom: 5px
+    li
+      display: inline-block
+      font-size: 1.3rem
+      margin: 0
+      border-right: 1px solid #666
+      padding-left: 3px
+      padding-right: 5px
+      line-height: .8
+      &.grupo-rpp
+        padding-left: 0
+        padding-right: 0
+        border-right-width: 0
+      &:last-child
+        border-right: 0

@@ -1,0 +1,78 @@
+  <!--Head-->
+  {{ partial('partials/head/index') }}
+  <body>
+      <!--Header-->
+          <div class="wrapper-slider-gallery">
+        <div class="container-slider-gallery">
+          <div id="gallery1"></div>
+
+          <?php $gal; foreach (\Rpp\Services\Get\Content::part($this->model->nid,'galeria') as $key) {
+                 $gal[] =  "{ 'src': '".\Rpp\Services\Get\Content::part($this->model->nid,'contenido')[$key]['foto']['url']."' , 'credito' : '".@\Rpp\Services\Get\Content::part($this->model->nid,'contenido')[$key]['credito']."' , 'description': '".\Rpp\Services\Get\Content::part($this->model->nid,'contenido')[$key]['foto']['alt']."'}";
+              } ?>
+          <script>
+
+            rppWR.rppGallery({
+              items : [<?php foreach ($gal as $g): ?>
+                           {{g}},
+                          <?php endforeach; ?>],
+              posicion : <?php echo $this->model->position?>,
+              id : '#gallery1'
+            });
+          </script>
+
+        </div>
+      </div>
+
+      <main class="wrapper">
+        {{ partial('partials/ads/top2') }}
+        <section class="body detail">
+          <section class="content news-flow">
+            <!--News cards-->
+            <div class="grid">
+              <div class="col-2-2">
+                <section class="box">
+                  <div class="box-inner">
+                    {{ partial('partials/nota/box/bread-social') }}
+                    <article class="box-detail">
+                      {{ partial('partials/nota/header/index' ~ model.package) }}
+                      <section class="inner-detail">
+
+                        {{ partial('partials/nota/detalle/open/' ~ model.package ) }}
+
+                        {{ partial('partials/nota/detalle/social') }}
+
+                        <section class="content-news">
+
+                          {{ partial('partials/nota/detalle/content/'~model.package) }}
+
+                          {{ partial('partials/nota/tags/index'~model.package , [] , trackurl ) }}
+
+                          {{ partial('partials/nota/box/social', ['position' : 'wfoot']) }}
+
+                          {{ partial('partials/nota/comentario/index') }}
+
+                          {{ partial('partials/nota/ads/ads-full') }}
+
+                          {{ partial('partials/nota/sugeridas/index' , [] , trackurl ) }}
+
+                        </section>
+                        <div class="clear"></div>
+                      </section>
+                    </article>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </section>
+          <!--ADS-->
+          {{ partial('partials/nota/sidebar/index' , [] ) }}
+          <!--ADS-->
+        </section>
+      </main>
+      <!--Footer-->
+
+      {{ partial('partials/footer/index') }}
+      <div id="pad-swipe-nav"></div>
+      {{ partial('partials/footer/scripts') }}
+      {{ partial('partials/footer/tracking') }}
+    </body>

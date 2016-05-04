@@ -1,0 +1,8 @@
+{% cache "portada.masvisto.estandar." ~ slug 1200 %}
+<div class="sidebar-panel sb_{{ tag }}" >
+<h2 class="panel-title"><h2> Las noticias más leídas</h2>
+<?php foreach ( \Rpp\Services\Get\Visitas::ranking('home',$cantidad) as  $item ) : ?>
+  {{ partial('partials/portada/bloque/tag/tag_item', [ 'nid' : item['nid'] , 'class' : 'left-photo' , 'title_h' : 'h3' , 'img_size' : 'small']) }}
+<?php endforeach;?>
+</div>
+{% endcache %}

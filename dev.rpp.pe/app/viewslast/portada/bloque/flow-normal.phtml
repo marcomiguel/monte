@@ -1,0 +1,14 @@
+ {% for node in notapreview.flujo  %} 
+                  <article class="flow-normal">
+                    <div class="prominent-media">
+                      <figure class="media"><a href="{{nUrl(item._id)}}"><img src="{{node.imagen_portada['url']}}" alt="{{node.imagen_portada['alt']}}" width="224" height="129" ></a></figure>
+                      <div class="prominent-txt"> 
+                        <h2> <a href="{{nUrl(item._id)}}">{{node.titulo}}</a></h2>
+                        <p>{{node.bajada}}</p>
+                        <div class="time-related">Publicado el 
+                          <time datetime="{{date('Y-m-d H:i',node.fecha_publicacion)}}"> {{date('d/m/y',node.fecha_publicacion)}}  </time>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+ {% endfor  %}                   

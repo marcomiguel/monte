@@ -1,0 +1,69 @@
+@import ../config/color
+@import ../config/margin-padding
+//widget
+.widget
+    iframe
+        background-color: $bg-second
+        border: 0 none
+        width: 100%
+.widget-resutl
+    display:block
+    //border-bottom: 1px solid $border-color
+    iframe
+        background-color: transparent
+        height: 140px
+        display:block
+        //margin-bottom: $margin-bottom
+
+.widget-resutl-all
+    margin-bottom: 1em
+    border-bottom:1px solid $border-color
+    padding-bottom: 0.75em
+    .header-nav
+        border-bottom: 1px dotted $blue-dark
+        margin-bottom:0.5em
+    iframe
+        margin-left:auto
+        margin-right:auto
+        width:990px
+
+@media (max-width: 1010px)
+    .widget-resutl-all
+        iframe
+            width:850px
+@media (max-width: 910px)
+    .widget-resutl-all
+        iframe
+            width:750px
+@media (max-width: 810px)
+    .widget-resutl-all
+        iframe
+            width:650px
+@media (max-width: 710px)
+    .widget-resutl-all
+        iframe
+            width:550px
+@media (max-width: 610px)
+    .widget-resutl-all
+        iframe
+            width:450px
+@media (max-width: 510px)
+    .widget-resutl-all
+        iframe
+            width:350px
+@media (max-width: 410px)
+    .widget-resutl-all
+        iframe
+            width:300px
+@media (max-width: 320px)
+    .widget-resutl-all
+        iframe
+            width:290px
+
+.box_iframe-minuto
+    width:100%
+    margin:1em 0 1.5em
+    border:1px solid $border-color
+    iframe
+        border: 0 none
+        height:700px!important

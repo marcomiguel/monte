@@ -1,0 +1,106 @@
+<!--begin: debate widget -->
+            
+            <link rel="stylesheet" type="text/css" href="{{ehost}}/elecciones-peru-2016/css/debate.css?v={{eversion}}">
+            <div id="widget-debate">
+              <div class="wd-row">
+                <div class="wd-col col-a">
+                  <div class="col-a-top">
+                    <a href="#" class="envivo">
+                      <img src="{{ehost}}/static/img/envv.svg" alt="En Vivo" class="ico">
+                      <span class="titu">En Vivo</span>
+                    </a>
+                    <span class="hashtag">#VotaPerú</span>
+                  </div>
+                  <div id="video">
+                    <figure>
+                      <div class="cover cover-media"><a href="#video" data-x='{"type":"video","video_source":"{{debate['streaming']}}","video_img":"{{ehost}}/static/img/debate-presidencial/video-portada.jpg?v=1","playlist":"{\"240p\":\"{{debate['streaming']}}\",\"360p\":\"{{debate['streaming']}}\"}","hash":"2016/02/07/piscinas_76114.mp4","rtag":"https://pubads.g.doubleclick.net/gampad/ads?sz=400x300&iu=/1028310/RPP_Video&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]"}' class="x-media big"><img src="{{ehost}}/static/img/debate-presidencial/video-portada.jpg?v=1" alt="envivo"><span class="icon-video"></span></a></div>
+                      <figcaption>Transmisión Debate Presidencial</figcaption>
+                    </figure>
+                  </div>
+                </div>
+                <div class="wd-col col-b">
+                  <span class="mam">MINUTO A MINUTO</span>
+                  <span class="hashtag">#VotaPerú</span>
+                  <div class="body-inner-mam">
+                  <?php if(!empty(@$debate['evento']['id'])):?>
+                    {{ partial('partials/portada/bloque/cronologico/mam' , ['id':  debate['evento']['id'] ] ) }}
+                  <?php endif;?>
+                  </div>
+                </div>
+              </div>
+              <div class="wd-row" id="results">
+                <div class="results-top">
+                  <span class="more valora">VALORA TU CANDIDATO</span>
+                  <span class="more ver-r">
+                    <a href="/elecciones-peru-2016/debate/resultados">VER RESULTADOS +</a>
+                  </span>
+                </div>
+                <div itemscope itemtype="http://schema.org/ImageGallery" class="x-slide" data-x="{&quot;breakpoints&quot;:&quot;375x1,775x2,975x3,9999x4&quot;, &quot;interval&quot;:5}">
+                  <meta itemprop="creator" content="debate presidencial 2016">
+                  <meta itemprop="datePublished" content="{{date('Y-m-d')}}">
+                  <div class="x-wrapper">
+                    <div class="x-container">
+                    <div class="gracias-voto">
+                  <div class="img-gracias"></div>
+                  <div class="txt-gracias">
+                    <p>¡Gracias por tu voto!</p>
+                    <p>
+                        <a href="/elecciones-peru-2016/debate/resultados">Ver Resultados</a>
+                    </p>
+                  </div>
+                </div>
+                      <!-- <div class="x-item wd-candidato active"> -->
+                    <?php foreach (\Rpp\Services\Get\Candidatos::listado() as $slug => $candidato):?>
+                      <div class="x-item wd-candidato" id="{{slug}}">
+                        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                          <meta itemprop="datePublished" content="{{date('Y-m-d')}}">
+                          <meta itemprop="caption description" content="Barnechea">
+                          <div class="img-candidato {{slug}}"></div>
+                          <div class="votaciones-candidato">
+                            <div class="el-candidato">
+                              <div class="nombre-candidato"><a href="{{host}}{{candidato['url']}}">{{candidato['nombre_corto']}}</a></div>
+                              <div class="partido-candidato">{{candidato['partido']}}</div>
+                            </div>
+                            <?php $like = \Shared\Redis::request()->get("elecciones:debate:votaciones:$slug:like"); /*$this->redis->get("elecciones:debate:votaciones:$slug:like");*/?>
+                            <?php if(empty($like)) $like = 0;?>
+                            <?php $dislike = \Shared\Redis::request()->get("elecciones:debate:votaciones:$slug:dislike"); /*$this->redis->get("elecciones:debate:votaciones:$slug:dislike");*/?>
+                            <?php if(empty($dislike)) $dislike = 0;?>
+                            <?php $total = $like+$dislike;?>
+                            <?php if($total<=0): ?>
+                            <?php $like_porcentaje = 0;?>
+                            <?php $dislike_porcentaje =0; ?>
+                            <?php else:?>
+                              <?php $like_porcentaje = round(100*$like/$total);?>
+                              <?php $dislike_porcentaje = 100 - $like_porcentaje;?>
+                            <?php endif;?>
+                            <div class="debate-votacion">
+                              <div class="votacion-likes">
+                                  <div class="likes-mini-small is-like-mini">
+                                    <a href="#"></a>
+                                  </div>
+                                  <div class="percent-like">
+                                    <div class="number">{{like_porcentaje}}%</div>
+                                  </div>
+                              </div>
+                              <div class="votacion-likes">
+                                  <div class="likes-mini-small is-dislike-mini">
+                                    <a href="#"></a>
+                                  </div>
+                                  <div class="percent-dislike">
+                                    <div class="number">{{dislike_porcentaje}}%</div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </figure>
+                      </div>
+                      <?php endforeach;?>
+                    </div>
+                  </div>
+                  <!-- <div class="x-pager-number"></div> -->
+                  <div class="x-arrows"><a href="#prev" class="x-prev"><span class="icon-chevron-left icon-prev"></span></a><a href="#next" class="x-next"><span class="icon-chevron-right icon-next"></span></a></div>
+                </div>
+                
+              </div>
+            </div>
+            <!--end: debate widget-->

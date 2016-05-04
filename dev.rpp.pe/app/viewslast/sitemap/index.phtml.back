@@ -1,0 +1,134 @@
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/politica</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/lima</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/mundo</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/vida-y-estilo</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/viajes</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/gastronomia</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/mascotas</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/tegnologia</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/tecnologia</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/ciencia</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/virales</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/peru</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/economia</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/futbol</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/voley</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/tenis</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/automovilismo</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/lucha</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/multideportes</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/cultura</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/tv</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/cine</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/musica</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/famosos</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+   <sitemap>
+      <loc>{{host}}/sitemap/seccion/horoscopo</loc>
+      <lastmod>{{date('Y-m-d\TH:i:sP')}}</lastmod>
+   </sitemap>
+
+
+</sitemapindex>

@@ -1,0 +1,58 @@
+<?php define('ADMIN_USERNAME','admin');  ?>
+<?php define('ADMIN_PASSWORD','gruporppIA');   ?>
+<?php if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) || $_SERVER['PHP_AUTH_USER'] != ADMIN_USERNAME || $_SERVER['PHP_AUTH_PW'] != ADMIN_PASSWORD): ?>
+<?php  Header("WWW-Authenticate: Basic realm=\"Grupo RPP Login\""); ?>
+<?php  Header("HTTP/1.0 401 Unauthorized"); ?>
+<?php  exit; ?>
+<?php endif; ?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <title>RPP NOTICIAS</title>
+  <link>{{host}}</link>
+  <?php $notas_show=array();?>
+   <description>
+        <?php echo @\Rpp\Services\Get\Destacados::metadata('home')->titulo; ?>   
+   </description>
+   <language>es-pe</language>
+   <lastBuildDate><?php echo date('c')?></lastBuildDate>
+   <?php foreach (\Rpp\Services\Get\Instantarticle::flow(5) as $item) : ?>
+   <?php if(empty(\Rpp\Services\Get\Content::node($item->_id)->_id)) continue;?>
+   <?php $media_tipos = @\Rpp\Services\Get\Content::part($item->_id,'media_tipos');?>
+   <?php if(is_array($media_tipos)  && in_array('mam', $media_tipos)) continue; ?>
+   <?php $notas_show[] = $item->_id ?>
+   <item>
+      <title><?php echo   \Rpp\Services\Get\Content::node($item->_id)->titulo ?> </title>
+      <link>{{host}}<?php echo \Rpp\Services\Get\Content::nurl($item->_id)?></link>
+      <guid>{{item._id}}</guid>
+      <author>RPP Noticias</author>
+      <pubDate><?php echo date('c' , \Rpp\Services\Get\Content::node($item->_id)->fecha_publicacion )?></pubDate>
+      <description><?php echo   html_entity_decode (\Rpp\Services\Get\Content::node($item->_id)->bajada) ?></description>
+      <content:encoded>
+      <![CDATA[
+       {{ partial('articlesfeed/articlehtml' , [ 'nid': item._id ]) }}
+       ]]>
+      </content:encoded>
+   </item>
+   <?php endforeach;?>
+
+   <?php foreach (\Rpp\Services\Get\Instantarticle::flowupd(5) as $item) : ?>
+   <?php if(empty(\Rpp\Services\Get\Content::node($item->_id)->_id)) continue;?>
+   <?php $media_tipos = @\Rpp\Services\Get\Content::part($item->_id,'media_tipos');?>
+   <?php if(is_array($media_tipos)  && in_array('mam', $media_tipos)) continue; ?>
+   <?php if(in_array($item->_id,$notas_show)) continue;?>
+   <item>
+      <title><?php echo   \Rpp\Services\Get\Content::node($item->_id)->titulo ?> </title>
+      <link>{{host}}<?php echo \Rpp\Services\Get\Content::nurl($item->_id)?></link>
+      <guid>{{item._id}}</guid>
+      <author>RPP Noticias</author>
+      <pubDate><?php echo date('c' , \Rpp\Services\Get\Content::node($item->_id)->fecha_publicacion )?></pubDate>
+      <description><?php echo   html_entity_decode (\Rpp\Services\Get\Content::node($item->_id)->bajada) ?></description>
+      <content:encoded>
+      <![CDATA[
+       {{ partial('articlesfeed/articlehtml' , [ 'nid': item._id ]) }}
+       ]]>
+      </content:encoded>
+   </item>
+<?php endforeach;?>
+
+</rss>

@@ -1,0 +1,12 @@
+<div class="table-duo box">
+  <div class="fecha-table-duo">
+    <time><?php echo utf8_encode(ucfirst(strftime('%A %e de %B Hora %H:%M',  strtotime("-2 hour",Rpp\Services\Get\Resultados::match($this->model->torneo,$match)['time']) )) );?></time>
+  </div>
+  <div class="vs-table-duo">
+    <ul>
+      <li><img src="http://eventos.rpp.com.pe/services/datafactory/escudos/{{df_match(model.torneo,match)['local']['id']}}.png" width="50" height="50"><span>{{df_match(model.torneo,match)['local']['nombre']}}</span></li>
+      <li><img src="http://eventos.rpp.com.pe/services/datafactory/escudos/{{df_match(model.torneo,match)['visita']['id']}}.png" width="50" height="50"><span>{{df_match(model.torneo,match)['visita']['nombre']}}</span></li>
+    </ul>
+  </div>
+  {{ partial('partials/resultados/match/fixture_' ~ df_match(model.torneo,match)['estado'] ,['match': match]) }}
+</div> 

@@ -1,0 +1,33 @@
+
+<div class="weather-header group">
+        <h1>{{clima(model.slug).location['city']}}</h1>
+        <label for="dep">Seleccione otra región</label>
+        <select name="dep" onchange="if (this.value) window.location.href=this.value">
+            <option value="{{host}}/clima/lima">Mas regiones</option>
+            <option value="{{host}}/clima/amazonas">Amazonas</option>
+            <option value="{{host}}/clima/ancash">Ancash</option>
+            <option value="{{host}}/clima/apurimac">Apurimac</option>
+            <option value="{{host}}/clima/arequipa">Arequipa</option>
+            <option value="{{host}}/clima/ayacucho">Ayacucho</option>
+            <option value="{{host}}/clima/cajamarca">Cajamarca</option>
+            <option value="{{host}}/clima/cuzco">Cuzco</option>
+            <option value="{{host}}/clima/huancavelica">Huancavelica</option>
+            <option value="{{host}}/clima/huanuco">Huanuco</option>
+            <option value="{{host}}/clima/ica">Ica</option>
+            <option value="{{host}}/clima/junin">Junin</option>
+            <option value="{{host}}/clima/la_libertad">La Libertad</option>
+            <option value="{{host}}/clima/lambayeque">Lambayeque</option>
+            <option value="{{host}}/clima/lima">Lima</option>
+            <option value="{{host}}/clima/loreto">Loreto</option>
+            <option value="{{host}}/clima/madre_de_dios">Madre de Dios</option>
+            <option value="{{host}}/clima/moquegua">Moquegua</option>
+            <option value="{{host}}/clima/pasco">Pasco</option>
+            <option value="{{host}}/clima/piura">Piura</option>
+            <option value="{{host}}/clima/puno">Puno</option>
+            <option value="{{host}}/clima/san_martin">San Martin</option>
+            <option value="{{host}}/clima/tacna">Tacna</option>
+            <option value="{{host}}/clima/tumbes">Tumbes</option>
+            <option value="{{host}}/clima/ucayali">Ucayali</option>
+        </select>
+        <time class="pubdate" datetime="<?php echo date('Y-m-d\TH:i:sP', time()) ?>">Hoy, <?php echo utf8_encode(ucfirst(strftime('%e de %B del %Y',  strtotime(date("Y-m-d")) )) );?></time>
+</div>

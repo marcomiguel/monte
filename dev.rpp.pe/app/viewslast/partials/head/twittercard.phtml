@@ -1,0 +1,16 @@
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@RPPNoticias" />
+<meta name="twitter:creator" content="@RPPNoticias" />
+<meta name="twitter:domain" content="rpp.pe" />
+<?php if(@$this->model->tipo=='galeria'):?>
+<?php $pgaleria = \Rpp\Services\Get\Content::part($this->model->nid,'galeria')[$this->model->position] ;?>
+<meta name="twitter:description" content="{{model.description}} " />
+<meta name="twitter:image" content="{{ cdn_image(getPart(model.nid,'contenido')[pgaleria]['foto']['hash'],'normal') }}" />
+<?php else:?>
+<meta name="twitter:description" content="{{model.description}} {{host}}{{model.urlcanonical}} " />
+<meta name="twitter:image" content="{{model.img_social}}" />
+<?php endif;?>
+<meta property="twitter:account_id" content="3068660363" />
+<!-- fin Twitter Card -->

@@ -1,0 +1,63 @@
+.grid
+    .col-2-2
+        section.box
+            .box-inner
+                include breadcrumb-social
+
+                article.box-detail
+                    
+                    header
+                        time(datetime="2015-02-23 19:44") 23/02/15 19:44
+                            
+                        h1 Real Madrid, Triunfa con golazo de Cristiano Ronaldo
+                        cite.hat Real Madrid: Iker Casillas y Ancelotti fueron homenajeados Fabio Cannavaro fue condenado a 10 meses de cárcle en Italia.                
+                    section.inner-detail.ml
+
+                        section.img-news                                            
+                            //include detail-content-img
+                            //figure.media.full
+                                img(src="img/16_9_ndetalle.jpg", alt="Real Madrid, Triunfa con golazo de Cristiano Ronaldo")
+                                figcaption.help-media Agencia AFP
+                            
+
+                        ul.sharedetail-fix.nolist.new-social
+                            li.social-fb
+                                a(href="javascript: void(0);" onclick="rpp.shareSocial(this, 'facebook', 'http://www.la10.pe/futbol-internacional/mas-mundo/cristiano-ronaldo-termino-con-irina-shayk-por-culpa-de-modelo-brasilena-noticia-900573?ns_source=facebook&ns_mchannel=la10.articulo.900573&ns_campaign=Shared&ns_linkname=wtop');")
+                                    i.icon.icon-facebook
+                                    span
+                            li.social-tw
+                                a(href="javascript: void(0);" onclick="rpp.shareSocial(this, 'twitter','http://www.la10.pe/futbol-internacional/mas-mundo/cristiano-ronaldo-termino-con-irina-shayk-por-culpa-de-modelo-brasilena-noticia-900573?ns_source=twitter&ns_mchannel=la10.articulo.900573&ns_campaign=Shared&ns_linkname=wtop');")
+                                    i.icon.icon-twitter
+                                    span 
+                            li.social-gplus
+                                a(href="javascript: void(0);" onclick="rpp.shareSocial(this, 'googlemas','http://www.la10.pe/futbol-internacional/mas-mundo/cristiano-ronaldo-termino-con-irina-shayk-por-culpa-de-modelo-brasilena-noticia-900573?ns_source=googleplus&ns_mchannel=la10.articulo.900573&ns_campaign=Shared&ns_linkname=wtop');")
+                                    i.icon.icon-google-plus
+                                    span 
+                            li.social-comments
+                                a(href="#coment").comenta.ancla
+                                    i.icon.icon-comments-o
+                                    span 
+                        section.content-news
+                            include detail-social-bottom
+                            include detail-content-news
+
+                    section.inner-detail.n-padd
+                        section.content-news
+                            include detail-tags
+                            
+                            include detail-social-bottom
+                            a(href="" data-type="s-click" data-idfb="287920207998918").lazy.comenta.bot
+                            section.comment#coment
+                                h4 COMENTA:
+                                .fb#fb-root
+                                .fb-comments(data-numposts="5" data-colorscheme="light" data-href="www.la10.pe")
+                                span.wrapper-icon-circle-o-notch
+                                    i.icon.icon-circle-o-notch.fa-spin
+                            section.ads-full
+                                section.ads-sidebar
+                                section.ads-sidebar    
+                                    
+                            include detail-related-news
+                            include connect
+                        .clear
+                                        

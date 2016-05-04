@@ -1,0 +1,14 @@
+<article class="card">
+  <figure class="holder">
+    <a {{ partial('partials/portada/grilla/block/url/' ~ item['tipo'] , [ 'nid' : item['nid'] ]) }} class="cover">
+      <img src="{{ cdn_image(item['imagen_portada']['hash'], img_size ) }}" alt="{{ item['imagen_portada']['alt'] }}">
+      {{ partial('partials/portada/grilla/block/icon/' ~ item['tipo'] ) }}
+    </a>
+  </figure>
+  <div class="cont">
+    <div class="top-info">
+      {{ partial('partials/portada/grilla/block/entry-cont/categoria_' ~ getGrilla(slug).tipo['namespace'] , [ 'nombre' : item['categoria']['nombre'] ,'slug' : item['categoria']['slug'] ] ) }}
+    </div>
+    <h2><a {{ partial('partials/portada/grilla/block/url/' ~ item['tipo'] , [ 'nid' : item['nid'] ]) }}>{{item['titulo']}}</a></h2>
+  </div>
+</article>

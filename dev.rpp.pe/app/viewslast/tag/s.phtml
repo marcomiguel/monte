@@ -1,0 +1,59 @@
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?>
+<!--Head-->
+{{ partial('partials/head/index') }}
+<body data-bg="{{model.epl_kvs}}" id='tema' class="{{model.tema}}">
+<div id="contenedor_div">
+    <!--Header-->
+    {{ partial('partials/header/index') }}
+
+    <div class="wrapper body group">
+
+        <div class="category wrap group">
+            <div class="content group">
+
+                <div class="feat-title">
+                    <h1>Hay <?php echo \Rpp\Services\Get\Flow::tag_size($this->model->slug) ?> noticias con la etiqueta ˝<?php echo ucwords($this->model->tag_info->nombre); ?>˝</h1>
+                </div>
+
+                <?php echo $this->partial('partials/redes/redes', array('slugne'=>'/tema-'.urlencode($this->model->tag_info->nombre))); ?>
+                <!-- .redes -->
+
+                 {{ partial('partials/portada/flujo/tag2' , [] , trackurl) }}
+            
+
+               <!-- <div class="nav-news group">
+                    <a class="btn btn-prev" href="#"><span class="icon-13"></span>Anteriores</a>
+                    <a class="btn btn-next" href="#">Siguientes<span class="icon-14"></span></a>
+                </div> -->
+
+            </div>
+            <!-- .content -->
+            <aside class="sidebar">
+
+                <!-- #rotafono -->  
+                 {{ partial('partials/ads/right') }}
+                {{ partial('partials/sidebar/calientes' , ['slug':'home'] , trackurl ) }}
+
+                {{ partial('partials/ads/right1') }}
+                <!-- pub-300 -->
+                {{ partial('partials/portada/sidebar/sdb_trafico' , ['tag':''  , 'nombre': ''] ) }}
+                <!-- .weather-sidebar -->
+                 {{ partial('partials/ads/right2') }}
+
+            </aside>
+            <!-- .sidebar -->
+        </div>
+
+        {{ partial('partials/ads/middle2') }}
+        <!-- pub-980 -->
+
+    </div>
+
+    
+    <!--Footer-->
+    {{ partial('partials/footer/index' , [] , trackurl) }}
+    <div id="pad-swipe-nav"></div>
+    {{ partial('partials/footer/scripts') }}
+    {{ partial('partials/footer/tracking') }}
+</div>
+</body>

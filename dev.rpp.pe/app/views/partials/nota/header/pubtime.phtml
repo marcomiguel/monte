@@ -1,0 +1,4 @@
+<?php $fecha_actual = time();?>
+<?php if($fecha_publicacion>$fecha_actual) $fecha_publicacion = $fecha_actual; ?>
+<time datetime="{{date('Y-m-d H:i',fecha_publicacion)}}" class="pubdate">{{date('d/m/y H:i',fecha_publicacion)}}</time>
+

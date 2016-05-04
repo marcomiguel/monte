@@ -1,0 +1,94 @@
+.social-share
+  width: 35px
+  margin-left: 20px
+
+
+  ul
+    transition: top $transitionDuration cubic-bezier(0.230, 1.000, 0.320, 1.000)
+    list-style: none
+    margin: 0
+    li
+      margin: 0
+      margin-bottom: 10px
+      a
+        display: inline-block
+        overflow: hidden
+        border-radius: 5px
+        color: #fff
+        width: 35px
+        height: 35px
+        text-align: center
+        font-size: 2rem
+        vertical-align: middle
+        span
+          vertical-align: middle
+        &:hover
+          text-decoration: none
+          opacity: .9
+      .count
+        display: block
+        text-align: center
+        font-size: 1.8rem
+        font-weight: 700
+        color: #053a55
+        border-bottom: 1px solid #053a55
+        margin: 20px -5px 15px
+        padding-bottom: 5px
+        position: relative
+        &:after
+          position: absolute
+          width: 8px
+          height: 8px
+          background-color: #fff
+          border-width: 1px 1px 0 0
+          border-style: solid
+          border-color: #053a55
+          bottom: -5px
+          left: 50%
+          margin-left: -4px
+          transform: rotate(135deg)
+          content: ""
+    li.wa-share
+      display: none
+      a
+        background-color: #64d448
+    li.fb-share
+      a
+        background-color: #3d58a4
+    li.tw-share
+      a
+        background-color: #00aced
+    li.gp-share
+      a
+        background-color: #cd5547
+    li.in-share
+      a
+        background-color: #007bb5
+    li.comment
+      a
+        background-color: #053a55
+        &:hover
+          background-color: darken(#053a55, 30%)
+  .on-share
+
+    display: none
+    margin-bottom: 0
+    position: relative
+    a
+      background-color: #0060ab
+      border-radius: 50%
+
+      display: inline-block
+      overflow: hidden
+      color: #fff
+      width: 45px
+      height: 45px
+      text-align: center
+      font-size: 2rem
+      line-height: 1.8
+      vertical-align: middle
+      span
+        vertical-align: middle
+      &:hover
+        text-decoration: none
+        opacity: .9

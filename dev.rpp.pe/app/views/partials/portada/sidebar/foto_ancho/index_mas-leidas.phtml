@@ -1,0 +1,10 @@
+{% cache "portada.masvisto.foto_ancho." ~ slug 1200 %}
+<div class="sidebar-branding sb_mas-leidas">
+<div class="title-branding"></div>
+ <div>
+  <?php foreach (\Rpp\Services\Get\Visitas::ranking('home',$cantidad) as $item) : ?>
+   {{ partial('partials/portada/bloque/tag/tag_foto_ancho', [ 'nid' : item['nid'] , 'img_size' : 'medium' , 'tag' : tag  ]) }}
+  <?php endforeach;?>
+ </div>
+</div>
+{% endcache %}

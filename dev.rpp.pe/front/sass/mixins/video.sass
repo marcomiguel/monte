@@ -1,0 +1,8 @@
+// VIDEO
+@mixin video($height: 340px,$width: 100%)
+    iframe[src*='https://www.youtube.com/'],
+    iframe[src*='https://player.vimeo.com/'],
+    iframe[src*='https://vine.co/'],
+    iframe[src*='//www.dailymotion.com/']
+        max-width:$width !important
+        height:$height

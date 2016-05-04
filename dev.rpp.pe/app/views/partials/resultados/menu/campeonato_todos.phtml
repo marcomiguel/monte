@@ -1,0 +1,11 @@
+<div class="menu-mas box">
+<button class="hidden"><span class="hamburger">+</span></button>
+<ul class="visible-links">
+  <li <?php if( $this->model->torneo == 'peru'  ):?>class="active"<?php endif; ?>><a href="{{host}}/resultados/{{model.package}}/peru">Copa Movistar</a></li>
+  <li <?php if( $this->model->torneo == 'alemania'  ):?>class="active"<?php endif; ?>> <a href="{{host}}/resultados/{{model.package}}/alemania">Bundesliga</a></li>
+  <li <?php if( $this->model->torneo == 'premierleague'  ):?>class="active"<?php endif; ?>><a href="{{host}}/resultados/{{model.package}}/premierleague">Premier League</a></li>
+  <li <?php if( $this->model->torneo == 'espana'  ):?>class="active"<?php endif; ?>> <a href="{{host}}/resultados/{{model.package}}/espana">Liga BBVA</a></li>
+  <li <?php if( $this->model->torneo == 'italia'  ):?>class="active"<?php endif; ?>> <a href="{{host}}/resultados/{{model.package}}/italia">Serie A</a></li> 
+  <li <?php if( $this->model->torneo == 'champions'  ):?>class="active"<?php endif; ?>><a href="{{host}}/resultados/{{model.package}}/champions">Champions</a></li></ul>
+<ul class="hidden-links hidden"></ul>
+</div>

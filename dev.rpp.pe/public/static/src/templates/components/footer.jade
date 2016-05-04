@@ -1,0 +1,39 @@
+footer#footer(role='contentinfo')
+  .footer-brands
+    .grid
+      .copy
+        | Copyright © 2016
+      ul
+        li Visita también:
+        li
+          a(href="#link", target="_blank", title="Radio Capital") Capital
+        li
+          a(href="#link", target="_blank", title="La10.pe") La10
+        li
+          a(href="#link", target="_blank", title="Radio Studio 92") Studio 92
+        li
+          a(href="#link", target="_blank", title="Radio Oxigeno") Oxígeno
+        li
+          a(href="#link", target="_blank", title="Radio La Zona") La Zona
+        li
+          a(href="#link", target="_blank", title="Radio Corazón") Corazón
+        li
+          a(href="#link", target="_blank", title="Radio Felicidad") Radio Felicidad
+  .footer-corp
+    .grid
+      .info
+        ul
+          each val in ["Contáctenos", "Aviso legal", "Anuncie aquí", "Código de ética", "Solución de quejas SNRTV", "Mapa del sitio"]
+            li
+              a(href="#link")= val
+        ul
+          li.grupo-rpp
+             a(href="#link", target="_blank", class="grupo-rpp")
+                |Grupo RPP #{' '}
+          li Auditado por:
+            a(href="#link") #{' '} Comscore
+          li Asociado a:
+            a(href="#link") #{' '} IAB Perú
+          li Licenciado por:
+            a(href="#link") #{' '} APDAYC
+

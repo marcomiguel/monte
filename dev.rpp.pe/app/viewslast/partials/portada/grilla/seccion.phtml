@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="box-mod box-header-section ">
+		<div class="box-header">
+		<h1 class="title-mod">{{model.seccion_info.seccion}}</h1>
+		</div>
+	</div>
+	{{ partial('partials/portada/bloque/tag/cabecera' , ['slug': model.slug_seccion ] ) }}
+
+	<?php $order = @\Rpp\Services\Get\Destacados::portada($this->model->slug_seccion)->tipo['slug'] ;?>
+	<?php $namespace = @\Rpp\Services\Get\Destacados::portada($this->model->slug_seccion)->tipo['namespace'] ;?>
+	
+	<?php if($order=='' || $order=='ninguna'){ $order='index'; } ?>
+	{{ partial('partials/portada/grilla/home/' ~ order , [ 'slug':model.slug ,  'ads' : '300x380' , 'namespace' : namespace ] ) }}
+	
+</div>
+
+{{ partial('partials/portada/bloque/tag/campana_cuerpo' , ['slug': model.slug_seccion ] ) }}
+
+{{ partial('partials/ads/middle1') }}
+<!-- pub-980 -->
+
+{{ partial('partials/portada/bloque/tag/medio' , ['slug': model.slug_seccion ] ) }}

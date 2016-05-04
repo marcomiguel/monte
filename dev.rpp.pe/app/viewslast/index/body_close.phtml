@@ -1,0 +1,11 @@
+{% cache "portada.body.close.home"  604800 %}
+{{ partial('partials/portada/bloque/mas_en_portadas') }}
+<div class="row">
+{{ partial('partials/ads/middle2') }}
+<!-- pub-980 -->
+{{ partial('partials/portada/bloque/tag/cronologico_2' , ['slug':'home'] ) }}
+<!-- .especial -->
+{{ partial('partials/portada/bloque/gelerias-hoy') }}
+<!-- .gallery-main -->
+</div>
+{% endcache %}

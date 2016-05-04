@@ -1,0 +1,40 @@
+.slider
+  position: relative
+  .slider-nav
+    position: absolute
+    top: 50%
+    transform: translate(0,-50%)
+    width: 100%
+    ul
+      list-style: none
+      margin: 0
+      position: relative
+      li
+        background-color: #999;
+        background-color: rgba(255,255,255,0.6)
+        border: 4px solid rgba(105,105,105,0.75)
+        border-radius: 50%
+        display: block
+        height: 49px
+        width: 49px
+        transition: all 0.3s
+        top: 50%
+        outline: none
+        position: absolute
+        text-align: center
+        margin: 0
+        cursor: pointer
+        &:hover
+          background-color: rgba(255,255,255,1)
+        span
+          font-size: 20px
+          top: 50%
+          margin-top: 10px
+          display: inline-block
+      .btn-left
+        left: 15px
+      .btn-right
+        right: 15px
+
+
+

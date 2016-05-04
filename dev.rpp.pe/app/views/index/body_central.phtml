@@ -1,0 +1,16 @@
+{% cache "portada.bodycentral.home"  604800 %}
+<div class="content group">
+    {{ partial('partials/portada/bloque/tag/cronologico_1' , ['slug':'home'] ) }}
+    <!-- .especial -->
+    <div class="especial group ttl-new">
+        <h1>
+            Lo Último
+        </h1>
+    </div> 
+    {{ partial('partials/portada/flujo/home' , [] , trackurl) }}
+    
+    <div class="more-news">
+        <a class="btn" href="/archivo">Ver más noticias</a>
+    </div>
+</div>
+{% endcache %} 

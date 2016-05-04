@@ -1,0 +1,24 @@
+<?php $e=1; $ads = 1;?>
+<?php if(count(@$this->model->tag_info->tags_in)>1):?>
+<?php foreach (\Rpp\Services\Get\LFlow::tagsrelated($this->model->slug, $this->model->tag_info->tags_in ,50) as $item) : ?>
+    <?php if(empty(\Rpp\Services\Get\Content::part($item->_id,'_id' ))) continue; ?>
+    {{partial('partials/portada/flujo/box/tag',['nid':item._id  , 'position': e])}}
+    <?php if( $e%10 == 0 ): ?>
+        {{partial( 'partials/ads/interna_doble', [ 'position': ads ] )}}
+    <?php   $ads = $ads+2; ?>
+    <?php endif;?>
+<?php $e++;?>    
+<?php endforeach;?> 
+
+<?php else:?>
+
+<?php foreach (\Rpp\Services\Get\LFlow::tag($this->model->slug,50) as $item) : ?>
+    {{partial('partials/portada/flujo/box/tag',['nid':item._id  , 'position': e])}}
+    <?php if( $e%10 == 0 ): ?>
+        {{partial( 'partials/ads/interna_doble', [ 'position': ads ] )}}
+    <?php   $ads = $ads+2; ?>
+    <?php endif;?>
+<?php $e++;?>    
+<?php endforeach;?>
+
+<?php endif;?>

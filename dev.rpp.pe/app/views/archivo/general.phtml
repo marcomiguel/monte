@@ -1,0 +1,54 @@
+<!--Head-->
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?> 
+{{ partial('partials/head/index') }}
+<body data-bg="{{model.epl_kvs}}" >
+<div id="contenedor_div">
+    <!--Header-->
+    {{ partial('partials/header/index') }}
+    <div class="wrapper body group">
+
+        <div class="category wrap group">
+            <div class="content group">
+
+                <div class="feat-title">
+                <?php $fecha_num= strtotime ( $this->model->fecha ); ?>
+                    <h1>Archivo del  <?php echo strftime('%d de %B del %Y' , $fecha_num ); ?></h1>
+                </div>
+
+                <?php echo $this->partial('partials/redes/redes', array('slugne'=>'/archivo/'.$this->model->fecha)); ?>
+               <!-- .redes -->
+                {{ partial('partials/portada/flujo/archivo', [] , trackurl) }}
+
+                <div class="nav-news group">
+                    <a class="btn btn-prev" href="/archivo/<?php $nuevafecha = strtotime('-1 day', $fecha_num ); echo date('Y-m-d', $nuevafecha ); ?>"><span class="icon-13"></span>
+                        <small class="date-text">Noticias del</small> <?php echo strftime('%d.%B.%Y' , $nuevafecha ); ?></a>
+                    <a class="btn btn-next" href="/archivo/<?php $nuevafecha = strtotime ( '+1 day' , $fecha_num); echo date('Y-m-d', $nuevafecha); ?>">
+                        <small class="date-text">Noticias del</small> <?php echo strftime('%d.%B.%Y' , $nuevafecha ); ?><span class="icon-14"></span></a>
+                </div>
+
+            </div>
+            <!-- .content -->
+            <aside class="sidebar">               
+                {{ partial('partials/ads/right') }}
+                {{ partial('partials/sidebar/calendario') }}
+                {{  partial('partials/portada/grilla/block/tag_portada' , ['slug':'home'])  }}
+                {{ partial('partials/ads/right1') }}
+                {{ partial('partials/sidebar/clima') }}          
+                {{ partial('partials/ads/right2') }}
+                {{ partial('partials/sidebar/calientes' , ['slug':'home'] , trackurl ) }}
+                {{ partial('partials/ads/right3') }}
+            </aside>
+            <!-- .sidebar -->
+        </div>
+
+        {{ partial('partials/ads/middle2') }}
+
+    </div>
+    <!--Footer-->
+    {{ partial('partials/footer/index' , [] , trackurl) }}
+    <div id="pad-swipe-nav"></div>
+    {{ partial('partials/footer/scripts') }}
+    <script src="{{ehost}}/scripts/rpp_calendar.min.js?v={{eversion}}"></script>
+    {{ partial('partials/footer/tracking') }} 
+</div>
+</body>

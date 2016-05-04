@@ -1,0 +1,14 @@
+{% cache "portada.masleidas." ~ slug 1200 %}
+<div class="box-mod box-row brand-{{tag}} no-ellipsis">
+	<div class="box-header">
+	  <h3 class="title">{{nombre}}</h3>
+	</div>
+
+	<?php $cantle=1; foreach (\Rpp\Services\Get\Visitas::ranking($slug,$cantidad) as $e => $item):?> 
+		
+		<div class="row ranking">
+          <h3><a href="{{nUrl(item['nid'])}}{{TrackUrl(1)}}"><span class="order"><?=$cantle;?></span>{{getNode(item['nid']).titulo}}</a></h3>
+        </div>
+	<?php $cantle++; endforeach;?>
+</div>
+{% endcache %} 

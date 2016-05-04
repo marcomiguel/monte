@@ -1,0 +1,12 @@
+<?php if(@\Rpp\Services\Get\Destacados::portada($slug)->cronologico_2['slug']):?>
+ <?php $cron = \Rpp\Services\Get\Destacados::portada($slug)->cronologico_2['slug'];?>
+ <?php if( $this->_view->exists('partials/portada/bloque/cronologico/cron_'.$cron) ) :?>
+  <?php $destacadas = @\Rpp\Services\Get\Destacados::portada($slug)->cronologico_2;  ?>
+  {{ partial('partials/portada/bloque/cronologico/cron_' ~ cron , ['destacadas' : destacadas  , 'tag' : getGrilla(slug).cronologico_2['slug'] ,'nombre' : getGrilla(slug).cronologico_2['nombre'] ]) }}
+<?php else :?>
+<?php $destacadas = @\Rpp\Services\Get\Destacados::portada($slug)->cronologico_2;  ?>
+{{ partial('partials/portada/bloque/cronologico/cron_general' , ['destacadas' : destacadas  , 'tag' : getGrilla(slug).cronologico_2['slug'] , 'nombre' : getGrilla(slug).cronologico_2['nombre'] ]) }}
+<?php endif;?>
+<?php endif;?>
+
+

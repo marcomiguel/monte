@@ -1,0 +1,200 @@
+- var linkFacebook = 'https://www.facebook.com/sharer/sharer.php?u=URL&t=TITLE'
+- var linkTwitter = 'https://twitter.com/intent/tweet?original_referer=DOMAIN-URL&text=TITLE&url=URL&via=lazona'
+- var linkGoogle = 'https://plus.google.com/share?url=URL'
+- var linkLinkedin = 'https://www.linkedin.com/shareArticle?url=URL&title=TITLE&summary=SUBTITLE'
+
+
+mixin space(w, h)
+  img(src="data:image/gif;base64,R0lGODlhAQABAIAAALu7u////yH5BAAHAP8ALAAAAAABAAEAAAICRAEAOw==", style="width:#{w}; height: #{h}")
+
+mixin img-holder(w, h)
+  img(src="data:image/gif;base64,R0lGODlhAQABAIAAALu7u////yH5BAAHAP8ALAAAAAABAAEAAAICRAEAOw==", width=w height=h alt="X-DEMO-CONTENT")
+
+mixin imgtemp(u)
+  img(src="../tmp/#{u}" alt="X-DEMO-CONTENT")
+
+mixin ads(param)
+  - var num = Math.floor(Math.random() * 100)
+  if param == "300x250"
+    .ads
+      div(id='eplAdRight'+ num)
+        img(src="../tmp/ads-#{param}.jpg" alt="X-DEMO-CONTENT")
+  else if param == "300x600"
+    .ads
+      div(id='eplAdRight'+ num)
+        img(src="../tmp/ads-#{param}.jpg" alt="X-DEMO-CONTENT")
+  else if param == "336x268"
+    .ads
+      div(id='eplAdRight'+ num)
+        img(src="../tmp/ads-#{param}.jpg" alt="X-DEMO-CONTENT")
+  else if param == "980x90"
+    .ads.ads-980x90
+      div(id='eplAdRight'+ num)
+        img(src="../tmp/ads-#{param}.jpg" alt="X-DEMO-CONTENT")
+
+//- article flow main
+mixin item-flow(param)
+  .item-news
+    .item
+      figure
+        a.cover(href="/")
+          img(src="../tmp/#{param.img}", alt="X-DEMO-CONTENT")
+          if (param.icon == "gallery")
+            span.icon-gallery
+          else if (param.icon == "video")
+            span.icon-play
+          else if (param.icon == "audio")
+            span.icon-volume-up
+      .cont
+        h3.cat
+          a(href="/")= param.cat
+        h2.headline
+          a(href="/")= param.title
+
+mixin type-article(type)
+  if (type)
+    span(class= "icon-" + type)
+
+
+//- article flow
+mixin article-flow(param)
+  - var classRatio = param.ratio ? ("cover" + param.ratio) : "";
+  article.card(class= param.twoColumn ? "divided" : "")
+    if (param.img)
+      figure.holder
+        if (param.noColumn)
+          a.cover(href="/", class= classRatio)
+            +imgtemp(param.img )
+            +type-article(param.icon)
+        else
+          a.cover.x-fit-lazy(href="/", data-x = {type: "html", content: '<img src="../tmp/' + param.img +'" alt="X-DEMO-CONTENT">'}, class= classRatio)
+            +type-article(param.icon)
+        if (!param.top)
+          .social.inverse
+            ul
+              li.fb
+                a(href= linkFacebook, onclick='fn(this, event, {"method":"wopen"})')
+                  span.icon-facebook
+              li.tw
+                a(href= linkTwitter, onclick='fn(this, event, {"method":"wopen"})')
+                  span.icon-twitter
+    .cont
+      if (param.cat || param.sponsor)
+        .top-info
+          if param.cat
+            span.cat
+              a.live-news(href="/")= param.cat
+            if (!param.top)
+              span.time
+                | Hace 15 minutos
+          if param.sponsor == true
+            .cat
+              .sponsor
+                .by Gracias a:
+                //- +imgtemp('ads-120x25-2.jpg', alt="X-DEMO-CONTENT")
+                img(src="http://pre-gruporpp-media.s3-us-west-2.amazonaws.com/2016/03/19/centrum1-91495_2550.jpg", alt="X-DEMO-CONTENT")
+      if (param.sidebar)
+        h3
+          a(href="/")= param.title
+      else
+        h2
+          a(href="/")= param.title
+      if (param.cat == 'Autores')
+        .author
+          img(src="../tmp/author.jpg", alt="X-DEMO-CONTENT")
+          .data Escrito por:
+            a(href="/") Renato Cisneros
+      if (param.summary)
+        p= param.summary
+
+      if (param.renderMaM)
+        .x-widget(data-x='{"events":"espana","type":"mam","matchId":"2381818", "method": "renderMaM", "url": "http://dev.rpp.pe/politica/actualidad/el-gran-duelo-luis-advincula-vs-james-rodriguez-noticia-900273"}', id="widget-2381818")
+
+
+mixin article-row(param)
+  article
+    figure.holder
+      a(href="/", class="cover")
+         img(src="../tmp/#{param.img}", alt="X-DEMO-CONTENT")
+      .social.inverse
+        ul
+          li.fb
+            a(href= linkFacebook, onclick='fn(this, event, {"method":"wopen"})')
+              span.icon-facebook
+          li.tw
+            a(href= linkTwitter, onclick='fn(this, event, {"method":"wopen"})')
+              span.icon-twitter
+    .cont
+      .top-info
+        .cat
+          a(href="/")= param.cat
+        .time
+          | Hace 15 minutos
+      h2.headline
+        a(href="/")= param.title
+      if param.author == true
+        .author
+          img(src="#{param.avatar}", alt="X-DEMO-CONTENT")
+          .data Escrito por:
+            a(href="/")= param.name
+      p= param.summary
+
+mixin related(param)
+  if param.thumb == true
+    .related(class="one #{param.position}")
+      figure
+        a.cover(href="/")
+          img(src="http://s3-us-west-2.amazonaws.com/dev-rpp-media-v/medium/2015/08/25/1512661.jpg", alt="X-DEMO-CONTENT")
+          span.icon-play
+      .inner
+        .title Noticia Relacionada
+        h3
+          a(href="related") Congresistas hacen un balance tras diálogo con el Gobierno
+  if param.thumb == false
+    .related(class="#{param.position}")
+      .title Noticias Relacionadas
+      .inner
+        ul
+          li
+            h3
+              a(href="related") Congresistas hacen un balance tras diálogo con el Gobierno
+          li
+            h3
+              a(href="related") ¡La presencia de Evra! El francés tiene la clave para opacar a Luis Suárez
+          li
+            h3
+              a(href="related") Luis Suárez y Giorgio Chiellini se  juegan un partido aparte' en la final de Champions
+
+mixin related-cite(param)
+  aside.cite(class= param.position ? param.position : "")
+    .cont
+      span.title “Medicamentos costosos”
+      span.summary Por los intereses de las grandes compañías norteamericanas sobre intereses de países como Perú
+    .social
+      ul
+        li.fb
+          a(href= linkFacebook, onclick='fn(this, event, {"method":"wopen"})')
+            span.icon-facebook
+        li.tw
+          a(href= linkTwitter, onclick='fn(this, event, {"method":"wopen"})')
+            span.icon-twitter
+
+
+mixin breadcrumb(text)
+  - var text = text || 'Política'
+  .breadcrumb
+    ul(itemscope='', itemtype='http://schema.org/BreadcrumbList')
+      li(itemprop='itemListElement', itemscope='', itemtype='http://schema.org/ListItem')
+        a(itemprop='item', href='/')
+          span(itemprop='name') Portada
+        meta(itemprop='position', content='1')
+
+      li(itemprop='itemListElement', itemscope='', itemtype='http://schema.org/ListItem')
+        a(itemprop='item', href='/')
+          span(itemprop='name') Perú
+        meta(itemprop='position', content='2')
+
+      li.active(itemprop='itemListElement', itemscope='', itemtype='http://schema.org/ListItem')
+        a(itemprop='item', href='/')
+          span(itemprop='name')= text
+        meta(itemprop='position', content='3')

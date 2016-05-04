@@ -1,0 +1,10 @@
+    <nav class="nav-full">
+      <!--Nav main-->
+      <section class="wrapper">
+        <ul>
+        <?php foreach (\Rpp\Services\Get\Categorias::get_categoria_arbol($this->model->slug_seccion) as $categoria) : ?>
+          <li> <a href="{{host}}/{{categoria.path}}{{TrackUrl()}}"><?php if(empty($categoria->alias)):?>{{categoria.nombre}}<?php else :?>{{categoria.alias}}<?php endif;?></a></li>
+        <?php endforeach;?>
+        </ul>
+      </section>
+    </nav>

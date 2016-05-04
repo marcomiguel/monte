@@ -1,0 +1,87 @@
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?>
+<!--Head-->
+{{ partial('partials/head/index') }}
+<body data-bg="{{model.epl_kvs}}"  data-x="slide, lazy, media, sticky" class="radio-live" >
+    <div id="wrap">
+        <!--Header-->
+        {{ partial('partials/header/index') }}
+
+      <div id="content" role="main">
+        <div class="grid pad">
+          <div class="story">
+            <div class="col-primary">
+              <div class="flow-row">
+                <!-- <div class="row">
+                  <div class="rss-all">
+                    <div class="text">Subscripción a todo RPP Noticias</div><a href="#link" class="btn-all-subs"><span class="icon-rss"></span>SUBSCRIBIRSE</a>
+                  </div>
+                </div> -->
+                <div class="row">
+                  <div class="rss-block">
+                    <h2>Regiones</h2>
+                    <ul>
+                      <li class="this"><span>Edición general</span><a href="/feed" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Ancash</span><a href="/feed/peru/ancash" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Arequipa</span><a href="/feed/peru/arequipa" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Ica</span><a href="/feed/peru/ica" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>La Libertad</span><a href="/feed/peru/la-libertad" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Puno</span><a href="/feed/peru/puno" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Lambayeque</span><a href="/feed/peru/lambayeque" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Piura</span><a href="/feed/peru/piura" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Junín</span><a href="/feed/peru/junin" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Cusco</span><a href="/feed/peru/cusco" class="btn-sub"><i class="icon-rss"></i></a></li>
+                    </ul>
+                  </div>
+                  <div class="rss-block">
+                    <h2>Secciones</h2>
+                    <ul>
+                      <li><span>Política</span><a href="/feed/politica" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Vida</span><a href="/feed/vida" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Actualidad</span><a href="/feed/actualidad" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Tecno</span><a href="/feed/tecnologia" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Economía</span><a href="/feed/economia" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Viral</span><a href="/feed/virales" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Deportes</span><a href="/feed/deportes" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Autores</span><a href="/feed/blog" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Entretenimiento</span><a href="/feed/entretenimiento" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <!-- <li><span>Radio</span><a href="/feed/radio" class="btn-sub"><i class="icon-rss"></i></a></li> -->
+                      <li><span>Peru</span><a href="/feed/peru" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>TV</span><a href="/feed/tv" class="btn-sub"><i class="icon-rss"></i></a></li>
+                      <li><span>Mundo</span><a href="/feed/mundo" class="btn-sub"><i class="icon-rss"></i></a></li>
+                    </ul>
+                  </div>
+                  <div class="rss-block">
+                    <h2>Servicios</h2>
+                    <ul>
+                      <li><span>Rotafono</span><a href="/feed/tema-rotafono" class="btn-sub"><i class="icon-rss"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <aside class="col-secondary sidebar x-sticky">
+              <div class="box-mod box-row">
+                <div class="title-box-rr">RSS</div>
+                <div class="box-header">
+                  <div class="description-box-rss">Los canales RSS de RPP.pe te permiten recibir las noticias cuando el sitio es actualizado.</div>
+                  <h2 class="question-rss">¿Qué es el RSS?</h2>
+                  <p class="answer-rss">El <strong>RSS ("Really Simple Syndication")</strong> es un formato que permite emitir contenidos desde un sitio para que sean agregados fácilmente en aplicaciones o sitios web. Los contenidos que se publican en este formato incluyen titulares y sumarios.</p>
+                  <h2 class="question-rss">Modo de uso</h2>
+                  <p class="answer-rss">Se accede a este servicio a través de programas conocidos como "Lectores de noticias", que organizan, actualizan y muestran el contenido de los canales. Para agregar canales, se debe ingresar la url del canal deseado en los programas lectores. Se pueden crear grupos de canales, agrupando todas las secciones de la revista bajo un mismo grupo.</p>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+
+
+        {{ partial('partials/footer/index') }}
+        {{ partial('partials/footer/scripts') }}
+        {{ partial('partials/footer/tracking') }}
+
+</div>
+
+</body>
+
+

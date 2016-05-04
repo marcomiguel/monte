@@ -1,0 +1,41 @@
+<div class="feat-content">
+    <div id="actu_envivoj" class="feat-header">
+        <p class="actual-text">Estás viendo:</p>
+        <h2></h2>
+        <p id="actu_envivoj_p"></p>
+    </div>
+    <div class="feat-block group">
+        {{ partial('partials/envivo/redes') }}
+        {% if(model.player.estado === 0) %}
+        <div class="media-player" >
+            <figure class="hmedia">
+                <img src="{{ehost}}/images/nodisponible.jpg" alt="Transmisión no disponible" title="Transmisión no disponible" >
+            </figure>
+        </div>
+        {% else %}
+        <div class="media-player">
+            <figure class="hmedia">
+                <div id="{{model.slug}}"></div>
+                <script type="text/javascript">
+                    var file = "{{model.file}}";
+                    var playlist = '[{% for k,media in model.player.media %}{"file" : "{{media}}"}{% if k < (model.player.media|length - 1) %},{% endif %}{% endfor %}]';                    
+                    var rtag = "{{model.preroll}}";
+                    var cover = "{{ehost}}/images/envivo.jpg";
+                    setJW7("{{model.slug}}", file, cover, playlist, '{{model.tipop}}', rtag);
+                </script>
+                <figcaption>Transmisión de {{model.tipon}} en vivo</figcaption>
+            </figure>
+        </div>
+        {% endif %}
+    </div>
+    <!-- .feat-block -->
+    
+
+    
+    
+    <!-- .pub-wrap -->
+    <div class="news-comments">
+        <h2 class="panel-title">Dinos que opinas</h2>
+        <div class="fb-comments" data-href="{{host}}/{{model.slug}}" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+    </div>
+</div>

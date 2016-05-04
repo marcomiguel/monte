@@ -1,0 +1,18 @@
+{% cache "portada.masvisto." ~ slug 1200 %}
+<div class="box-mod box-row">
+<div class="box-header">
+  <div class="title">Las noticias más leídas</div>
+</div>
+<?php $cantle=1; foreach (\Rpp\Services\Get\Visitas::ranking($slug,10) as $position => $item) :?>
+<div class="row">
+  <div class="fig">
+    <a href="{{nUrl(item['nid'])}}{{TrackUrl(position+1)}}">
+        <img src="{{ cdn_image(getNode(item['nid']).imagen_portada['hash'], 'medium' ) }}" alt="{{ getNode(item['nid']).imagen_portada['alt'] }}">
+    </a>
+  </div>
+  <h3><a href="link">{{getNode(item['nid']).titulo}}</a></h3>
+</div>
+<?php $cantle++;   endforeach;?>  
+
+</div>
+{% endcache %} 

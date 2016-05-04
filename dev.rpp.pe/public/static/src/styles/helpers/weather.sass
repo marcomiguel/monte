@@ -1,0 +1,70 @@
+.box-weather
+  .row
+    padding-bottom: 10px
+    &:first-child
+      border-bottom: 1px dotted #ccc
+    .top
+      padding-left: 10px
+      padding-right: 10px
+      +clearfix
+    .location
+      float: left
+      font-family: $font-heading
+      font-size: 2.4rem
+      font-weight: 700
+    .change
+      float: right
+      font-size: 1.4rem
+      cursor: pointer
+      margin-top: 7px
+      color: $linkColor
+    .cnt
+      display: table
+      margin: 0 10px
+      .now,.value, .img
+        display: table-cell
+        width: 33.33%
+        vertical-align: bottom
+        line-height: 1
+      .now
+        font-size: 2.4rem
+        color: #ccc
+        font-family: $font-heading
+      .value
+        font-size: 6.4rem
+        font-weight: 700
+        text-align: center
+    &:first-child
+      margin-bottom: 10px
+    .col
+      float: left
+      width: 50%
+      padding: 0 10px
+      &:first-child
+        border-right: 1px dotted #ccc
+      .schedule
+        font-family: $font-heading
+        color: #ccc
+        font-size: 2rem
+      .value
+        font-size: 4.6rem
+        font-weight: 700
+        display: inline-block
+  [class*="icon-weather-"]
+    display: inline-block
+    background: url(../tmp/tmp-weather.png) 0 0 no-repeat
+    width: 49px
+    height: 49px
+  .icon-weather-1
+    width: 96px
+    height: 78px
+  .icon-weather-2
+    background-position: 0 -78px
+    width: 49px
+    height: 49px
+    margin-left: 8px
+  .icon-weather-3
+    background-position: 0 -127px
+    width: 47px
+    height: 47px
+    margin-left: 8px

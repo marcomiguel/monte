@@ -1,0 +1,34 @@
+<!--Head-->
+{{ partial('partials/head/index') }}
+<body data-bg="{{model.epl_kvs}}" id='tema' class="{{model.tema}}" data-app="{{model.js_app}}">
+<div id="contenedor_div">
+    <!--Header-->
+    {{ partial('partials/header/indextag_1') }}
+
+    <div class="wrapper body group">
+
+      <div class="wrap group">
+
+ 
+
+            {{ partial('tag/cabecera/general'  , ['portada':'redes'] ) }}
+
+            <section id="featured" class="group">
+              <div data-crowdynews-widget="RPPpe/candelariarpp-full" class="cnFullscreenContainer"><script src="//widget.crowdynews.com/js/fullpage.js" async="true"></script></div>
+            </section>     
+
+
+        </div>
+
+        {{ partial('partials/ads/middle2') }}
+        <!-- pub-980 -->
+    </div>
+
+    
+    <!--Footer-->
+    {{ partial('partials/footer/index' , [] , trackurl) }}
+    <div id="pad-swipe-nav"></div>
+    {{ partial('partials/footer/scripts') }}
+    {{ partial('partials/footer/tracking') }}
+</div>
+</body>

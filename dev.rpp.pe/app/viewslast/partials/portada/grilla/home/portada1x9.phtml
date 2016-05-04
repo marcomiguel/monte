@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-primary">
+    <?php foreach ( @\Rpp\Services\Get\Destacados::portada($slug)->destacadas as $position => $item ): ?>
+     {{ partial('partials/portada/grilla/block/hentry_full2', [ 'item' : item ]) }}
+    <?php if($namespace=='home'){ ?>
+    <?php Rpp\Services\Get\Flow::unset_home($item['nid']); ?>
+    <?php }else{ ?>
+    <?php $unset = 'unset_'.$namespace ;?>
+    <?php Rpp\Services\Get\Flow::$unset($slug,$item['nid']); ?>
+    <?php } ?>
+    <?php Rpp\Services\Get\Destacados::delete($slug,$position); ?>
+    <?php break;endforeach;?>
+    <div class="box-grid box-main">
+      <div class="row columns-3">
+        <?php foreach ( @\Rpp\Services\Get\Destacados::portada($slug)->destacadas as $position => $item): ?>
+        <?php if($position>=10) break; ?>
+        <?php if(empty(@$item['nid'])) continue;?>
+        <div class="cell">
+          {{ partial('partials/portada/grilla/block/hentry_group', [ 'item' : item , 'class' : 'second' , 'img_size' : 'medium']) }}
+        </div>
+        <?php if($namespace=='home'){ ?>
+        <?php Rpp\Services\Get\Flow::unset_home($item['nid']); ?>
+        <?php }else{ ?>
+        <?php $unset = 'unset_'.$namespace ;?>
+        <?php Rpp\Services\Get\Flow::$unset($slug,$item['nid']); ?>
+        <?php } ?>
+        <?php endforeach;?>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-secondary">
+    {{ partial('partials/ads/right') }}
+    {{ partial('partials/portada/grilla/block/tag_portada') }}
+    {{ partial('partials/portada/grilla/block/tag_portada_2') }}
+    {{ partial('partials/portada/grilla/block/tag_portada_3') }}
+  </div>
+</div>

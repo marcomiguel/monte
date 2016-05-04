@@ -1,0 +1,75 @@
+@import ../config/color
+@import ../config/margin-padding
+@import ../mixins/box-shadow
+@import ../extends/no-list
+//Navigation
+.nav-full
+    background-color: $bg-second
+    @include box-shadow(0, 1px, 5px, rgba(black, 0.2))
+    margin-bottom: 1em
+    padding: 0.65em 0
+    ul
+        margin:0
+        padding:0
+        list-style:none
+        position:relative
+        min-height:1.5em
+        li
+            display: inline-block
+            font-size: 1.085em
+            &:after
+                content: " | "
+                padding: 0 0.25em
+                color: $blue
+            &:last-child, &.first-li
+                &:after
+                    content: ""
+                    padding-right: 0
+            &.first-li
+                color: $red
+            a, .item-tab
+                display: inline-block
+                padding: 0 0.3em
+                background-color: transparent
+                color: $blue
+                text-decoration: none
+                cursor:pointers
+            &.active
+                cursor: default
+                color: $color-base
+                a, .item-tab
+                    color: $color-base
+                    cursor: default
+                    &:hover
+                        text-decoration:none
+    &.center
+        text-align:center
+    &.right
+        text-align:right
+
+
+.item-nav
+    display:none
+    &.active
+        display:block
+
+
+.fix-logo-nav.header-logo-nav.sinfix
+    :max-width 1040px
+    :margin auto
+
+.sinfix
+    :height auto
+    :display block
+    :position static
+    :opacity 1
+
+
+
+
+
+
+
+
+
+

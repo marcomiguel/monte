@@ -1,0 +1,11 @@
+<?php if(!empty($cita['desarrollo'])): ?>
+<aside class="cite left">
+  <div class="cont"><span class="title">{{cita['titulo']}}</span><span class="summary">{{cita['desarrollo']}}</span></div>
+  <div class="social">
+    <ul>
+      <li class="fb"><a href="https://www.facebook.com/sharer/sharer.php?u={{host}}{{nUrl(model.nid)}}&amp;t=<?=urlencode($cita['titulo']);?>" onclick="fn(this, event, {&quot;method&quot;:&quot;wopen&quot;})"><span class="icon-facebook"></span></a></li>
+      <li class="tw"><a href="https://twitter.com/intent/tweet?original_referer={{host}}/p/{{model.nid}}&amp;text=<?=urlencode($cita['titulo']);?>&amp;url={{host}}/p/{{model.nid}}&amp;via=RPPNoticias" onclick="fn(this, event, {&quot;method&quot;:&quot;wopen&quot;})"><span class="icon-twitter"></span></a></li>
+    </ul>
+  </div>
+</aside>
+<?php endif;?>

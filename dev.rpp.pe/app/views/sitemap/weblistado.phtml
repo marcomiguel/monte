@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <?php foreach (\Rpp\Services\Get\Flow::seccion($slug,100)/*\Rpp\Services\Get\Archivo::ultimas_seccion($slug,48)*/ as $item) : ?>
+   	<?php if(empty(\Rpp\Services\Get\Content::part($item->_id,'_id' ))) continue; ?>
+   <url>
+      <loc>{{host}}<?php echo \Rpp\Services\Get\LContent::nurl($item->_id); ?>?ns_source=organico</loc>
+      <lastmod><?php echo date('Y-m-d\TH:i:sP', \Rpp\Services\Get\LContent::node($item->_id)->fecha_publicacion); ?></lastmod>
+         <changefreq>hourly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <?php endforeach; ?>
+</urlset>

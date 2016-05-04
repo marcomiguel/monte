@@ -1,0 +1,17 @@
+<section class="img-news"><div id="swfplayer_{{contenido['youtube']['id']}}" class="nd_galeriaopen_{{contenido['youtube']['id']}}"></div>
+<div class="help-media">
+      <?php echo @$contenido['youtube']['descripcion']; ?>
+
+        {% if not(contenido['via'] is empty) %}
+        | <strong>Fuente:</strong> {{ contenido['via'] }}
+        {% endif %}
+        {% if not(contenido['credito'] is empty) %}
+        | <strong>Fotógrafo:</strong> {{ contenido['credito'] }}
+        {% endif %}   
+ </div>
+</section>
+<?php if(empty($contenido['youtube']['url_cover'])) : ?>
+<script type="text/javascript">setJW7("swfplayer_{{contenido['youtube']['id']}}", "https://www.youtube.com/watch?v={{contenido['youtube']['id']}}", "http://img.youtube.com/vi/{{contenido['youtube']['id']}}/0.jpg", undefined, undefined, "<?php echo @$this->model->preroll; ?>");</script>
+<?php else: ?>
+<script type="text/javascript">setJW7("swfplayer_{{contenido['youtube']['id']}}", "https://www.youtube.com/watch?v={{contenido['youtube']['id']}}", "{{contenido['youtube']['url_cover']}}", undefined, undefined, "<?php echo @$this->model->preroll; ?>");</script>
+<?php endif;?>

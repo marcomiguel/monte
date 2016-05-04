@@ -1,0 +1,16 @@
+
+     <media:group>
+<?php foreach (\Rpp\Services\Get\Content::part($nid,'galeria') as $v => $key) :?>      
+        <media:content url="{{ cdn_image(getPart(nid,'contenido')[key]['foto']['hash'],'medium') }}" type="image/jpeg">
+          <media:thumbnail url="{{ cdn_image(getPart(nid,'contenido')[key]['foto']['hash'],'small') }}" type="image/jpeg"/>
+          <media:credit><?php echo @\Rpp\Services\Get\Content::part($item->_id,'contenido')[$key]['credito'] ?></media:credit>
+          <media:title>{{ getPart(nid,'contenido')[key]['foto']['alt'] }}</media:title>
+          <media:text>{{ getPart(nid,'contenido')[key]['foto']['alt'] }}</media:text>
+        </media:content>
+<?php endforeach;?>
+      </media:group>
+
+
+
+
+      

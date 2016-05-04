@@ -1,0 +1,59 @@
+.box-gallery
+  +clearfix
+  .box-header
+    text-align: right
+    padding-left: 0
+    padding-right: 0
+    .title
+      font-size: 2.4rem
+      font-weight: 700
+      float: inherit
+    p
+      font-weight: 700
+      font-size: 1.6rem
+  .col-1
+    width: 360px
+    float: right
+    padding-left: 10px
+    padding-right: 20px
+    .row-top
+      font-size: 1.6rem
+      margin-bottom: 15px
+      +clearfix
+      .info-l
+        float: left
+        a
+          color: #222
+          font-weight: 700
+      .pull-right
+        float: right
+    .row
+      border-bottom: 1px dotted #ccc
+      margin-bottom: 10px
+      padding-bottom: 10px
+      &:last-child
+        border-bottom-width: 0
+        margin-bottom: 0
+      .fig
+        float: left
+        width: 144px
+        position: relative
+      h3
+        padding-left: 154px
+        padding-right: 10px
+        font-size: 1.4rem
+        margin-bottom: 0
+        a
+          color: #053a55
+          position: relative
+  .col-2
+    float: right
+    width: 100%
+    padding: 10px 0 10px 360px
+    margin-left: -360px
+  .holder
+    position: relative
+    display: block
+  .holder:hover
+    .count-media
+      background-color: #000

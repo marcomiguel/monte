@@ -1,0 +1,13 @@
+<p class="cat">
+    
+<?php if(\Rpp\Services\Get\Content::node($nid)->tipo == 'brandcontent'):?>
+  <span>Auspiciado por:</span>
+  <a href="#">
+    <img src="{{getPart(nid ,'imagen_branding')}}" >
+  </a>
+<?php else :?>
+<a href="<?php echo str_replace( SITESLUG ,'', \Rpp\Services\Get\Content::node($nid)->categoria['slug']) ;  ?>{{TrackUrl(position)}}">{{getNode(nid).categoria['nombre']}}</a>
+<?php endif;?>
+
+    <time class="pubdate" datetime="{{date('Y-m-d H:i',getNode(nid).fecha_publicacion)}}">{{date('d/m/y',getNode(nid).fecha_publicacion)}}</time>
+</p>

@@ -1,0 +1,165 @@
+script.
+  var eplAD4M = eplSetAdM = function () {  }
+#header(role='banner')
+  .hdr-top
+    .grid
+      .ads-vertical-right
+        script.
+          eplAD4M("VerticalRight")
+      .ads-vertical-left
+        script.
+          eplAD4M("VerticalLeft")
+      .fecha 19 Enero 2016 | Hora 2:45 PM
+      nav.nav-top
+        ul
+          each val in ["Edición General", "Arequipa", "La Libertad", "Lambayeque", "Junín", "Ancash", "Ica", "Puno", "Piura", "Cusco"]
+            if (val == "Edición General")
+              li
+                a(href="/", class="active")= val
+            else
+              li
+                a(href="#link", )= val
+  #x-fixed-menutop.hdr-body
+    .inner
+      .grid
+        #organization.logo(itemprop='publisher', itemscope='', itemtype='https://schema.org/Organization')
+          meta(itemprop='name', content='RPP Noticias')
+          div(itemprop='logo', itemscope='', itemtype='https://schema.org/ImageObject')
+            meta(itemprop='width', content='153')
+            meta(itemprop='height', content='63')
+            h1.logo-head
+              a(href="/")
+                img.logo-rpp-main(itemprop='url', content= "http://rpp.pe/static/img/logo-rpp.svg", src="/static/img/logo-rpp.svg", alt="RPP Noticias", title="RPP Noticias")
+                span.hide RPP Noticias
+        .content-side
+          .col.col-live
+            a.envivo(href='/radioenvivo')
+              img.ico(src='/static/img/envv.svg' alt="En Vivo")
+              span.titu En Vivo: #{''}
+                strong(id="online") DESPIERTA PERÚ
+          .col.col-resume
+            a.resume-link(href="#link")
+               span.icon-play
+               span.titu Resumen de la hora
+          .col.col-social
+            .social.inverse
+              ul
+                li.fb
+                  a(href="link")
+                    span.icon-facebook
+                li.tw
+                  a(href="link")
+                    span.icon-twitter
+                li.yt
+                  a(href="link")
+                    span.icon-youtube
+                li.rss
+                  a(href="link")
+                    span.icon-rss
+          .col.col-options
+            .nav-right
+              ul
+                li.opt-search
+                  a(href="#link" id="btn-search")
+                    span.icon-magnifier
+                //li
+                  a(href="#link")
+                    span.icon-users
+                li.opt-menu
+                  a(href="#link" id="btn-menu")
+                    span.icon-list
+      .search-flyout
+        .grid(role="search")
+          form(class="search-form" action='/buscar', method='POST', onsubmit='fn(this, event, {"method":"search"})')
+            input(class="search-input", id="search-input-main", type='search', name='b', placeholder='Ingrese su búsqueda y presione enter...')
+            button
+              span.icon-magnifier
+      .content-nav
+        .grid.content-nav
+          nav.nav-main
+            .account
+              .row.buttons
+                ul
+                  li
+                    a(id="btn-edition", href="#") Edición general
+                      span.icon-chevron-down
+                  //li
+                    a(href="#") Acceder
+                      span.icon-users
+              .row.list
+                ul
+                  each val in ["Edición general", "Ancash", "Arequipa", "Ica", "La Libertad", "Puno", "Lambayeque", "Piura", "Junín", "Cusco"]
+                    li
+                      a(href="/", )= val
+            form(class="search-form" action='/buscar', method='POST', onsubmit='fn(this, event, {"method":"search"})')
+              input(class="search-input", id="search-input-menu" type='search', name='b', placeholder='Ingrese su búsqueda')
+              button
+                span.icon-magnifier
+            .issues
+              .title Temas
+              .topics-list
+                ul
+                  each val in ["Belaunde Lossio", "Nadine Heredia", "Ollanta Humala", "Política", "Deportes"]
+                    li
+                      a(href="/", )= val
+            .special
+              .holder
+                +imgtemp('tmp-special.jpg')
+                a(href="#link")
+                  span.icon-chevron-right
+            .title Secciones
+            ul.menubar
+              each val in ["Política", "Actualidad", "Deportes", "Entretenimiento", "Perú", "Mundo", "Economía", "Vida", "Tecno", "Viral", "Autores", "Radio", "TV"]
+                li
+                  a(href="/", )= val
+            .services
+              .title Servicios
+              .inner
+                ul
+                  li
+                    a(href="#link")
+                      span.icon-rotafono
+                      span.title Rotafono
+                  li
+                    a(href="#link")
+                      span.icon-bus
+                      span.title Tráfico
+                  li
+                    a(href="#link")
+                      span.icon-movie
+                      span.title Cine
+                  li
+                    a(href="#link")
+                      span.icon-cloud-sun
+                      span.title Clima
+            form(class="newsletter-form" action='/', method='GET')
+              .title suscríbete a nuestro newsletter
+              .inner
+                input(class="search-input" type='search', name='b', placeholder='Email')
+                button
+                  span.icon-envelope
+            .en-redes
+              .title RPP en las Redes Sociales
+              .social
+                ul
+                  li.fb
+                    a(href="link")
+                      span.icon-facebook
+                  li.tw
+                    a(href="link")
+                      span.icon-twitter
+                  li.yt
+                    a(href="link")
+                      span.icon-youtube
+  .hdr-foot
+    .x-slide.grid.temas(data-x={variableWidth:true})
+      nav.x-wrapper
+        ul.x-container
+          each val in ["Belaunde Lossio", "Nadine Heredia", "Colegios", "Ollanta Humala", "Grammy", "Lee Jóvenes", "Elecciones 2016", "Julio Guzmán", "David Bowie", "Cesar Acuña", "Cesar Acuña 2", "Cesar Acuña 3"]
+            li.x-item
+              a(href="/", )= val
+      .x-arrows
+        a.x-prev(href="#prev")
+          span.icon-chevron-left.icon-prev
+        a.x-next(href="#next")
+          span.icon-chevron-right.icon-next

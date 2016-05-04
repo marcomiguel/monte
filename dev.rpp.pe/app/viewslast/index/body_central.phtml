@@ -1,0 +1,15 @@
+{% cache "portada.body.central.home"  604800 %}
+<div class="col-primary">
+  {{ partial('partials/portada/bloque/tag/cronologico_1' , ['slug':'home'] ) }}
+  <div class="box-mod flow">
+    <div class="box-header">
+      <h3 class="title">Lo Último</h3>
+    </div>
+     {{ partial('partials/portada/flujo/home' , [] , trackurl) }}
+    <div class="row">
+      <div class="foot-flow"><a href="/archivo" class="viewmore"><span class="icon-reload"></span>Ver más noticias</a></div>
+    </div>
+  </div>
+</div>
+
+{% endcache %}

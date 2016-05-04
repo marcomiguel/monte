@@ -1,0 +1,76 @@
+@import ../config/color
+@import ../config/grid
+@import ../mixins/border-radius
+@import ../mixins/css3-prefix
+@import ../mixins/clearfix
+@import ../mixins/box-shadow
+
+.search-total
+    background-color: $blue-dark
+    margin-bottom:1em
+    @include clearfix()
+    .search-flow
+        width:40%
+        float:left
+        margin-bottom:0
+    .total-txt
+        float:left
+        width:60%
+        text-align:right
+        color:white
+        font-family:'titillium_weblight',arial
+        padding:0.75em 0.5em 0 0
+        font-size:1.5em
+        strong
+            color: $yellow-dark
+            margin-right:0.25em
+
+.timeline
+    position:relative
+    padding-top:1em
+    padding-left:3.5em
+    border-top:1px solid $blue-dark
+    .day-month
+        background-color:$gray-survey
+        position:absolute
+        left:0
+        top:0
+        width:3em
+        color:$blue-dark
+        text-align:center
+        line-height:1
+        .day
+            padding:5px 0 2px
+            font-size:1.5em
+            font-weight:bold
+            font-size:1.7em
+        .month
+            padding:0 0 5px
+            font-size:0.7em
+            text-transform:uppercase
+
+.pagination
+    background-color: $blue-dark
+    @include clearfix()
+    text-align:right
+    margin-bottom:1em
+    ul
+        margin:0
+        padding:0.75em 0.5em
+        list-style: none
+        li
+            display:inline-block
+            color:white
+            font-family:'titillium_weblight',arial
+            font-size:1em
+            text-transform:uppercase
+            margin:0 0.5em
+            a
+                color:white
+                &:hover
+                    color:$yellow-dark
+                    text-decoration:none
+            .icon-chevron-right, .fa-chevron-right
+                margin-left:0.25em
+            .icon-chevron-left, .fa-chevron-left
+                margin-right:0.25em

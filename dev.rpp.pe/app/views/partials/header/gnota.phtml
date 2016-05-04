@@ -1,0 +1,46 @@
+<div class="wrapper-slider-gallery">
+<div class="container-slider-gallery">
+
+
+
+  <div id="gallery1">
+    <section class="gallery-list">
+        <?php foreach (\Rpp\Services\Get\Content::part($this->model->nid,'galeria') as $v => $key) :?>
+              <article class="item">
+                <figure><img data-src="{{ cdn_image(getPart(model.nid,'contenido')[key]['foto']['hash'],'large') }}" src="" alt="{{ getPart(model.nid,'contenido')[key]['foto']['alt'] }}"  class="lazyOwl"></figure>
+                <figcaption><strong>{{ getPart(model.nid,'contenido')[key]['foto']['alt'] }}</strong>
+                  <div class="paginador">
+                    <div class="creditos">
+                      <p>Créditos</p><span>{{ getPart(model.nid,'contenido')[key]['credito'] }}</span>
+                    </div>
+                    <div class="pagers-legend-gallery"><i class="icon icon-picture-o"></i><span>{{v}} de <?php echo count(\Rpp\Services\Get\Content::part($this->model->nid,'galeria'))?></span></div>
+                  </div>
+                </figcaption>
+              </article>
+             <?php \Rpp\Services\Get\Content::unset_part($this->model->nid,'contenido',$key);  ?>
+        <?php endforeach;?>
+
+<script>
+  rppWR.rppGallery({
+
+    posicion : <?php echo $this->model->position?>,
+    epl_tag :  ['Intersitial','RightGal','Right2','Top','Top2','Frame2','Right','Right1'],
+    comscore : {
+                site : 'la10-pe',
+                name : '{{model.comscore}}'
+               },
+    posicion_slider : <?php echo ( $this->model->position - 1 )?>,   
+    url : "{{host}}{{nUrl(model.nid)}}" ,
+    params : "<?php echo implode('&',load_ref('='))?>"         
+  });
+</script>
+
+
+    </section>
+  </div>
+
+
+
+
+</div>
+</div>

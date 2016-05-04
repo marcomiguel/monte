@@ -1,0 +1,14 @@
+<article class="main-article">
+  <figure>
+    <a {{ partial('partials/portada/grilla/block/url/' ~ item['tipo'] , [ 'nid' : item['nid'] ] ) }}  class="cover cover21x9 big">
+      <img src="{{ cdn_image(item['imagen_portada']['hash'],'large') }}" alt="{{ item['imagen_portada']['alt'] }}">
+      {{ partial('partials/portada/grilla/block/icon/' ~ getNode(item['nid']).tipo ) }}
+    </a>
+    <figcaption>
+     <h1><a {{ partial('partials/portada/grilla/block/url/' ~ item['tipo'] , [ 'nid' : item['nid'] ] ) }} >{{item['titulo']}}</a></h1>
+     <?php $lautor = @$item['autor']?>
+{{ partial('partials/portada/grilla/block/entry-cont/autor_' ~ getGrilla(slug).tipo['namespace'] , [ 'autor' :  lautor , 'slug' : item['categoria']['slug'] ] ) }}
+      <p>{{item['bajada']}}</p>
+    </figcaption>
+  </figure>
+</article>

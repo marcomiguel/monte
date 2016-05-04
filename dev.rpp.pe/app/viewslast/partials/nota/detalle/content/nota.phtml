@@ -1,0 +1,5 @@
+ {{getPart(model.nid,'entradilla')}} 
+<?php foreach (\Rpp\Services\Get\Content::part($this->model->nid,'contenido') as $key => $contenido): ?> 
+	<?php //var_dump($contenido) ?>
+    {{ partial('partials/nota/detalle/block/' ~ contenido['tipo'] ,['contenido': contenido  , 'key': key ]) }}
+<?php endforeach;?>

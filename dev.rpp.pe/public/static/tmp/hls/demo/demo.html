@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../dist/hls.js"></script>
+</head>
+<body>
+
+<audio controls id="audio"></audio>
+<script>
+  if(Hls.isSupported()) {
+    var audio = document.getElementById('audio');
+    var hls = new Hls();
+    hls.loadSource('http://streaming.gruporpp.net:1935/rpp02live-live/streamRPPRD/playlist.m3u8');
+    hls.attachMedia(audio);
+    hls.on(Hls.Events.MANIFEST_PARSED,function() {
+      audio.play();
+  });
+ }
+</script>
+
+</body>
+</html>

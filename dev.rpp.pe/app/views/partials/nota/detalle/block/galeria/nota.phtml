@@ -1,0 +1,39 @@
+<div class="gallery-single slider">
+    <div id="slider">
+        <?php $zise = count(\Rpp\Services\Get\Content::part($this->model->nid,'galeria'))?>
+        <?php $key = @\Rpp\Services\Get\Content::part($this->model->nid,'galeria')[$this->model->position]?>
+        <figure class="hmedia">
+            <img class="photo lazy" src="{{ehost}}/images/placeholder_rpp.png" data-src="{{ cdn_image(getPart(model.nid,'contenido')[key]['foto']['hash'],'large') }}" alt="{{ getPart(model.nid,'contenido')[key]['foto']['alt'] }}">
+            <figcaption>{{ getPart(model.nid,'contenido')[key]['foto']['alt'] }} 
+                {% if not(getPart(model.nid,'contenido')[key]['via'] is empty) %}
+                | <strong>Fuente:</strong> {{ getPart(model.nid,'contenido')[key]['via'] }}
+                {% endif %}
+                {% if not(getPart(model.nid,'contenido')[key]['credito'] is empty) %}
+                | <strong>Fotógrafo:</strong> {{ getPart(model.nid,'contenido')[key]['credito'] }}            
+                {% endif %}
+            </figcaption>
+        </figure>
+
+        <ul class="gallery-nav">
+            <?php if( ($this->model->position - 1 ) > 0): ?>
+            <li><a class="btn-prev" href="{{nUrl(model.nid)}}/{{model.position - 1}}{{TrackUrl()}}"><span>Anterior</span></a></li>
+            <?php endif;?>
+            <?php if( ($this->model->position + 1 ) <= $zise): ?>
+            <li><a class="btn-next" href="{{nUrl(model.nid)}}/{{model.position + 1}}{{TrackUrl()}}"><span>Siguiente</span></a></li>
+            <?php endif;?>
+        </ul>
+    </div>
+
+    <div id="carouselfull" class="flexslider carousel">
+        <ul class="slides group">
+            <?php foreach (\Rpp\Services\Get\Content::part($this->model->nid,'galeria') as $v => $key) :?>
+            <li>
+                <a href="{{nUrl(model.nid)}}/{{v}}{{TrackUrl(v)}}"><img class="photo lazy" src="{{ehost}}/images/placeholder_rpp.png" data-src="{{ cdn_image(getPart(model.nid,'contenido')[key]['foto']['hash'],'small') }}" alt="{{ getPart(model.nid,'contenido')[key]['foto']['alt'] }}"></a>
+            </li>
+            <?php \Rpp\Services\Get\Content::unset_part($this->model->nid,'contenido',$key);  ?>
+            <?php endforeach;?>
+            
+        </ul>
+    </div>
+
+</div>

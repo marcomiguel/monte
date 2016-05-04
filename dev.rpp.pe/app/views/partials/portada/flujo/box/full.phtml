@@ -1,0 +1,44 @@
+<article class=" hnews group">
+    <figure class="hmedia">
+      <?php $tipo = \Rpp\Services\Get\LContent::node($nid)->tipo ?>
+       {{ partial('partials/portada/grilla/block/icon/' ~ tipo ) }}
+        <a href="<?php echo \Rpp\Services\Get\LContent::nurl($nid); ?>">
+            <span class=""></span>      
+            <img class="photo lazy" src="{{ehost}}/images/placeholder_rpp.png" data-src="<?php echo \Rpp\Services\Get\UrlMedia::image(\Rpp\Services\Get\LContent::node($nid)->imagen_portada['hash'], 'medium') ?>" alt="<?php echo \Rpp\Services\Get\LContent::node($nid)->imagen_portada['alt'] ?>">
+        </a>
+        <figcaption class="fn hide"><?php echo \Rpp\Services\Get\LContent::node($nid)->titulo_corto ?></figcaption>
+    </figure>
+
+    <div class="entry-cont ">
+
+<p class="cat">
+  <a href="<?php echo str_replace( SITESLUG ,'', \Rpp\Services\Get\LContent::node($nid)->categoria['slug']) ;  ?>"><?php echo \Rpp\Services\Get\LContent::node($nid)->categoria['nombre']?></a>
+  
+  <time class="pubdate" datetime="<?php echo date('Y-m-d H:i',\Rpp\Services\Get\LContent::node($nid)->fecha_publicacion)?>"><?php echo date('d/m/y',\Rpp\Services\Get\LContent::node($nid)->fecha_publicacion)?></time>
+</p>
+
+
+        <h2 class="entry-title"><a class="url" href="<?php echo \Rpp\Services\Get\LContent::nurl($nid); ?>" rel="bookmark"><?php echo \Rpp\Services\Get\LContent::node($nid)->titulo_corto ?></a></h2>
+        <p><?php echo \Rpp\Services\Get\LContent::node($nid)->bajada ?></p>
+
+
+        <footer>
+            <div class="entry-actions group">
+
+                <a class="entry-comments" href="#">
+                    <span class="icon-7"></span>
+                    300 comentarios
+                </a>
+
+                {{ partial('partials/portada/flujo/box/social', [ 'nid' : nid ]) }}
+                
+            </div>
+            <p class="hide source-org vcard"><a class="fn url org" href="http://www.rpp.com.pe">RPP
+                    Noticias</a></p>
+        </footer>
+
+    </div>
+    <!-- .entry-cont -->
+
+
+</article>

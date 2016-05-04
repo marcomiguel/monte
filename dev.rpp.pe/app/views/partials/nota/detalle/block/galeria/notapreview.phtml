@@ -1,0 +1,30 @@
+<div class="gallery-single slider">
+    <div id="slider">
+    <?php foreach ($this->notapreview->contenido as $v => $contenido) :?>
+      <?php if ($contenido['tipo'] == "photo"): ?>
+        <figure class="hmedia">
+            <img class="photo" src="{{ contenido['foto']['url'] }}" alt="{{ contenido['foto']['alt'] }}" width="1120" height ="574" >
+            <figcaption>{{ contenido['foto']['alt'] }} | <strong>Fuente:</strong> {{ contenido['credito'] }}</figcaption>
+        </figure>
+      <?php endif;?>
+    <?php break; endforeach;?>
+        <ul class="gallery-nav">
+            <li><a class="btn-prev" href="#"><span>Anterior</span></a></li>
+            <li><a class="btn-next" href="#"><span>Siguiente</span></a></li>
+        </ul>
+    </div>
+
+<div id="carouselfull" class="flexslider carousel">
+<ul class="slides group">
+ <?php foreach ($this->notapreview->contenido as $v => $contenido) :?>
+    <?php if ($contenido['tipo'] == "photo"): ?>
+    <li>
+        <a href="#"><img src="{{ contenido['foto']['url'] }}" alt="{{ contenido['foto']['alt'] }}" width="140" height ="80"></a>
+    </li>
+    <?php unset($this->notapreview->contenido[$v]);  ?>
+   <?php endif;?>
+ <?php endforeach;?>
+</ul>
+</div>
+
+</div>

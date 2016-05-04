@@ -1,0 +1,30 @@
+<?php $position = 1 ;foreach (\Rpp\Services\Get\Flow::autor() as $item) : ?>
+<article>
+      <figure class="holder"><a href="{{nUrl(item._id)}}" class="cover"><img src="{{ cdn_image(getNode(item._id).imagen_portada['hash'],'small') }}" alt="{{getNode(item._id).imagen_portada['alt']}}"></a>
+        <div class="social inverse">
+          <ul>
+            <li class="fb"><a href="{{nUrl(item._id)}}"><span class="icon-facebook"></span></a></li>
+            <li class="tw"><a href="{{nUrl(item._id)}}"><span class="icon-twitter"></span></a></li>
+          </ul>
+        </div>
+      </figure>
+      <div class="cont">
+        <div class="top-info">
+          <div class="cat"><a href="{{host}}<?php echo str_replace( SITESLUG ,'', \Rpp\Services\Get\Content::node($item->_id)->categoria['slug']) ;  ?>"><?php echo \Rpp\Services\Get\Content::node($item->_id)->categoria['nombre']?></a></div>
+         <?php $fecha_actual = time();?>
+         <?php $fecha_publicacion  = \Rpp\Services\Get\Content::node($item->_id)->fecha_publicacion  ?>
+         <?php if($fecha_publicacion > $fecha_actual) $fecha_publicacion = $fecha_actual; ?>
+          <div class="time"><?php echo utf8_encode(ucfirst(strftime('%e.%b.%y',  $fecha_publicacion )) );?></div>
+        </div>
+        <h2 class="headline"><a href="{{nUrl(item._id)}}{{TrackUrl(position)}}" >{{getNode(item._id).titulo_corto}}</a></h2>
+        <div class="author"><img src="{{getPart(item._id,'autor')['foto']}}" alt="{{getPart(item._id,'autor')['nombre']}}">
+          <div class="data">Escrito por:<a href="{{host}}<?php echo str_replace( SITESLUG ,'', \Rpp\Services\Get\Content::node($item->_id)->categoria['slug']) ;  ?>">{{getPart(item._id,'autor')['nombre']}}</a></div>
+        </div>
+        <p>{{getNode(item._id).bajada}}</p>
+      </div>
+</article>
+
+
+
+    <?php $position++;?>
+<?php endforeach;?>

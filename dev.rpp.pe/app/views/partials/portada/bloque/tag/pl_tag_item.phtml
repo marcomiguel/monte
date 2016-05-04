@@ -1,0 +1,21 @@
+ <article class="{{class}} hnews group">
+    <figure class="hmedia">
+        {{ partial('partials/portada/grilla/block/icon/' ~ gNode(nid)['tipo'] ) }}
+        <a {{ partial('partials/portada/grilla/block/url/' ~ gNode(nid)['tipo'] , [ 'nid' : nid ] ) }}>
+            <img class="photo lazy" src="{{ehost}}/images/placeholder_rpp.png" data-src="{{ cdn_image(gNode(nid)['imagen_portada']['hash'], img_size ) }}"
+                 alt="{{ gNode(nid)['imagen_portada']['alt'] }}">
+        </a>
+        <figcaption class="fn hide">{{ gNode(nid)['titulo_corto'] }}</figcaption>
+    </figure>
+
+    <div class="entry-cont ">
+        <{{title_h}} class="entry-title"><a {{ partial('partials/portada/grilla/block/url/' ~ gNode(nid)['tipo'] , [ 'nid' : nid ] ) }}>{{ gNode(nid)['titulo_corto'] }}</a></{{title_h}}>
+        <footer class="hide">
+            <p class="source-org vcard"><a class="fn url org" href="{{host}}">RPP Noticias</a></p>
+        </footer>
+    </div>
+</article> 
+
+
+
+

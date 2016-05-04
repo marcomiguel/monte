@@ -1,0 +1,102 @@
+<?php setlocale(LC_TIME, "es_ES", "es_ES.utf8"); ?>
+<!--Head-->
+{{ partial('partials/head/indexportada') }}
+<body data-bg="{{model.epl_kvs}}"  data-x="calendar, columns-fit, lazy, sticky, slide" class="archive">
+  {{ partial('partials/head/epl') }}
+  {{ partial('partials/head/comscore') }}
+<div  id="wrap">
+    <!--Header-->
+    {{ partial('partials/header/index') }}
+    <div id="content" role="main">
+    {{ partial('partials/ads/top') }}
+      <div class="grid pad" >
+      <div class="story">
+          <div class="col-primary">
+            <div class="story-top box-mod pt10">
+              <h1>Archivo del 12 de enero del 2016</h1>
+            </div>
+            <div class="flow">
+              <div data-x='{"breakpoints":"480x1x10,768x2x10"}' class="row x-columns-fit">
+                  <article class="card">
+                    <figure class="holder"><a href="#link" data-x='{"type":"html","content":"<img src=\"../tmp/tmp-001-350.jpg\" alt=\"--X-DEMO-CONTENT--\">"}' class="cover x-fit-lazy">
+                        </a>
+                      <div class="social inverse">
+                        <ul>
+                          <li class="fb"><a href="#link"><span class="icon-facebook"></span></a></li>
+                          <li class="tw"><a href="#link"><span class="icon-twitter"></span></a></li>
+                        </ul>
+                      </div>
+                    </figure>
+                    <div class="cont">
+                      <div class="top-info">
+                        <div class="cat"><a href="#link">Perú</a></div>
+                        <div class="time">Hace 15 minutos</div>
+                      </div>
+                      <h3><a href="/">Arequipa: trabajadores del hospital Honorio Delgado</a></h3>
+                      <p>Desde mañana martes 10 de marzo, los servidores ingresarán a un paro preventivo de 48 horas, en rechazo al contrato de personal.</p>
+                    </div>
+                  </article>
+
+              </div>
+              <div class="row">
+                <div class="foot-flow"><a href="#link" class="viewmore"><span class="icon-reload"></span>Ver más noticias</a></div>
+              </div>
+            </div>
+          </div>
+          <aside role="complementary" class="col-secondary x-sticky">
+            <div data-x='{"fixto":".col-primary"}' class="x-column-fix">
+              <div class="box-mod">
+                <div class="box-header">
+                  <div class="title">Fechas anteriores</div>
+                </div>
+                <div data-x='{"selected":"2016/02/02","link":"/path/to/[date]","yearScope":5}' class="x-calendar"></div>
+              </div>
+              <div class="box-mod box-liketoday">
+                <div class="box-header">
+                  <div class="title">Un día como hoy</div>
+                  <div class="info-r"><span>26 de Enero</span></div>
+                </div>
+                <figure><img src="../tmp/tmp-002-300.jpg" alt="--X-DEMO-CONTENT--">
+                  <figcaption>
+                    <h3><a href="#link">Entra en vigor el protocolo de Kioto</a></h3>
+                  </figcaption>
+                </figure>
+              </div>
+              <div class="box-mod box-row">
+                <div class="box-header">
+                  <div class="title">Las noticias más leídas</div>
+                </div>
+                <div class="row">
+                  <div class="fig"><a href="#link"><img src="../tmp/tmp-001-144.jpg" alt="--X-DEMO-CONTENT--"></a></div>
+                  <h3><a href="link">Esto te puede suceder si desafías a la gravedad [VIDEO]</a></h3>
+                </div>
+                <div class="row">
+                  <div class="fig"><a href="#link"><img src="../tmp/tmp-002-144.jpg" alt="--X-DEMO-CONTENT--"></a></div>
+                  <h3><a href="link">Madre conmueve a miles por su testimonio del cáncer de piel</a></h3>
+                </div>
+                <div class="row">
+                  <div class="fig"><a href="#link"><img src="../tmp/tmp-003-144.jpg" alt="--X-DEMO-CONTENT--"></a></div>
+                  <h3><a href="link">Gato fue nombrado gerente de empresa en Rumania</a></h3>
+                </div>
+                <div class="row">
+                  <div class="fig"><a href="#link"><img src="../tmp/tmp-001-144.jpg" alt="--X-DEMO-CONTENT--"></a></div>
+                  <h3><a href="link">Esto te puede suceder si desafías a la gravedad [VIDEO]</a></h3>
+                </div>
+                <div class="row">
+                  <div class="fig"><a href="#link"><img src="../tmp/tmp-002-144.jpg" alt="--X-DEMO-CONTENT--"></a></div>
+                  <h3><a href="link">Madre conmueve a miles por su testimonio del cáncer de piel</a></h3>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        </div>
+    </div>
+    <!--Footer-->
+    {{ partial('partials/footer/index' , [] , trackurl) }}
+    <div id="pad-swipe-nav"></div>
+    {{ partial('partials/footer/scripts') }}
+    {{ partial('partials/footer/tracking') }}
+    </div>
+  </body>

@@ -1,0 +1,1 @@
+<div data-href="<?php echo $host; ?>/nota/detalle/<?php echo $notapreview->_id; ?>" data-numposts="5" data-colorscheme="light" class="fb-comments"></div>

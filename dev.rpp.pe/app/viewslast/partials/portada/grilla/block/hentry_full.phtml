@@ -1,0 +1,14 @@
+<article class="card card-1x1">
+  <div class="cont">
+    <h1>
+      <a {{ partial('partials/portada/grilla/block/url/' ~ item['tipo'] , [ 'nid' : item['nid'] ] ) }}>{{item['titulo']}}</a>
+    </h1>
+    <p>{{item['bajada']}}</p>
+  </div>
+  <figure class="holder">
+   <a {{ partial('partials/portada/grilla/block/url/' ~ item['tipo'] , [ 'nid' : item['nid'] ] ) }} class="cover big">
+     <img alt="{{ item['imagen_portada']['alt'] }}" src="{{ cdn_image(item['imagen_portada']['hash'],'large') }}">
+     {{ partial('partials/portada/grilla/block/icon/' ~ getNode(item['nid']).tipo ) }}
+   </a>
+ </figure>
+</article>

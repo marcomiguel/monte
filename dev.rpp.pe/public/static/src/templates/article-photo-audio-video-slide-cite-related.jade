@@ -1,0 +1,176 @@
+extends layouts/article
+
+block variables
+  - var pageType = ""
+  - var pageTitle = "Notas y Citas"
+  - var x = "sticky, lazy, media, slide"
+block container
+  +ads('980x90')
+  .story
+    article(itemscope itemtype="http://schema.org/NewsArticle", itemref="article-body organization")
+      meta(itemprop='datePublished', content='2015-02-05T08:00:00+08:00')
+      meta(itemprop='dateModified', content='2015-02-05T09:20:00+08:00')
+      meta(itemscope, itemprop="mainEntityOfPage", itemType="https://schema.org/WebPage", itemid="--X-DEMO-CONTENT--")
+      .story-top
+        +breadcrumb('Política')
+      header(class="story-header")
+        h1(itemprop="headline") Nobel de economía Joseph Stiglitz dice que el TPP podría ahondar la desigualdad
+        p.sumary(itemprop="description") Advertencia. Personalidades alertan de los peligros del acuerdo que engloba al 40% del PBI mundial.  Entre las principales preocupaciones está el encarecimiento de las medicinas. El Congreso peruano deberá decidir si ratifica o no el controvertido acuerdo.
+        .story-meta
+          .story-author(itemprop="author", itemscope itemtype="https://schema.org/Person") por #{' '}
+            a(href="#link")
+              #author-name.span(itemprop="name") Jorge Luis Cruz
+          .story-date
+            time(itemprop="datePublished" datetime='2015-08-13T20:33:13+0100') 20 de Enero de 2015 - 8:45am
+          .story-tag
+            a(href="#link") Policiales
+    .col-primary.main
+      .section
+        .col-share.x-sticky
+          include helpers/social-share
+        .col-detail(itemprop="articleBody", id="article-body")
+
+          // foto
+          .media
+            figure(itemprop="image" itemscope itemtype="http://schema.org/ImageObject")
+              meta(itemprop="width", content="635")
+              meta(itemprop="height", content="357")
+              .cover
+                img(itemprop="url", content="http://s3.amazonaws.com/p-gruporpp-media-v/normal/2016/01/12/321532_61357.jpg", src="http://s3.amazonaws.com/p-gruporpp-media-v/normal/2016/01/12/321532_61357.jpg" , alt="X-DEMO-CONTENT")
+              figcaption(itemprop="description")
+                | Advertencia. Premio Nobel de Economía Joseph Stiglitz alerta sobre los efectos negativos del reciente acuerdo suscrito por doce países, entre ellos el Perú. | Fuente: Universal
+
+          // audio
+          .media(itemprop="audio", itemscope itemtype='http://schema.org/AudioObject')
+            meta(itemprop='encodingFormat', content='mp3')
+            meta(itemprop='contentUrl', content='http://p-gruporpp-media.s3.amazonaws.com/2016/02/21/enttrevista_84721.mp3')
+            meta(itemprop='duration', content='T0M15S')
+            figure
+              a.cover.x-media(href="#escuchar" class="big", data-x = {
+                "type": "audio",
+                "video_source": "http://p-gruporpp-media.s3.amazonaws.com/2016/02/21/enttrevista_84721.mp3",
+                "video_img": "http://p-gruporpp-media.s3.amazonaws.com/2016/02/07/piscinas-76114mp4_76115.png",
+                "playlist": '{"240p":"http:\/\/p-gruporpp-media-v.s3.amazonaws.com\/240p\/2016\/02\/07\/piscinas_76114.mp4","360p":"http:\/\/p-gruporpp-media-v.s3.amazonaws.com\/360p\/2016\/02\/07\/piscinas_76114.mp4"}',
+                "hash": "2016/02/07/piscinas_76114.mp4",
+                "rtag": "https://pubads.g.doubleclick.net/gampad/ads?sz=400x300&iu=/1028310/RPP_Video&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]",
+              })
+                img(src="http://s3.amazonaws.com/p-gruporpp-media-v/normal/2016/01/12/321532_61357.jpg", alt="X-DEMO-CONTENT")
+                span.icon-volume-up
+              figcaption(itemprop="description") Morbi et odio nec diam iaculis venenatis in vel tortor.
+
+          // video
+          .media(itemprop="video", itemscope itemtype='http://schema.org/VideoObject', itemref="author-name")
+            meta(itemprop='encodingFormat', content='mp4')
+            meta(itemprop='uploadDate', content='--X-DEMO-CONTENT--')
+            meta(itemprop='contentUrl', content='http://p-gruporpp-media.s3.amazonaws.com/2016/02/07/piscinas_76114.mp4')
+            meta(itemprop='duration', content='T0M15S')
+            figure
+              .cover.cover-media
+                a.x-media(href="#escuchar" class="big", data-x = {
+                  "type": "video",
+                  "video_source": "http://p-gruporpp-media.s3.amazonaws.com/2016/02/07/piscinas_76114.mp4",
+                  "video_img": "http://p-gruporpp-media.s3.amazonaws.com/2016/02/07/piscinas-76114mp4_76115.png",
+                  "playlist": '{"240p":"http:\/\/p-gruporpp-media-v.s3.amazonaws.com\/240p\/2016\/02\/07\/piscinas_76114.mp4","360p":"http:\/\/p-gruporpp-media-v.s3.amazonaws.com\/360p\/2016\/02\/07\/piscinas_76114.mp4"}',
+                  "hash": "2016/02/07/piscinas_76114.mp4",
+                  "rtag": "https://pubads.g.doubleclick.net/gampad/ads?sz=400x300&iu=/1028310/RPP_Video&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]",
+                })
+                  img(itemprop="thumbnailURL", src="http://s3.amazonaws.com/p-gruporpp-media-v/normal/2016/01/12/321532_61357.jpg", alt="X-DEMO-CONTENT")
+                  span.icon-play
+              figcaption(itemprop="description") Morbi et odio nec diam iaculis venenatis in vel tortor.
+
+          // slide
+          .media
+            include components/slide
+
+          //.inner
+
+          // cite width total
+          +related-cite({ })
+          p El pasado jueves 4 de febrero se firmó el el <a href="#link">Acuerdo de Asociación Transpacífico</a> <strong>(TPP por sus siglas en inglés)</strong>, del que forma parte el Perú y otras doce importantes economías del mundo. Luego de la suscripción, en el Perú y en el mundo muchas voces se levantaron para alertar sobre los posibles daños de este tratado.
+          +related-cite({
+            position: "left"
+          })
+
+          p Uno de los principales críticos es el Premio Nobel de economía 2001, Joseph Stiglitz quien opinó que "(El TPP) Se podría llamar una mala reforma, un paso en la dirección equivocada". Y argumentó que podría socavar <strong>protecciones básicas de los consumidores</strong>, sobre todo por las trabas agregaría al acceso de medicamentos. Para Stiglitz el TPP podría profundizar la desigualdad, poniendo a Perú como uno de los grandes perdedores.
+
+          p.embed.cover
+            iframe(frameborder="0" width="800" height="450" src="//www.dailymotion.com/embed/video/x3yzsdq" allowfullscreen="")
+
+          p "Ante el secretismo con el que se ha llevado, <strong>el TPP podría ser muy malo para los trabajadores comunes</strong>, el medio ambiente, la salud", advirtió  meses previos, durante su participación en las reuniones de la Junta de Gobernadores del Banco Mundial y del Fondo Monetario Internacional, en octubre pasado en Lima.
+          .media
+            figure(itemprop="image" itemscope itemtype="http://schema.org/ImageObject")
+              meta(itemprop="width", content="635")
+              meta(itemprop="height", content="357")
+              .cover
+                img(itemprop="url", content="http://s3.amazonaws.com/p-gruporpp-media-v/normal/2016/01/12/321532_61357.jpg", src="http://s3.amazonaws.com/p-gruporpp-media-v/normal/2015/12/14/335633_45584.jpg" , alt="X-DEMO-CONTENT")
+              figcaption(itemprop="description")
+                | Para Stiglitz el TPP podría profundizar la desigualdad, poniendo a Perú como uno de los grandes perdedores. | Fuente: Universal
+          p Consideró que este tratado es motivador de una mayor desigualdad y socavador de protecciones básicas de las personas en nuestra economía.
+
+          // cite right
+          +related-cite({
+            position: "right"
+          })
+          p Remarca como ejemplo el caso de los precios de los medicamentos, donde prevalecerían los intereses de las grandes compañías norteamericanas sobre intereses de países como Perú.
+          p "Todo el debate ha girado en torno al aumento de precios de los medicamentos. La historia de que habrá más medicinas disponibles es básicamente falsa", declaró.
+          h2 En el Perú
+          p En el plano local también hay voces de rechazo al tratado que el Gobierno de Humala ha suscrito a pocos meses de dejar Palacio. Javier Llamosa, representante de Acción Internacional para la Salud, sostuvo que en la actualidad, Perú cuenta con 17 Tratados Comerciales y ninguno antes había incluido temas de Propiedad Intelectual.
+
+          // related left
+          +related({
+            thumb: false,
+            position: "left"
+          })
+          p Llamosa advirtió que ratificándose el TPP se estaría otorgando exclusividad en el mercado a las industrias farmacéuticas transnacionales por un periodo de cinco hasta ocho años para que vendan sus medicamentos.
+          p Explicó que cuando ingresen los nuevos medicamentos biotecnológicos para tratar enfermedades, las farmacéuticas  se encontrarán en una situación de monopolio.
+
+          // related right
+          +related({
+            thumb: false,
+            position: "right"
+          })
+          p Llamosa advirtió que ratificándose el TPP se estaría otorgando exclusividad en el mercado a las industrias farmacéuticas transnacionales por un periodo de cinco hasta ocho años para que vendan sus medicamentos.
+          p Por ejemplo, un medicamento como el Trastuzumab, (que sirve para tratamiento de cáncer de mama, y los pacientes requieren hasta 40 ampollas que quizá puedan salvarle la vida), se vende actualmente a S/ 5.500 cada ampolla, a pesar que fabricarlo cuesta solo S/ 93,50. De haber competencia podría costar S/ 500.
+
+          // related width total
+          +related({
+            thumb: false,
+            position: ""
+          })
+          p <strong>"Espero que el Congreso no ratifique este Tratado bajo esas condiciones</strong>, que renegocie, que modifique aquellos capítulos donde están negociando con la vida de las personas", reflexionó.
+
+
+          h2 En el Perú
+          p En el plano local también hay voces de rechazo al tratado que el Gobierno de Humala ha suscrito a pocos meses de dejar Palacio. Javier Llamosa, representante de Acción Internacional para la Salud, sostuvo que en la actualidad, Perú cuenta con 17 Tratados Comerciales y ninguno antes había incluido temas de Propiedad Intelectual.
+
+          // related image left
+          +related({
+            thumb: true,
+            position: "left"
+          })
+          p Llamosa advirtió que ratificándose el TPP se estaría otorgando exclusividad en el mercado a las industrias farmacéuticas transnacionales por un periodo de cinco hasta ocho años para que vendan sus medicamentos.
+          p Explicó que cuando ingresen los nuevos medicamentos biotecnológicos para tratar enfermedades, las farmacéuticas  se encontrarán en una situación de monopolio.
+
+          // related image right
+          +related({
+            thumb: true,
+            position: "right"
+          })
+          p Llamosa advirtió que ratificándose el TPP se estaría otorgando exclusividad en el mercado a las industrias farmacéuticas transnacionales por un periodo de cinco hasta ocho años para que vendan sus medicamentos.
+          p Por ejemplo, un medicamento como el Trastuzumab, (que sirve para tratamiento de cáncer de mama, y los pacientes requieren hasta 40 ampollas que quizá puedan salvarle la vida), se vende actualmente a S/ 5.500 cada ampolla, a pesar que fabricarlo cuesta solo S/ 93,50. De haber competencia podría costar S/ 500.
+
+          // related image width total
+          +related({
+            thumb: true,
+            position: ""
+          })
+          p <strong>"Espero que el Congreso no ratifique este Tratado bajo esas condiciones</strong>, que renegocie, que modifique aquellos capítulos donde están negociando con la vida de las personas", reflexionó.
+
+          // cite width total
+          +related-cite({ })
+        include helpers/tags
+
+      include helpers/comments
+      include helpers/related-news
+
+    include components/sidebar

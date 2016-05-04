@@ -1,0 +1,12 @@
+<?php if(count(Rpp\Services\Get\Recomendados::load($this->model->user))>0): ?>
+<div class="sidebar-panel" id="more-topic">
+<h2 class="panel-title">Noticias Recomendadas</h2>
+<?php $e=1; foreach (Rpp\Services\Get\Recomendados::load($this->model->user) as $nid): ?>
+<?php if(empty( \Rpp\Services\Get\Article::part($nid,'_id') )) continue;  ?>
+<?php if($this->model->nid == $nid) continue;?>
+{{ partial('partials/portada/bloque/tag/pl_tag_item', [ 'nid' : nid , 'class' : 'left-photo' , 'title_h' : 'h3' , 'img_size' : 'small']) }}
+<?php if($e >= 4) break;?>
+<?php $e++ ; ?>
+<?php endforeach; ?>
+</div>
+<?php endif; ?>

@@ -1,0 +1,5 @@
+<?php if(is_array(@\Rpp\Services\Get\Article::part($this->model->nid,'galeria'))):?>
+  {{ partial('partials/nota/tipo/pl' ~ model.package  ~ '/indexgaleria' ) }}
+<?php else:?>
+  {{ partial('partials/nota/tipo/pl' ~ model.package  ~ '/indexnoticia' ) }}
+<?php endif;?>

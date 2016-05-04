@@ -1,0 +1,47 @@
+<article itemscope itemtype="http://schema.org/NewsArticle" itemref="article-body organization">
+  <meta itemprop="datePublished dateModified" content="<?=date(DATE_ATOM);?>">
+  <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="{{host}}">
+  <div class="story-top">
+  	<?php $size_brand = !empty($this->notapreview->imagen_branding);?>
+	<?php $size_especial = !empty($this->notapreview->imagen_tag);
+	$viewjps=((int) $size_brand).( (int) $size_especial);
+	?>
+	{{ partial('partials/nota/breadcrumb/p' ~ viewjps , ['nombre':notapreview.categoria['nombre'] ]) }}
+      
+  </div>
+  <header class="story-header">
+    
+    {{ partial('partials/nota/header/titulo',['titulo': notapreview.titulo ]) }}
+    {{ partial('partials/nota/header/bajada',['bajada': notapreview.bajada]) }} 
+
+    <?php if(@$tipautor==1 ){ ?>
+    <?php $autor = \Rpp\Services\Get\User::get(@$this->notapreview->autor['slug']); ?>
+    <div itemprop="author" itemscope itemtype="https://schema.org/Person" class="author-description">
+      <figure class="author-img"><img itemprop="image" src="<?=@$autor->foto_blog['w110'];?>" alt="{{autor.nombre}}"></figure>
+      <div class="author-bio">
+        <div class="top-bio">
+          <div class="tit">Autor</div><a href="{{host}}/autores" class="name"><span itemprop="name">{{autor.nombre}}</span></a><a href="#ver-biografia" onclick='fn(this, event, {"method":"toggleClass", "to": ".author-description","class": "show-bio"})' class="but">Bio<span class="icon-arrow-down"></span></a>
+        </div>
+        <p itemprop="description"><?php echo @$autor->autor['biografia'] ;?></p>
+        <ul class="author-social">
+          <?php if(!empty($autor->autor['facebook'])):?>
+        <li ><a target="_blank" href="{{autor.autor['facebook']}}" title="Facebook"><div class="icon-facebook"></div></a></li>
+       <?php endif;?>
+       <?php if(!empty($autor->autor['twitter'])):?>
+        <li><a target="_blank" href="{{autor.autor['twitter']}}" >
+              <div class="icon-twitter"></div></a></li>
+       <?php endif;?>
+          <li ><a target="_blank" href="{{host}}/feed" title="RSS"><div class="icon-rss"></div></a></li> 
+
+        </ul>
+      </div>
+    </div>
+    <?php } ?>
+    <div class="story-meta">
+    	{{ partial('partials/nota/detalle/block/firma/'~model.package) }}
+    	{{ partial('partials/nota/header/pubtime',['fecha_publicacion': notapreview.fecha_publicacion] )}}
+    </div>
+
+    {{ partial('partials/nota/detalle/block/galeria/' ~ plantjp ~ model.package) }}  
+  </header>
+</article>

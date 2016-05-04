@@ -1,0 +1,17 @@
+<div id="fb-root"></div>
+
+<!-- pub-980 -->
+<header class="wrapper">
+    {{ partial('partials/ads/verticales') }}
+    {{ partial('partials/header/fecha') }}
+    {{ partial('partials/header/search',['nombuscaa':'Ingrese su búsqueda y presione enter...', 'idInput':'search-input-main'] , trackurl ) }}
+    {{ partial('partials/header/nav',[] , trackurl ) }}
+    {{ partial('partials/header/logonav' ) }}
+    <!-- header-main -->
+   {{ partial('partials/portada/bloque/tag/campana_cabecera' , ['slug': model.tag_slug_portada ] ) }}
+    <div class="widget-cabecera">    
+    </div>
+    <!-- pub-980 -->
+</header><!-- header -->
+<!-- {{ partial('partials/ads/bg_banner') }} -->
+{{ partial('partials/ads/top') }}

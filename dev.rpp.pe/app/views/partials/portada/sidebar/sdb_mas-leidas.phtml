@@ -1,0 +1,24 @@
+{% cache "portada.masvisto." ~ slug 1200 %}
+<div class="pin-container" >
+    <div class="pin-wrapper" >
+        <div class="sidebar-panel more-read" >
+            <h2 class="panel-title">Las noticias más leídas</h2>
+            <ol>
+              <?php $cantle=1; foreach (\Rpp\Services\Get\Visitas::ranking($slug,$cantidad) as $position => $item) :?>
+                <li>
+                    <h3>
+                        <a class="group" href="{{nUrl(item['nid'])}}{{TrackUrl(position+1)}}">
+                            <span class="order"><?=$cantle;?></span>
+                            <span>{{getNode(item['nid']).titulo}}</span>
+                        </a>
+                    </h3>
+                </li>
+              <?php $cantle++;   endforeach;?>  
+                
+            </ol>
+        </div>
+    </div>
+    <!-- .more-read -->
+</div>
+{% endcache %}
+

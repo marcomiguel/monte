@@ -1,0 +1,10 @@
+<div class="breadcrumb">
+  <ul itemscope="" itemtype="http://schema.org/BreadcrumbList">
+    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a itemprop="item" href="{{host}}"><span itemprop="name">Portada</span></a>
+      <meta itemprop="position" content="1">
+    </li>
+    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem" class="active"><a itemprop="item" href="<?php echo str_replace( SITESLUG ,'', \Rpp\Services\Get\Content::node($this->model->nid)->categoria['slug']) ;  ?>"><span itemprop="name">{{nombre}}</span></a>
+      <meta itemprop="position" content="2">
+    </li>
+  </ul>
+</div>

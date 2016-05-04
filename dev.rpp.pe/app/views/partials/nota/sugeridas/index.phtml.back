@@ -1,0 +1,127 @@
+{% cache "nota.sugeridas." ~ model.nid ~ 172800 %}
+<div class="related-news">
+    <h3 class="panel-title">También te puede interesar</h3>
+
+    <div class="feat-block group">
+<?php $e=0 ; $init=2 ; foreach ( \Rpp\Services\Get\Flow::seccion($this->model->slug_seccion[1].'/'.$this->model->slug_seccion[2],3) as  $item): ?> 
+     <?php if($item->_id == $this->model->nid):?>
+         <?php $init = 3 ; continue; ?>
+     <?php endif;?>
+        <div class="col-3">
+
+<article class="third-article hnews hentry group">
+
+<figure class="hmedia">
+   {{ partial( 'partials/portada/grilla/block/icon/' ~ getNode(item._id).tipo ) }}
+   
+    <a {{ partial('partials/portada/grilla/block/url/' ~ getNode(item._id).tipo , [ 'nid' : item._id ]) }}>
+        <img class="photo" src="{{  cdn_image( getNode(item._id).imagen_portada['hash'] , 'small')  }}" alt="{{ getNode(item._id).imagen_portada['alt'] }}">
+    </a>
+    <figcaption class="fn hide">{{getNode(item._id).titulo_corto}}</figcaption>
+</figure>
+
+<div class="entry-cont ">
+
+{{ partial('partials/portada/grilla/block/entry-cont/categoria_home'  , [ 'nombre' : getNode(item._id).categoria['nombre'] ,'slug' : getNode(item._id).categoria['slug'] ] ) }}
+
+    <h2 class="entry-title"><a class="url" {{ partial('partials/portada/grilla/block/url/' ~ getNode(item._id).tipo , [ 'nid' : item._id ]) }} >{{getNode(item._id).titulo_corto}}</a></h2>
+    
+    <footer class="hide">
+        <p class="source-org vcard"><a class="fn url org" href="{{host}}">RPP Noticias</a></p>
+    </footer>
+
+</div>
+<!-- .entry-cont -->
+
+</article>
+
+
+        </div>
+<?php $e++;?>
+<?php if($e >= 2) break; ?>
+<?php endforeach;?>
+
+
+<div class="col-3">
+
+<?php $e=0 ; foreach ( \Rpp\Services\Get\Flow::seccion($this->model->slug_seccion[1].'/'.$this->model->slug_seccion[2] ,3,$init) as  $item): ?> 
+
+<article class="third-article hnews hentry group">
+<div class="entry-cont no-image">
+
+{{ partial('partials/portada/grilla/block/entry-cont/categoria_home' , [ 'nombre' : getNode(item._id).categoria['nombre'] ,'slug' : getNode(item._id).categoria['slug'] ] ) }}
+
+    <h2 class="entry-title"><a class="url" {{ partial('partials/portada/grilla/block/url/' ~ getNode(item._id).tipo , [ 'nid' : item._id ]) }}>{{getNode(item._id).titulo_corto}}</a></h2>
+    <footer class="hide">
+        <p class="source-org vcard"><a class="fn url org" href="{{host}}">RPP Noticias</a></p>
+    </footer>    
+</div>
+<!-- .entry-cont -->
+</article>
+
+<?php $e++;?>
+<?php if($e >= 2) break; ?>
+<?php endforeach;?>        
+  
+</div>
+
+    </div>
+
+</div>
+{% endcache %}
+
+
+
+
+--------------------------------------------------------------------------------------------------------
+antiguo
+
+{% cache "nota.sugeridas." ~ model.nid ~ "."  ~ model.user 360 %}
+<?php if(count($this->model->sugeridas)>0):?>
+    <div class="related-news">
+    <h3 class="panel-title">También te puede interesar</h3>
+    <div class="feat-block group">
+      <div class="col-3">
+    <?php $i=0; foreach ($this->model->sugeridas as $nid) : ?>
+     <?php $i++ ;?>
+          
+                <?php $icon = '';?>
+                <?php if(in_array('audio', \Rpp\Services\Get\Content::part($nid,'media_tipos')) ): $icon='icon icon-4';?> 
+                <?php elseif(in_array('video', \Rpp\Services\Get\Content::part($nid,'media_tipos')) ): $icon='icon icon-8';?>
+                <?php elseif(in_array('galeria', \Rpp\Services\Get\Content::part($nid,'media_tipos')) ): $icon='icon icon-6';?>
+                <?php endif;?>
+                <?php if( $i == 3 ){ echo '</div><div class="col-3">'; } ?>
+                <article class="third-article hnews hentry group">
+                  <?php if($i<=2){ ?>
+                    <figure class="hmedia">
+                        <a href="{{nUrl(nid)}}{{TrackUrl(i)}}">
+                            <span class="{{icon}}"></span>
+                            <img class="photo" src="{{ cdn_image(getNode(nid).imagen_portada['hash'],'medium') }}" alt="{{getNode(nid).imagen_portada['alt']}}">
+                        </a>
+                        <figcaption class="fn hide">{{getNode(nid).imagen_portada['alt']}}</figcaption>
+                    </figure>
+                    <?php } ?>
+                    <div class="entry-cont <?php if( $i >= 3 ){ echo 'no-image'; } ?> ">
+                        <p class="cat">
+                            <a href="{{nUrl(nid)}}{{TrackUrl(position)}}">{{getNode(nid).categoria['nombre']}}</a>
+                        </p>
+
+                        <h2 class="entry-title"><a class="url" href="{{nUrl(nid)}}{{TrackUrl(position)}}" rel="bookmark">{{getNode(nid).titulo_corto}}</a></h2>
+
+
+                        <footer class="hide">
+                            <p class="source-org vcard"><a class="fn url org" href="http://www.rpp.com.pe">RPP Noticias</a>
+                            </p>
+                        </footer>
+
+                    </div>
+                    <!-- .entry-cont -->
+                  </article>
+            <?php if( $i == 4 ) break;?>
+    <?php endforeach;?>
+        
+       </div>
+    </div>
+    </div>
+<?php endif;?>
+{% endcache %}

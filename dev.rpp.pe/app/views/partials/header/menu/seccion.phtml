@@ -1,0 +1,24 @@
+    <div class="txt-center">
+      <div class="wancho" data-params='{"variableWidth":true}'>
+       <div class="content">
+          <ul class="inner" >
+        
+               <?php foreach (\Rpp\Services\Get\Categorias::get_categoria_arbol($this->model->slug_seccion) as $categoria) : ?>
+                 <li class="item"> <a href="/{{categoria.path}}"><?php if(empty($categoria->alias)):?>{{categoria.nombre}}<?php else :?>{{categoria.alias}}<?php endif;?></a></li>
+               <?php endforeach;?>
+          </ul>
+        </div>
+          <div class="arrows">
+            <a href="#prev" class="prev">
+                <span>
+                    <i class="icon-13"></i>
+                </span>
+            </a>
+            <a href="#next" class="next">
+                <span>
+                    <i class="icon-14"></i>
+                </span>
+            </a>
+          </div>
+      </div>
+    </div>

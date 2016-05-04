@@ -1,0 +1,11 @@
+<article class="main-article hnews group">
+	<div class="entry-cont no-image">
+		<h1 class="entry-title"><a class="url" {{ partial('partials/portada/grilla/block/url/' ~ item['tipo'] , [ 'nid' : item['nid'] ]) }}>{{item['titulo']}}</a></h1>
+		
+		<p>{{item['bajada']}}</p>
+
+		<footer class="hide">
+			<p class="source-org vcard"><a class="fn url org" href="{{host}}">RPP Noticias</a></p>
+		</footer>
+	</div><!-- .entry-cont -->
+</article>

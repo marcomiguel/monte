@@ -1,0 +1,10 @@
+<?php if(@\Rpp\Services\Get\Destacados::portada($slug)->lateral['lateral_2']['slug']):?>
+<div class="sidebar-panel dia-sidebar">
+<h2 class="panel-title">Un día como hoy <a class="right-link" href="#"> <time class="pubdate" datetime="2015-01-26T15:16:03-05:00">26 de enero</time></a></h2>
+
+<?php foreach (\Rpp\Services\Get\Flow::tag(@\Rpp\Services\Get\Destacados::portada($slug)->lateral['lateral_2']['slug'],2) as $e => $item):?>
+{{ partial('partials/portada/bloque/tag/tag_item', [ 'nid' : item._id , 'class' : '' , 'title_h' : 'h3' , 'img_size' : 'small']) }}
+<?php endforeach;?>
+
+</div>               
+<?php endif;?>

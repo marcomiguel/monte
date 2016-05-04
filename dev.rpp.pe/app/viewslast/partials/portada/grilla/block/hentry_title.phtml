@@ -1,0 +1,8 @@
+<article class="card">
+  <div class="cont">
+    <div class="top-info">
+      {{ partial('partials/portada/grilla/block/entry-cont/categoria_' ~ getGrilla(slug).tipo['namespace'] , [ 'nombre' : item['categoria']['nombre'] ,'slug' : item['categoria']['slug'] ] ) }}
+    </div>
+    <h2><a {{ partial('partials/portada/grilla/block/url/' ~ item['tipo'] , [ 'nid' : item['nid'] ]) }}>{{item['titulo']}}</a></h2>
+  </div>
+</article>

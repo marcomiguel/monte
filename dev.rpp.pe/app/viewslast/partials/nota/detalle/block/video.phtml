@@ -1,0 +1,36 @@
+<?php 
+  $gene_img['type']='video';
+  $gene_img['video_source'] = \Rpp\Services\Get\UrlMedia::replace_cdn_raiz($contenido['video']['url']); 
+  $gene_img['video_img'] = \Rpp\Services\Get\UrlMedia::replace_cdn_raiz($contenido['video']['url_cover']); 
+  if(!isset($contenido['video']['playlist'])) $contenido['video']['playlist']='[]'; 
+  else $contenido['video']['playlist'] = \Rpp\Services\Get\UrlMedia::replace_cdn($contenido['video']['playlist'],'media');
+  $gene_img['playlist'] =json_encode($contenido['video']['playlist']); 
+  $gene_img['hash'] =$contenido['video']['hash'];
+  $gene_img['rtag'] = @$this->model->preroll;
+  $gene_img['section'] = @$this->model->epl_sec;
+  $gene_img['vtemas'] = @$this->model->epl_kvs;
+  $jsongene_img=json_encode($gene_img);
+?>
+ <!-- video-->
+  <div itemprop="video" itemscope itemtype="http://schema.org/VideoObject"  class="media">
+    <meta itemprop="encodingFormat" content="mp4">
+    <meta itemprop="uploadDate" content="<?=date(DATE_ATOM,@\Rpp\Services\Get\Content::node($this->model->nid)->fecha_publicacion);?>">
+    <meta itemprop="contentUrl" content="<?=$gene_img['video_source'];?>">
+    <meta itemprop="duration" content="<?php echo @$contenido['video']['duracion']; ?>">
+    <meta itemprop="name" content="RPP Noticias">
+    <figure>
+      <div class="cover cover-media">
+        <a href="#video" data-x='<?=$jsongene_img;?>' class="x-media big">
+          <img itemprop="thumbnailURL" src="<?=$gene_img['video_img'];?>" alt="<?php echo @$contenido['video']['descripcion']; ?>"><span class="icon-play"></span>
+        </a>
+      </div>
+      <figcaption itemprop="description">
+        <?php echo @$contenido['video']['descripcion']; ?> {% if not(contenido['via'] is empty) %}
+        | <strong>Fuente:</strong> {{ contenido['via'] }}
+        {% endif %}
+        {% if not(contenido['credito'] is empty) %}
+        | <strong>Fotógrafo:</strong> {{ contenido['credito'] }}
+        {% endif %}
+    </figcaption>
+    </figure>
+  </div>

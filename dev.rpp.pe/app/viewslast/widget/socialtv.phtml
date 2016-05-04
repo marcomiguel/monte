@@ -1,0 +1,110 @@
+<html>
+    <head>        
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <link rel="stylesheet" type="text/css" href="{{ehost}}/styles/utils/widget_socialtv.css" media="screen" />
+        <script type="text/javascript" src="{{ehost}}/scripts/jquery-1.11.2.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                mostrar(1);
+            });          
+           
+            function mostrar(id) {
+                var info = [
+                        {% for part in socialtv.contenido  %}
+                        {
+                            "link"      : "https:\/\/twitter.com\/#!\/id\/status\/648538550628171776",
+                            "nombre"    : {{ part['nombreusuario'] | json_encode }},
+                            "nick"      : {{ part['cuentausuario'] | json_encode }},
+                            "mensaje"   : {{ part['mensaje'] | json_encode }},
+                            "fecha"     : "{{part['datetime']}}",
+                            "fuente"    : "{{part['tipo']}}" ,
+                            "imagen"    : "{{part['avatar']}}",
+                            "tmultimedia"  : "",
+                            "multimedia": ""
+                        },
+                        {% endfor %}                   
+                    ];
+                    
+                if (info != null) {
+                    if (id > 0 && id <= info.length) {
+                        $.each(info, function (i, item) {
+                            var element = parseInt(i) + parseInt(1);
+                            if (id == element) {
+                                $("#idcontador").html("");
+                                $("#idcontador").append(id + " de " + info.length);
+                                if (item.tmultimedia != "" && item.tmultimedia != null) {
+                                    if (item.tmultimedia == "imagen") {
+                                        $("#divmultimedia").attr("class", "box_tv-bottom display_on");
+                                        $("#divplayer").attr("class", " display_off");
+                                        $("#divplayer").html("");
+                                        $("#divimg").attr("class", "box_tv-bottom-in display_on");
+                                        $("#divimg").attr("style", "width:500px; height:350px; background-image:url(" + item.multimedia + ");");
+                                    }
+                                    if (item.tmultimedia == "video") {
+                                        $("#divmultimedia").attr("class", "box_tv-bottom display_on");
+                                        $("#divplayer").attr("class", "display_on");
+                                        $("#divimg").attr("class", "display_off");
+                                        $("#divimg").attr("style", "");
+                                        var iframe_ = "<iframe id=\"divvideo\" width=\"500\" height=\"350\" frameborder=\"0\" src =\"" + item.multimedia + "\" ></iframe>";
+                                        $("#divplayer").html(iframe_);
+                                    }
+                                } else {
+                                    $("#divmultimedia").attr("class", "box_tv-bottom display_off");
+                                    $("#divimg").attr("style", "");
+                                    $("#divplayer").attr("class", "display_off");
+                                    $("#divvideo").removeAttr("src");
+                                }
+                                var icon = "<img id=\"id_img\" class=\"img_avatar\" src=\"" + item.imagen + "\" /><span id=\"id_tipo\" class=\"icon_" + item.fuente + "\" ></span>";
+                                $("#spanuser").html(icon);
+                                $("#id_usrreal").text(item.nombre);
+                                $("#id_usr").text(item.nick);
+                                $("#id_fecha").text(item.fecha);
+                                $("#id_msj").text(item.mensaje);
+                                $("#idtxthidden").val(id);
+                            }
+                        });
+                    }
+                }
+            }
+            var keys = {
+                16: "shift",
+                17: "Ctrl",
+                18: "Alt",
+                19: "Pause",
+                37: "Arrow Left",
+                38: "Arrow Up",
+                39: "Arrow Right",
+                40: "Arrow Down"
+            };
+
+            function KeyCheck(e) {
+                if (e.keyCode == 39 || e.keyCode == 38) {
+                    mostrar(parseInt($("#idtxthidden").val()) + parseInt(1));
+                }
+                if (e.keyCode == 37 || e.keyCode == 40) {
+                    mostrar(parseInt($("#idtxthidden").val()) - parseInt(1));
+                }
+            }
+        </script>
+    </head>
+    <body onkeyup="KeyCheck(event);">
+        <div class="wrapper">
+            <div class="box_tv">
+                <div class="box_tv-top">
+                    <div class="box_tv-wrap-top">
+                        <p>{{socialtv.titulo}}</p>
+                    </div>
+                </div>
+                <div class="box_tv-center">
+                    <div class="box_tv-wrap-bottom"><span id="spanuser" class="box_user"><span id="id_tipo" ></span></span><span class="box_msg"><div class="box_msg-top"><p id="id_usrreal" class="user_name"></p><p id="id_usr" class="user_nick"></p></div><p id="id_msj" class="user_msg"></p><div class="box_msg-bottom"><p id="id_fecha" class="user_fecha"></p><p id="idcontador" class="contador"></p></div></span></div>
+                </div>
+                <div id="divmultimedia" class="box_tv-bottom ">
+                    <div id="divimg" class="box_tv-bottom-in"></div>
+                    <div id="divplayer" class="box_tv-bottom-in"></div>
+                </div>
+            </div>
+        </div>
+        <input id="idtxthidden" type="hidden" value="" />
+    </div>
+</body>
+</html>
