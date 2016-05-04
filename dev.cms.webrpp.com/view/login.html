@@ -1,0 +1,36 @@
+<div layout="row" layout-wrap layout-align="center center" layout-margin id="login">
+    <div flex="50" flex-sm="95" flex-md="70">
+        <md-toolbar class="md-primary">
+            <div class="md-toolbar-tools" style="text-align:centerw">
+                <figure class="logo"><img src="svg/logo-grupo-rpp.svg" alt="Logo Grupo RPP"></figure>
+            </div>
+        </md-toolbar>
+        <md-content class="md-whiteframe-z3">
+            <div layout-padding>
+                <form name="userLoginForm" layout-padding>
+                  <md-input-container>
+                    <label>Usuario</label>
+                    <!--input type="email" required ng-model="user.name"-->
+                    <ng-md-icon icon="person" class="name"></ng-md-icon>
+                    <input type="text" ng-disabled="userDisabled" required ng-model="user.name">
+                    <div ng-messages="user.name.$error">
+                        <div ng-message="required"><!--Ingresa nickname.--></div>
+                    </div>
+                  </md-input-container>
+                  <md-input-container>
+                    <label>Password</label>
+                    <ng-md-icon icon="vpn_key" class="name"></ng-md-icon>
+                    <input type="password" ng-disabled="passwordDisabled" required ng-model="user.password">
+                    <div ng-messages="user.password.$error">
+                        <div ng-message="required"><!--* Ingresa passowrd válido--></div>
+                    </div>
+                  </md-input-container>
+                  <div layout="row">
+                      <md-button ng-disabled="loginDisabled" style="margin-right:2em;" ng-click="loginCMS('form')" class="md-raised md-warn">Ingresar</md-button>
+                      <md-progress-circular ng-show="loginProgress" md-mode="indeterminate"></md-progress-circular>
+                  </div>
+                </form>
+            </div>
+        </md-content>
+    </div>
+</div>

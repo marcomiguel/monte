@@ -1,0 +1,27 @@
+<style>
+  li {
+    text-transform: capitalize;
+  }
+</style>
+<div layout="row" layout-align="center center" style="position: absolute; top: 25%; left: 31%;">
+    <div flex="90" flex-sm="95" flex-md="70">
+        <md-toolbar class="md-primary">
+            <div class="md-toolbar-tools" style="text-align:centerw">
+                <figure class="logo"><img src="svg/logo-grupo-rpp.svg" alt="Logo Grupo RPP"></figure>
+            </div>
+        </md-toolbar>
+        <md-content class="md-whiteframe-z3">
+          <div layout-padding ng-if="access.length > 0">
+              <h1 style="text-align: justify; text-justify: inter-word;">No tiene permisos para acceder a este módulo.</h1>
+              <h2>Pero puede acceder a los siguientes módulos:</h2>
+              <ol>
+                <li ng-repeat="acc in access"><a ng-href="#{{acc.url}}">{{ acc.name }}</a></li>
+              </ol>
+          </div>
+          <div layout-padding ng-if="access.length == 0">
+              <h1 style="text-align: justify; text-justify: inter-word;">El usuario no posee permisos para acceder al CMS.</h1>
+              <h2>Comuníquese con un administrador.</h2>
+          </div>
+        </md-content>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<md-dialog flex="95" aria-label="Asociar">
+  <md-dialog-content>
+      <div flex="100">
+        <md-content class="md-padding">
+          <h1>
+            <ng-md-icon icon="person" class="name"></ng-md-icon>
+            Configuración de Cuenta</h1>
+        </md-content>
+        <md-content class="md-padding">
+          <form name="userProfileForm">
+            <md-input-container flex ng-if="!item">
+              <label>Usuario:</label>
+              <input ng-model="user.username" required="">
+            </md-input-container>
+            <md-input-container flex ng-if="!item">
+              <label>Nombre:</label>
+              <input ng-model="user.nombre" required="">
+            </md-input-container>
+            <md-input-container flex ng-if="!item">
+              <label>Correo:</label>
+              <input type="email" ng-model="user.email" required="">
+            </md-input-container>
+            <md-input-container flex ng-if="!item">
+              <label>Cargo:</label>
+              <input ng-model="user.cargo" required="">
+            </md-input-container>
+            <md-input-container flex ng-if="!item">
+              <label>Nueva contraseña:</label>
+              <input type="password" ng-model="user.password" required="">
+            </md-input-container ng-if="item">
+            <md-input-container flex ng-if="!item">
+              <label>Confirmar contraseña:</label>
+              <input type="password" ng-model="user.password2" required="">
+            </md-input-container>
+            <md-input-container flex ng-if="item">
+              Estado: 
+              <md-switch class="md-primary" ng-model="user.active" aria-label="Estado" ng-true-value="1" ng-false-value="0"></md-switch>
+            </md-input-container>
+            <div layout="row" style="padding-top: 10px">
+              <label>Sitios:</label>
+            </div>
+            <div layout="row" layout-wrap flex flex-offset="15">
+              <div flex="25" ng-repeat="elem in sitios | orderBy:'nombre'">
+                <md-checkbox class="md-primary" ng-checked="exists(elem.slug, user.sitios)" ng-click="toggle(elem.slug, user.sitios)" aria-label="Accion">{{ elem.nombre }}</md-checkbox>
+              </div>
+            </div>
+          </form>
+        </md-content>
+    </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <md-button ng-click="saveProfile('form');" ng-disabled="userProfileForm.$invalid" class="md-primary">
+        Guardar
+    </md-button>
+    <md-button type="button" ng-click="cerrarModal()" class="md-primary">
+      Cerrar
+    </md-button>
+  </div>
+</md-dialog>

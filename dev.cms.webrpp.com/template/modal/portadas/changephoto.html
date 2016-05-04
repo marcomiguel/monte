@@ -1,0 +1,19 @@
+<md-dialog flex="95" aria-label="Add Photo">
+  <md-dialog-content>
+      <!-- Add Photo -->
+      <div class="cntUploadImg" id="add-photo-modal" style="min-height:400px; position:relative;">
+          <html5uploadimage style="display:block" width-image="{{widthImage}}" height-image="{{heightImage}}" ajax="false" originalsize="false" editstart="false" image="{{image}}" reset="reset"></html5uploadimage>
+          <input type="hidden" data-json="" name="thumb_values_edit" />
+      </div>
+      <!-- End Add Photo -->
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button type="button" ng-click="closeOpenAddPhoto()" class="md-primary">
+      Cerrar
+    </md-button>
+    <md-button type="button" ng-click="addOpenAddPhoto()" class="md-primary">
+        {{(modalType === 'add')?'Agregar':'Actualizar'}}
+    </md-button>
+  </div>
+</md-dialog>

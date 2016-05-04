@@ -1,0 +1,543 @@
+<div layout="column" class="relative" flex role="main" id="facebook-config">
+    <!-- HEADER -->
+    <div ng-include="'template/partial/header-nosearch.html'"></div>
+    <!-- END HEADER -->
+    <div flex>
+        <div ng-click="hideLayer($event)" id="layerSearch" ng-show="layerSearch"></div>
+        <div layout="column">
+            <!-- BREADCRUMB -->
+            <md-toolbar class="md-toolbar-subhead">
+                <div layout="row" layout-align="center center" class="md-toolbar-tools md-toolbar-breadcrumb md-whiteframe-z1">
+                    <md-button type="button" class="md-icon-button" ng-click="clicVolver()">
+                        <ng-md-icon icon="arrow_back" size="28"></ng-md-icon>
+                        <md-tooltip md-direction="bottom">
+                            Volver
+                        </md-tooltip>
+                    </md-button>    
+                </div>
+            </md-toolbar>
+            <!-- /BREADCRUMB -->
+            <!-- LEFT -->
+            <aside class="sidenav-left sidenav-module md-whiteframe-z2" id="sidebarleft">
+                <menu-lateral-derecha activo="videos" modulo="redes-sociales"></menu-lateral-derecha>
+            </aside>
+            <!-- /LEFT -->
+            <!-- CONTENT -->
+            <section class="md-toolbar-subbody content-body-center fullcenter" id="contentbodycenter" style="width:100%;margin:0;">
+                <div class="content-inner relative" style="margin-left: 200px;">
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab>
+                            <md-tab-label>
+                                <span><md-icon md-svg-src='svg/facebook29.svg' style='color:#435a8b; width:24px;height:24x'></md-icon><md-tooltip>Facebook</md-tooltip></span> Facebook
+                            </md-tab-label>
+                            <form name="frmFB" novalidate>
+                                <md-content class="md-padding" style="position: relative; min-height: 500px;">
+                                    <md-progress-circular ng-show="redessociales.preload" md-mode="indeterminate"></md-progress-circular>
+                                    <md-input-container class="md-block">
+                                        <label>
+                                            Escribir post
+                                            <span ng-if="redessociales.msj.length>0">({{redessociales.msj.length}} Caracteres)
+                                            </span>
+                                        </label>
+                                        <textarea name="mensajeFB" ng-model="redessociales.msj" columns="1" rows="2" ng-required="true"></textarea>
+                                    </md-input-container>
+                                    <div ng-if="redessociales.postReady" style="font-size:14px; margin-top:10px;" class="alert-warn">
+                                        Selecciona una página o grupo donde publicar el post.
+                                    </div>
+                                    <div ng-if="redessociales.postError.status" style="font-size:14px; margin-top:10px;" class="alert-warn">
+                                        {{redessociales.postError.message}}
+                                    </div>
+                                    <div class="account-fb" ng-show="isAccountsFB" style="margin: 10px 0;">
+                                          <div class="account-all">
+                                               
+                                              <div class="account-right account-full">
+                                                  <div
+                                                      class="sectionFB activeSectionFB"
+                                                      >
+                                                      <!-- IF 1 -->
+                                                      <div layout="row" ng-if="redessociales.accounts.pages.length > 0 && redessociales.accounts.groups.length > 0">
+                                                          <div flex="100" flex-gt-lg="50">
+                                                              <div ng-if="redessociales.accounts.pages.length<=0" class="alert-warning" style="margin-right:10px;font-size:14px;">No hay páginas</div>
+                                                              <ul style="margin-right:5px;">
+                                                                  <li
+                                                                  ng-repeat="page in redessociales.accounts.pages"
+                                                                  ng-class="{activefb : page.active}"
+                                                                  ng-click="insertRSActive($event, page, $index, 'pages', parentIndex, 'facebook')">
+                                                                      <img
+                                                                          ng-src="{{page.picture}}"
+                                                                          alt="{{page.name}}"
+                                                                      >
+                                                                      <span>{{page.name}}</span>
+                                                                      <ng-md-icon icon="{{(page.active)?'done':'add'}}" style="fill:{{(page.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                                      <md-tooltip>{{(page.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                                  </li>
+                                                              </ul>
+                                                          </div>
+                                                          <div flex="100" flex-gt-lg="50">
+                                                              <h5 style="margin:0px 0 2px;">Grupos:</h5>
+                                                              <div ng-if="redessociales.accounts.groups.length<=0" class="alert-warning" style="margin-right:10px;font-size:14px;">No hay grupos</div>
+                                                              <ul>
+                                                                  <li
+                                                                  ng-repeat="group in redessociales.accounts.groups"
+                                                                  ng-class="{activefb : group.active}"
+                                                                  ng-click="insertRSActive($event, group, $index, 'groups', parentIndex, 'facebook')">
+                                                                      <img
+                                                                          ng-src="{{group.picture}}"
+                                                                          alt="{{group.name}}"
+                                                                       />
+                                                                      <span>{{group.name}}</span>
+                                                                      <ng-md-icon icon="{{(group.active)?'done':'add'}}" style="fill:{{(group.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                                      <md-tooltip>{{(group.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                                  </li>
+                                                              </ul>
+                                                          </div>
+                                                      </div>
+                                                      <!-- END IF 1 -->
+                                                      <!-- IF 2 -->
+                                                      <div layout="row" ng-if="redessociales.accounts.facebook.pages.length > 0 && redessociales.accounts.facebook.groups.length <= 0">
+                                                          <div flex="100" flex-gt-lg="50">
+                                                              <h5 style="margin:0 0 2px">Páginas:</h5>
+                                                              <div ng-if="redessociales.accounts.facebook.pages.length<=0" class="alert-warning" style="margin-right:10px;font-size:14px;">No hay páginas</div>
+                                                              <ul style="margin-right:5px;">
+                                                                  <li
+                                                                  ng-repeat="page in redessociales.accounts.facebook.pages"
+                                                                  ng-class="{activefb : page.active}"
+                                                                  ng-click="insertRSActive($event, page, $index, 'pages', parentIndex, 'facebook')"
+                                                                  ng-if="$even">
+                                                                      <img
+                                                                          ng-src="{{page.picture}}"
+                                                                          alt="{{page.name}}"
+                                                                      >
+                                                                      <span>{{page.name}}</span>
+                                                                      <ng-md-icon icon="{{(page.active)?'done':'add'}}" style="fill:{{(page.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                                      <md-tooltip>{{(page.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                                  </li>
+                                                              </ul>
+                                                          </div>
+                                                          <div flex="100" flex-gt-lg="50">
+                                                              <h5 style="margin:0px 0 2px;">&nbsp;</h5>
+                                                              <ul>
+                                                                  <li
+                                                                  ng-repeat="page in redessociales.accounts.facebook.pages"
+                                                                  ng-class="{activefb : page.active}"
+                                                                  ng-click="insertRSActive($event, page, $index, 'pages', parentIndex, 'facebook')"
+                                                                  ng-if="$odd">
+                                                                      <img
+                                                                          ng-src="{{page.picture}}"
+                                                                          alt="{{page.name}}"
+                                                                       />
+                                                                      <span>{{page.name}}</span>
+                                                                      <ng-md-icon icon="{{(page.active)?'done':'add'}}" style="fill:{{(page.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                                      <md-tooltip>{{(page.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                                  </li>
+                                                              </ul>
+                                                          </div>
+                                                      </div>
+                                                      <!-- END IF 2 -->
+                                                      <!-- IF 3 -->
+                                                      <div layout="row" ng-if="redessociales.accounts.facebook.pages.length <= 0 && redessociales.accounts.facebook.groups.length > 0">
+                                                          <div flex="100" flex-gt-lg="50">
+                                                              <h5 style="margin:0px 0 2px;">Grupos:</h5>
+                                                              <div ng-if="redessociales.accounts.facebook.groups.length<=0" class="alert-warning" style="margin-right:10px;font-size:14px;">No hay grupos</div>
+                                                              <ul>
+                                                                  <li
+                                                                  ng-repeat="group in redessociales.accounts.facebook.groups"
+                                                                  ng-class="{activefb : group.active}"
+                                                                  ng-click="insertRSActive($event, group, $index, 'groups', parentIndex, 'facebook')"
+                                                                  ng-if="$even">
+                                                                      <img
+                                                                          ng-src="{{group.picture}}"
+                                                                          alt="{{group.name}}"
+                                                                       />
+                                                                      <span>{{group.name}}</span>
+                                                                      <ng-md-icon icon="{{(group.active)?'done':'add'}}" style="fill:{{(group.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                                      <md-tooltip>{{(group.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                                  </li>
+                                                              </ul>
+                                                          </div>
+                                                          <div flex="100" flex-gt-lg="50">
+                                                              <h5 style="margin:0px 0 2px;">&nbsp;</h5>
+                                                              <ul>
+                                                                  <li
+                                                                  ng-repeat="group in redessociales.accounts.facebook.groups"
+                                                                  ng-class="{activefb : group.active}"
+                                                                  ng-click="insertRSActive($event, group, $index, 'groups', parentIndex, 'facebook')"
+                                                                  ng-if="$odd">
+                                                                      <img
+                                                                          ng-src="{{group.picture}}"
+                                                                          alt="{{group.name}}"
+                                                                       />
+                                                                      <span>{{group.name}}</span>
+                                                                      <ng-md-icon icon="{{(group.active)?'done':'add'}}" style="fill:{{(group.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                                      <md-tooltip>{{(group.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                                  </li>
+                                                              </ul>
+                                                          </div>
+                                                      </div>
+                                                      <!-- END IF 3 -->
+                                                      <!-- IF 4 -->
+                                                      <div layout="row" ng-if="redessociales.accounts.facebook.pages.length <= 0 && redessociales.accounts.facebook.groups.length <= 0">
+                                                          <div flex="100" flex-gt-lg="50">
+                                                              <h5 style="margin:0 0 2px">Páginas:</h5>
+                                                              <div ng-if="redessociales.accounts.facebook.pages.length<=0" class="alert-warning" style="margin-right:10px;font-size:14px;">No hay páginas</div>
+                                                          </div>
+                                                          <div flex="100" flex-gt-lg="50">
+                                                              <h5 style="margin:0px 0 2px;">Grupos:</h5>
+                                                              <div ng-if="redessociales.accounts.facebook.groups.length<=0" class="alert-warning" style="margin-right:10px;font-size:14px;">No hay grupos</div>
+                                                          </div>
+                                                      </div>
+                                                      <!-- END IF 4 -->
+                                                  </div>
+                                              </div>
+                                          </div>
+                                    </div>
+                                    <div layout="row">
+                                        <md-button
+                                            ng-click="programPost($event)"
+                                            class="md-fab md-mini md-gray"
+                                            ng-class="{activoBtnFB: isProgramFB}"
+                                            aria-label="Agenda">
+                                            <ng-md-icon icon="insert_invitation" style="fill: #1976D2;"></ng-md-icon>
+                                            <md-tooltip>Programación Automática</md-tooltip>
+                                        </md-button>
+                                        <!-- <md-button
+                                            ng-click="chooseImg($event)"
+                                            class="md-fab md-mini md-gray"
+                                            ng-class="{activoBtnFB: isCaorusel}"
+                                            aria-label="Photo">
+                                            <ng-md-icon icon="photo_library" style="fill: #1976D2;"></ng-md-icon>
+                                            <md-tooltip>Elegir imagen</md-tooltip>
+                                        </md-button> -->
+                                        <md-button
+                                            ng-click="chooseVideo($event)"
+                                            class="md-fab md-mini md-gray"
+                                            ng-class="{activoBtnFB: isChooseVideo}"
+                                            aria-label="Video">
+                                            <ng-md-icon icon="videocam" style="fill: #1976D2;"></ng-md-icon>
+                                            <md-tooltip>Elegir video</md-tooltip>
+                                        </md-button>
+                                        <span flex></span>
+                                        <!-- <md-button ng-disabled="validarEnviarRS(redessociales.accounts.twitter.pages)" ng-click="sendPostFB($event)" type="button" class="md-fab md-mini md-primary" aria-label="Send">
+                                            <ng-md-icon icon="send" style="fill: white;"></ng-md-icon>
+                                            <md-tooltip>Enviar Post</md-tooltip>
+                                        </md-button> -->
+                                    </div>
+                                    <div class="carousel-img" ng-show="isProgramFB">
+                                        <md-content class="md-padding">
+                                            <h4 style="margin:0">Programación de publicación</h4>
+                                            <div layout="row" style="width: 250px;">
+                                                <div class="inputBlock">
+                                                    <md-input-container>
+                                                        <label>Fecha</label>
+                                                        <!-- min="{{dateTimeRS.today}}" -->
+                                                        <input type="date" name="date_publishFB" ng-model="dateTimeRS.date">
+                                                    </md-input-container>
+                                                </div>
+                                                <div class="inputBlock" style="margin-left: 20px; margin-top: 2px;">
+                                                    <md-input-container>
+                                                        <label>Hora</label>
+                                                        <input ui-timepicker type="text" name="time_publishFB" ng-model="dateTimeRS.time">
+                                                    </md-input-container>
+                                                </div>
+                                            </div>
+                                        </md-content>
+                                    </div>
+                                    <div ng-show="isChooseVideo" style="width: 1100px; ">
+                                        <md-content class="md-padding">
+                                            <div layout="row" layout-sm="column">
+                                                
+                                                <div flex="55" flex-sm="100">
+                                                    <div class="cntUploadVideo" id="add-video-modal" style="overflow:auto;">
+                                                        <div>
+                                                            <div class="alert-warn ng-hide" id="msjVideoLoad">
+                                                                <ul style="paddgin:0;margin:0">
+                                                                    <li>El video supera los <strong>60</strong> permitidos como máximo.</li>
+                                                                    <li>Lo recomendable es que el video no exceda los 6 minutos de duración y un mínimo de 1 minuto y medio.</li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="dropzonevideo" style="width:573px; height:322px">
+                                                                <input class="inputVideo" id="inputVideo" accept="video/mp4" ng-model="video" onchange="angular.element(this).scope().changeVideo(this, event, 'fb')" type="file" name="thumbvideo" />
+                                                                <video style="width:573px; height:322px; display:none;" class="videoPlayer" id="videoPlayer" controls autoplay></video>
+                                                                <div class="videoOptions" id="videoOptions" style="text-align:right;">
+                                                                    <!-- <button type="button" style="display:none;position:absolute;left:103%;top:0;z-index:2;" id="btnUploadCaptureEdit" class="video_upload_capture_edit md-fab md-mini md-button md-primary md-default-theme" aria-label="Upload Capture" ng-click="uploadCaptureImage()"><img src="./svg/plus24.svg" width="21" height="21px" /><md-tooltip>Agregar imagen de cover</md-tooltip></button>
+                                                                    <button type="button" style="display:none;" id="btnUploadCapture" class="video_upload_capture md-fab md-mini md-button md-primary md-default-theme" aria-label="Upload Capture" ng-click="uploadCaptureImage()"><img src="./svg/plus24.svg" width="21" height="21px" /><md-tooltip>Agregar imagen de cover</md-tooltip></button>
+                                                                    <button type="button" style="display:none;" class="video_capture md-fab md-mini md-button md-primary md-default-theme" aria-label="Capture" ng-click="captureImage()"><img src="./svg/photo_camera.svg" width="24" height="24px" /><md-tooltip>Capturar imagen</md-tooltip></button> -->
+                                                                    <button type="button" style="display:none;" class="video_remove md-fab md-mini md-button md-warn md-default-theme" aria-label="Cancelar" ng-click="removeVideo(undefined, {}, 'fb')"><img src="./svg/delete82.svg" width="24" height="24px" /><md-tooltip>Remover video</md-tooltip></button>
+                                                                    <button type="button" style="display:none;" class="video_done md-fab md-mini md-button md-cms-green md-default-theme" aria-label="Done" ng-click="uploadVideo('fb')"><img src="./svg/done.svg" width="24" height="24px" /><md-tooltip>Agregar video e imagen</md-tooltip></button>
+                                                                </div>
+                                                                <!-- <div ng-if="imgOutEditShow" style="position:absolute;right:auto;border:1px solid #ddd;overflow:hidden;top:0;background-color:#eee;width:612px;text-align:left;min-height:322px;left:580px">
+                                                                    <img ng-if="imgOutEdit.length>0" style="border:4px solid #43A047;float:left;" width="603" height="339" ng-src="{{imgOutEdit}}" alt="Imagen" />
+                                                                    <div ng-if="imgOutEdit.length<=0" class="alert-warn">No hay imagen de cover, debes agregar una imagen</div>
+                                                                </div> -->
+                                                                <input class="thumbData" type="hidden" data-json="" />
+                                                            </div>
+                                                            <input accept="image/x-png, image/png, image/jpeg, image/jpg" class="loadThumbData" type="file" style="position:absolute;left:10px;z-index:-1" />
+                                                            <div style="border: 1px solid transparent; border-color: #f0c36d; background-color: #f9edbe;box-shadow: 0 2px 4px rgba(0,0,0,0.2); width: 563px; margin-top:10px; padding: 5px; font-size:14px;">
+                                                                <ul style="padding:0 0 0 20px; margin:0">
+                                                                    <li>El tamaño del archivo no puede ser superior a <strong>60 MB</strong></li>
+                                                                    <!-- <li>El video no puede ser mayor a <strong>30 segundos.</strong></li> -->
+                                                                </ul>
+                                                                <p style="padding:0; margin:0">Para obtener más información sobre formatos, consulta <a href="https://support.twitter.com/articles/20172146" target="_blank" style="color: #000;"><strong>aquí</strong></a></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div flex="45" flex-sm="100">
+                                                    <div class="inputBlock">
+                                                        <md-input-container flex>
+                                                            <label>
+                                                                Título
+                                                                <span ng-if="redessociales.titulo.length>0">({{redessociales.titulo.length}} Caracteres)
+                                                                </span>
+                                                            </label>
+                                                            <input type="text" ng-model="redessociales.titulo"/>
+                                                        </md-input-container>
+                                                    </div>
+                                                    <div class="inputBlock">
+                                                        <md-input-container flex>
+                                                            <label>
+                                                                Enlace
+                                                                <span ng-if="redessociales.url.length>0">({{redessociales.descripcion.length}} Caracteres)
+                                                                </span>
+                                                            </label>
+                                                            <input type="text" ng-model="redessociales.url"/>
+                                                        </md-input-container>
+                                                    </div>
+                                                </div>   
+                                            </div>
+                                        </md-content>
+                                    </div>
+                                    <!-- <div class="carousel-img" ng-show="isCaorusel">
+                                      <h4 style="margin:0">Elegir imagen para el post</h4>
+                                      <ul>
+                                          <li ng-repeat="thumb in carouselThumbs" ng-class="{active:thumb.activo}" ng-click="selectCarousel($event, $index, thumb)">
+                                              <img ng-src="{{thumb.url}}" alt="Imagen" />
+                                          </li>
+                                          <li class="carousel-attach">
+                                              <md-button ng-click="openLoadImgFB($event)" class="md-icon-button md-primary" aria-label="Photo">
+                                                <ng-md-icon icon="attachment" size="32" style="fill: #1976D2;"></ng-md-icon>
+                                                <md-tooltip>Adjuntar imagen</md-tooltip>
+                                              </md-button>
+                                          </li>
+                                      </ul>
+                                      <input style="visibility:hidden; height:1px; overflow:hidden;" accept="image/x-png, image/png, image/jpeg, image/jpg, image/gif" type="file" id="inputFileTriggerFB" />
+                                    </div> -->
+                                    <!-- FAB POPUP -->
+                                    <section id="fabs">
+                                        <md-button ng-disabled="frmFB.mensajeFB.$invalid" ng-click="sendPost($event, 'fb')" id="mainFab" class="md-fab md-large md-primary" aria-label="Send">
+                                            <ng-md-icon icon="send" style="fill: white;"></ng-md-icon>
+                                            <md-tooltip md-direction="left">Enviar Post</md-tooltip>
+                                        </md-button>
+                                    </section>
+                                </md-content>
+                            </form>
+                        </md-tab>
+                        <md-tab>
+                            <md-tab-label>
+                                <span><md-icon md-svg-src='svg/twitter20.svg' style='color:#55acee; width:24px;height:24px'></md-icon><md-tooltip>Twitter</md-tooltip></span> Twitter
+                            </md-tab-label>
+                            <form name="frmTW" novalidate>
+                                <md-content class="md-padding" style="position: relative; min-height: 500px;">
+                                    <md-progress-circular ng-show="redessociales.preload" md-mode="indeterminate"></md-progress-circular>
+                                    <md-input-container class="md-block">
+                                        <label>
+                                            Escribir post
+                                            <span ng-if="redessocialesTW.msj.length>0">({{redessocialesTW.msj.length}} Caracteres)
+                                            </span>
+                                        </label>
+                                        <textarea name="mensajeTW" ng-model="redessocialesTW.msj" columns="1" rows="2" ng-required="true"></textarea>
+                                    </md-input-container>
+                                    <div ng-if="redessocialesTW.postReady" style="font-size:14px; margin-top:10px;" class="alert-warn">
+                                        Selecciona una página o grupo donde publicar el post.
+                                    </div>
+                                    <div ng-if="redessocialesTW.postError.status" style="font-size:14px; margin-top:10px;" class="alert-warn">
+                                        {{redessocialesTW.postError.message}}
+                                    </div>
+                                    <!-- TWITTER -->
+                                    <div class="account-fb" ng-show="isAccountsFB" style="margin: 10px 0;">
+                                      <div class="account-all">
+                                           <!-- <h4 style="margin:10px 0 5px;font-size:15px"><ng-md-icon icon="twitter" style="fill: #55acee;opacity:1;" size="20"></ng-md-icon>  Twitter:</h4> -->
+                                          <div class="account-right account-full" style="min-height:auto;">
+                                            <div ng-if="redessocialesTW.accounts.twitter.pages.length <= 0" class="alert-warning" style="margin-right:10px;margin-bottom:0;font-size:14px;">No hay páginas</div>
+                                              <div layout="row" ng-if="redessocialesTW.accounts.twitter.pages.length > 0">
+                                                  <div flex="100" flex-gt-lg="50">
+                                                      <ul>
+                                                          <li
+                                                          ng-repeat="page in redessocialesTW.accounts.twitter.pages"
+                                                          ng-class="{activefb : page.active}"
+                                                          ng-click="insertRSActive($event, page, $index, 'pages', parentIndex, 'twitter')"
+                                                          ng-if="$even">
+                                                              <img
+                                                                  ng-src="{{page.picture}}"
+                                                                  alt="{{page.name}}"
+                                                               />
+                                                              <span>{{page.name}}</span>
+                                                              <ng-md-icon icon="{{(page.active)?'done':'add'}}" style="fill:{{(page.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                              <md-tooltip>{{(page.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                          </li>
+                                                      </ul>
+                                                  </div>
+                                                  <div flex="100" flex-gt-lg="50">
+                                                      <ul>
+                                                          <li
+                                                          ng-repeat="page in redessocialesTW.accounts.twitter.pages"
+                                                          ng-class="{activefb : page.active}"
+                                                          ng-click="insertRSActive($event, page, $index, 'pages', parentIndex, 'twitter')"
+                                                          ng-if="$odd">
+                                                              <img
+                                                                  ng-src="{{page.picture}}"
+                                                                  alt="{{page.name}}"
+                                                               />
+                                                              <span>{{page.name}}</span>
+                                                              <ng-md-icon icon="{{(page.active)?'done':'add'}}" style="fill:{{(page.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                              <md-tooltip>{{(page.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                          </li>
+                                                      </ul>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                    </div>
+                                 <!-- END TWITTER -->
+                                    <div layout="row">
+                                        <md-button
+                                            ng-click="programPost($event)"
+                                            class="md-fab md-mini md-gray"
+                                            ng-class="{activoBtnFB: isProgramFB}"
+                                            aria-label="Agenda">
+                                            <ng-md-icon icon="insert_invitation" style="fill: #1976D2;"></ng-md-icon>
+                                            <md-tooltip>Programación Automática</md-tooltip>
+                                        </md-button>
+                                        <!-- <md-button
+                                            ng-click="chooseImg($event)"
+                                            class="md-fab md-mini md-gray"
+                                            ng-class="{activoBtnFB: isCaorusel}"
+                                            aria-label="Photo">
+                                            <ng-md-icon icon="photo_library" style="fill: #1976D2;"></ng-md-icon>
+                                            <md-tooltip>Elegir imagen</md-tooltip>
+                                        </md-button> -->
+                                        <md-button
+                                            ng-click="chooseVideoTW($event)"
+                                            class="md-fab md-mini md-gray"
+                                            ng-class="{activoBtnFB: isChooseVideoTW}"
+                                            aria-label="Video">
+                                            <ng-md-icon icon="videocam" style="fill: #1976D2;"></ng-md-icon>
+                                            <md-tooltip>Elegir video</md-tooltip>
+                                        </md-button>
+                                        <span flex></span>
+                                        <!-- <md-button ng-disabled="validarEnviarRS(redessociales.accounts.twitter.pages)" ng-click="sendPostFB($event)" type="button" class="md-fab md-mini md-primary" aria-label="Send">
+                                            <ng-md-icon icon="send" style="fill: white;"></ng-md-icon>
+                                            <md-tooltip>Enviar Post</md-tooltip>
+                                        </md-button> -->
+                                    </div>
+                                    <div class="carousel-img" ng-show="isProgramFB">
+                                        <md-content class="md-padding">
+                                            <h4 style="margin:0">Programación de publicación</h4>
+                                            <div layout="row" style="width: 250px;">
+                                                <div class="inputBlock">
+                                                    <md-input-container>
+                                                        <label>Fecha</label>
+                                                        <!-- min="{{dateTimeRS.today}}" -->
+                                                        <input type="date" name="date_publishFB" ng-model="dateTimeRS.date">
+                                                    </md-input-container>
+                                                </div>
+                                                <div class="inputBlock" style="margin-left: 20px; margin-top: 2px;">
+                                                    <md-input-container>
+                                                        <label>Hora</label>
+                                                        <input ui-timepicker type="text" name="time_publishFB" ng-model="dateTimeRS.time">
+                                                    </md-input-container>
+                                                </div>
+                                            </div>
+                                        </md-content>
+                                    </div>
+                                    <div ng-show="isChooseVideoTW" style="width: 1100px; ">
+                                        <md-content class="md-padding">
+                                            <div layout="row" layout-sm="column">
+                                                
+                                                <div flex="55" flex-sm="100">
+                                                    <div class="cntUploadVideo" id="add-video-modal" style="overflow:auto;">
+                                                        <div>
+                                                            <div class="alert-warn ng-hide" id="msjVideoLoadTW">
+                                                                <ul style="paddgin:0;margin:0">
+                                                                    <li>El video supera los <strong>60</strong> permitidos como máximo.</li>
+                                                                    <li>Lo recomendable es que el video no exceda los 6 minutos de duración y un mínimo de 1 minuto y medio.</li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="dropzonevideo" style="width:573px; height:322px">
+                                                                <input class="inputVideo" id="inputVideoTW" accept="video/mp4" ng-model="video" onchange="angular.element(this).scope().changeVideo(this, event, 'tw')" type="file" name="thumbvideo" />
+                                                                <video style="width:573px; height:322px; display:none;" class="videoPlayer" id="videoPlayerTW" controls autoplay></video>
+                                                                <div class="videoOptions" id="videoOptionsTW" style="text-align:right;">
+                                                                    
+                                                                    <button type="button" style="display:none;" class="video_remove md-fab md-mini md-button md-warn md-default-theme" aria-label="Cancelar" ng-click="removeVideo(undefined, {}, 'tw')"><img src="./svg/delete82.svg" width="24" height="24px" /><md-tooltip>Remover video</md-tooltip></button>
+                                                                    <button type="button" style="display:none;" class="video_done md-fab md-mini md-button md-cms-green md-default-theme" aria-label="Done" ng-click="uploadVideo('tw')"><img src="./svg/done.svg" width="24" height="24px" /><md-tooltip>Agregar video e imagen</md-tooltip></button>
+                                                                </div>
+                                                                <input class="thumbData" type="hidden" data-json="" />
+                                                            </div>
+                                                            <input accept="image/x-png, image/png, image/jpeg, image/jpg" class="loadThumbData" type="file" style="position:absolute;left:10px;z-index:-1" />
+                                                            <div style="border: 1px solid transparent; border-color: #f0c36d; background-color: #f9edbe;box-shadow: 0 2px 4px rgba(0,0,0,0.2); width: 563px; margin-top:10px; padding: 5px; font-size:14px;">
+                                                                <ul style="padding:0 0 0 20px; margin:0">
+                                                                    <li>El tamaño del archivo no puede ser superior a <strong>15 MB</strong></li>
+                                                                    <li>El video no puede ser mayor a <strong>30 segundos.</strong></li>
+                                                                </ul>
+                                                                <p style="padding:0; margin:0">Para obtener más información sobre formatos, consulta <a href="https://support.twitter.com/articles/20172146" target="_blank" style="color: #000;"><strong>aquí</strong></a></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div flex="45" flex-sm="100">
+                                                    <!-- <div class="inputBlock">
+                                                        <md-input-container flex>
+                                                            <label>
+                                                                Título
+                                                                <span ng-if="redessocialesTW.titulo.length>0">({{redessocialesTW.titulo.length}} Caracteres)
+                                                                </span>
+                                                            </label>
+                                                            <input type="text" ng-model="redessocialesTW.titulo"/>
+                                                        </md-input-container>
+                                                    </div>
+                                                    <div class="inputBlock">
+                                                        <md-input-container flex>
+                                                            <label>
+                                                                Enlace
+                                                                <span ng-if="redessocialesTW.url.length>0">({{redessocialesTW.descripcion.length}} Caracteres)
+                                                                </span>
+                                                            </label>
+                                                            <input type="text" ng-model="redessocialesTW.url"/>
+                                                        </md-input-container>
+                                                    </div> -->
+                                                </div>   
+                                            </div>
+                                        </md-content>
+                                    </div>
+                                    <!-- <div class="carousel-img" ng-show="isCaorusel">
+                                      <h4 style="margin:0">Elegir imagen para el post</h4>
+                                      <ul>
+                                          <li ng-repeat="thumb in carouselThumbs" ng-class="{active:thumb.activo}" ng-click="selectCarousel($event, $index, thumb)">
+                                              <img ng-src="{{thumb.url}}" alt="Imagen" />
+                                          </li>
+                                          <li class="carousel-attach">
+                                              <md-button ng-click="openLoadImgFB($event)" class="md-icon-button md-primary" aria-label="Photo">
+                                                <ng-md-icon icon="attachment" size="32" style="fill: #1976D2;"></ng-md-icon>
+                                                <md-tooltip>Adjuntar imagen</md-tooltip>
+                                              </md-button>
+                                          </li>
+                                      </ul>
+                                      <input style="visibility:hidden; height:1px; overflow:hidden;" accept="image/x-png, image/png, image/jpeg, image/jpg, image/gif" type="file" id="inputFileTriggerFB" />
+                                    </div> -->
+                                    <!-- FAB POPUP -->
+                                    <section id="fabs">
+                                        <md-button ng-disabled="frmTW.mensajeTW.$invalid" ng-click="sendPost($event, 'tw')" id="mainFab" class="md-fab md-large md-primary" aria-label="Send">
+                                            <ng-md-icon icon="send" style="fill: white;"></ng-md-icon>
+                                            <md-tooltip md-direction="left">Enviar Post</md-tooltip>
+                                        </md-button>
+                                    </section>
+                                </md-content>
+                            </form>
+                        </md-tab>
+                    </md-tabs>
+                </div>
+            </section>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,216 @@
+<md-dialog aria-label="Edit Cover" flex="95">
+  <md-dialog-content class="sticky-container">
+    <md-content layout-padding>
+        <section ng-show="showAdminCovers">
+            <div layout="row" layout-padding class="content_multiselect">
+              <div flex="45" class="left-data">
+                <h4>Noticias disponibles <strong>({{coverInputModel.length}})</strong></h4>
+                <div class="contentSearchCategoryLeft">
+                    <md-input-container>
+                        <label>Buscar...</label>
+                        <input ng-model="searchCover">
+                    </md-input-container>
+                </div>
+                <div class="height-panel" ng-drop="true" ng-drop-success="onDopCompleteCoverInput($data, $event)" style="border:1px solid rgb(153, 153, 153);">
+                    <ul class="list-news-cover">
+                        <li ng-repeat="new in coverInputModel | filter:searchCover:titulo">
+                            <md-card class="md-card-news" ng-drag="true" ng-drag-data="new" ng-drag-success="onDragCompleteCover($data, $event, 'input', $index)" ng-center-anchor="center">
+                            <div layout="row" layout-wrap>
+                                <figure class="md-avatar" flex="30">
+                                    <img style="width:100%; height:auto;" ng-src="{{new.imagen_portada.url}}?{{$index}}" alt="{{new.titulo}}" />
+                                </figure>
+                                <md-card-content flex="70">
+                                    <p class="nd-card-top">
+                                        <span ng-switch="new.tipo">
+                                            <span ng-switch-when="noticia">
+                                                <ng-md-icon icon="reorder" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="galeria">
+                                                <ng-md-icon icon="image" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="slider">
+                                                <ng-md-icon icon="collections" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="video">
+                                                <ng-md-icon icon="video_collection" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="audio">
+                                                <ng-md-icon icon="volume_up" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="url">
+                                                <ng-md-icon icon="link" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="mam">
+                                                <ng-md-icon icon="alarm_add" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="blog">
+                                                <ng-md-icon icon="perm_contact_cal" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="infografia">
+                                                <ng-md-icon icon="photo_album" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="brandcontent">
+                                                <ng-md-icon icon="picture_in_picture" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                        </span>
+                                        <span ng-if="new.categorias.length>1" class="card-secondary"
+                                            ns-popover
+                                            ns-popover-plain="true"
+                                              ns-popover-template="{{returnCategorys(new.categorias)}}"
+                                            ns-popover-trigger="mouseenter"
+                                            ns-popover-placement="bottom"
+                                            ns-popover-theme="ns-popover-tooltip-theme"
+                                            ns-popover-timeout="0.5"
+                                            >
+                                            <span ng-repeat="categoria in new.categorias">
+                                                <span ng-if="categoria.primary">{{categoria.nombre | uppercase}}</span>
+                                            </span>
+                                        </span>
+                                        <span ng-if="new.categorias.length<=1" class="card-secondary"
+                                            ns-popover
+                                            ns-popover-plain="true"
+                                              ns-popover-template="<div class='triangle'></div><div class='ns-popover-tooltip'>No tiene más categorias asignadas.</div>"
+                                            ns-popover-trigger="mouseenter"
+                                            ns-popover-placement="bottom"
+                                            ns-popover-theme="ns-popover-tooltip-theme"
+                                            ns-popover-timeout="0.5"
+                                        >
+                                            {{ new.categorias[0].nombre | uppercase }}
+                                        </span>
+                                    </p>
+                                    <h2>{{ new.titulo }}</h2>
+                                    <p class="card-secondary">
+                                       {{ new.date_publish | timeago }}
+                                    </p>
+                                </md-card-content>
+                            </div>
+                        </md-card>
+                        </li>
+                    </ul>
+
+                </div>
+              </div>
+              <div flex="5" style="text-align:center">
+              </div>
+              <div flex="45" class="right-data">
+                <h4>Orden en Portada <strong>({{coverOutputModel.length}})</strong> {{(coverOutputModel.length>1?'( - Arrastra y ordena)':'')}}</h4>
+                <div class="contentSearchCategoryRight">
+                    Mínimo: <strong>{{coverOutputMin}}</strong> <span class="invalid"><strong>{{(coverOutputModel.length < coverOutputMin)?'- Arrastra el mínimo':''}}</strong></span> - Máximo: <strong>{{coverOutputMax}} <span class="invalid"><strong>{{(coverOutputModel.length > coverOutputMax)?'- Superaste el máximo':''}}</strong></span></strong>
+
+                </div>
+                <div ng-drop="true" ng-drop-success="onDopCompleteCover($data, $event, $index)" class="height-panel" style="border:1px solid rgb(153, 153, 153);">
+                    <ul class="list-news-cover">
+                        <li ng-repeat="new in coverOutputModel" ng-drop="true" ng-drop-success="onDopCompleteCoverItems($data, $event, $index)">
+                            <md-card class="md-card-news" ng-drag="true" ng-drag-data="new" ng-drag-success="onDragCompleteCoverOutput($data, $event, 'output', $index)" ng-center-anchor="center">
+                            <div layout="row" layout-wrap>
+                                <figure class="md-avatar" flex="30">
+                                    <img style="width:100%; height:auto;" ng-src="{{new.imagen_portada.url}}?{{$index}}" alt="{{new.titulo}}" />
+                                </figure>
+                                <md-card-content flex="70">
+                                    <p class="nd-card-top">
+                                        <span ng-switch="new.tipo">
+                                            <span ng-switch-when="noticia">
+                                                <ng-md-icon icon="reorder" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="galeria">
+                                                <ng-md-icon icon="image" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="slider">
+                                                <ng-md-icon icon="collections" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="video">
+                                                <ng-md-icon icon="video_collection" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="audio">
+                                                <ng-md-icon icon="volume_up" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="url">
+                                                <ng-md-icon icon="link" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="mam">
+                                                <ng-md-icon icon="alarm_add" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="blog">
+                                                <ng-md-icon icon="perm_contact_cal" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="infografia">
+                                                <ng-md-icon icon="photo_album" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                            <span ng-switch-when="brandcontent">
+                                                <ng-md-icon icon="picture_in_picture" style="fill:#424242"></ng-md-icon>
+                                            </span>
+                                        </span>
+                                        <span ng-if="new.categorias.length>1" class="card-secondary"
+                                            ns-popover
+                                            ns-popover-plain="true"
+                                              ns-popover-template="{{returnCategorys(new.categorias)}}"
+                                            ns-popover-trigger="mouseenter"
+                                            ns-popover-placement="bottom"
+                                            ns-popover-theme="ns-popover-tooltip-theme"
+                                            ns-popover-timeout="0.5"
+                                            >
+                                            <span ng-repeat="categoria in new.categorias">
+                                                <span ng-if="categoria.primary">{{categoria.nombre | uppercase}}</span>
+                                            </span>
+                                        </span>
+                                        <span ng-if="new.categorias.length<=1" class="card-secondary"
+                                            ns-popover
+                                            ns-popover-plain="true"
+                                              ns-popover-template="<div class='triangle'></div><div class='ns-popover-tooltip'>No tiene más categorias asignadas.</div>"
+                                            ns-popover-trigger="mouseenter"
+                                            ns-popover-placement="bottom"
+                                            ns-popover-theme="ns-popover-tooltip-theme"
+                                            ns-popover-timeout="0.5"
+                                        >
+                                            {{ new.categorias[0].nombre | uppercase }}
+                                        </span>
+                                    </p>
+                                    <h2>{{ new.titulo }}</h2>
+                                    <p class="card-secondary">
+                                       {{ new.date_publish | timeago }}
+                                    </p>
+                                </md-card-content>
+                            </div>
+                        </md-card>
+                        </li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+        </section>
+        <section ng-show="!showAdminCovers">
+            <div layout-padding style="text-align:center; min-height:300px">
+                <div>
+                    Vista en dispositivo:
+                     <md-select class="previewRWD" ng-model="previewRWD" ng-change="changePreviewRWD($event)">
+                         <md-option value="desktop">Escritorio</md-option>
+                         <md-option value="tablet">Tablet</md-option>
+                         <md-option value="smartphone">Smartphone</md-option>
+                     </md-select>
+                </div>
+                <div>
+                    <div ng-bind-html="ifrmAddHTML"></div>
+                </div>
+            </div>
+        </section>
+    </md-content>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button ng-click="cancel()" class="md-primary">
+      Cerrar
+    </md-button>
+    <md-button ng-show="!showAdminCovers" href="{{urlPreviewNewWindow}}" target="_blank" title="Abrir en una nueva ventana" class="md-primary">
+        <ng-md-icon icon="launch"></ng-md-icon>  Abrir en una nueva pestaña
+    </md-button>
+    <md-button ng-show="showAdminCovers" ng-disabled="!(coverOutputModel.length >= coverOutputMin && coverOutputModel.length <= coverOutputMax)" ng-click="answerCoverAll('preview')" class="md-raised md-primary">
+      Vista previa
+    </md-button>
+    <md-button ng-show="!showAdminCovers" ng-click="answerBackCoverAll()" class="md-raised md-primary">
+      <ng-md-icon icon="reply" style="fill:white"></ng-md-icon> Volver
+    </md-button>
+    <md-button ng-disabled="!(coverOutputModel.length >= coverOutputMin && coverOutputModel.length <= coverOutputMax)" ng-click="answerCoverAll('save')" class="md-raised md-warn">
+      Guardar portada
+    </md-button>
+  </div>
+</md-dialog>

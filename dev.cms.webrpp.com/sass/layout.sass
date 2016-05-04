@@ -1,0 +1,264 @@
+// 3 COLUMNAS
+// Ancho minimo 1280px
+//250px
+$wleft : 19.53125%
+//30px
+$wleft-s : 2.34375%
+//550px
+$wright : 42.96875%
+//330px
+$wright-s : 25.78125%
+//700px
+$wcenter : 54.6875%
+//Border Color
+$bdrColor: rgba(0,0,0,0.3)
+$bdrShadow: rgba(0,0,0,0.1)
+
+.effectLayout
+    -webkit-transition: left ease 0.5s, margin ease 0.5s, width ease 0.5s
+    -moz-transition: left ease 0.5s, margin ease 0.5s, width ease 0.5s
+    -o-transition: left ease 0.5s, margin ease 0.5s, width ease 0.5s
+    transition: left ease 0.5s, margin ease 0.5s, width ease 0.5s
+
+.content-body-center
+    width: $wcenter + 2%
+    margin-left: 0
+
+.sidenav-right
+    position: absolute
+    right: 0
+    top: 0
+    padding-top: 80px
+    border-left: 1px solid $bdrColor
+    border-bottom: 1px solid $bdrColor
+    box-shadow: 0 3px 1px 2px $bdrShadow
+    width: $wright
+    background-color: #fff
+    min-height: 100%
+.sidenav-left
+    position: fixed
+    left: -150%
+    top: 0
+    padding-top: 80px
+    border-right: 1px solid $bdrColor
+    border-bottom: 1px solid $bdrColor
+    box-shadow: 0 3px 1px 2px $bdrShadow
+    //width:$wleft - 1%
+    width: 200px
+    background-color: #fff
+    min-height: 100%
+.sidenav-right, .sidenav-left
+    md-content
+        background-color: white
+.fixed-module
+    visibility:visible!important
+    position: fixed!important
+    z-index: 21
+    top: 0
+    right: 0
+    padding-top: 80px!important
+    height: 100%
+    //width:$wright-s - 1%
+    width: $wright - 1%
+    @extend .effectLayout
+.sidenav-fixed-module
+    md-content
+        visibility:hidden
+/* TOP FIXED */
+.md-toolbar-head
+    position: fixed
+    z-index: 63
+.md-toolbar-subhead
+    position: fixed
+    z-index: 61
+    margin-top: 60px
+#bodyAddsNews
+    padding: 0 1em 1em
+#sidebarleft
+    @extend .effectLayout
+    &.nosidebar
+        left: 0
+#contentbodycenter
+    @extend .effectLayout
+    box-sizing: border-box
+    &.fullcenter
+        //min-width :700px
+        //margin:0 0 0 $wleft
+        margin: 0 0 0 210px
+        width: $wcenter
+        //width: calc(100% - 668px)
+#sidebarright
+    @extend .effectLayout
+    transition: width ease 0.5s
+    &.fullsidebar
+        width: $wright-s
+        .fixed-module
+            width: $wright-s
+            //width:$wright - 1%
+//Content Module
+.content-module
+    background-color: rgb(255,255,255)
+    border-top: 1px solid $bdrColor
+    padding: 0.5em
+    box-shadow: 0 3px 1px 2px $bdrShadow
+#sidebarright
+    .content-module:first-child
+        border-top: 0 none
+
+#msj-init--change
+    background: rgba(25,118,210,0.95)
+    color: #fff
+    font-size: 18px
+    box-sizing: border-box
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
+    z-index: 1000
+    padding: 5px 30px
+    span
+        color: white
+
+//CARRIL
+.carril-right
+    padding-right: 30px
+
+// ADECUANDO TAMAÑOS
+md-input-container
+    padding-bottom: 8px
+md-select
+    padding: 6px 2px 8px
+md-dialog
+    max-width: 95%
+    max-height: 95%
+md-dialog
+    .md-actions
+        background-color: rgba(0,0,0,0.1)
+md-input-container .md-placeholder,
+md-input-container label:not(.md-no-float),
+md-select .md-select-value.md-select-placeholder
+    color: rgba(0,0,0,0.6)
+
+.toast-error--list
+    display: block
+    max-width: 200px
+    max-height: 350px
+    padding: 0.75em 1em
+    height: auto
+    p
+        margin: 0
+    ul
+        margin: 0 0 0 1em
+        padding: 0
+        width: 100%
+    li
+        font-size: 0.9em
+    .p-info
+        margin-bottom: 0.25em
+
+md-toolbar
+    min-height: 40px
+.md-toolbar-tools
+    height: 40px
+.md-toolbar-subhead
+    margin-top: 40px
+.md-toolbar-subbody
+    margin-top: 80px!important
+.button-video--uploadmedia
+    background-color: rgb(33,150,243)
+    border-radius: 4px
+    width: 100%
+    height: 1.75em
+    padding: 0.25em 0
+    border: 0 none
+    &:hover
+        background-color: white
+#inputFileTrigger, #inputFileTriggerGif
+    position: absolute
+    z-index: -1
+    left: -100%
+    top: 0
+.trigger-scroll
+    width: 100%
+    clear: both
+.content-inner
+    box-sizing: border-box
+    padding: 20px
+.content-inner--overflow
+    overflow: hidden
+.zona-uplaodfile
+    width: 98%
+    margin: 0 auto
+    min-height: 100px
+    background-color: #eee
+    border: 1px solid #ddd
+    position: relative
+    background-repeat: no-repeat
+.zone-upload--tema
+    margin: 0
+    min-width: 140px
+    min-height: 80px
+.zone-upload--logobrandcontent
+    margin: 0
+    min-width: 120px
+    min-height: 25px
+.section-mam
+    background-color: rgba(0,0,0,0.1)
+    transition: all 0.5s ease
+    padding: 10px
+    min-height: 160px
+    position: relative
+    border-radius: 4px
+    &.mam-activo
+        .inner-mam
+            height: 0
+            min-height: 0
+            padding: 0
+            overflow: hidden
+
+    h4, h6
+        margin: 0 0 10px
+        padding: 0
+        text-align: center
+        font-weight: normal
+    h6
+        font-size: 14px
+    /*ng-md-icon
+        position: absolute
+        left: 10px
+        top:10px
+        z-index: 2
+        vertical-align: middle*/
+    .inner-mam
+        transition: all 0.5s ease
+        position: static
+        background-color: white
+        padding: 10px
+        min-height: 140px
+        border-radius: 4px
+    .ul-mam
+        margin: 0
+        padding: 0
+        list-style: none
+        li
+            position: relative
+            padding: 5px 0 5px 25px
+            margin: 2px 0
+            font-size: 14px
+            min-height: 14px
+            display: inline-block
+            width: 45%
+            &:focus
+                outline: 0
+            &:hover
+                ng-md-icon
+                    fill: rgba(0,0,0,0.4)
+            &.activomam
+                font-weight: bold
+                ng-md-icon
+                    fill: #43A047
+            .icon-radioall
+                position: absolute
+                left: 0
+                top: 3px
+                fill: rgba(0,0,0,0.2)

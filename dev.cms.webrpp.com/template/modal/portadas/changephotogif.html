@@ -1,0 +1,31 @@
+<md-dialog flex="95" aria-label="Add Photo Gif">
+  <md-dialog-content>
+      <!-- Add Photo Gif -->
+      <div>
+          <div id="add-img--covergif">
+              <input id="loadThumbDataGif" accept="image/gif" type="file" style="position:absolute;left:10px; height:1px; width:1px; overflow:hidden; z-index:-1" />
+              <div id="zone-img--gif">
+                  <md-button ng-show="isLoadThumb" class="md-fab ng-hide md-fab-upload md-mini md-primary" ng-click="uploadCaptureImage()" aria-label="Subir Imagen">
+                      <md-tooltip>Subir imagen</md-tooltip>
+                      <ng-md-icon icon="add" size="20"></ng-md-icon>
+                  </md-button>
+                  <md-button ng-show="isDeleteThumb" class="md-fab md-fab-remove md-mini md-warn" ng-click="removeCaptureImage()" aria-label="Subir Imagen">
+                      <md-tooltip>Remover imagen</md-tooltip>
+                      <ng-md-icon icon="delete" size="20"></ng-md-icon>
+                  </md-button>
+                  <img ng-show="showThumbData" width="825" height="464" ng-src="{{srcThumbData}}" alt="Imagen de portada" />
+              </div>
+          </div>
+      </div>
+      <!-- End Add Photo -->
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button type="button" ng-click="closeOpenAddPhoto()" class="md-primary">
+      Cerrar
+    </md-button>
+    <md-button type="button" ng-click="addOpenAddPhoto()" class="md-primary">
+        {{(modalType === 'add')?'Agregar':'Actualizar'}}
+    </md-button>
+  </div>
+</md-dialog>

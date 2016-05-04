@@ -1,0 +1,86 @@
+<md-dialog flex="95" aria-label="Agregar Foto">
+  <md-dialog-content id="">
+      <div layout="row">
+          <div flex="35">
+              <!-- Add Photo -->
+              <div class="inputBlock">
+                  <md-input-container flex>
+                      <label>
+                          Título
+                          <span ng-if="titulo.length>0">({{titulo.length}} Caracteres)</span>
+                      </label>
+                      <input name="titulo_foto" ng-model="titulo"></input>
+                  </md-input-container>
+              </div>
+              <div class="inputBlock">
+                  <md-input-container flex>
+                      <label>Leyenda <span ng-if="descripcion.length>0">({{descripcion.length}} Caracteres)</span>
+                      </label>
+                      <input type="text" name="descripcion" ng-model="descripcion" />
+                  </md-input-container>
+                  <div class="required alert-warn" ng-show="descripcion.length<=0">Ingresa una leyenda</div>
+              </div>
+              <div layout="row" layout-sm="column">
+                  <div flex="50" flex-sm="100">
+                      <div class="inputBlock">
+                          <md-input-container flex>
+                              <label>Fuente <span ng-if="fuente.length>0">({{fuente.length}} Caracteres)</span>
+                              </label>
+                              <input type="text" name="fuente" ng-model="fuente" />
+                          </md-input-container>
+                      </div>
+                  </div>
+                  <div flex="50" flex-sm="100">
+                      <div class="inputBlock">
+                          <md-input-container flex>
+                              <label>Fotógrafo <span ng-if="fotografo.length>0">({{fotografo.length}} Caracteres)</span>
+                              </label>
+                              <input type="text" name="fotografo" ng-model="fotografo" />
+                          </md-input-container>
+                      </div>
+                  </div>
+              </div>
+              <!-- Temas -->
+              <p class="nm">Etiquetas</p>
+              <md-chips flex secondary-placeholder="Escribe una Etiqueta" placeholder="Etiqueta" ng-model="tags"  md-on-append="tagsOnAppendPhoto($chip)">
+                  <md-chip-template>
+                      <strong>{{$chip.nombre}}</strong>
+                      <em>(Tema)</em>
+                  </md-chip-template>
+              </md-chips>
+              <!-- End Add Photo -->
+          </div>
+          <div flex="5">
+          </div>
+          <div flex="60" style="position:relative; min-width:620px;height:350px">
+              <div style="position:absolute;left:0; top:0">
+                  <div id="add-img--cover">
+                      <input accept="image/x-png, image/png,image/gif, image/jpeg, image/jpg" class="loadThumbData" type="file" style="position:absolute;left:10px; height:1px; width:1px; overflow:hidden; z-index:-1" />
+                      <div id="zone-img--fallback">
+                          <!--md-button class="md-fab md-fab-upload md-mini md-primary" ng-click="uploadCaptureImage()" aria-label="Subir Imagen">
+                              <md-tooltip>Subir imagen</md-tooltip>
+                              <ng-md-icon icon="add" size="20"></ng-md-icon>
+                          </md-button-->
+                          <md-button ng-disabled="descripcion.length<=0" class="md-raised md-primary" ng-click="uploadCaptureImage()" aria-label="Subir Imagen">Subir imagen</md-button>
+                          <md-button ng-show="isDeleteThumb" class="md-fab ng-hide md-fab-remove md-mini md-warn" ng-click="removeCaptureImage()" aria-label="Subir Imagen">
+                              <md-tooltip>Remover imagen</md-tooltip>
+                              <ng-md-icon icon="delete" size="20"></ng-md-icon>
+                          </md-button>
+                          <img ng-show="showThumbData" width="603" height="339" ng-src="{{srcThumbData}}" alt="Imagen de portada" />
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button type="button" ng-click="closeOpenAddPhoto()" class="md-primary">
+      Cerrar
+    </md-button>
+    <!--md-button type="button" ng-click="addOpenAddPhoto()" class="md-primary">
+        Agregar
+    </md-button-->
+  </div>
+</md-dialog>

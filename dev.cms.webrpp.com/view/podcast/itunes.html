@@ -1,0 +1,272 @@
+<div layout="column" class="relative" flex role="main" id="podcast">
+    <!-- HEADER -->
+    <script type="text/ng-template" id="perfil-popover">
+        <div class="triangle"></div>
+            <div class="ns-popover-tooltip">
+            <div class="enlaces-popover">
+                <ul>
+                    <li>
+                        <md-button ng-click="openPerfil($event, 'perfil');" class="md-primary">
+                            <ng-md-icon icon="account_circle"></ng-md-icon>
+                            Configurar
+                        </md-button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="modulos-cabecera">
+        <div class="triangle"></div>
+            <div class="ns-popover-tooltip">
+            <div class="enlaces-popover enlaces-apps">
+                <ul>
+                  <li has-permission slug-module="socialtv" action-module="index" style="display: inline-block;">
+                      <md-button ng-click="openApps($event, '/oido-social');" class="md-icon-button" aria-label="Button">
+                          <ng-md-icon icon="facebook-messenger" size="48" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                      </md-button>
+                      <h5>Oido social</h5>
+                      <md-tooltip>Odido Social</md-tooltip>
+                  </li>
+                  <li has-permission slug-module="noticias" action-module="index" style="display: inline-block;">
+                      <md-button ng-click="openApps($event, '/publicador');" class="md-icon-button" aria-label="Button">
+                          <ng-md-icon icon="my_library_books" size="48" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                      </md-button>
+                      <h5>Publicador</h5>
+                      <md-tooltip>Publicador</md-tooltip>
+                  </li>
+                  <li has-permission slug-module="ticker" action-module="index" style="display: inline-block;">
+                      <md-button ng-click="openApps($event, '/ticker');" class="md-icon-button" aria-label="Button">
+                          <ng-md-icon icon="tv" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                      </md-button>
+                      <h5>Ticker</h5>
+                      <md-tooltip>Ticker</md-tooltip>
+                  </li>
+                  <li has-permission slug-module="player" action-module="index" style="display: inline-block;">
+                      <md-button ng-click="openApps($event, '/streaming');" class="md-icon-button" aria-label="Button">
+                          <ng-md-icon icon="settings_input_antenna" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                      </md-button>
+                      <h5>Streaming</h5>
+                      <md-tooltip>Streaming</md-tooltip>
+                  </li>
+                  <li has-permission slug-module="eventos" action-module="index" style="display: inline-block;">
+                      <md-button ng-click="openApps($event, '/eventos');" class="md-icon-button">
+                          <ng-md-icon icon="alarm" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                      </md-button>
+                      <h5>Eventos</h5>
+                      <md-tooltip>Eventos</md-tooltip>
+                  </li>
+                  <li has-permission slug-module="podcast" action-module="index" style="display: inline-block;">
+                      <md-button ng-click="openApps($event, '/podcast');" class="md-icon-button">
+                          <ng-md-icon icon="volume_up" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                      </md-button>
+                      <h5>Podcast</h5>
+                      <md-tooltip>Podcast</md-tooltip>
+                  </li>
+                  <li has-permission slug-module="sondeos" action-module="index" style="display: inline-block;">
+                      <md-button ng-click="openApps($event, '/elecciones');" class="md-icon-button">
+                          <ng-md-icon icon="poll" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                      </md-button>
+                      <h5>Elecciones</h5>
+                      <md-tooltip>Elecciones</md-tooltip>
+                  </li>
+                  <li has-permission slug-module="redessociales" action-module="index" style="display: inline-block;">
+                      <md-button aria-label="Redes Sociales" ng-click="openApps($event, '/redessociales/publicadas');" class="md-icon-button">
+                          <ng-md-icon icon="group_add" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                      </md-button>
+                      <h5>Redes sociales</h5>
+                      <md-tooltip>Configurar Redes Sociales</md-tooltip>
+                  </li>
+                  <li has-permission slug-module="roles" action-module="index" style="display: inline-block;">
+                      <md-button ng-click="openApps($event, '/roles');" class="md-icon-button">
+                          <ng-md-icon icon="recent_actors" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                      </md-button>
+                      <h5>Roles</h5>
+                      <md-tooltip>Roles</md-tooltip>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </script>
+    <md-toolbar ng-class="{'novisibletoolbar':!custom}" class="md-toolbar-head">
+        <div class="md-toolbar-tools">
+            <figure class="logo"><img ng-click="openBase()" class="pointer" src="svg/logo-grupo-rpp.svg" alt="Logo Grupo RPP"></figure>
+            <div flex="1"></div>
+            <div class="drop-panel" ng-class="{'novisiblesearch':!custom}" >
+                <!--md-button ng-click="openPanel($event)" class="md-icon-button" aria-label="Dashboard"-->
+                <md-button
+                    ng-class="{'novisiblesearch':!custom}"
+                    class="md-icon-button"
+                    aria-label="Modulos"
+                    ns-popover
+                    ns-popover-template="modulos-cabecera"
+                    ns-popover-trigger="click"
+                    ns-popover-placement="bottom"
+                    ns-popover-theme="ns-popover-tooltip-theme"
+                    ns-popover-timeout="0.5"
+                 >
+                    <ng-md-icon icon="apps" style="fill: white"></ng-md-icon>
+                      <md-tooltip md-direction="bottom">
+                          Dashboard
+                      </md-tooltip>
+                </md-button>
+                <div class="drop-panel-child" ng-show="showPanel">
+                    <ul class="list-modules">
+                        <li>
+                            <md-button class="md-icon-button" aria-label="Usuarios">
+                                <ng-md-icon icon="people"></ng-md-icon>
+                            </md-button>
+                            <span>Usuarios</span>
+                        </li>
+                        <li>
+                            <md-button class="md-icon-button" aria-label="Configuración">
+                                <ng-md-icon icon="settings"></ng-md-icon>
+                            </md-button>
+                            <span>Configuración</span>
+                        </li>
+                        <li>
+                            <md-button class="md-icon-button" aria-label="Rotafono">
+                                <ng-md-icon icon="perm_phone_msg"></ng-md-icon>
+                            </md-button>
+                            <span>Rotafono</span>
+                        </li>
+                        <li>
+                            <md-button class="md-icon-button" aria-label="Estadisticas">
+                                <ng-md-icon icon="poll"></ng-md-icon>
+                            </md-button>
+                            <span>Estadisticas</span>
+                        </li>
+                        <li>
+                            <md-button class="md-icon-button" aria-label="Radio">
+                                <ng-md-icon icon="radio"></ng-md-icon>
+                            </md-button>
+                            <span>Radio</span>
+                        </li>
+                        <li>
+                            <md-button class="md-icon-button" aria-label="Agencias">
+                                <ng-md-icon icon="public"></ng-md-icon>
+                            </md-button>
+                            <span>Agencias</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <md-button ng-class="{'novisiblesearch':!custom}"  class="md-icon-button" aria-label="Chat">
+              <ng-md-icon icon="chat" style="fill: white"></ng-md-icon>
+              <md-tooltip md-direction="bottom">
+                  Chat
+              </md-tooltip>
+            </md-button>
+            <div class="drop-panel" ng-class="{'novisiblesearch':!custom}" >
+                <!--md-button ng-click="openPanel2($event)" class="md-icon-button " aria-label="Modules"-->
+                <md-button class="md-icon-button " aria-label="Modules">
+                  <ng-md-icon icon="archive" style="fill: white"></ng-md-icon>
+                  <md-tooltip md-direction="bottom">
+                      Módulos
+                  </md-tooltip>
+                </md-button>
+            </div>
+            <md-button
+                ng-class="{'novisiblesearch':!custom}"
+                class="md-icon-button"
+                aria-label="User"
+                ns-popover
+                ns-popover-template="perfil-popover"
+                ns-popover-trigger="click"
+                ns-popover-placement="bottom"
+                ns-popover-theme="ns-popover-tooltip-theme"
+                ns-popover-timeout="0.5"
+                >
+
+                <img ng-if="user.pictureUrl" ng-src="{{ user.pictureUrl }}" alt="User" style="width:24px;height:24px;border-radius:50%;"></img>
+                <md-icon ng-if="!user.pictureUrl" md-svg-src="svg/user.svg" alt="User" style="width:24px;height:24px,"></md-icon>
+
+                <md-tooltip md-direction="bottom">
+                    Usuario
+                </md-tooltip>
+            </md-button>
+            <md-button ng-class="{'novisiblesearch':!custom}" ng-disabled="disabledCloseSession" ng-click="closeSession()" class="md-icon-button" aria-label="Scape">
+                <md-tooltip md-direction="bottom">
+                    Salir del sistema
+                </md-tooltip>
+              <ng-md-icon icon="settings_power" style="fill: white"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <div flex>
+        <div ng-click="hideLayer($event)" id="layerSearch" ng-show="layerSearch"></div>
+        <div layout="column">
+            <!-- BREADCRUMB -->
+            <md-toolbar class="md-toolbar-subhead">
+                <div layout="row" layout-align="center center" class="md-toolbar-tools md-toolbar-breadcrumb md-whiteframe-z1">
+
+                </div>
+            </md-toolbar>
+            <!-- /BREADCRUMB -->
+
+            <!-- CONTENT -->
+            <section class="md-toolbar-subbody content-body-center fullcenter" id="contentbodycenter">
+                <!-- <div flex="100"> -->
+                <div layout="row" layout-wrap>
+                    <div flex="100">
+
+
+                        <div >
+                            <div style="position:relative;">
+                                <md-input-container>
+                                    <label>Canción o artista</label>
+                                    <input type="text" ng-model="txtBuscar" class="md-input ng-touched">
+                                </md-input-container>
+                                <span style="display:inline-block;position:absolute;cursor:pointer;right:0;top:1.25em">
+                                    <ng-md-icon ng-click="buscarItunes();" icon="search" size="20" style=""></ng-md-icon>
+                                    <md-tooltip>Buscar</md-tooltip>
+                                </span>
+                            </div>
+                        </div>
+                        <pre style="background-color:yellow;">prev: {{previsualizar}}</pre>
+                        <!-- <div ng-if="previsualizar!=''">
+                            <audio style="width:400px;height:40px" controls preload="none" id="audio-{{count}}">
+                                <source ng-src="{{previsualizar | urlResource}}" type="audio/mpeg">
+                                    Tu navegador no soporta el elemento audio.
+                            </audio>
+                        </div> -->
+                        <div id="resultados">
+                            <md-card ng-repeat="cancion in listaCanciones">
+                                <md-card-title>
+                                  <md-card-title-text>
+                                    <span class="md-headline">{{cancion.trackName}}</span>
+                                    <span class="md-subhead">{{cancion.artistName}}</span>
+                                  </md-card-title-text>
+                                  <md-card-title-media>
+                                    <div class="md-media-md card-media" style="width:112px; height:112px;">
+                                        <img ng-src="{{cancion.artworkUrl100}}">
+                                    </div>
+                                  </md-card-title-media>
+                                </md-card-title>
+                                <md-card-actions layout="row" layout-align="end center">
+                                  <md-button href="{{cancion.trackViewUrl}}" target="_blank">Ver canción</md-button>
+                                  <md-button href="{{cancion.artistViewUrl}}" target="_blank">Ver artista</md-button>
+                                  <md-button ng-click="cambiarPrevisualizar($event, cancion.previewUrl)">Previsualizar</md-button>
+                                </md-card-actions>
+                            </md-card>
+                        </div>
+                        <!-- <div ng-show="lista.length<1" class="alert-warn md-body-1">
+                            No hay ningún podcast.
+                        </div> -->
+                        <div scroll-trigger scroll-function="newsNextPage()" threshold="100" class="trigger-scroll">&nbsp;</div>
+                        <div ng-show="historiesBusy">
+                            <md-progress-circular class="progressContent" md-mode="indeterminate"></md-progress-circular>
+                        </div>
+                        <div ng-show="msjBusy" class="alert-warning">
+                            No hay más podcasts encontrados.
+                        </div>
+                        <div style="height:100px" id="scroll-bottom"></div>
+
+                </div>
+
+            </section>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <!--md-bottom-sheet>
+    </md-bottom-sheet-->
+</div>

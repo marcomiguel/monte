@@ -1,0 +1,520 @@
+<!-- MODULO 1X3 -->
+<div layout="row" layout-padding class="plantilla-capital">
+    <div flex="35" class="area-draggable">
+        <!-- IZQUIERDA -->
+        <!-- 1x1 -->
+        <div class="block-wrap-news block-full-1x1">
+            <div ng-if="true" ng-drop="true" ng-drop-success="onDropComplete(0, $data, $event, 'portada')">
+                <div ng-if="true" ng-drag="true" ng-drag-data="destacadas.portada[0]" ng-drag-success="onDragSuccessOrder(0, destacadas.portada[0], $event)" class="block-news" ng-class="{'placeholder': !destacadas.portada[0]}">
+                    <button ng-drag-handle type="button" class="btn-drag-handle">
+                        <ng-md-icon icon="more_horiz" style="fill:white" size="24"></ng-md-icon>
+                    </button>
+                    <div>
+                      <div class="img-wrap preload">
+                          <img err-src="" class="img-responsive" ng-src="{{destacadas.portada[0].imagen_portada.url}}" alt="Imagen de noticia" style="height: 270px"/>
+                          <button type="button" ng-click="removeNotice($event, 'delete', 0, destacadas.portada[0], 'portada');" class="btn-remove-notice btn-in-list" aria-label="Limpiar">
+                              <ng-md-icon icon="not_interested" size="24"></ng-md-icon>
+                              <md-tooltip>Limpiar</md-tooltip>
+                          </button>
+                          <button type="button" ng-click="openAddPhoto($event, 'edit', 0, destacadas.portada[0], 'portada');" class="btn-change-img btn-in-list" aria-label="Cambiar imagen">
+                              <ng-md-icon icon="add" size="24"></ng-md-icon>
+                              <md-tooltip>Cambiar imagen</md-tooltip>
+                          </button>
+                      </div>
+                      <div class="block-temas">{{destacadas.portada[0].categoria.nombre}}</div>
+                      <h1 ng-click="inputEdit($event, 0)" class="block-titulo-big" style="font-size: 35px; line-height: 1.2; text-align: left;">
+                          <div class="ng-hide input-edit-outer">
+                              <md-input-container flex>
+                                  <textarea aria-label="input" ng-model="destacadas.portada[0].titulo" columns="3" style="font-size: 35px; line-height: 1.2; text-align: left;"></textarea>
+                              </md-input-container>
+                          </div>
+                          <div class="input-edit-inner">
+                              {{destacadas.portada[0].titulo}}
+                          </div>
+                      </h1>
+                      <div>
+                        <div class="portada-fecha">
+                          {{ destacadas.portada[0].post_date }}
+                        </div>
+                        <div class="portada-cantidad-visitas">
+                          <ng-md-icon icon="visibility" size="12"></ng-md-icon>
+                           {{ destacadas.portada[0].visitas_total }}
+                        </div>
+                        <div style="clear: both;"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End -->
+    </div>
+
+    <div flex="35" class="area-draggable">
+        <!-- IZQUIERDA -->
+        <!-- 1x1 -->
+        <div class="block-wrap-news block-full-1x1">
+            <div ng-if="true" ng-drop="true" ng-drop-success="onDropComplete(1, $data, $event, 'portada')">
+                <div ng-if="true" ng-drag="true" ng-drag-data="destacadas.portada[1]" ng-drag-success="onDragSuccessOrder(1, destacadas.portada[1], $event)" class="block-news" ng-class="{'placeholder': !destacadas.portada[1]}">
+                    <button ng-drag-handle type="button" class="btn-drag-handle">
+                        <ng-md-icon icon="more_horiz" style="fill:white" size="24"></ng-md-icon>
+                    </button>
+                    <div>
+                      <div class="img-wrap preload">
+                          <img err-src="" class="img-responsive" ng-src="{{destacadas.portada[1].imagen_portada.url}}" alt="Imagen de noticia" style="height: 270px"/>
+                          <button type="button" ng-click="removeNotice($event, 'delete', 1, destacadas.portada[1], 'portada');" class="btn-remove-notice btn-in-list" aria-label="Limpiar">
+                              <ng-md-icon icon="not_interested" size="24"></ng-md-icon>
+                              <md-tooltip>Limpiar</md-tooltip>
+                          </button>
+                          <button type="button" ng-click="openAddPhoto($event, 'edit', 1, destacadas.portada[0], 'portada');" class="btn-change-img btn-in-list" aria-label="Cambiar imagen">
+                              <ng-md-icon icon="add" size="24"></ng-md-icon>
+                              <md-tooltip>Cambiar imagen</md-tooltip>
+                          </button>
+                      </div>
+                      <div class="block-temas">{{destacadas.portada[1].categoria.nombre}}</div>
+                      <h1 ng-click="inputEdit($event, 1)" class="block-titulo-big" style="font-size: 35px; line-height: 1.2; text-align: left;">
+                          <div class="ng-hide input-edit-outer">
+                              <md-input-container flex>
+                                  <textarea aria-label="input" ng-model="destacadas.portada[1].titulo" columns="3" style="font-size: 35px; line-height: 1.2; text-align: left;"></textarea>
+                              </md-input-container>
+                          </div>
+                          <div class="input-edit-inner">
+                              {{destacadas.portada[1].titulo}}
+                          </div>
+                      </h1>
+                      <div>
+                        <div class="portada-fecha">
+                          {{ destacadas.portada[1].post_date }}
+                        </div>
+                        <div class="portada-cantidad-visitas">
+                          <ng-md-icon icon="visibility" size="12"></ng-md-icon>
+                           {{ destacadas.portada[1].visitas_total }}
+                        </div>
+                        <div style="clear: both;"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End -->
+    </div>
+
+    <div flex="30" class="area-draggable">
+        <!-- DERECHA -->
+        <div layout="row" class="block-wrap-news block-1x1">
+            <div flex>
+                <div class="block-ads block-ads-300x250"></div>
+            </div>
+        </div>
+
+        <div layout="row" class="block-wrap-news block-1x1">
+          <div clas="padding-div-right" flex="100" ng-if="true" ng-drop="true" ng-drop-success="onDropComplete(2, $data, $event, 'portada')">
+              <div ng-if="true" ng-drag="true" ng-drag-data="destacadas.portada[2]" ng-drag-success="onDragSuccessOrder(2, destacadas.portada[2], $event)" class="block-news" ng-class="{'placeholder': !destacadas.portada[2]}">
+                  <button ng-drag-handle type="button" class="btn-drag-handle">
+                      <ng-md-icon icon="more_horiz" style="fill:white" style="fill:white" size="24"></ng-md-icon>
+                  </button>
+                  <div layout="row">
+                      <div flex>
+                        <div class="img-wrap preload">
+                            <img err-src="" class="img-responsive" ng-src="{{destacadas.portada[2].imagen_portada.url}}" alt="Imagen de noticia"/>
+                            <button type="button" ng-click="removeNotice($event, 'delete', 2, destacadas.portada[2], 'portada');" class="btn-remove-notice btn-in-list" aria-label="Limpiar">
+                                <ng-md-icon icon="not_interested" size="24"></ng-md-icon>
+                                <md-tooltip>Limpiar</md-tooltip>
+                            </button>
+                            <button type="button" ng-click="openAddPhoto($event, 'edit', 2, destacadas.portada[2], 'portada');" class="btn-change-img btn-in-list" aria-label="Cambiar imagen">
+                                <ng-md-icon icon="add" size="24"></ng-md-icon>
+                                <md-tooltip>Cambiar imagen</md-tooltip>
+                            </button>
+                        </div>
+                        <div class="block-temas">{{destacadas.portada[2].categoria.nombre}}</div>
+                        <h2 class="block-titulo-big" ng-click="inputEdit($event, 2)" style="font-size: 18px;">
+                            <div class="ng-hide input-edit-outer">
+                                <md-input-container flex>
+                                    <textarea aria-label="input" ng-model="destacadas.portada[2].titulo" columns="3" style="font-size: 18px; line-height: 1.2; text-align: left; font-weight: bold;"></textarea>
+                                </md-input-container>
+                            </div>
+                            <div class="input-edit-inner">
+                                {{destacadas.portada[2].titulo}}
+                            </div>
+                        </h2>
+                        <div>
+                          <div class="portada-fecha">
+                            {{ destacadas.portada[2].post_date }}
+                          </div>
+                          <div class="portada-cantidad-visitas">
+                            <ng-md-icon icon="visibility" size="12"></ng-md-icon>
+                             {{ destacadas.portada[2].visitas_total }}
+                          </div>
+                          <div style="clear: both;"></div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="block-full-ads">
+    <div class="block-ads block-ads-980x90"></div>
+</div>
+
+<div layout="row" layout-padding>
+    <div flex="70">
+      <div class="block-util block-util-flow"></div>
+    </div>
+    <div flex="30" class="lateral-zone draglist">
+        <!-- DERECHA -->
+        <div layout="row" class="block-wrap-news block-1x1">
+            <div flex>
+                <div class="block-ads block-ads-300x250"></div>
+            </div>
+        </div>
+
+        <div flex ng-if="true" ng-drop="true" ng-drop-success="onDropLateral($event, 1, $data)" layout="row" class="block-wrap-news block-1x1">
+            <div flex ng-if="true" ng-drag="true" ng-drag-data="1" ng-drag-success="onDragSuccessOrder(1, portada.lateral_1, $event)" class="block-util block-util-300x250">
+                <button ng-drag-handle type="button" class="btn-drag-handle">
+                    <ng-md-icon icon="more_horiz" style="fill:white" size="24"></ng-md-icon>
+                </button>
+                <div class="wrap-autocomplete">
+                    <div class="separador-select">
+                        <span class="label">Lateral 1:</span>
+                        <div class="select-contador">
+                          <select
+                              chosen
+                              ng-model="portada.lateral_1"
+                              no-results-text="'No hay opciones'"
+                              ng-options="item.nombre disable when (item.slug == portada.lateral_2.slug || item.slug==portada.lateral_3.slug || item.slug==portada.lateral_4.slug || item.slug==portada.lateral_5.slug || item.slug==portada.lateral_6.slug || item.slug==portada.lateral_7.slug || item.slug==portada.lateral_8.slug || item.slug==portada.lateral_9.slug) && item.slug!='' for item in lista['lateral_1'] track by item.slug"
+                              style="width:100%; margin-right: 10px;">
+                              <option value=""></option>
+                          </select>
+                          <input type="number" ng-model="cantidad.lateral_1" placeholder="#" min="1" max="{{cantidad_noticias_max}}">
+                        </div>
+                        <div class="message-max-info">Tipo de vista: {{ tag_tipos[portada.lateral_1.tipo].nombre }}</div>
+                        <div class="btn-configurar-lista">
+                          <md-button ng-click="abrirLista($event, 'lateral_1')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="settings" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar lista</md-tooltip>
+                          </md-button>
+                          <md-button ng-if="portada.lateral_1.slug=='ranking'||portada.lateral_1.slug=='ranking2'" ng-click="abrirRanking($event, 'lateral_1')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="my_library_music" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar ranking</md-tooltip>
+                          </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div flex ng-if="true" ng-drop="true" ng-drop-success="onDropLateral($event, 2, $data)" layout="row" class="block-wrap-news block-1x1">
+            <div flex ng-if="true" ng-drag="true" ng-drag-data="2" ng-drag-success="onDragSuccessOrder(2, portada.lateral_2, $event)" class="block-util block-util-300x250">
+                <button ng-drag-handle type="button" class="btn-drag-handle">
+                    <ng-md-icon icon="more_horiz" style="fill:white" size="24"></ng-md-icon>
+                </button>
+                <div class="wrap-autocomplete">
+                    <div class="separador-select">
+                        <span class="label">Lateral 2:</span>
+                        <div class="select-contador">
+                          <select
+                              chosen
+                              ng-model="portada.lateral_2"
+                              no-results-text="'No hay opciones'"
+                              ng-options="item.nombre disable when (item.slug == portada.lateral_1.slug || item.slug==portada.lateral_3.slug || item.slug==portada.lateral_4.slug || item.slug==portada.lateral_5.slug || item.slug==portada.lateral_6.slug || item.slug==portada.lateral_7.slug || item.slug==portada.lateral_8.slug || item.slug==portada.lateral_9.slug) && item.slug!='' for item in lista['lateral_2'] track by item.slug"
+                              style="width:100%; margin-right: 10px;">
+                              <option value=""></option>
+                          </select>
+                          <input type="number" ng-model="cantidad.lateral_2" placeholder="#" min="1" max="{{cantidad_noticias_max}}">
+                        </div>
+                        <div class="message-max-info">Tipo de vista: {{ tag_tipos[portada.lateral_2.tipo].nombre }}</div>
+                        <div class="btn-configurar-lista">
+                          <md-button ng-click="abrirLista($event, 'lateral_2')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="settings" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar lista</md-tooltip>
+                          </md-button>
+                          <md-button ng-if="portada.lateral_2.slug=='ranking'||portada.lateral_2.slug=='ranking2'" ng-click="abrirRanking($event, 'lateral_2')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="my_library_music" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar ranking</md-tooltip>
+                          </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div layout="row" class="block-wrap-news block-1x1">
+            <div flex>
+                <div class="block-ads block-ads-300x250"></div>
+            </div>
+        </div>
+
+        <div flex ng-if="true" ng-drop="true" ng-drop-success="onDropLateral($event, 3, $data)" layout="row" class="block-wrap-news block-1x1">
+            <div flex ng-if="true" ng-drag="true" ng-drag-data="3" ng-drag-success="onDragSuccessOrder(3, portada.lateral_3, $event)" class="block-util block-util-300x250">
+                <button ng-drag-handle type="button" class="btn-drag-handle">
+                    <ng-md-icon icon="more_horiz" style="fill:white" size="24"></ng-md-icon>
+                </button>
+                <div class="wrap-autocomplete">
+                    <div class="separador-select">
+                        <span class="label">Lateral 3:</span>
+                        <div class="select-contador">
+                          <select
+                              chosen
+                              ng-model="portada.lateral_3"
+                              no-results-text="'No hay opciones'"
+                              ng-options="item.nombre disable when (item.slug == portada.lateral_2.slug || item.slug==portada.lateral_1.slug || item.slug==portada.lateral_4.slug || item.slug==portada.lateral_5.slug || item.slug==portada.lateral_6.slug || item.slug==portada.lateral_7.slug || item.slug==portada.lateral_8.slug || item.slug==portada.lateral_9.slug) && item.slug!='' for item in lista['lateral_3'] track by item.slug"
+                              style="width:100%; margin-right: 10px;">
+                              <option value=""></option>
+                          </select>
+                          <input type="number" ng-model="cantidad.lateral_3" placeholder="#" min="1" max="{{cantidad_noticias_max}}">
+                        </div>
+                        <div class="message-max-info">Tipo de vista: {{ tag_tipos[portada.lateral_3.tipo].nombre }}</div>
+                        <div class="btn-configurar-lista">
+                          <md-button ng-click="abrirLista($event, 'lateral_3')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="settings" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar lista</md-tooltip>
+                          </md-button>
+                          <md-button ng-if="portada.lateral_3.slug=='ranking'||portada.lateral_3.slug=='ranking2'" ng-click="abrirRanking($event, 'lateral_3')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="my_library_music" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar ranking</md-tooltip>
+                          </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div layout="row" class="block-wrap-news block-1x1">
+            <div flex>
+                <div class="block-ads block-ads-300x250"></div>
+            </div>
+        </div>
+
+        <div flex ng-if="true" ng-drop="true" ng-drop-success="onDropLateral($event, 4, $data)" layout="row" class="block-wrap-news block-1x1">
+            <div flex ng-if="true" ng-drag="true" ng-drag-data="4" ng-drag-success="onDragSuccessOrder(4, portada.lateral_4, $event)" class="block-util block-util-300x250">
+                <button ng-drag-handle type="button" class="btn-drag-handle">
+                    <ng-md-icon icon="more_horiz" style="fill:white" size="24"></ng-md-icon>
+                </button>
+                <div class="wrap-autocomplete">
+                    <div class="separador-select">
+                        <span class="label">Lateral 4:</span>
+                        <div class="select-contador">
+                          <select
+                              chosen
+                              ng-model="portada.lateral_4"
+                              no-results-text="'No hay opciones'"
+                              ng-options="item.nombre disable when (item.slug == portada.lateral_2.slug || item.slug==portada.lateral_3.slug || item.slug==portada.lateral_1.slug || item.slug==portada.lateral_5.slug || item.slug==portada.lateral_6.slug || item.slug==portada.lateral_7.slug || item.slug==portada.lateral_8.slug || item.slug==portada.lateral_9.slug) && item.slug!='' for item in lista['lateral_4'] track by item.slug"
+                              style="width:100%; margin-right: 10px;">
+                              <option value=""></option>
+                          </select>
+                          <input type="number" ng-model="cantidad.lateral_4" placeholder="#" min="1" max="{{cantidad_noticias_max}}">
+                        </div>
+                        <div class="message-max-info">Tipo de vista: {{ tag_tipos[portada.lateral_4.tipo].nombre }}</div>
+                        <div class="btn-configurar-lista">
+                          <md-button ng-click="abrirLista($event, 'lateral_4')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="settings" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar lista</md-tooltip>
+                          </md-button>
+                          <md-button ng-if="portada.lateral_4.slug=='ranking'||portada.lateral_4.slug=='ranking2'" ng-click="abrirRanking($event, 'lateral_4')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="my_library_music" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar ranking</md-tooltip>
+                          </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div flex ng-if="true" ng-drop="true" ng-drop-success="onDropLateral($event, 5, $data)" layout="row" class="block-wrap-news block-1x1">
+            <div ng-if="true" ng-drag="true" ng-drag-data="5" ng-drag-success="onDragSuccessOrder(5, portada.lateral_5, $event)" flex class="block-util block-util-300x250">
+                <button ng-drag-handle type="button" class="btn-drag-handle">
+                    <ng-md-icon icon="more_horiz" style="fill:white" size="24"></ng-md-icon>
+                </button>
+                <div class="wrap-autocomplete">
+                    <div class="separador-select">
+                        <span class="label">Lateral 5:</span>
+                        <div class="select-contador">
+                          <select
+                              chosen
+                              ng-model="portada.lateral_5"
+                              no-results-text="'No hay opciones'"
+                              ng-options="item.nombre disable when (item.slug == portada.lateral_2.slug || item.slug==portada.lateral_3.slug || item.slug==portada.lateral_4.slug || item.slug==portada.lateral_1.slug || item.slug==portada.lateral_6.slug || item.slug==portada.lateral_7.slug || item.slug==portada.lateral_8.slug || item.slug==portada.lateral_9.slug) && item.slug!='' for item in lista['lateral_5'] track by item.slug"
+                              style="width:100%; margin-right: 10px;">
+                              <option value=""></option>
+                          </select>
+                          <input type="number" ng-model="cantidad.lateral_5" placeholder="#" min="1" max="{{cantidad_noticias_max}}">
+                        </div>
+                        <div class="message-max-info">Tipo de vista: {{ tag_tipos[portada.lateral_5.tipo].nombre }}</div>
+                        <div class="btn-configurar-lista">
+                          <md-button ng-click="abrirLista($event, 'lateral_5')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="settings" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar lista</md-tooltip>
+                          </md-button>
+                          <md-button ng-if="portada.lateral_5.slug=='ranking'||portada.lateral_5.slug=='ranking2'" ng-click="abrirRanking($event, 'lateral_5')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="my_library_music" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar ranking</md-tooltip>
+                          </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div layout="row" class="block-wrap-news block-1x1">
+            <div flex>
+                <div class="block-ads block-ads-300x250"></div>
+            </div>
+        </div>
+
+        <div flex ng-if="true" ng-drop="true" ng-drop-success="onDropLateral($event, 6, $data)" layout="row" class="block-wrap-news block-1x1">
+            <div flex ng-if="true" ng-drag="true" ng-drag-data="6" ng-drag-success="onDragSuccessOrder(6, portada.lateral_6, $event)" class="block-util block-util-300x250">
+                <button ng-drag-handle type="button" class="btn-drag-handle">
+                    <ng-md-icon icon="more_horiz" style="fill:white" size="24"></ng-md-icon>
+                </button>
+                <div class="wrap-autocomplete">
+                    <div class="separador-select">
+                        <span class="label">Lateral 6:</span>
+                        <div class="select-contador">
+                          <select
+                              chosen
+                              ng-model="portada.lateral_6"
+                              no-results-text="'No hay opciones'"
+                              ng-options="item.nombre disable when (item.slug == portada.lateral_2.slug || item.slug==portada.lateral_3.slug || item.slug==portada.lateral_4.slug || item.slug==portada.lateral_5.slug || item.slug==portada.lateral_1.slug || item.slug==portada.lateral_7.slug || item.slug==portada.lateral_8.slug || item.slug==portada.lateral_9.slug) && item.slug!='' for item in lista['lateral_6'] track by item.slug"
+                              style="width:100%; margin-right: 10px;">
+                              <option value=""></option>
+                          </select>
+                          <input type="number" ng-model="cantidad.lateral_6" placeholder="#" min="1" max="{{cantidad_noticias_max}}">
+                        </div>
+                        <div class="message-max-info">Tipo de vista: {{ tag_tipos[portada.lateral_6.tipo].nombre }}</div>
+                        <div class="btn-configurar-lista">
+                          <md-button ng-click="abrirLista($event, 'lateral_6')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="settings" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar lista</md-tooltip>
+                          </md-button>
+                          <md-button ng-if="portada.lateral_6.slug=='ranking'||portada.lateral_6.slug=='ranking2'" ng-click="abrirRanking($event, 'lateral_6')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="my_library_music" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar ranking</md-tooltip>
+                          </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div flex ng-if="true" ng-drop="true" ng-drop-success="onDropLateral($event, 7, $data)" layout="row" class="block-wrap-news block-1x1">
+            <div flex ng-if="true" ng-drag="true" ng-drag-data="7" ng-drag-success="onDragSuccessOrder(7, portada.lateral_7, $event)" class="block-util block-util-300x250">
+                <button ng-drag-handle type="button" class="btn-drag-handle">
+                    <ng-md-icon icon="more_horiz" style="fill:white" size="24"></ng-md-icon>
+                </button>
+                <div class="wrap-autocomplete">
+                    <div class="separador-select">
+                        <span class="label">Lateral 7:</span>
+                        <div class="select-contador">
+                          <select
+                              chosen
+                              ng-model="portada.lateral_7"
+                              no-results-text="'No hay opciones'"
+                              ng-options="item.nombre disable when (item.slug == portada.lateral_2.slug || item.slug==portada.lateral_3.slug || item.slug==portada.lateral_4.slug || item.slug==portada.lateral_5.slug || item.slug==portada.lateral_6.slug || item.slug==portada.lateral_1.slug || item.slug==portada.lateral_8.slug || item.slug==portada.lateral_9.slug) && item.slug!='' for item in lista['lateral_7'] track by item.slug"
+                              style="width:100%; margin-right: 10px;">
+                              <option value=""></option>
+                          </select>
+                          <input type="number" ng-model="cantidad.lateral_7" placeholder="#" min="1" max="{{cantidad_noticias_max}}">
+                        </div>
+                        <div class="message-max-info">Tipo de vista: {{ tag_tipos[portada.lateral_7.tipo].nombre }}</div>
+                        <div class="btn-configurar-lista">
+                          <md-button ng-click="abrirLista($event, 'lateral_7')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="settings" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar lista</md-tooltip>
+                          </md-button>
+                          <md-button ng-if="portada.lateral_7.slug=='ranking'||portada.lateral_7.slug=='ranking2'" ng-click="abrirRanking($event, 'lateral_7')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="my_library_music" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar ranking</md-tooltip>
+                          </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div layout="row" class="block-wrap-news block-1x1">
+            <div flex>
+                <div class="block-ads block-ads-300x250"></div>
+            </div>
+        </div>
+
+        <div flex ng-if="true" ng-drop="true" ng-drop-success="onDropLateral($event, 8, $data)" layout="row" class="block-wrap-news block-1x1">
+            <div flex ng-if="true" ng-drag="true" ng-drag-data="8" ng-drag-success="onDragSuccessOrder(8, portada.lateral_8, $event)" class="block-util block-util-300x250">
+                <button ng-drag-handle type="button" class="btn-drag-handle">
+                    <ng-md-icon icon="more_horiz" style="fill:white" size="24"></ng-md-icon>
+                </button>
+                <div class="wrap-autocomplete">
+                    <div class="separador-select">
+                        <span class="label">Lateral 8:</span>
+                        <div class="select-contador">
+                          <select
+                              chosen
+                              ng-model="portada.lateral_8"
+                              no-results-text="'No hay opciones'"
+                              ng-options="item.nombre disable when (item.slug == portada.lateral_2.slug || item.slug==portada.lateral_3.slug || item.slug==portada.lateral_4.slug || item.slug==portada.lateral_5.slug || item.slug==portada.lateral_6.slug || item.slug==portada.lateral_7.slug || item.slug==portada.lateral_1.slug || item.slug==portada.lateral_9.slug) && item.slug!='' for item in lista['lateral_8'] track by item.slug"
+                              style="width:100%; margin-right: 10px;">
+                              <option value=""></option>
+                          </select>
+                          <input type="number" ng-model="cantidad.lateral_8" placeholder="#" min="1" max="{{cantidad_noticias_max}}">
+                        </div>
+                        <div class="message-max-info">Tipo de vista: {{ tag_tipos[portada.lateral_8.tipo].nombre }}</div>
+                        <div class="btn-configurar-lista">
+                          <md-button ng-click="abrirLista($event, 'lateral_8')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="settings" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar lista</md-tooltip>
+                          </md-button>
+                          <md-button ng-if="portada.lateral_8.slug=='ranking'||portada.lateral_8.slug=='ranking2'" ng-click="abrirRanking($event, 'lateral_8')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="my_library_music" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar ranking</md-tooltip>
+                          </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div flex ng-if="true" ng-drop="true" ng-drop-success="onDropLateral($event, 9, $data)" layout="row" class="block-wrap-news block-1x1">
+            <div flex ng-if="true" ng-drag="true" ng-drag-data="9" ng-drag-success="onDragSuccessOrder(9, portada.lateral_9, $event)" class="block-util block-util-300x250">
+                <button ng-drag-handle type="button" class="btn-drag-handle">
+                    <ng-md-icon icon="more_horiz" style="fill:white" size="24"></ng-md-icon>
+                </button>
+                <div class="wrap-autocomplete">
+                    <div class="separador-select">
+                        <span class="label">Lateral 9:</span>
+                        <div class="select-contador">
+                          <select
+                              chosen
+                              ng-model="portada.lateral_9"
+                              no-results-text="'No hay opciones'"
+                              ng-options="item.nombre disable when (item.slug == portada.lateral_2.slug || item.slug==portada.lateral_3.slug || item.slug==portada.lateral_4.slug || item.slug==portada.lateral_5.slug || item.slug==portada.lateral_6.slug || item.slug==portada.lateral_7.slug || item.slug==portada.lateral_8.slug || item.slug==portada.lateral_1.slug) && item.slug!='' for item in lista['lateral_9'] track by item.slug"
+                              style="width:100%; margin-right: 10px;">
+                              <option value=""></option>
+                          </select>
+                          <input type="number" ng-model="cantidad.lateral_9" placeholder="#" min="1" max="{{cantidad_noticias_max}}">
+                        </div>
+                        <div class="message-max-info">Tipo de vista: {{ tag_tipos[portada.lateral_9.tipo].nombre }}</div>
+                        <div class="btn-configurar-lista">
+                          <md-button ng-click="abrirLista($event, 'lateral_9')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="settings" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar lista</md-tooltip>
+                          </md-button>
+                          <md-button ng-if="portada.lateral_9.slug=='ranking'||portada.lateral_9.slug=='ranking2'" ng-click="abrirRanking($event, 'lateral_9')" class="md-icon-button configuracion">
+                            <ng-md-icon icon="my_library_music" size="24" style="fill:black"></ng-md-icon>
+                            <md-tooltip md-direction="right">Configurar ranking</md-tooltip>
+                          </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div layout="row" class="block-wrap-news block-1x1">
+            <div flex>
+                <div class="block-ads block-ads-300x250"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- END MODULO 1x3 -->

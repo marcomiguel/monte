@@ -1,0 +1,27 @@
+<md-dialog flex="95" aria-label="Asociar">
+  <md-dialog-content>
+      <p>ROL : <strong>{{rol_nombre}}</strong></p>
+      <ul masonry class="coleccion-lista--masonry" preserve-order>
+          <li ng-repeat="item in coleccion track by $index" class="masonry-brick">
+              <div class="coleccion-cuerpo">
+                  <h4 class="coleccion-titulo">{{item.nombre}}</h4>
+              </div>
+              <div class="coleccion-pie">
+                  <md-button ng-click="removeTag($event, item, $index)" class="md-icon-button pie-derecha" aria-label="Editar">
+                      <ng-md-icon icon="delete" size="24"></ng-md-icon>
+                      <md-tooltip>Quitar</md-tooltip>
+                  </md-button>
+              </div>
+          </li>
+      </ul>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button type="button" ng-click="accionModal()" class="md-primary">
+        Guardar
+    </md-button>
+    <md-button type="button" ng-click="cerrarModal()" class="md-primary">
+      Cerrar
+    </md-button>
+  </div>
+</md-dialog>

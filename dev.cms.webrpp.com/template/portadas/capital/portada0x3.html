@@ -1,0 +1,207 @@
+<!-- MODULO 0X3 -->
+<div layout="row" layout-padding class="plantilla-capital">
+    <div flex="35" class="area-draggable">
+        <!-- IZQUIERDA -->
+        <!-- 1x1 -->
+        <div class="block-wrap-news block-full-1x1">
+            <div ng-if="true" ng-drop="true" ng-drop-success="onDropComplete(0, $data, $event, 'portada')">
+                <div ng-if="true" ng-drag="true" ng-drag-data="destacadas.portada[0]" ng-drag-success="onDragSuccessOrder(0, destacadas.portada[0], $event)" class="block-news" ng-class="{'placeholder': !destacadas.portada[0]}">
+                    <button ng-drag-handle type="button" class="btn-drag-handle">
+                        <ng-md-icon icon="more_horiz" style="fill:white" size="24"></ng-md-icon>
+                    </button>
+                    <div>
+                      <div class="img-wrap preload">
+                          <img err-src="" class="img-responsive" ng-src="{{destacadas.portada[0].imagen_portada.url}}" alt="Imagen de noticia" style="height: 270px"/>
+                          <button type="button" ng-click="removeNotice($event, 'delete', 0, destacadas.portada[0], 'portada');" class="btn-remove-notice btn-in-list" aria-label="Limpiar">
+                              <ng-md-icon icon="not_interested" size="24"></ng-md-icon>
+                              <md-tooltip>Limpiar</md-tooltip>
+                          </button>
+                          <button type="button" ng-click="openAddPhoto($event, 'edit', 0, destacadas.portada[0], 'portada');" class="btn-change-img btn-in-list" aria-label="Cambiar imagen">
+                              <ng-md-icon icon="add" size="24"></ng-md-icon>
+                              <md-tooltip>Cambiar imagen</md-tooltip>
+                          </button>
+                      </div>
+                      <h1 ng-click="inputEdit($event, 0)" class="block-titulo-big" style="font-size: 35px; line-height: 1.2; text-align: left;">
+                          <div class="ng-hide input-edit-outer">
+                              <md-input-container flex>
+                                  <textarea aria-label="input" ng-model="destacadas.portada[0].titulo" columns="3" style="font-size: 35px; line-height: 1.2; text-align: left;"></textarea>
+                              </md-input-container>
+                          </div>
+                          <div class="input-edit-inner">
+                              {{destacadas.portada[0].titulo}}
+                          </div>
+                      </h1>
+                      <div class="block-desarrollo" ng-click="inputEdit($event, 0)" role="button" tabindex="0" style="font-size: 16px; line-height: 1.2; text-align: left;">
+                          <div class="ng-hide input-edit-outer">
+                              <md-input-container flex="" class="md-default-theme md-input-has-value" style="height: auto;">
+                                  <textarea aria-label="input" ng-model="destacadas.portada[0].bajada" columns="3" class="ng-pristine ng-untouched ng-valid md-input" id="input_32" rows="1" aria-multiline="true" tabindex="0" aria-invalid="false" style="height: auto; font-size: 16px; line-height: 1.2; text-align: left;"></textarea>
+                              </md-input-container>
+                          </div>
+                          <div class="input-edit-inner ng-binding">
+                              {{ destacadas.portada[0].bajada }}
+                          </div>
+                      </div>
+                      <div>
+                        <div class="portada-fecha">
+                          {{ destacadas.portada[0].post_date }}
+                        </div>
+                        <div class="portada-cantidad-visitas">
+                          <ng-md-icon icon="visibility" size="12"></ng-md-icon>
+                           {{ destacadas.portada[0].visitas_total }}
+                        </div>
+                        <div style="clear: both;"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End -->
+    </div>
+    <div flex="30" class="area-draggable">
+        <!-- DERECHA -->
+        <div layout="row" class="block-wrap-news block-1x1">
+          <div clas="padding-div-right" flex="100" ng-if="true" ng-drop="true" ng-drop-success="onDropComplete(3, $data, $event, 'portada')">
+              <div ng-if="true" ng-drag="true" ng-drag-data="destacadas.portada[3]" ng-drag-success="onDragSuccessOrder(3, destacadas.portada[3], $event)" class="block-news" ng-class="{'placeholder': !destacadas.portada[3]}">
+                  <button ng-drag-handle type="button" class="btn-drag-handle">
+                      <ng-md-icon icon="more_horiz" style="fill:white" style="fill:white" size="24"></ng-md-icon>
+                  </button>
+                  <div layout="row">
+                      <div flex>
+                        <div class="img-wrap preload">
+                            <img err-src="" class="img-responsive" ng-src="{{destacadas.portada[3].imagen_portada.url}}" alt="Imagen de noticia"/>
+                            <button type="button" ng-click="removeNotice($event, 'delete', 3, destacadas.portada[4], 'portada');" class="btn-remove-notice btn-in-list" aria-label="Limpiar">
+                                <ng-md-icon icon="not_interested" size="24"></ng-md-icon>
+                                <md-tooltip>Limpiar</md-tooltip>
+                            </button>
+                            <button type="button" ng-click="openAddPhoto($event, 'edit', 3, destacadas.portada[3], 'portada');" class="btn-change-img btn-in-list" aria-label="Cambiar imagen">
+                                <ng-md-icon icon="add" size="24"></ng-md-icon>
+                                <md-tooltip>Cambiar imagen</md-tooltip>
+                            </button>
+                        </div>
+                        <div class="block-temas">{{destacadas.portada[3].categoria.nombre}}</div>
+                        <h2 class="block-titulo-big" ng-click="inputEdit($event, 3)" style="font-size: 18px;">
+                            <div class="ng-hide input-edit-outer">
+                                <md-input-container flex>
+                                    <textarea aria-label="input" ng-model="destacadas.portada[3].titulo" columns="3" style="font-size: 18px; line-height: 1.2; text-align: left; font-weight: bold;"></textarea>
+                                </md-input-container>
+                            </div>
+                            <div class="input-edit-inner">
+                                {{destacadas.portada[3].titulo}}
+                            </div>
+                        </h2>
+                        <div>
+                          <div class="portada-fecha">
+                            {{ destacadas.portada[3].post_date }}
+                          </div>
+                          <div class="portada-cantidad-visitas">
+                            <ng-md-icon icon="visibility" size="12"></ng-md-icon>
+                             {{ destacadas.portada[3].visitas_total }}
+                          </div>
+                          <div style="clear: both;"></div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div layout="row" class="block-wrap-news block-1x1">
+            <div clas="padding-div-right" flex="100" ng-if="true" ng-drop="true" ng-drop-success="onDropComplete(1, $data, $event, 'portada')">
+                <div ng-if="true" ng-drag="true" ng-drag-data="destacadas.portada[1]" ng-drag-success="onDragSuccessOrder(1, destacadas.portada[1], $event)" class="block-news" ng-class="{'placeholder': !destacadas.portada[1]}">
+                    <button ng-drag-handle type="button" class="btn-drag-handle">
+                        <ng-md-icon icon="more_horiz" style="fill:white" style="fill:white" size="24"></ng-md-icon>
+                    </button>
+                    <div layout="row">
+                        <div flex>
+                          <div class="img-wrap preload">
+                              <img err-src="" class="img-responsive" ng-src="{{destacadas.portada[1].imagen_portada.url}}" alt="Imagen de noticia"/>
+                              <button type="button" ng-click="removeNotice($event, 'delete', 1, destacadas.portada[1], 'portada');" class="btn-remove-notice btn-in-list" aria-label="Limpiar">
+                                  <ng-md-icon icon="not_interested" size="24"></ng-md-icon>
+                                  <md-tooltip>Limpiar</md-tooltip>
+                              </button>
+                              <button type="button" ng-click="openAddPhoto($event, 'edit', 1, destacadas.portada[1], 'portada');" class="btn-change-img btn-in-list" aria-label="Cambiar imagen">
+                                  <ng-md-icon icon="add" size="24"></ng-md-icon>
+                                  <md-tooltip>Cambiar imagen</md-tooltip>
+                              </button>
+                          </div>
+                          <div class="block-temas">{{destacadas.portada[1].categoria.nombre}}</div>
+                          <h2 class="block-titulo-big" ng-click="inputEdit($event, 1)" style="font-size: 18px;">
+                              <div class="ng-hide input-edit-outer">
+                                  <md-input-container flex>
+                                      <textarea aria-label="input" ng-model="destacadas.portada[1].titulo" columns="3" style="font-size: 18px; line-height: 1.2; text-align: left; font-weight: bold;"></textarea>
+                                  </md-input-container>
+                              </div>
+                              <div class="input-edit-inner">
+                                  {{destacadas.portada[1].titulo}}
+                              </div>
+                          </h2>
+                          <div>
+                            <div class="portada-fecha">
+                              {{ destacadas.portada[1].post_date }}
+                            </div>
+                            <div class="portada-cantidad-visitas">
+                              <ng-md-icon icon="visibility" size="12"></ng-md-icon>
+                               {{ destacadas.portada[1].visitas_total }}
+                            </div>
+                            <div style="clear: both;"></div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div flex="30" class="area-draggable">
+        <!-- DERECHA -->
+        <div layout="row" class="block-wrap-news block-1x1">
+            <div flex>
+                <div class="block-ads block-ads-300x250"></div>
+            </div>
+        </div>
+        <div layout="row" class="block-wrap-news block-1x1">
+            <div clas="padding-div-right" flex="100" ng-if="true" ng-drop="true" ng-drop-success="onDropComplete(2, $data, $event, 'portada')">
+                <div ng-if="true" ng-drag="true" ng-drag-data="destacadas.portada[2]" ng-drag-success="onDragSuccessOrder(2, destacadas.portada[2], $event)" class="block-news" ng-class="{'placeholder': !destacadas.portada[2]}">
+                    <button ng-drag-handle type="button" class="btn-drag-handle">
+                        <ng-md-icon icon="more_horiz" style="fill:white" style="fill:white" size="24"></ng-md-icon>
+                    </button>
+                    <div layout="row">
+                        <div flex>
+                            <div class="img-wrap preload">
+                                <img err-src="" class="img-responsive" ng-src="{{destacadas.portada[2].imagen_portada.url}}" alt="Imagen de noticia" />
+                                <button type="button" ng-click="removeNotice($event, 'delete', 2, destacadas.portada[2], 'portada');" class="btn-remove-notice btn-in-list" aria-label="Limpiar">
+                                    <ng-md-icon icon="not_interested" size="24"></ng-md-icon>
+                                    <md-tooltip>Limpiar</md-tooltip>
+                                </button>
+                                <button type="button" ng-click="openAddPhoto($event, 'edit', 2, destacadas.portada[2], 'portada');" class="btn-change-img btn-in-list" aria-label="Cambiar imagen">
+                                    <ng-md-icon icon="add" size="24"></ng-md-icon>
+                                    <md-tooltip>Cambiar imagen</md-tooltip>
+                                </button>
+                            </div>
+                            <div class="block-temas">{{destacadas.portada[2].categoria.nombre}}</div>
+                            <h2 class="block-titulo-big" ng-click="inputEdit($event, 2)" style="font-size: 18px;">
+                                <div class="ng-hide input-edit-outer">
+                                    <md-input-container flex>
+                                        <textarea aria-label="input" ng-model="destacadas.portada[2].titulo" columns="3" style="font-size: 18px; line-height: 1.2; text-align: left; font-weight: bold;" ></textarea>
+                                    </md-input-container>
+                                </div>
+                                <div class="input-edit-inner">
+                                    {{destacadas.portada[2].titulo}}
+                                </div>
+                            </h2>
+                            <div>
+                              <div class="portada-fecha">
+                                {{ destacadas.portada[2].post_date }}
+                              </div>
+                              <div class="portada-cantidad-visitas">
+                                <ng-md-icon icon="visibility" size="12"></ng-md-icon>
+                                 {{ destacadas.portada[2].visitas_total }}
+                              </div>
+                              <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODULO 0x3 -->

@@ -1,0 +1,66 @@
+<md-dialog flex="95" aria-label="Add Video">
+  <md-dialog-content>
+      <!--pre>{{video | json}}</pre-->
+      <div style="position:relative">
+          <!-- Add Video -->
+          <div class="cntUploadVideo" id="add-video-modal" style="overflow:auto;">
+              <uploadvideo width-video="{{widthVideo}}" height-video="{{heightVideo}}" reset="resetVideo" json-refresh="refreshVideo"></uploadvideo>
+          </div>
+          <div class="inputBlock">
+              <md-input-container flex>
+                  <label>
+                      Título
+                      <span ng-if="parrafo1.length>0">({{parrafo1.length}} Caracteres)</span>
+
+                  </label>
+                  <input ng-trim="false" name="parrafo1" ng-model="parrafo1"></input>
+              </md-input-container>
+          </div>
+          <div class="inputBlock">
+              <md-input-container flex>
+                  <label>Leyenda <span ng-if="video.descripcion.length>0">({{video.descripcion.length}} Caracteres)</span>
+                  </label>
+                  <input type="text" ng-trim="false" name="alt" ng-model="video.descripcion" />
+              </md-input-container>
+          </div>
+          <div layout="row" layout-sm="column">
+              <div flex="50" flex-sm="100">
+                  <div class="inputBlock">
+                      <md-input-container flex>
+                          <label>Fuente <span ng-if="via.length>0">({{via.length}} Caracteres)</span>
+                          </label>
+                          <input type="text" ng-trim="false" name="via" ng-model="via" />
+                      </md-input-container>
+                  </div>
+              </div>
+              <div flex="50" flex-sm="100">
+                  <div class="inputBlock">
+                      <md-input-container flex>
+                          <label>Fotógrafo <span ng-if="credito.length>0">({{credito.length}} Caracteres)</span>
+                          </label>
+                          <input type="text" ng-trim="false" name="credito" ng-model="credito" />
+                      </md-input-container>
+                  </div>
+              </div>
+          </div>
+          <!-- Temas -->
+          <p class="nm">Etiquetas</p>
+          <md-chips flex secondary-placeholder="Escribe una Etiqueta" placeholder="Etiqueta" ng-model="video.tags"  md-on-append="tagsOnAppendVideo($chip)">
+              <md-chip-template>
+                  <strong>{{$chip.nombre}}</strong>
+                  <em>(Tema)</em>
+              </md-chip-template>
+          </md-chips>
+          <!-- End Add Video -->
+     </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button type="button" ng-click="closeOpenAddVideo()" class="md-primary">
+      Cerrar
+    </md-button>
+    <md-button type="button" ng-click="addOpenAddVideo()" class="md-primary">
+        {{(modalType === 'add')?'Agregar':'Actualizar'}}
+    </md-button>
+  </div>
+</md-dialog>

@@ -1,0 +1,24 @@
+<md-dialog flex="95" aria-label="Add Related">
+  <md-dialog-content>
+    <div layout="row">
+      <div class="inputBlock" style="width:100%;overflow:hidden">
+        <md-input-container flex>
+            <label>
+              Nombre
+              <span ng-if="nombre.length>0">({{nombre.length}} Caracteres)</span>
+            </label>
+            <input ng-trim="false" name="nombre" ng-model="nombre"></input>
+        </md-input-container>
+      </div>
+    </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button type="button" ng-click="cancelar()" class="md-primary">
+      Cerrar
+    </md-button>
+    <md-button type="button" ng-click="aceptar()" class="md-primary">
+      {{(modalType === 'add')?'Agregar':'Actualizar'}}
+    </md-button>
+  </div>
+</md-dialog>

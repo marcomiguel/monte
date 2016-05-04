@@ -1,0 +1,82 @@
+<md-dialog aria-label="Edit Category" flex="95">
+  <md-dialog-content class="sticky-container">
+    <md-content layout-padding>
+        <div layout="row" layout-padding class="content_multiselect">
+          <div flex>
+                <span class="title" ng-if="selectedIndex">Equipo seleccionado</span>
+                <div class="row equipo-seleccionado" id="wrap-equipos" style="margin:10px 0;padding:10px;border:1px dashed #ddd;" ng-if="selectedIndex">
+                    <div flex layout='row' layout-padding layout-align="start center" style="display:block;margin:0;padding:0;">
+                        <div>
+                            <img err-src="img/img-fallback.png" ng-src="{{urlEscudos}}{{selectedIndex.id}}.png" alt="{{selectedIndex.nombre_equipo}}" width="50" height="50"/>
+                        </div>
+                        <div>
+                            <p class="equipo-name">{{selectedIndex.nombre_equipo}}</p>
+                            <p class="campeonato-equipo">{{selectedIndex.nombre_campeonato}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="!selectedIndex" class="alert-warn md-body-1">
+                                    No se seleccionado equipo.
+                                </div>
+            <div class="contentSearchCategoryLeft" style="position:relative">
+                <md-input-container>
+                    <label>Buscar...</label>
+                    <input ng-model="inputBuscarEquipo" ng-keypress="enterLoadSearch($event)">
+                </md-input-container>
+                <span style="display:inline-block;position:absolute;cursor:pointer;right:0;top:1.25em">
+                    <ng-md-icon ng-click="clickLoadSearch($event);" icon="search" size="20" style=""></ng-md-icon>
+                    <md-tooltip>Buscar</md-tooltip>
+                </span>  
+            </div>
+            <!-- <div style="border:1px solid rgb(153, 153, 153);"> -->
+               <!-- <select
+                class="multiselect"
+                size="10"
+                multiple
+                ng-multiple="true"
+                ng-options="equipo as equipo.nombre_equip for equipo in listaEquipos |   filter:inputBuscarEquipo:nombre_equipo"
+                ng-model="modeloEquipos"
+                ng-dblclick="addCategoryElection(categoryInputModel)"
+                >
+                </select> -->
+                <div class="content-result" style="width:100%">
+                    <div style="text-align:center;width:100%">
+                      <md-progress-circular style="display:inline-block;margin-top:20px;" ng-show="searchLoadCT" md-mode="indeterminate"></md-progress-circular>
+                    </div>
+                    <div ng-show="listArrSocialNoResultCT" class="alert-warn md-body-1">No se encontraron resultados en la búsqueda.</div>
+                    <div ng-show="listArrSocialCT.length>0">
+
+                    </div>
+                    <ul ng-show="!searchLoadCT">                        
+                          <div ng-repeat='equipo in listaEquipos' class="row" id="wrap-equipos" style="margin:10px 0;padding:10px;border:1px dashed #ddd; cursor:pointer;" ng-click="seleccionarEquipo(equipo);">
+                            <div flex layout='row' layout-padding layout-align="start center" style="display:block;margin:0;padding:0;">
+                                <div>
+                                    <img err-src="img/img-fallback.png" ng-src="{{urlEscudos}}{{equipo.id}}.png" alt="{{equipo.nombre_equipo}}" width="50" height="50"/>
+                                </div>
+                                <div>
+                                    <p class="equipo-name">{{equipo.nombre_equipo}}</p>
+                                    <p class="campeonato-equipo">{{equipo.nombre_campeonato}}</p>
+                                </div>
+                            </div>
+                          </div>
+                    </ul>
+                    <div ng-show="listArrSocialCT.length>0">
+
+                    </div>
+                </div>
+            <!-- </div> -->
+          </div>
+          
+        </div>
+    </md-content>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button ng-click="cancel()" class="md-primary">
+      Cerrar
+    </md-button>
+    <md-button ng-click="guardarSeleccion()" class="md-raised md-warn">
+      Guardar selección
+    </md-button>
+  </div>
+</md-dialog>

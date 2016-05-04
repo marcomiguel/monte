@@ -1,0 +1,483 @@
+<div layout="column" class="relative" flex role="main" id="streaming">
+    <!-- HEADER -->
+    <script type="text/ng-template" id="perfil-popover">
+        <div class="triangle"></div>
+        <div class="ns-popover-tooltip">
+        <div class="enlaces-popover">
+        <ul>
+        <li>
+        <md-button ng-click="openPerfil($event, 'perfil');" class="md-primary">
+        <ng-md-icon icon="account_circle"></ng-md-icon>
+        Configurar
+        </md-button>
+        </li>
+        <!--li>
+        <md-button ng-click="openPerfil($event, 'contrasena');" class="md-primary">
+        <ng-md-icon icon="lock"></ng-md-icon>
+        Contraseña
+        </md-button>
+        </li-->
+        </ul>
+        </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="modulos-cabecera">
+        <div class="triangle"></div>
+        <div class="ns-popover-tooltip">
+        <div class="enlaces-popover enlaces-apps">
+        <ul>
+          <li has-permission slug-module="socialtv" action-module="index" style="display: inline-block;">
+              <md-button ng-click="openApps($event, '/oido-social');" class="md-icon-button" aria-label="Button">
+                  <ng-md-icon icon="facebook-messenger" size="48" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+              </md-button>
+              <h5>Oido social</h5>
+              <md-tooltip>Odido Social</md-tooltip>
+          </li>
+          <li has-permission slug-module="noticias" action-module="index" style="display: inline-block;">
+              <md-button ng-click="openApps($event, '/publicador');" class="md-icon-button" aria-label="Button">
+                  <ng-md-icon icon="my_library_books" size="48" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+              </md-button>
+              <h5>Publicador</h5>
+              <md-tooltip>Publicador</md-tooltip>
+          </li>
+          <li has-permission slug-module="ticker" action-module="index" style="display: inline-block;">
+              <md-button ng-click="openApps($event, '/ticker');" class="md-icon-button" aria-label="Button">
+                  <ng-md-icon icon="tv" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+              </md-button>
+              <h5>Ticker</h5>
+              <md-tooltip>Ticker</md-tooltip>
+          </li>
+          <li has-permission slug-module="player" action-module="index" style="display: inline-block;">
+              <md-button ng-click="openApps($event, '/streaming');" class="md-icon-button" aria-label="Button">
+                  <ng-md-icon icon="settings_input_antenna" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+              </md-button>
+              <h5>Streaming</h5>
+              <md-tooltip>Streaming</md-tooltip>
+          </li>
+          <li has-permission slug-module="eventos" action-module="index" style="display: inline-block;">
+              <md-button ng-click="openApps($event, '/eventos');" class="md-icon-button">
+                  <ng-md-icon icon="alarm" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+              </md-button>
+              <h5>Eventos</h5>
+              <md-tooltip>Eventos</md-tooltip>
+          </li>
+          <li has-permission slug-module="podcast" action-module="index" style="display: inline-block;">
+              <md-button ng-click="openApps($event, '/podcast');" class="md-icon-button">
+                  <ng-md-icon icon="volume_up" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+              </md-button>
+              <h5>Podcast</h5>
+              <md-tooltip>Podcast</md-tooltip>
+          </li>
+          <li has-permission slug-module="sondeos" action-module="index" style="display: inline-block;">
+              <md-button ng-click="openApps($event, '/elecciones');" class="md-icon-button">
+                  <ng-md-icon icon="poll" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+              </md-button>
+              <h5>Elecciones</h5>
+              <md-tooltip>Elecciones</md-tooltip>
+          </li>
+          <li has-permission slug-module="redessociales" action-module="index" style="display: inline-block;">
+              <md-button aria-label="Redes Sociales" ng-click="openApps($event, '/redessociales/publicadas');" class="md-icon-button">
+                  <ng-md-icon icon="group_add" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+              </md-button>
+              <h5>Redes sociales</h5>
+              <md-tooltip>Configurar Redes Sociales</md-tooltip>
+          </li>
+          <li has-permission slug-module="roles" action-module="index" style="display: inline-block;">
+              <md-button ng-click="openApps($event, '/roles');" class="md-icon-button">
+                  <ng-md-icon icon="recent_actors" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+              </md-button>
+              <h5>Roles</h5>
+              <md-tooltip>Roles</md-tooltip>
+          </li>
+        </ul>
+        </div>
+        </div>
+    </script>
+    <md-toolbar ng-class="{'novisibletoolbar':!custom}" class="md-toolbar-head">
+        <div class="md-toolbar-tools">
+            <figure class="logo"><img ng-click="openBase()" class="pointer" src="svg/logo-grupo-rpp.svg" alt="Logo Grupo RPP"></figure>
+            <!--md-button ng-class="{'novisiblesearch':!custom}" ng-click="toggleSidebarLeft()" class="md-icon-button" aria-label="Settings">
+              <ng-md-icon icon="more_vert" style="fill: white"></ng-md-icon>
+            </md-button-->
+            <div class="contentSearch" id="contentSearch" style="visibility: hidden;">
+                <ng-md-icon icon="search" style="fill: white"></ng-md-icon>
+                <md-autocomplete
+                    class="filterText"
+                    md-selected-item="selectedFilterText"
+                    md-search-text="filterText"
+                    md-search-text-change="changeItemsSearch"
+                    md-items="item in getItemsSearch($event, filterText)"
+                    md-item-text="item"
+                    md-selected-item-change="selectedItemChange(item)"
+                    md-delay="250"
+                    placeholder="Buscar..."
+                    >
+                    <span md-highlight-text="filterText">{{item}}</span>
+                </md-autocomplete>
+                <ng-md-icon ng-click="btnOpenFilter($event)" class="iconFilter" icon="filter_list" style="fill: white"></ng-md-icon>
+            </div>
+            <div class="drop-panel" ng-class="{'novisiblesearch':!custom}" >
+                <!--md-button ng-click="openPanel($event)" class="md-icon-button" aria-label="Dashboard"-->
+                <md-button
+                    ng-class="{'novisiblesearch':!custom}"
+                    class="md-icon-button"
+                    aria-label="Modulos"
+                    ns-popover
+                    ns-popover-template="modulos-cabecera"
+                    ns-popover-trigger="click"
+                    ns-popover-placement="bottom"
+                    ns-popover-theme="ns-popover-tooltip-theme"
+                    ns-popover-timeout="0.5"
+                    >
+                    <ng-md-icon icon="apps" style="fill: white"></ng-md-icon>
+                    <md-tooltip md-direction="bottom">
+                        Dashboard
+                    </md-tooltip>
+                </md-button>
+                <div class="drop-panel-child" ng-show="showPanel">
+                    <ul class="list-modules">
+                        <li>
+                        <md-button class="md-icon-button" aria-label="Usuarios">
+                            <ng-md-icon icon="people"></ng-md-icon>
+                        </md-button>
+                        <span>Usuarios</span>
+                        </li>
+                        <li>
+                        <md-button class="md-icon-button" aria-label="Configuración">
+                            <ng-md-icon icon="settings"></ng-md-icon>
+                        </md-button>
+                        <span>Configuración</span>
+                        </li>
+                        <li>
+                        <md-button class="md-icon-button" aria-label="Rotafono">
+                            <ng-md-icon icon="perm_phone_msg"></ng-md-icon>
+                        </md-button>
+                        <span>Rotafono</span>
+                        </li>
+                        <li>
+                        <md-button class="md-icon-button" aria-label="Estadisticas">
+                            <ng-md-icon icon="poll"></ng-md-icon>
+                        </md-button>
+                        <span>Estadisticas</span>
+                        </li>
+                        <li>
+                        <md-button class="md-icon-button" aria-label="Radio">
+                            <ng-md-icon icon="radio"></ng-md-icon>
+                        </md-button>
+                        <span>Radio</span>
+                        </li>
+                        <li>
+                        <md-button class="md-icon-button" aria-label="Agencias">
+                            <ng-md-icon icon="public"></ng-md-icon>
+                        </md-button>
+                        <span>Agencias</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <md-button ng-class="{'novisiblesearch':!custom}"  class="md-icon-button" aria-label="Chat">
+                <ng-md-icon icon="chat" style="fill: white"></ng-md-icon>
+                <md-tooltip md-direction="bottom">
+                    Chat
+                </md-tooltip>
+            </md-button>
+            <div class="drop-panel" ng-class="{'novisiblesearch':!custom}" >
+                <!--md-button ng-click="openPanel2($event)" class="md-icon-button " aria-label="Modules"-->
+                <md-button class="md-icon-button " aria-label="Modules">
+                    <ng-md-icon icon="archive" style="fill: white"></ng-md-icon>
+                    <md-tooltip md-direction="bottom">
+                        Módulos
+                    </md-tooltip>
+                </md-button>
+            </div>
+            <md-button
+                ng-class="{'novisiblesearch':!custom}"
+                class="md-icon-button"
+                aria-label="User"
+                ns-popover
+                ns-popover-template="perfil-popover"
+                ns-popover-trigger="click"
+                ns-popover-placement="bottom"
+                ns-popover-theme="ns-popover-tooltip-theme"
+                ns-popover-timeout="0.5"
+                >
+
+                <img ng-if="user.pictureUrl" ng-src="{{ user.pictureUrl}}" alt="User" style="width:24px;height:24px;border-radius:50%;"></img>
+                <md-icon ng-if="!user.pictureUrl" md-svg-src="svg/user.svg" alt="User" style="width:24px;height:24px,"></md-icon>
+
+                <md-tooltip md-direction="bottom">
+                    Usuario
+                </md-tooltip>
+            </md-button>
+            <md-button ng-class="{'novisiblesearch':!custom}"  ng-disabled="disabledCloseSession" ng-click="closeSession()" class="md-icon-button" aria-label="Scape">
+                <md-tooltip md-direction="bottom">
+                    Salir del sistema
+                </md-tooltip>
+                <ng-md-icon icon="settings_power" style="fill: white"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <div flex>
+        <div ng-click="hideLayer($event)" id="layerSearch" ng-show="layerSearch"></div>
+        <div layout="column">
+            <!-- BREADCRUMB -->
+            <md-toolbar class="md-toolbar-subhead">
+                <div layout="row" layout-align="center center" class="md-toolbar-tools md-toolbar-breadcrumb md-whiteframe-z1"></div>
+            </md-toolbar>
+            <!-- /BREADCRUMB -->
+
+            <!-- LEFT -->
+            <!-- CONTENT -->
+            <section layout="vertical" layout-fill flex="" class="md-toolbar-subbody content-body-center fullcenter" id="contentbodycenter">
+                <div flex="">
+                    <div layout="column" layout-fill="" layout-align="top center">
+                        <div class="md-padding streaming-content">
+                            <h2>TV <ng-md-icon icon="tv" style="fill: black" size="20"></ng-md-icon></h2>
+                            <ul class="flex-container longhand">
+                                <li ng-repeat="(key, r) in channels.tv" class="flex-item">
+                                    <div>
+                                        <div class="left">
+                                            <div class="descripcion">{{ r.sitio | uppercase }}</div>
+                                        </div>
+                                        <div class="right">
+                                            <md-button ng-click="toggleRight(r)" class="md-icon-button configuracion">
+                                                <ng-md-icon icon="edit" size="24" style="fill:black"><md-tooltip md-direction="left">Configurar</md-tooltip>
+                                                </ng-md-icon>
+                                            </md-button>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                <jwplayer2 player-id="{{r.sitio}}_{{r.tipo}}" player-pid="{{r.pid}}" player-est="{{r.status}}"  setup="r"></jwplayer2>
+                                </li>
+                            </ul>
+
+                            <md-divider ></md-divider>
+
+                            <h2>CABINA <ng-md-icon icon="web" style="fill: black" size="20"></ng-md-icon></h2>
+                            <ul class="flex-container longhand">
+                                <li ng-repeat="(key, r) in channels.cabina" class="flex-item">
+                                    <div>
+                                        <div class="left">
+                                            <div class="descripcion">{{ r.sitio | uppercase }}</div>
+                                        </div>
+                                        <div class="right">
+                                            <md-button ng-click="toggleRight(r)" class="md-icon-button configuracion">
+                                                <ng-md-icon icon="edit" size="24" style="fill:black"><md-tooltip md-direction="left">Configurar</md-tooltip>
+                                                </ng-md-icon>
+                                            </md-button>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                <jwplayer2 player-id="{{r.sitio}}_{{r.tipo}}"  player-pid="{{r.pid}}" setup="r"></jwplayer2>
+                                </li>
+                            </ul>
+
+                            <md-divider ></md-divider>
+
+                            <h2>RADIOS <ng-md-icon icon="radio" style="fill: black" size="20"></ng-md-icon></h2>
+                            <ul class="flex-container longhand">
+                                <li ng-repeat="r in channels.radio" class="flex-item">
+                                    <div>
+                                        <div class="left">
+                                            <div class="descripcion">{{ r.sitio | uppercase }}</div>
+                                        </div>
+                                        <div class="right">
+                                            <md-button ng-click="toggleRight(r)" class="md-icon-button configuracion">
+                                                <ng-md-icon icon="edit" size="24" style="fill:black"><md-tooltip md-direction="left">Configurar</md-tooltip>
+                                                </ng-md-icon>
+                                            </md-button>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                <jwplayer2 player-id="{{r.sitio}}_{{r.tipo}}"  player-pid="{{r.pid}}" setup="r"></jwplayer2>
+                                </li>
+                            </ul>
+
+                            <h2>LIVESTREAM <ng-md-icon icon="radio" style="fill: black" size="20"></ng-md-icon></h2>
+                            <ul class="flex-container longhand">
+                                <li ng-repeat="r in channels.livestream" class="flex-item">
+                                    <div>
+                                        <div class="left">
+                                            <div class="descripcion">{{ r.sitio | uppercase }}</div>
+                                        </div>
+                                        <div class="right">
+                                            <md-button ng-click="toggleRight(r)" class="md-icon-button configuracion">
+                                                <ng-md-icon icon="edit" size="24" style="fill:black"><md-tooltip md-direction="left">Configurar</md-tooltip>
+                                                </ng-md-icon>
+                                            </md-button>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                <jwplayer2 player-id="{{r.sitio}}_{{r.tipo}}"  player-pid="{{r.pid}}" setup="r"></jwplayer2>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAB POPUP -->
+                <section ng-init="iconAddFab='add'" id="fabs" ng-mouseenter="showAddButtons=true; iconAddFab='edit';" ng-mouseleave="showAddButtons=false; iconAddFab='add';">
+                    <md-button ng-click="openCreateStreaming($event);" id="mainFab" class="md-fab md-warn md-large" aria-label="Photos">
+                        <md-tooltip md-direction="left">
+                        Crear streaming
+                        </md-tooltip>
+                        <ng-md-icon icon="{{iconAddFab}}" style="fill:white"></ng-md-icon>
+                    </md-button>
+                </section>
+                <!-- FIN FAB POPUP -->
+
+                <md-sidenav class="md-sidenav-right md-whiteframe-z2 md-padding" md-component-id="right" flex="">
+                    <md-toolbar class="md-theme-light">
+                        <h3 class="md-toolbar-tools">Configuración</h3>
+                    </md-toolbar>
+                    <br>
+                    <md-toolbar class="md-theme-light">
+                        <h1 class="md-toolbar-tools">{{currentObj.sitio| uppercase}} {{currentObj.tipo| uppercase}}</h1>
+                    </md-toolbar>
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="Restricciones" ng-if="currentObj.pid">
+                            <md-content class="md-padding">
+                                <form name="formNuevaRestriccion">
+                                    <div layout="row" layout-wrap flex style="padding: 5px;">
+                                        <div flex="100">
+                                            <h3>Nuevo bloqueo:</h3>
+                                        </div>
+                                    </div>
+                                    <div layout="row" layout-wrap flex style="padding: 5px;">
+                                        <div flex="50">
+                                            <md-input-container>
+                                                <label>Hora de inicio</label>
+                                                <input ui-timepicker ng-model="config.start_time" />
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="50">
+                                            <md-input-container>
+                                                <label>Hora de fin</label>
+                                                <input ui-timepicker ng-model="config.end_time"/>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div layout="row" layout-wrap flex>
+                                        <div flex="50" ng-repeat="item in items">
+                                            <md-checkbox class="md-primary" ng-checked="exists(item.slug, config.selected)" ng-click="toggle(item.slug, config.selected)">
+                                                <span style="text-transform: capitalize;">{{ item.nombre}}</span>
+                                            </md-checkbox>
+                                        </div>
+                                    </div>
+                                    <div layout="row" layout-wrap flex layout-align="center center">
+                                        <md-button
+                                            ng-hide="config.selected.length < 1 && !config.start_time && !config.end_time"
+                                            ng-click="clearRestriction()"
+                                            >Limpiar</md-button>
+                                        <md-button
+                                            ng-disabled="config.selected.length < 1 || !config.start_time || !config.end_time"
+                                            ng-click="addRestriction()"
+                                            ng-hide="edit_element"
+                                            >Adicionar</md-button>
+                                    </div>
+                                </form>
+                                <div layout="row" layout-wrap flex>
+                                    <h3>Lista de bloqueos:</h3>
+                                    <div flex="100">
+                                        <div class="list_container">
+                                            <md-list-item class="item-config" ng-repeat="r in currentObj.restrictions">
+                                                <div class="contenido">
+                                                    <span class="titulo">
+                                                        {{ r.start_time|date:'HH:mm' }} - {{ r.end_time|date:'HH:mm' }}
+                                                    </span>
+                                                    <p>
+                                                        <span  ng-repeat="d in r.selected">
+                                                            {{ days[d]| limitTo:2 }}
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                                <div class="opciones">
+                                                    <ng-md-icon ng-click="editRestriction($index, r)" ng-model="edit_element" aria-label="Editar" icon="edit"></ng-md-icon>
+                                                    <ng-md-icon ng-click="deleteRestriction($index)"  aria-label="Eliminar" icon="delete"></ng-md-icon>
+                                                </div>
+                                            </md-list-item>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div layout="row" layout-wrap flex layout-align="center center">
+                                    <md-button ng-click="saveRestriction()">Guardar</md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Información general">
+                            <md-content class="md-padding">
+                                <div layout="row" layout-wrap flex>
+                                    <div flex="100">
+                                        <md-input-container>
+                                            <label>Tipo *</label>
+                                            <md-select ng-model="currentObj.tipo" aria-label="Tipo" ng-disabled="editConfig">
+                                                <md-option ng-repeat="tipo in tipos" ng-value="tipo.slug">
+                                                    {{tipo.nombre}}
+                                                </md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex="100" >
+                                        <md-input-container>
+                                            <label>Sitio *</label>
+                                            <input ng-model="currentObj.sitio"/>
+                                        </md-input-container>
+                                    </div>
+<!--                                   <div flex="100" ng-if="currentObj.tipo!='livestream'">
+                                        <md-input-container>
+                                            <label>Radio *</label>
+                                            <md-select ng-model="currentObj.sitio" aria-label="Sitio" ng-change="changeSitio()" ng-disabled="editConfig">
+                                                <md-option ng-repeat="sitio in sitios" ng-value="sitio.slug">
+                                                    {{sitio.nombre}}
+                                                </md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>-->
+<!--                                    <div flex="100" ng-if="currentObj.tipo=='livestream'">
+                                        <md-input-container>
+                                            <label>Sitio *</label>
+                                            <input ng-model="currentObj.sitio"/>
+                                        </md-input-container>
+                                        <md-input-container>
+                                            <label>Sitio URL *</label>
+                                            <input ng-model="currentObj.sitio_url"/>
+                                        </md-input-container>
+                                    </div>-->
+                                    <div flex="100">
+                                        <h3>Fuentes de transmisión:</h3>
+                                        <div style="position: relative; flex: 1" ng-repeat="fuente in currentObj.fuentes">
+                                            <md-input-container flex>
+                                                <label>Fuente #{{$index + 1}}</label>
+                                                <input ng-focus="focused = true" ng-blur="focused = false" ng-model="currentObj.fuentes[$index].file">
+                                                <div style="clear: both"></div>
+                                            </md-input-container>
+                                            <div ng-class="(focused||currentObj.fuentes[$index].file!='')?'focused':''" class="opciones">
+                                                <ng-md-icon ng-click="deleteSource($index)" aria-label="Eliminar" icon="delete"></ng-md-icon>
+                                            </div>
+                                        </div>
+                                        <md-input-container flex>
+                                            <label style="color: blue; font-size: 0.95rem; ">Haga click para agregar una nueva fuente</label>
+                                            <input readonly=""/ style="cursor: pointer;" ng-click="addSource()">
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div layout="row" layout-wrap flex layout-align="center center">
+                                    <md-button ng-click="saveConfig()">{{ currentObj.pid ? 'Guardar' : 'Crear' }}</md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </md-sidenav>
+            </section>
+            <!-- RIGHT -->
+            <!--aside class="sidenav-right sidenav-module fullsidebar" id="sidebarright">
+            </aside-->
+            <!-- END SIDEBARS -->
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <!--md-bottom-sheet>
+    </md-bottom-sheet-->
+</div>

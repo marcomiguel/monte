@@ -1,0 +1,191 @@
+<div layout="column" class="relative" flex role="main" id="facebook-config">
+    <style>
+        #contentBodyCenter{
+            width: 80%;
+            margin: 80px auto 2em;
+        }
+        .deleteFB{
+            position: absolute;
+            right: 0px;
+            bottom: -25px;
+            cursor: pointer;
+        }
+        .btnfb:hover{
+            opacity:0.85
+        }
+    </style>
+    <!-- HEADER -->
+    <div ng-include="'template/partial/header-nosearch.html'"></div>
+    <!-- END HEADER -->
+    <div flex>
+        <div ng-click="hideLayer($event)" id="layerSearch" ng-show="layerSearch"></div>
+        <div layout="column">
+            <!-- BREADCRUMB -->
+            <md-toolbar class="md-toolbar-subhead">
+                <div layout="row" layout-align="center center" class="md-toolbar-tools md-toolbar-breadcrumb md-whiteframe-z1">
+                    <!-- ng-disabled="redessociales.facebook.accounts.length<=0" -->
+                    <md-button type="button" class="md-primary" ng-click="clickSave($event);">
+                        <ng-md-icon icon="save" size="20"></ng-md-icon> Guardar
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <!-- /BREADCRUMB -->
+            <!-- LEFT -->
+            <aside class="sidenav-left sidenav-module md-whiteframe-z2" id="sidebarleft">
+                <menu-lateral-derecha activo="cuentas" modulo="redes-sociales"></menu-lateral-derecha>
+            </aside>
+            <!-- /LEFT -->
+            <!-- CONTENT -->
+            <section class="md-whiteframe-z2" id="contentBodyCenter" >
+                <!-- BEGIN FACEBOOK -->
+                <div style="padding:1em">
+                    <h2 style="margin:0 0 5px"><ng-md-icon icon="facebook" style="fill:#3a5795"></ng-md-icon> Facebook</h2>
+                    <div layout="row" style="margin-bottom:1em">
+                        <span style="display:inline-block;padding-top:18px;margin-right:10px">Añadir cuentas </span>
+                        <img style="height:40px;cursor:pointer;outline:none;border-radius:4px;" ng-click="loginFB($event)" class="btnfb" src="img/btn_fb.png" alt="Login con Facebook" />
+                    </div>
+                    <md-progress-circular style="margin-bottom:10px!important;" ng-show="redessociales.facebook.preload" md-mode="indeterminate"></md-progress-circular>
+                    <div class="account-fb" ng-show="isAccountsFB">
+                        <div
+                            class="account-all" style="margin-bottom:5px;"
+                            ng-repeat="account in redessociales.facebook.accounts"
+                            ng-init="parentIndex = $index"
+                        >
+                            <div class="account-left">
+                                <ul>
+                                    <li class="activeClickFB">
+                                        <img
+                                            ng-src="{{account.picture}}"
+                                            alt="{{account.name}}"
+                                         />
+                                         <md-tooltip>{{account.name}}</md-tooltip>
+                                    </li>
+                                </ul>
+                                <span class="deleteFB">
+                                    <ng-md-icon ng-click="deleteFB($event, account, $index, 'facebook')" icon="delete" style="fill:#F44336" size="24"></ng-md-icon>
+                                    <md-tooltip>Eliminar</md-tooltip>
+                                </span>
+                            </div>
+                            <div class="account-right">
+                                <div
+                                    class="sectionFB activeSectionFB"
+                                >
+                                    <div layout="row">
+                                        <div flex="50">
+                                            <h5 style="margin:0 0 5px">Páginas de Facebook:</h5>
+                                            <ul style="margin-right:1em;">
+                                                <li
+                                                ng-repeat="page in account.managed_pages.pages"
+                                                ng-class="{activefb : page.active}"
+                                                ng-click="insertFBActive($event, page, $index, 'pages', parentIndex, 'facebook')">
+                                                    <img
+                                                        ng-src="{{page.picture}}"
+                                                        alt="{{page.name}}"
+                                                    >
+                                                    <span>{{page.name}}</span>
+                                                    <ng-md-icon icon="{{(page.active)?'done':'add'}}" style="fill:{{(page.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                    <md-tooltip>{{(page.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div flex="50">
+                                            <h5 style="margin:0 0 5px">Grupos de Facebook:</h5>
+                                            <ul>
+                                                <li
+                                                ng-repeat="group in account.managed_pages.groups"
+                                                ng-class="{activefb : group.active}"
+                                                ng-click="insertFBActive($event, group, $index, 'groups', parentIndex, 'facebook')">
+                                                    <img
+                                                        ng-src="{{group.picture}}"
+                                                        alt="{{group.name}}"
+                                                     />
+                                                    <span>{{group.name}}</span>
+                                                    <ng-md-icon icon="{{(group.active)?'done':'add'}}" style="fill:{{(group.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                    <md-tooltip>{{(group.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END FACEBOOK -->
+                <!-- BEGIN TWITTER -->
+                <div style="padding:1em">
+                    <h2 style="margin:0 0 5px"><ng-md-icon icon="twitter" style="fill:#55acee"></ng-md-icon> Twitter</h2>
+                    <div layout="row" style="margin-bottom:1em">
+                        <span style="display:inline-block;padding-top:18px;margin-right:10px">Añadir cuentas </span>
+                        <img style="height:40px;cursor:pointer;outline:none;border-radius:4px;" ng-click="loginTwitter($event)" class="btnfb" src="img/btn_twitter.png" alt="Login con Twitter" />
+                    </div>
+                    <md-progress-circular style="margin-bottom:10px!important;" ng-show="redessociales.twitter.preload" md-mode="indeterminate"></md-progress-circular>
+                    <div class="account-fb" ng-show="isAccountsTW">
+                        <div class="account-all">
+                        <div
+                            class="account-all-50" style="margin-bottom:5px;"
+                            ng-repeat="account in redessociales.twitter.accounts"
+                            ng-init="parentIndex = $index"
+                        >
+                            <div class="account-left">
+                                <ul>
+                                    <li class="activeClickFB">
+                                        <img
+                                            ng-src="{{account.picture}}"
+                                            alt="{{account.name}}"
+                                         />
+                                         <md-tooltip>{{account.name}}</md-tooltip>
+                                    </li>
+                                </ul>
+                                <span class="deleteFB">
+                                    <ng-md-icon ng-click="deleteFB($event, account, $index, 'twitter')" icon="delete" style="fill:#F44336" size="24"></ng-md-icon>
+                                    <md-tooltip>Eliminar</md-tooltip>
+                                </span>
+                            </div>
+                            <div class="account-right">
+                                <div
+                                    class="sectionFB activeSectionFB"
+                                >
+                                    <div layout="row">
+                                        <div flex="100">
+                                            <ul style="margin-right:1em;">
+                                                <li
+                                                ng-repeat="page in account.managed_pages.pages"
+                                                ng-class="{activefb : page.active}"
+                                                ng-click="insertFBActive($event, page, $index, 'pages', parentIndex, 'twitter')">
+                                                    <img
+                                                        ng-src="{{page.picture}}"
+                                                        alt="{{page.name}}"
+                                                    >
+                                                    <span>{{page.name}}</span>
+                                                    <ng-md-icon icon="{{(page.active)?'done':'add'}}" style="fill:{{(page.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                    <md-tooltip>{{(page.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END TWITTER -->
+                <!-- BEGIN GOOGLE+ -->
+                <div style="padding:1em">
+                    <h2 style="margin:0 0 5px"><ng-md-icon icon="google-plus-box" style="fill:#d73d32"></ng-md-icon> Google +</h2>
+                    <div layout="row" style="margin-bottom:1em">
+                        <span style="display:inline-block;padding-top:18px;margin-right:10px">Añadir cuentas </span>
+                        <img style="height:40px;cursor:pointer;outline:none;border-radius:4px;" ng-click="loginGoogle($event)" class="btnfb" src="img/btn_google.png" alt="Login con Google+" />
+                    </div>
+                </div>
+                <!-- END GOOGLE+ -->
+            </section>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <!--md-bottom-sheet>
+    </md-bottom-sheet-->
+</div>

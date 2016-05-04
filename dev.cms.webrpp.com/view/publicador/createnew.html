@@ -1,0 +1,1801 @@
+<div layout="column" class="relative" flex role="main">
+    <!-- HEADER -->
+    <script type="text/ng-template" id="perfil-popover">
+        <div class="triangle"></div>
+            <div class="ns-popover-tooltip">
+            <div class="enlaces-popover">
+                <ul>
+                    <li>
+                        <md-button ng-click="openPerfil($event, 'perfil');" class="md-primary" aria-label="Button">
+                            <ng-md-icon icon="account_circle"></ng-md-icon>
+                            Configurar
+                        </md-button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="modulos-cabecera">
+        <div class="triangle"></div>
+            <div class="ns-popover-tooltip">
+            <div class="enlaces-popover enlaces-apps">
+            <ul>
+              <li has-permission slug-module="socialtv" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/oido-social');" class="md-icon-button" aria-label="Button">
+                      <ng-md-icon icon="facebook-messenger" size="48" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Oido social</h5>
+                  <md-tooltip>Odido Social</md-tooltip>
+              </li>
+              <li has-permission slug-module="noticias" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/publicador');" class="md-icon-button" aria-label="Button">
+                      <ng-md-icon icon="my_library_books" size="48" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Publicador</h5>
+                  <md-tooltip>Publicador</md-tooltip>
+              </li>
+              <li has-permission slug-module="ticker" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/ticker');" class="md-icon-button" aria-label="Button">
+                      <ng-md-icon icon="tv" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Ticker</h5>
+                  <md-tooltip>Ticker</md-tooltip>
+              </li>
+              <li has-permission slug-module="player" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/streaming');" class="md-icon-button" aria-label="Button">
+                      <ng-md-icon icon="settings_input_antenna" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Streaming</h5>
+                  <md-tooltip>Streaming</md-tooltip>
+              </li>
+              <li has-permission slug-module="eventos" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/eventos');" class="md-icon-button">
+                      <ng-md-icon icon="alarm" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Eventos</h5>
+                  <md-tooltip>Eventos</md-tooltip>
+              </li>
+              <li has-permission slug-module="podcast" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/podcast');" class="md-icon-button">
+                      <ng-md-icon icon="volume_up" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Podcast</h5>
+                  <md-tooltip>Podcast</md-tooltip>
+              </li>
+              <li has-permission slug-module="sondeos" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/elecciones');" class="md-icon-button">
+                      <ng-md-icon icon="poll" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Elecciones</h5>
+                  <md-tooltip>Elecciones</md-tooltip>
+              </li>
+              <li has-permission slug-module="redessociales" action-module="index" style="display: inline-block;">
+                  <md-button aria-label="Redes Sociales" ng-click="openApps($event, '/redessociales/publicadas');" class="md-icon-button">
+                      <ng-md-icon icon="group_add" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Redes sociales</h5>
+                  <md-tooltip>Configurar Redes Sociales</md-tooltip>
+              </li>
+              <li has-permission slug-module="roles" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/roles');" class="md-icon-button">
+                      <ng-md-icon icon="recent_actors" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Roles</h5>
+                  <md-tooltip>Roles</md-tooltip>
+              </li>
+            </ul>
+            </div>
+        </div>
+    </script>
+    <md-toolbar ng-class="{'novisibletoolbar':!custom}" class="md-toolbar-head">
+        <div class="md-toolbar-tools">
+            <figure class="logo"><img ng-click="openBase()" class="pointer" src="svg/logo-grupo-rpp.svg" alt="Logo Grupo RPP" /></figure>
+            <md-button ng-class="{'novisiblesearch':!custom}" ng-click="toggleSidebarLeft()" class="md-icon-button" aria-label="Settings">
+              <ng-md-icon icon="more_vert" style="fill: white"></ng-md-icon>
+            </md-button>
+            <div class="contentSearch" id="contentSearch">
+                <ng-md-icon icon="search" style="fill: white"></ng-md-icon>
+                <md-autocomplete
+                    class="filterText"
+                    md-selected-item="selectedFilterText"
+                    md-search-text="filterText"
+                    md-search-text-change="changeItemsSearch"
+                    md-items="item in getItemsSearch($event, filterText)"
+                    md-item-text="item"
+                    md-delay="250"
+                    placeholder="Últimas noticias"
+                    ng-disabled="disabledSearch"
+                >
+                    <span md-highlight-text="filterText">{{item}}</span>
+                </md-autocomplete>
+                <ng-md-icon ng-click="btnOpenFilter($event)" class="iconFilter" icon="filter_list" style="fill: white"></ng-md-icon>
+                <div ng-show="formOptionSearch" layout-padding id="optionSearch" class="md-whiteframe-z4">
+                      <div layout layout-sm="column" class="block-filter--inner">
+                          <select
+                            flex
+                            chosen
+                            ng-change="changeLoadSectionHeader($event)"
+                            ng-model="filterSite"
+                            ng-options="item.nombre for item in filterSites track by item.slug"
+                            data-placeholder="Grupo RPP"
+                            no-results-text="'No hay opciones'"
+                            >
+                              <option value=""></option>
+                          </select>
+                          <select
+                            flex
+                            chosen
+                            ng-model="filterSection"
+                            ng-options="item.label for item in filterSections track by item.slug"
+                            data-placeholder="Categoría"
+                            no-results-text="'No hay opciones'"
+                            >
+                              <option value=""></option>
+                          </select>
+                          <select
+                            flex
+                            chosen
+                            ng-model="filterTypeContent"
+                            ng-options="item.nombre for item in filterTypeContents track by item.slug"
+                            data-placeholder="Tipo"
+                            no-results-text="'No hay opciones'"
+                            >
+                              <option value=""></option>
+                          </select>
+                      </div>
+                      <div layout layout-sm="column" class="block-filter--inner">
+                          <div flex style="margin-right: 5px;">
+                              <div class="label">Desde</div>
+                              <input type="date" ng-model="filterFrom">
+                          </div>
+                          <div flex style="margin-right: 5px;">
+                              <div class="label">Hasta</div>
+                              <input type="date" ng-model="filterTo">
+                          </div>
+                          <select
+                            flex
+                            chosen
+                            ng-model="filterState"
+                            ng-options="item.nombre for item in filterStates track by item.slug"
+                            data-placeholder="Estado"
+                            no-results-text="'No hay opciones'"
+                            >
+                              <option value=""></option>
+                          </select>
+                      </div>
+                      <div layout layout-sm="column" class="block-filter--inner">
+                          <select
+                            flex
+                            chosen
+                            ng-model="filterAuthor"
+                            ng-options="item.nombre for item in filterAuthors track by item.slug"
+                            data-placeholder="Autor"
+                            no-results-text="'No hay opciones'"
+                            >
+                              <option value=""></option>
+                          </select>
+                           <div flex style="margin-right: 5px;"></div>
+                           <div flex style="margin-right: 5px;"></div>
+                      </div>
+                      <div layout layout-sm="column" class="block-filter--actions">
+                          <md-button ng-click="searchFilterNews($event)" type="button" class="md-raised md-warn">Buscar</md-button>
+                      </div>
+                </div>
+            </div>
+
+            <md-button
+                ng-class="{'novisiblesearch':!custom}"
+                class="md-icon-button"
+                aria-label="Modulos"
+                ns-popover
+                ns-popover-template="modulos-cabecera"
+                ns-popover-trigger="click"
+                ns-popover-placement="bottom"
+                ns-popover-theme="ns-popover-tooltip-theme"
+                ns-popover-timeout="0.5"
+             >
+                <ng-md-icon icon="apps" style="fill: white"></ng-md-icon>
+                  <md-tooltip md-direction="bottom">
+                      Dashboard
+                  </md-tooltip>
+            </md-button>
+
+            <md-button ng-class="{'novisiblesearch':!custom}"  class="md-icon-button" aria-label="Chat">
+              <ng-md-icon icon="chat" style="fill: white"></ng-md-icon>
+              <md-tooltip md-direction="bottom">
+                  Chat
+              </md-tooltip>
+            </md-button>
+            <md-button ng-class="{'novisiblesearch':!custom}" class="md-icon-button " aria-label="Modules">
+                <ng-md-icon icon="archive" style="fill: white"></ng-md-icon>
+                <md-tooltip md-direction="bottom">
+                Módulos
+                </md-tooltip>
+            </md-button>
+
+            <md-button
+                ng-class="{'novisiblesearch':!custom}"
+                class="md-icon-button"
+                aria-label="User"
+                ns-popover
+                ns-popover-template="perfil-popover"
+                ns-popover-trigger="click"
+                ns-popover-placement="bottom"
+                ns-popover-theme="ns-popover-tooltip-theme"
+                ns-popover-timeout="0.5"
+                >
+                <img ng-if="user.pictureUrl" ng-src="{{ user.pictureUrl }}" alt="User" style="width:24px;height:24px;border-radius:50%;"></img>
+                <md-icon ng-if="!user.pictureUrl" md-svg-src="svg/user.svg" alt="User" style="width:24px;height:24px,"></md-icon>
+                <md-tooltip md-direction="bottom">
+                  Usuario
+                </md-tooltip>
+            </md-button>
+            <md-button ng-class="{'novisiblesearch':!custom}"  ng-disabled="disabledCloseSession" ng-click="closeSession()" class="md-icon-button" aria-label="Scape">
+                <md-tooltip md-direction="bottom">
+                    Salir del sistema
+                </md-tooltip>
+              <ng-md-icon icon="settings_power" style="fill: white"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <section flex>
+        <div ng-click="hideLayer($event)" id="layerSearch" ng-show="layerSearch"></div>
+        <div layout="column">
+            <!-- BREADCRUMB -->
+            <md-toolbar class="md-toolbar-subhead">
+                <div layout="row" layout-align="center center" class="md-toolbar-tools md-toolbar-breadcrumb md-whiteframe-z1">
+                    <md-button type="button" class="md-icon-button" ng-click="backToList()">
+                        <ng-md-icon icon="arrow_back" size="28"></ng-md-icon>
+                        <md-tooltip md-direction="bottom">
+                            Volver
+                        </md-tooltip>
+                    </md-button>
+                    <div style="display:inline-block; margin-right:10px">
+                        <img ng-if="objSitio === 'la10'" style="height:30px" src="svg/logo-la10.svg" alt="Logo" />
+                        <img ng-if="objSitio === 'rpp'" style="height:30px" src="svg/rpp-noticias.png" alt="Logo" />
+                        <img ng-if="objSitio === 'corazon'" style="height:30px" src="svg/corazon.png" alt="Logo" />
+                    </div>
+                    <div style="display:inline-block">
+                        <md-select ng-change="changeCategorys($event);" ng-model="objSitio" placeholder="Sitio">
+                            <md-option ng-repeat="site in sites" value="{{site}}">{{site}}</md-option>
+                        </md-select>
+                    </div>
+                    <div style="display:inline-block">
+                        <md-select ng-change="cambioTipoPublicador($event)" placeholder="Tipo de noticia" ng-model="objTipo">
+                            <md-option  ng-repeat="tipo in typeContents" ng-value="tipo.slug">
+                                <ng-md-icon size="20" icon="{{ tipo.icon }}" style="fill:black"></ng-md-icon>
+                                {{ tipo.nombre }}
+                            </md-option>
+                        </md-select>
+                    </div>
+                    <md-button type="button" class="md-primary" ng-click="clickSave($event);" has-permission slug-module="noticias" action-module="guardar">
+                        <ng-md-icon icon="save" size="20"></ng-md-icon> Guardar
+                    </md-button>
+                    <md-button type="button" class="md-primary" ng-click="clickPreview($event);" has-permission slug-module="noticias" action-module="vistaprevia">
+                        <ng-md-icon icon="remove_red_eye" size="20"></ng-md-icon> Previsualizar
+                    </md-button>
+                    <md-button type="button" class="md-primary" ng-click="clickPublish($event);" has-permission slug-module="noticias" action-module="publicar">
+                        <ng-md-icon icon="language" size="20"></ng-md-icon> Publicar
+                    </md-button>
+                    <md-button ng-if="isPublish" type="button" class="md-primary" ng-click="clickDelete($event);" has-permission slug-module="noticias" action-module="eliminar">
+                        <ng-md-icon icon="undo" size="20"></ng-md-icon> Despublicar
+                    </md-button>
+                    <md-button ng-if="!isPublish" type="button" class="md-primary" ng-click="clickDelete($event);" has-permission slug-module="noticias" action-module="eliminar">
+                        <ng-md-icon icon="delete" size="20"></ng-md-icon> Eliminar
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <!-- /BREADCRUMB -->
+            <!-- LEFT -->
+            <aside class="sidenav-left sidenav-module md-whiteframe-z2" id="sidebarleft">
+                <menu-lateral-derecha activo="publicador"></menu-lateral-derecha>
+            </aside>
+            <!-- CONTENT -->
+            <section class="md-toolbar-subbody content-body-center fullcenter" id="contentbodycenter">
+                <div id="bodyAddsNews">
+                    <div class="carril-right">
+                        <div layout="row" layout-wrap>
+                            <div flex="100">
+                                <div name="titlesForm">
+                                    <md-input-container flex>
+                                        <label>Antetítulo <span ng-if="objVolada.length>0">({{objVolada.length}} Caracteres)</span>
+                                        </label>
+                                        <input ng-model="objVolada">
+                                    </md-input-container>
+                                    <div layout="row" style="position:relative">
+                                        <md-input-container flex>
+                                            <label>* Titulo <span ng-if="objTitulo.length>0">({{objTitulo.length}} Caracteres)</span>
+                                            </label>
+                                            <textarea name="titulo" ng-model="objTitulo" ng-blur="blurTitle()"></textarea>
+                                        </md-input-container>
+                                        <button type="button" ng-click="(showFieldTitles)?showFieldTitles=false:showFieldTitles=true;" class="btn-help-aside btn-in-list">
+                                            <md-tooltip md-direction="right">
+                                                {{(showFieldTitles)?'Ver menos':'Ver más campos'}}
+                                            </md-tooltip>
+                                            <ng-md-icon ng-if="showFieldTitles" icon="remove"></ng-md-icon>
+                                            <ng-md-icon ng-if="!showFieldTitles" icon="add"></ng-md-icon>
+                                        </button>
+                                    </div>
+                                    <div class="required alert-warn" ng-show="fields.titulo.length>0">{{fields.titulo}}</div>
+                                    <!--div layout ng-show="showFieldTitles"-->
+                                    <div layout>
+                                        <md-input-container flex>
+                                            <label>* Titulo Portada <span ng-if="objTitulo_corto.length>0">({{objTitulo_corto.length}} Caracteres)</span>
+                                            </label>
+                                            <input ng-model="objTitulo_corto" ng-blur="blurTitle()">
+                                        </md-input-container>
+                                    </div>
+                                    <div class="required alert-warn" ng-show="fields.titulo_corto.length>0">{{fields.titulo_corto}}</div>
+                                    <div layout ng-show="showFieldTitles">
+                                        <md-input-container flex>
+                                            <label>* Titulo SEO <span ng-if="objTitulo_seo.length>0">({{objTitulo_seo.length}} Caracteres)</span>
+                                            </label>
+                                            <input ng-model="objTitulo_seo" ng-change="changeTitleSeo()">
+                                        </md-input-container>
+                                    </div>
+                                    <div class="required alert-warn" ng-show="fields.titulo_seo.length>0">{{fields.titulo_seo}}</div>
+                                    <div layout ng-show="showFieldTitles">
+                                        <!--label class="label-free">www.la10.pe/</label-->
+                                        <label class="label-free">http://{{objSitio}}.pe/</label>
+                                        <md-input-container flex>
+                                            <label>* URL <span ng-if="objUrl.length>0">({{objUrl.length}} Caracteres)</span>
+                                            </label>
+                                            <input name="URL" ng-readonly="true" ng-model="objUrl" />
+                                        </md-input-container>
+                                    </div>
+                                    <div class="required alert-warn" ng-show="fields.url.length>0">{{fields.url}}</div>
+                                    <div flex style="margin-top:0.5em">
+                                        <md-input-container>
+                                            <label>TICKER <span ng-if="objTicker.length>0">({{objTicker.length}} Caracteres)</span>
+                                            </label>
+                                            <textarea class="uppercase" rows="1" ng-model="objTicker"></textarea>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex style="margin-top:0.5em" ng-show="objTipo === 'url'">
+                                        <md-input-container>
+                                            <label>URL Externo <span ng-if="objUrlExterno.length>0">({{objUrlExterno.length}} Caracteres)</span>
+                                            </label>
+                                            <input type="text" ng-model="objUrlExterno" />
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div name="bodyForm">
+                                    <div layout layout-sm="column" >
+                                        <div flex class="content-wysing">
+                                            <md-input-container flex style="padding-bottom:0">
+                                                <label>Bajada <span ng-if="objBajada.length>0">({{objBajada.length}} Caracteres)</span></label>
+                                                <textarea ng-model="objBajada" columns="10"></textarea>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="required alert-warn" ng-show="fields.contenido.length>0">{{fields.contenido}}</div>
+                    <section id="block-ui-add">
+                        <ul class="draglist">
+                            <li ng-show="isMediaLoad">
+                                <div class="carril-right relative-btns-handlres">
+                                    <div class="drop-block-init" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">
+                                    </div>
+                                    <div class="btns-handlres">
+                                        <md-button type="button" ng-disabled="flags.addPhoto" ng-dblclick="dClickFalse($event)" ng-click="openAddPhoto($event, 'add', block.length, {}, -1);" class="md-icon-button" aria-label="Foto">
+                                          <md-tooltip ng-if="!flags.addPhoto">Foto</md-tooltip>
+                                          <ng-md-icon icon="image"></ng-md-icon>
+                                        </md-button>
+                                        <md-button type="button" ng-disabled="flags.addVideo" ng-dblclick="dClickFalse($event)" ng-click="openAddVideo($event, 'add', block.length, {}, -1);" class="md-icon-button" aria-label="Video">
+                                          <md-tooltip ng-if="!flags.addVideo">Video</md-tooltip>
+                                          <ng-md-icon icon="videocam"></ng-md-icon>
+                                        </md-button>
+                                        <md-button type="button" ng-disabled="flags.addAudio" ng-dblclick="dClickFalse($event)" ng-click="openAddAudio($event, 'add', block.length, {}, -1);" class="md-icon-button" aria-label="Audio">
+                                          <md-tooltip ng-if="!flags.addAudio">Audio</md-tooltip>
+                                          <ng-md-icon icon="volume_up"></ng-md-icon>
+                                        </md-button>
+                                        <md-button ng-if="objTipo === 'infografia'" type="button" ng-disabled="flags.addEmbed" ng-dblclick="dClickFalse($event)" ng-click="openAddEmbed($event, 'add', block.length, {}, -1);" class="md-icon-button" aria-label="Código">
+                                          <md-tooltip ng-if="!flags.addEmbed">Embed</md-tooltip>
+                                          <ng-md-icon icon="settings_ethernet"></ng-md-icon>
+                                        </md-button>
+                                        <md-button type="button" ng-disabled="flags.addYoutube" ng-dblclick="dClickFalse($event)" ng-click="openAddYoutube($event, 'add', block.length, {}, -1);" class="md-icon-button" aria-label="Youtube">
+                                          <md-tooltip ng-if="!flags.addYoutube">Youtube</md-tooltip>
+                                          <md-icon md-svg-src="svg/youtube17.svg" style="fill:#cc181e;"></md-icon>
+                                        </md-button>
+                                        <md-button type="button" ng-click="openAddPhotoGallery($event, 'add', block.length, {}, -1);" class="md-icon-button" aria-label="Galeria de fotos">
+                                          <md-tooltip>Galeria de fotos</md-tooltip>
+                                          <ng-md-icon icon="photo_library"></ng-md-icon>
+                                        </md-button>
+                                        <md-button type="button" ng-click="openAddPhotoGallery($event, 'add', 'gif', -1);" class="md-icon-button" aria-label="Gif Galeria">
+                                          <md-tooltip>Gif</md-tooltip>
+                                          <md-icon md-svg-icon="svg/gif.svg" style="width:26px;height:26px;"></md-icon>
+                                        </md-button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li ng-init="colimIndex=$index" ng-repeat="block in blockAdd track by $index" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">
+                                <div ng-drag="blockAdd.length > 1" ng-drag-data="block" class="md-content-addblock" ng-mouseenter="showAddOptions$index=true;" ng-mouseleave="showAddOptions$index=false;">
+                                    <div class="carril-right">
+                                        <div ng-switch="block.tipo">
+                                            <div data-tipo="{{block.tipo}}" ng-switch-when="text">
+                                                <div ng-include="'template/partial/parrafo-cita-relacionado.html'"></div>
+                                                <aside class="content-icons" ng-show="showAddOptions$index">
+                                                    <button type="button" ng-disabled="flags.addText" ng-dblclick="dClickFalse($event)" ng-click="openAddText($event, 'edit', $index, block)" class="btn-help-aside btn-in-list md-content-icon-edit">
+                                                        <md-tooltip ng-if="!flags.addText" md-direction="left">
+                                                            Editar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="edit" style=""></ng-md-icon>
+                                                    </button>
+                                                    <button ng-if="block.cita" type="button" ng-disabled="flags.addCite" ng-dblclick="dClickFalse($event)" ng-click="openAddCite($event, 'add', $index, block)" class="btn-help-aside btn-in-list md-content-icon-cite">
+                                                        <md-tooltip ng-if="!flags.addCite" md-direction="left">
+                                                            {{((block.cita.titulo).length > 0 || (block.cita.desarrollo | htmlToPlaintext).length > 0 )?'Editar cita':'Añadir cita'}}
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="speaker_notes" style=""></ng-md-icon>
+                                                    </button>
+                                                    <button ng-if="block.relacionado" type="button" ng-disabled="flags.addRelated" ng-dblclick="dClickFalse($event)" ng-click="openAddRelated($event, 'add', $index, block)" class="btn-help-aside btn-in-list md-content-icon-related">
+                                                        <md-tooltip ng-if="!flags.addRelated" md-direction="left">
+                                                            {{((block.relacionado.items).length > 0)?'Editar relacionado':'Añadir relacionado'}}
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="swap_horiz" style=""></ng-md-icon>
+                                                    </button>
+                                                    <button type="button" ng-click="deleteBlock($event, $index, block)" class="btn-help-aside btn-in-list md-content-icon-delete">
+                                                        <md-tooltip md-direction="left">
+                                                            Eliminar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="delete" style=""></ng-md-icon>
+                                                    </button>
+                                                </aside>
+                                                <!--div ng-include="'template/partial/menu-flotante.html'"></div-->
+                                            </div>
+                                            <div data-tipo="{{block.tipo}}" ng-switch-when="photo">
+                                                <section class="section-photo">
+                                                    <h3 class="title_render">{{block.subtitulo}}</h3>
+                                                    <div ng-if="block.foto.data" id="idPhoto{{$index}}" class="photo-wrap">
+                                                        <a ng-if="block.foto.url" href="{{block.foto.url}}" target="_blank" class="btn-over-aside btn-in-list">
+                                                            <md-tooltip md-direction="right">
+                                                                Ir a Url
+                                                            </md-tooltip>
+                                                            <ng-md-icon icon="link" style=""></ng-md-icon>
+                                                        </a>
+                                                        <img err-src style="min-height:100px" alt="{{block.foto.alt}}" ng-src="{{block.foto.url}}" />
+                                                    </div>
+                                                </section>
+                                                <blockquote class="cite-text">
+                                                    <div class="cite-separator">
+                                                        <span class="cite-label">Leyenda:</span> <span ng-bind-html="block.foto.alt | htmlAddBlock"></span>
+                                                    </div>
+                                                    <div class="cite-separator">
+                                                        <span class="cite-label">Fuente:</span> <span ng-bind-html="block.via | htmlAddBlock"></span>
+                                                        | <span class="cite-label">Fotógrafo:</span> <span ng-bind-html="block.credito | htmlAddBlock"></span></div>
+                                                    <div class="cite-separator">
+                                                        <span class="cite-label">Etiquetas: </span>
+                                                        <span ng-repeat="tag in block.foto.tags"><strong>{{tag.nombre}}</strong> {{$last?'':', '}} </span>
+                                                    </div>
+                                                </blockquote>
+                                                <aside class="content-icons" ng-show="showAddOptions$index">
+                                                    <button type="button" ng-click="openAddPhoto($event, 'edit', $index, block)" class="btn-help-aside btn-in-list md-content-icon-edit">
+                                                        <md-tooltip md-direction="left">
+                                                            Editar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="edit" style=""></ng-md-icon>
+                                                    </button>
+                                                    <button type="button" ng-click="deleteBlock($event, $index, block)" class="btn-help-aside btn-in-list md-content-icon-delete">
+                                                        <md-tooltip md-direction="left">
+                                                            Eliminar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="delete" style=""></ng-md-icon>
+                                                    </button>
+                                                </aside>
+                                                <!--div ng-include="'template/partial/menu-flotante.html'"></div-->
+                                            </div>
+                                            <div data-tipo="{{block.tipo}}" ng-switch-when="video">
+                                                <section class="section-video">
+                                                    <h3 class="title_render">{{block.subtitulo}}</h3>
+                                                    <div class="video-wrap">
+                                                        <video
+                                                        id="video_{{$index}}"
+                                                        width="573"
+                                                        height="322"
+                                                        controls
+                                                        poster="{{trustResource(block.video.url_cover)}}"
+                                                        type="video/mp4"
+                                                        preload="none"
+                                                        >
+                                                          <source ng-src="{{trustResource(block.video.url)}}" type="video/mp4">
+                                                              Tu navegador no soporta la etiqueta video.
+                                                        </video>
+                                                    </div>
+                                                </section>
+                                                <blockquote class="cite-text">
+                                                    <div class="cite-separator">
+                                                        <span class="cite-label">Leyenda:</span> <span ng-bind-html="block.video.descripcion | htmlAddBlock"></span>
+                                                    </div>
+                                                    <div class="cite-separator">
+                                                        <span class="cite-label">Fuente:</span> <span ng-bind-html="block.via | htmlAddBlock"></span>
+                                                        | <span class="cite-label">Fotógrafo:</span> <span ng-bind-html="block.credito | htmlAddBlock"></span></div>
+                                                    <div class="cite-separator">
+                                                        <span class="cite-label">Etiquetas: </span>
+                                                        <span ng-repeat="tag in block.video.tags"><strong>{{tag.nombre}}</strong> {{$last?'':', '}} </span>
+                                                    </div>
+                                                </blockquote>
+                                                <aside class="content-icons" ng-show="showAddOptions$index">
+                                                    <button type="button" ng-click="openAddVideo($event, 'edit', $index, block)" class="btn-help-aside btn-in-list md-content-icon-edit">
+                                                        <md-tooltip md-direction="left">
+                                                            Editar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="edit" style=""></ng-md-icon>
+                                                    </button>
+                                                    <button type="button" ng-click="deleteBlock($event, $index, block)" class="btn-help-aside btn-in-list md-content-icon-delete">
+                                                        <md-tooltip md-direction="left">
+                                                            Eliminar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="delete" style=""></ng-md-icon>
+                                                    </button>
+                                                </aside>
+                                                <!--div ng-include="'template/partial/menu-flotante.html'"></div-->
+                                            </div>
+                                            <div data-tipo="{{block.tipo}}" ng-switch-when="audio">
+                                                <section class="section-audio">
+                                                    <h3 class="title_render">{{block.subtitulo}}</h3>
+                                                    <div class="wrap-audio">
+                                                        <div class="cnt-imagen-cover">
+                                                            <img ng-src="{{block.audio.url_cover}}" alt="Imagen de Cover" />
+                                                        </div>
+                                                        <audio
+                                                        style="width:573px;height:40px"
+                                                        controls
+                                                        autostart="false"
+                                                        preload="none">
+                                                            <source ng-src="{{trustResource(block.audio.url)}}" type="audio/mp3">
+                                                                Tu navegador no soporta el elemento audio.
+                                                        </audio>
+                                                    </div>
+                                                </section>
+                                                <blockquote class="cite-text">
+                                                    <div class="cite-separator">
+                                                        <span class="cite-label">Leyenda:</span> <span ng-bind-html="block.audio.descripcion | htmlAddBlock"></span>
+                                                    </div>
+                                                    <div class="cite-separator">
+                                                        <span class="cite-label">Fuente:</span> <span ng-bind-html="block.via | htmlAddBlock"></span>
+                                                        | <span class="cite-label">Fotógrafo:</span> <span ng-bind-html="block.credito | htmlAddBlock"></span></div>
+                                                    <div class="cite-separator">
+                                                        <span class="cite-label">Etiquetas: </span>
+                                                        <span ng-repeat="tag in block.audio.tags"><strong>{{tag.nombre}}</strong> {{$last?'':', '}} </span>
+                                                    </div>
+                                                </blockquote>
+                                                <aside class="content-icons" ng-show="showAddOptions$index">
+                                                    <button type="button" ng-click="openAddAudio($event, 'edit', $index, block)" class="btn-help-aside btn-in-list md-content-icon-edit">
+                                                        <md-tooltip md-direction="left">
+                                                            Editar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="edit" style=""></ng-md-icon>
+                                                    </button>
+                                                    <button type="button" ng-click="deleteBlock($event, $index, block)" class="btn-help-aside btn-in-list md-content-icon-delete">
+                                                        <md-tooltip md-direction="left">
+                                                            Eliminar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="delete" style=""></ng-md-icon>
+                                                    </button>
+                                                </aside>
+                                                <!--div ng-include="'template/partial/menu-flotante.html'"></div-->
+                                            </div>
+                                            <div data-tipo="{{block.tipo}}" ng-switch-when="embed">
+                                                <section class="section-embed">
+                                                    <h3 class="title_render">{{block.subtitulo}}</h3>
+                                                    <div class="wrap-embed">
+                                                        <div ng-bind-html="block.embed | htmlEmbed"></div>
+                                                    </div>
+                                                </section>
+                                                <blockquote class="cite-text">
+                                                    <div class="cite-separator">
+                                                        <span class="cite-label">Leyenda:</span> <span ng-bind-html="block.embed_data.descripcion | htmlAddBlock"></span>
+                                                    </div>
+                                                    <div class="cite-separator">
+                                                        <span class="cite-label">Fuente:</span> <span ng-bind-html="block.via | htmlAddBlock"></span>
+                                                        | <span class="cite-label">Fotógrafo:</span> <span ng-bind-html="block.credito | htmlAddBlock"></span></div>
+                                                    <div class="cite-separator">
+                                                        <span class="cite-label">Etiquetas: </span>
+                                                        <span ng-repeat="tag in block.embed_data.tags"><strong>{{tag.nombre}}</strong> {{$last?'':', '}} </span>
+                                                    </div>
+                                                </blockquote>
+                                                <aside class="content-icons" ng-show="showAddOptions$index">
+                                                    <button type="button" ng-click="openAddEmbed($event, 'edit', $index, block)" class="btn-help-aside btn-in-list md-content-icon-edit">
+                                                        <md-tooltip md-direction="left">
+                                                            Editar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="edit" style=""></ng-md-icon>
+                                                    </button>
+                                                    <button type="button" ng-click="deleteBlock($event, $index, block)" class="btn-help-aside btn-in-list md-content-icon-delete">
+                                                        <md-tooltip md-direction="left">
+                                                            Eliminar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="delete" style=""></ng-md-icon>
+                                                    </button>
+                                                </aside>
+                                                <!--div ng-include="'template/partial/menu-flotante.html'"></div-->
+                                            </div>
+                                            <div data-tipo="{{block.tipo}}" ng-switch-when="youtube">
+                                                <section class="section-youtube">
+                                                    <h3 class="title_render">{{block.subtitulo}}</h3>
+                                                    <div class="wrap-youtube">
+                                                        <youtube timestamp="{{block.youtube.timestamp}}" id="{{block.youtube.id}}" autoplay="{{block.youtube.autoplay}}" code="{{(block.youtube.url)?block.youtube.url:'https://youtu.be/'+block.youtube.id}}"></youtube>
+                                                    </div>
+                                                </section>
+                                                <blockquote class="cite-text">
+                                                    <div class="cite-separator">
+                                                        <span class="cite-label">Leyenda:</span> <span ng-bind-html="block.youtube.descripcion | htmlAddBlock"></span>
+                                                    </div>
+                                                    <div class="cite-separator">
+                                                        <span class="cite-label">Fuente:</span> <span ng-bind-html="block.via | htmlAddBlock"></span>
+                                                        | <span class="cite-label">Fotógrafo:</span> <span ng-bind-html="block.credito | htmlAddBlock"></span></div>
+                                                    <div class="cite-separator">
+                                                        <span class="cite-label">Etiquetas: </span>
+                                                        <span ng-repeat="tag in block.youtube.tags"><strong>{{tag.nombre}}</strong> {{$last?'':', '}} </span>
+                                                    </div>
+                                                </blockquote>
+                                                <aside class="content-icons" ng-show="showAddOptions$index">
+                                                    <button type="button" ng-click="openAddYoutube($event, 'edit', $index, block)" class="btn-help-aside btn-in-list md-content-icon-edit">
+                                                        <md-tooltip md-direction="left">
+                                                            Editar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="edit" style=""></ng-md-icon>
+                                                    </button>
+                                                    <button type="button" ng-click="deleteBlock($event, $index, block)" class="btn-help-aside btn-in-list md-content-icon-delete">
+                                                        <md-tooltip md-direction="left">
+                                                            Eliminar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="delete" style=""></ng-md-icon>
+                                                    </button>
+                                                </aside>
+                                                <!--div ng-include="'template/partial/menu-flotante.html'"></div-->
+                                            </div>
+                                            <div data-tipo="{{block.tipo}}" ng-switch-when="mam">
+                                                <section class="section-mam">
+                                                    <h4>
+                                                        <a ng-if="block.mam.id" href="/#/eventos/detalle/{{block.mam.id}}" target="_blank" style="text-decoration:none">
+                                                            <ng-md-icon icon="link" style="fill:rgb(33,150,243)"></ng-md-icon>
+                                                            <md-tooltip md-direction="top">Ir a Evento</md-tooltip>
+                                                        </a>
+                                                        <ng-md-icon class="mam-alarm-icon" icon="alarm_add" size="18"></ng-md-icon>
+                                                        Minuto a Minuto <span ng-if="block.mam.titulo">({{block.mam.titulo}} | {{block.mam.fechaInicio}})</span>
+                                                    </h4>
+                                                    <div class="inner-mam" ng-class="{'scrollY': block.mam.mamIncidents.length>8}">
+                                                        <h6 ng-show="!noSetEvents">
+                                                            <ng-md-icon icon="insert_invitation" size="16"></ng-md-icon> Eventos:
+                                                        </h6>
+                                                        <ul class="ul-mam">
+                                                            <li
+                                                            ng-repeat="mam in block.mam.mamIncidents | filter:objF.filtroColeccion"
+                                                            ng-click="clickEventMaM($event, mam, $index, colimIndex)"
+                                                            >
+                                                                <ng-md-icon id="idIconMaM{{mam.id}}" class="icon-radioall" icon="done" size="20"></ng-md-icon>
+                                                                {{mam.titulo}}<br/>
+                                                                <ng-md-icon icon="insert_invitation" size="16"></ng-md-icon> {{mam.fechaInicio}}
+                                                            </li>
+                                                        </ul>
+                                                        <md-progress-circular ng-show="loadSetEvents" md-mode="indeterminate"></md-progress-circular>
+                                                        <div ng-show="noSetEvents" class="alert-warn">No hay enventos.</div>
+                                                    </div>
+                                                </section>
+                                                <aside class="content-icons" ng-show="showAddOptions$index">
+                                                    <button type="button" ng-click="deleteBlock($event, $index, block)" class="btn-help-aside btn-in-list md-content-icon-delete">
+                                                        <md-tooltip md-direction="left">
+                                                            Eliminar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="delete" style=""></ng-md-icon>
+                                                    </button>
+                                                </aside>
+                                                <!--div ng-include="'template/partial/menu-flotante.html'"></div-->
+                                            </div>
+                                            <div data-tipo="{{block.tipo}}" ng-switch-when="poll">
+                                            </div>
+                                            <div data-tipo="{{block.tipo}}" ng-switch-when="history">
+                                            </div>
+                                            <div data-tipo="{{block.tipo}}" ng-switch-default>
+                                                <div ng-include="'template/partial/parrafo-cita-relacionado.html'"></div>
+                                                <aside class="content-icons" ng-show="showAddOptions$index">
+                                                    <button type="button"  ng-click="openAddText($event, 'edit', $index, block)" class="btn-help-aside btn-in-list md-content-icon-edit">
+                                                        <md-tooltip md-direction="left">
+                                                            Editar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="edit" style=""></ng-md-icon>
+                                                    </button>
+                                                    <button ng-if="block.cita" type="button" ng-click="openAddCite($event, 'add', $index, block)" class="btn-help-aside btn-in-list md-content-icon-cite">
+                                                        <md-tooltip md-direction="left">
+                                                            {{((block.cita.titulo).length > 0 || (block.cita.desarrollo | htmlToPlaintext).length > 0 )?'Editar cita':'Añadir cita'}}
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="speaker_notes" style=""></ng-md-icon>
+                                                    </button>
+                                                    <button ng-if="block.relacionado" type="button" ng-click="openAddRelated($event, 'add', $index, block)" class="btn-help-aside btn-in-list md-content-icon-related">
+                                                        <md-tooltip md-direction="left">
+                                                            {{((block.relacionado.items).length > 0)?'Editar relacionado':'Añadir relacionado'}}
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="swap_horiz" style=""></ng-md-icon>
+                                                    </button>
+                                                    <button type="button" ng-click="deleteBlock($event, $index, block)" class="btn-help-aside btn-in-list md-content-icon-delete">
+                                                        <md-tooltip md-direction="left">
+                                                            Eliminar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="delete" style=""></ng-md-icon>
+                                                    </button>
+                                                </aside>
+                                                <!--div ng-include="'template/partial/menu-flotante.html'"></div-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="liBlockEditAdd">
+                                <div class="carril-right">
+                                    <div class="lock-size">
+                                        <md-fab-speed-dial md-open="isOpenSpeedDial" md-direction="right">
+                                            <md-fab-trigger>
+                                                <md-button ng-click="clickAddText($event);" aria-label="menu" class="button-add-menu md-fab md-primary">
+                                                    <md-tooltip>{{!showOpenText?'Agregar bloque':'Ocultar bloque'}}</md-tooltip>
+                                                    <ng-md-icon ng-if="!showOpenText" icon="add"></ng-md-icon>
+                                                    <ng-md-icon ng-if="showOpenText" icon="remove"></ng-md-icon>
+                                                </md-button>
+                                            </md-fab-trigger>
+                                            <md-fab-actions>
+                                                <md-button type="button" ng-click="clickAddText($event);" class="md-fab md-raised md-mini" aria-label="Text">
+                                                  <md-tooltip>Texto</md-tooltip>
+                                                  <ng-md-icon icon="subject"></ng-md-icon>
+                                                </md-button>
+                                                <md-button type="button" ng-disabled="flags.addPhoto" ng-dblclick="dClickFalse($event)" ng-click="openAddPhoto($event, 'add', block.length, {});" class="md-fab md-raised md-mini" aria-label="Foto">
+                                                  <md-tooltip ng-if="!flags.addPhoto">Foto</md-tooltip>
+                                                  <ng-md-icon icon="image"></ng-md-icon>
+                                                </md-button>
+                                                <md-button type="button" ng-disabled="flags.addVideo" ng-dblclick="dClickFalse($event)" ng-click="openAddVideo($event, 'add', block.length, {});" class="md-fab md-raised md-mini" aria-label="Video">
+                                                  <md-tooltip ng-if="!flags.addVideo">Video</md-tooltip>
+                                                  <ng-md-icon icon="videocam"></ng-md-icon>
+                                                </md-button>
+                                                <md-button type="button" ng-disabled="flags.addAudio" ng-dblclick="dClickFalse($event)" ng-click="openAddAudio($event, 'add', block.length, {});" class="md-fab md-raised md-mini" aria-label="Audio">
+                                                  <md-tooltip ng-if="!flags.addAudio">Audio</md-tooltip>
+                                                  <ng-md-icon icon="volume_up"></ng-md-icon>
+                                                </md-button>
+                                                <md-button type="button" ng-disabled="flags.addEmbed" ng-dblclick="dClickFalse($event)" ng-click="openAddEmbed($event, 'add', block.length, {});" class="md-fab md-raised md-mini" aria-label="Código">
+                                                  <md-tooltip ng-if="!flags.addEmbed">Embed</md-tooltip>
+                                                  <ng-md-icon icon="settings_ethernet"></ng-md-icon>
+                                                </md-button>
+                                                <md-button type="button" ng-disabled="flags.addYoutube" ng-dblclick="dClickFalse($event)" ng-click="openAddYoutube($event, 'add', block.length, {});" class="md-fab md-raised md-mini" aria-label="Youtube">
+                                                  <md-tooltip ng-if="!flags.addYoutube">Youtube</md-tooltip>
+                                                  <md-icon md-svg-src="svg/youtube17.svg" style="fill:#cc181e;"></md-icon>
+                                                </md-button>
+                                                <md-button type="button" ng-click="openAddPhotoGallery($event, 'add', '');" class="md-fab md-raised md-mini" aria-label="Foto Galeria">
+                                                  <md-tooltip>Galeria de fotos</md-tooltip>
+                                                  <ng-md-icon icon="photo_library"></ng-md-icon>
+                                                </md-button>
+                                                <md-button type="button" ng-click="openAddPhotoGallery($event, 'add', 'gif');" class="md-fab md-raised md-mini" aria-label="Gif Galeria">
+                                                  <md-tooltip>Gif</md-tooltip>
+                                                  <md-icon md-svg-icon="svg/gif.svg" style="width:26px;height:26px;"></md-icon>
+                                                </md-button>
+                                                <md-button ng-disabled="mamDisabled" type="button" ng-click="openAddMaM($event, 'add', '');" class="md-fab md-raised md-mini" aria-label="Minuto a Minuto">
+                                                  <md-tooltip>Minuto a Minuto</md-tooltip>
+                                                  <ng-md-icon icon="alarm_add" size="26"></ng-md-icon>
+                                                </md-button>
+                                            </md-fab-actions>
+                                        </md-fab-speed-dial>
+                                    </div>
+                                    <div id="addBlocksCMS" ng-show="showOpenText">
+                                        <div class="md-wave-tabs">
+                                            <div name="blockForm1">
+                                                <div class="inputBlock">
+                                                    <textarea ui-tinymce="tinymceOptions" style="height:300px" ng-model="texto"></textarea>
+                                                </div>
+                                                <div class="md-actions" layout="row">
+                                                  <span flex></span>
+                                                  <md-button type="button" ng-click="openAddText($event, 'add', -1, undefined)" class="md-primary">
+                                                      Agregar
+                                                  </md-button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input accept="image/x-png, image/png, image/jpeg, image/jpg" type="file" multiple id="inputFileTrigger" />
+                                <input accept="image/gif" type="file" multiple id="inputFileTriggerGif" />
+                            </li>
+                        </ul>
+                    </section>
+
+                    <div class="carril-right">
+                        <div layout="row" layout-wrap>
+                            <div flex="100">
+                                <div class="bodyFormFooter" style="margin-top:1.5em">
+                                    <!--
+                                    <label  class="label-wysing">Entradilla</label>
+                                    <div layout layout-sm="column" >
+                                        <div flex class="content-wysing">
+                                            <text-angular ng-model="objEntradilla" class="editor-wysing wysing-medium"></text-angular>
+                                        </div>
+
+                                    </div>
+                                    -->
+                                    <div style="position:relative">
+                                        <p >Tags</p>
+                                        <div layout layout-sm="column" >
+                                            <!-- Temas -->
+                                            <md-chips flex secondary-placeholder="Escribe un Tema" placeholder="Tema" ng-model="tagsNames" readonly="tagsReadonly" md-on-append="tagsOnAppend($chip)">
+                                                <md-chip-template>
+                                                    <strong>{{$chip.nombre}}</strong>
+                                                    <em>(Tema)</em>
+                                                </md-chip-template>
+                                            </md-chips>
+                                        </div>
+                                        <button type="button" ng-click="(showFieldTags)?showFieldTags=false:showFieldTags=true;" class="btn-help-aside btn-in-list">
+                                            <md-tooltip md-direction="right">
+                                                {{(showFieldTags)?'Ver menos':'Ver más campos'}}
+                                            </md-tooltip>
+                                            <ng-md-icon ng-if="showFieldTags" icon="remove"></ng-md-icon>
+                                            <ng-md-icon ng-if="!showFieldTags" icon="add"></ng-md-icon>
+                                        </button>
+                                    </div>
+                                    <div class="required alert-warn" ng-show="fields.tags.length>0">{{fields.tags}}</div>
+                                    <div ng-show="showFieldTags">
+                                        <p >Keywords (SEO)</p>
+                                        <div layout layout-sm="column" >
+                                            <!-- Keywords (SEO) -->
+                                            <md-chips flex secondary-placeholder="Escribe un Keyword" placeholder="Keyword" ng-model="keywordsNames" readonly="keywordsReadonly" md-on-append="keywordsOnAppend($chip)">
+                                                <md-chip-template>
+                                                    <strong>{{$chip.nombre}}</strong>
+                                                    <em>(Keyword)</em>
+                                                </md-chip-template>
+                                            </md-chips>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p style="margin-top:3.5em; margin-bottom:2em; color:gray"> (*) Campos requeridos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAB POPUP -->
+                <section ng-init="iconAddFab='add'" id="fabs" ng-mouseenter="showAddButtons=true; iconAddFab='edit';" ng-mouseleave="showAddButtons=false; iconAddFab='add';">
+                    <div id="fab-popup" layout="column" layout-align="space-between" ng-if="showAddButtons" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                        <md-button ng-repeat="tipo in typeContents" class="md-fab md-mini md-cms-green" ng-click="openCreateNew($event, tipo.slug, undefined);" aria-label="{{ tipo.nombre }}">
+                            <md-tooltip md-direction="left">
+                            {{ tipo.nombre }}
+                            </md-tooltip>
+                            <ng-md-icon icon="{{ tipo.icon }}" style="fill:white"></ng-md-icon>
+                        </md-button>
+                    </div>
+                    <md-button ng-click="openCreateNew($event, 'noticia', undefined);" id="mainFab" class="md-fab md-warn md-large" aria-label="Noticia" has-permission slug-module="noticias" action-module="crear">
+                        <md-tooltip md-direction="left">
+                        Agregar noticia
+                        </md-tooltip>
+                        <ng-md-icon icon="{{iconAddFab}}" style="fill:white"></ng-md-icon>
+                    </md-button>
+                </section>
+                <!-- FIN FAB POPUP -->
+
+            </section>
+            <!-- SIDEBARS -->
+            <!-- RIGHT -->
+            <aside class="sidenav-right sidenav-module fullsidebar" id="sidebarright">
+                <!-- Utiles de noticias -->
+                <section class="content-module">
+                    <div class="buttons-options">
+                        <h3 class="text-module"><ng-md-icon icon="settings" size="20" style=""></ng-md-icon> Datos generales </h3>
+                    </div>
+                    <div layout="row" layout-wrap style="margin-bottom:0.75em">
+                        <div flex="100">
+                            <button class="objCategory" ng-disabled="flags.categoryMultiple" ng-dblclick="dClickFalse($event)" ng-click="clickEditCategoryModal($event)">
+                                {{ objCategoryMultiple ? (objCategoryMultiple.label + ' ') : '* Seleccione categoría ... ' }}
+                            </button>
+                        </div>
+                        <div class="required alert-warn" ng-show="fields.categoria.length>0">{{fields.categoria}}</div>
+                    </div>
+                    <div layout="row" layout-wrap>
+                        <div flex="100" flex-gt-lg="50">
+                            <md-input-container>
+                                <label>Fecha de publicación</label>
+                                <input type="date" name="date_publish" ng-model="objDate_publish">
+                            </md-input-container>
+                        </div>
+                        <div flex="100" flex-gt-lg="50">
+                            <md-input-container>
+                                <label>Hora de publicación</label>
+                                <input ui-timepicker type="text" name="time_publish" ng-model="objTime_publish">
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div layout="row">
+                        <div flex="50">
+                            <md-checkbox class="md-primary" ng-model="objProgramado" aria-label="Noticia programada">
+                              <span class="md-body-1">Programada</span>
+                            </md-checkbox>
+                        </div>
+                        <div flex="50">
+                            <md-checkbox class="md-primary" ng-model="objFirmaNoticia" aria-label="Firmar noticia">
+                              <span class="md-body-1">Firmar noticia</span>
+                            </md-checkbox>
+                        </div>
+                    </div>
+                    <div layout="row">
+                        <div flex>
+                            <md-checkbox class="md-primary" ng-model="objComentariosFB" aria-label="Aceptar comentarios">
+                              <span class="md-body-1">Permitir comentarios</span>
+                            </md-checkbox>
+                        </div>
+                    </div>
+                    <div layout="row">
+                        <div flex="50">
+                            <md-checkbox class="md-primary" ng-model="objInstantArticle" aria-label="Instant Article">
+                              <span class="md-body-1">Instant Article</span>
+                            </md-checkbox>
+                        </div>
+                        <div flex="50">
+                            <md-checkbox class="md-primary" ng-model="objTitulares" aria-label="Instant Article">
+                              <span class="md-body-1">Titulares</span>
+                            </md-checkbox>
+                        </div>
+                    </div>
+                    <div layout="row" layout-wrap>
+                        <div flex="50" flex-lg="50" flex-md="50" flex-sm="100">
+                            <md-input-container>
+                                <label style="height:20px">
+                                    {{objAuthor?objAuthor.nombre:'Autor'}}
+                                </label>
+                                <md-select ng-model="objAuthor" aria-label="Autor">
+                                    <md-option ng-repeat="autor in autores" ng-value="{{autor}}">
+                                        <img class="avatar-img" ng-if="autor.foto" ng-src="{{autor.foto}}" alt="Autor" />
+                                        {{autor.nombre}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <div class="required alert-warn" ng-show="fields.autor.length>0">{{fields.autor}}</div>
+                        </div>
+                        <div flex="50" flex-lg="50" flex-md="50" flex-sm="100">
+                            <md-input-container>
+                                <label>{{objFuente?objFuente.nombre:'Fuente'}}</label>
+                                <md-select ng-model="objFuente" aria-label="Autor">
+                                    <md-option ng-repeat="fuente in fuentes" ng-value="{{fuente}}">{{fuente.nombre}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </section>
+                <!-- FACEBOOK SOCIAL -->
+                <section class="content-module">
+                    <div class="buttons-options">
+                        <h3 class="text-module"><ng-md-icon icon="group_add" size="20" style=""></ng-md-icon> Publicar en redes sociales</h3>
+                        <btn-fixed-module type=""></btn-fixed-module>
+                    </div>
+                    <div>
+                        <div ng-if="!isPublish" class="alert-warning">
+                            <ng-md-icon icon="warning" style="fill: rgba(0,0,0,0.54)"></ng-md-icon> La noticia debe estar publicada, para publicar en redes sociales.
+                        </div>
+                        <md-tabs ng-if="isPublish" md-dynamic-height md-border-bottom>
+                          <md-tab label="Publicación">
+                              <!-- OPCIONES -->
+                              <md-progress-circular ng-show="redessociales.preload" md-mode="indeterminate"></md-progress-circular>
+                              <!-- METODO PUBLICACION -->
+                              <md-input-container class="md-block" style="margin-top:10px;">
+                                <label>
+                                  Escribir post
+                                  <span ng-if="redessociales.msj.length>0">({{redessociales.msj.length}} Caracteres)
+                                  </span>
+                                </label>
+                                <!-- md-maxlength="200" -->
+                                <textarea ng-model="redessociales.msj" columns="1" rows="2"></textarea>
+                              </md-input-container>
+                              <div ng-show="redessociales.msj.length>90&&validTW" class="alert-warn md-body-1">
+                                Ingrese como máximo 90 caracteres para el Tweet.
+                              </div>
+                              <div layout="row">
+                                  <md-button
+                                  ng-click="programPost($event)"
+                                  class="md-fab md-mini md-gray"
+                                  ng-class="{activoBtnFB: isProgramFB}"
+                                  aria-label="Agenda">
+                                    <ng-md-icon icon="insert_invitation" style="fill: #1976D2;"></ng-md-icon>
+                                    <md-tooltip>Programación Automática</md-tooltip>
+                                  </md-button>
+                                  <md-button
+                                  ng-click="chooseImg($event)"
+                                  class="md-fab md-mini md-gray"
+                                  ng-class="{activoBtnFB: isCaorusel}"
+                                  aria-label="Photo">
+                                    <ng-md-icon icon="photo_library" style="fill: #1976D2;"></ng-md-icon>
+                                    <md-tooltip>Elegir imagen</md-tooltip>
+                                  </md-button>
+                                  <span flex></span>
+                                  <md-button ng-disabled="validarEnviarRS(redessociales.accounts.twitter.pages)" ng-click="sendPostFB($event)" type="button" class="md-fab md-mini md-primary" aria-label="Send">
+                                    <ng-md-icon icon="send" style="fill: white;"></ng-md-icon>
+                                    <md-tooltip>Enviar Post</md-tooltip>
+                                </md-button>
+                                  <!--img class="btnfb" style="height:40px;width:143px;cursor:pointer;margin-top:10px;" title="Enviar post" src="img/btn_fb_post.png" ng-click="sendPostFB($event)" alt="Enviar post" /-->
+                              </div>
+                              <div class="carousel-img" ng-show="isProgramFB">
+                                  <h4 style="margin:0">Programación de publicación</h4>
+                                  <div layout="row" layout-wrap>
+                                      <div flex="50" flex-lg="50" flex-md="50" flex-sm="100">
+                                          <md-input-container>
+                                              <label>Fecha</label>
+                                              <!-- min="{{dateTimeRS.today}}" -->
+                                              <input type="date" name="date_publishFB" ng-model="dateTimeRS.date">
+                                          </md-input-container>
+                                      </div>
+                                      <div flex="50" flex-lg="50" flex-md="50" flex-sm="100">
+                                          <md-input-container>
+                                              <label>Hora</label>
+                                              <input ui-timepicker type="text" name="time_publishFB" ng-model="dateTimeRS.time">
+                                          </md-input-container>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="carousel-img" ng-show="isCaorusel">
+                                  <h4 style="margin:0">Elegir imagen para el post</h4>
+                                  <ul>
+                                      <li ng-repeat="thumb in carouselThumbs" ng-class="{active:thumb.activo}" ng-click="selectCarousel($event, $index, thumb)">
+                                          <img ng-src="{{thumb.url}}" alt="Imagen" />
+                                      </li>
+                                      <li class="carousel-attach">
+                                          <md-button ng-click="openLoadImgFB($event)" class="md-icon-button md-primary" aria-label="Photo">
+                                            <ng-md-icon icon="attachment" size="32" style="fill: #1976D2;"></ng-md-icon>
+                                            <md-tooltip>Adjuntar imagen</md-tooltip>
+                                          </md-button>
+                                      </li>
+                                  </ul>
+                                  <input style="visibility:hidden; height:1px; overflow:hidden;" accept="image/x-png, image/png, image/jpeg, image/jpg, image/gif" type="file" id="inputFileTriggerFB" />
+                              </div>
+                               <div ng-if="redessociales.postReady" style="font-size:14px; margin-top:10px;" class="alert-warn">
+                                 Selecciona una página o grupo donde publicar el post.
+                              </div>
+                              <div ng-if="redessociales.postError.status" style="font-size:14px; margin-top:10px;" class="alert-warn">
+                                {{redessociales.postError.message}}
+                              </div>
+                              <div class="account-fb" ng-show="isAccountsFB">
+                                  <div class="account-all">
+                                       <h4 style="margin:10px 0 5px;font-size:15px"><ng-md-icon icon="facebook-box" style="fill: #3a5795;opacity:1;" size="20"></ng-md-icon>  Facebook:</h4>
+                                      <div class="account-right account-full">
+                                          <div
+                                              class="sectionFB activeSectionFB"
+                                              >
+                                              <!-- IF 1 -->
+                                              <div layout="row" ng-if="redessociales.accounts.pages.length > 0 && redessociales.accounts.groups.length > 0">
+                                                  <div flex="100" flex-gt-lg="50">
+                                                      <h5 style="margin:0 0 2px">Páginas de Facebook:</h5>
+                                                      <div ng-if="redessociales.accounts.pages.length<=0" class="alert-warning" style="margin-right:10px;font-size:14px;">No hay páginas</div>
+                                                      <ul style="margin-right:5px;">
+                                                          <li
+                                                          ng-repeat="page in redessociales.accounts.pages"
+                                                          ng-class="{activefb : page.active}"
+                                                          ng-click="insertRSActive($event, page, $index, 'pages', parentIndex, 'facebook')">
+                                                              <img
+                                                                  ng-src="{{page.picture}}"
+                                                                  alt="{{page.name}}"
+                                                              >
+                                                              <span>{{page.name}}</span>
+                                                              <ng-md-icon icon="{{(page.active)?'done':'add'}}" style="fill:{{(page.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                              <md-tooltip>{{(page.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                          </li>
+                                                      </ul>
+                                                  </div>
+                                                  <div flex="100" flex-gt-lg="50">
+                                                      <h5 style="margin:0px 0 2px;">Grupos de Facebook:</h5>
+                                                      <div ng-if="redessociales.accounts.groups.length<=0" class="alert-warning" style="margin-right:10px;font-size:14px;">No hay grupos</div>
+                                                      <ul>
+                                                          <li
+                                                          ng-repeat="group in redessociales.accounts.groups"
+                                                          ng-class="{activefb : group.active}"
+                                                          ng-click="insertRSActive($event, group, $index, 'groups', parentIndex, 'facebook')">
+                                                              <img
+                                                                  ng-src="{{group.picture}}"
+                                                                  alt="{{group.name}}"
+                                                               />
+                                                              <span>{{group.name}}</span>
+                                                              <ng-md-icon icon="{{(group.active)?'done':'add'}}" style="fill:{{(group.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                              <md-tooltip>{{(group.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                          </li>
+                                                      </ul>
+                                                  </div>
+                                              </div>
+                                              <!-- END IF 1 -->
+                                              <!-- IF 2 -->
+                                              <div layout="row" ng-if="redessociales.accounts.facebook.pages.length > 0 && redessociales.accounts.facebook.groups.length <= 0">
+                                                  <div flex="100" flex-gt-lg="50">
+                                                      <h5 style="margin:0 0 2px">Páginas de Facebook:</h5>
+                                                      <div ng-if="redessociales.accounts.facebook.pages.length<=0" class="alert-warning" style="margin-right:10px;font-size:14px;">No hay páginas</div>
+                                                      <ul style="margin-right:5px;">
+                                                          <li
+                                                          ng-repeat="page in redessociales.accounts.facebook.pages"
+                                                          ng-class="{activefb : page.active}"
+                                                          ng-click="insertRSActive($event, page, $index, 'pages', parentIndex, 'facebook')"
+                                                          ng-if="$even">
+                                                              <img
+                                                                  ng-src="{{page.picture}}"
+                                                                  alt="{{page.name}}"
+                                                              >
+                                                              <span>{{page.name}}</span>
+                                                              <ng-md-icon icon="{{(page.active)?'done':'add'}}" style="fill:{{(page.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                              <md-tooltip>{{(page.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                          </li>
+                                                      </ul>
+                                                  </div>
+                                                  <div flex="100" flex-gt-lg="50">
+                                                      <h5 style="margin:0px 0 2px;">&nbsp;</h5>
+                                                      <ul>
+                                                          <li
+                                                          ng-repeat="page in redessociales.accounts.facebook.pages"
+                                                          ng-class="{activefb : page.active}"
+                                                          ng-click="insertRSActive($event, page, $index, 'pages', parentIndex, 'facebook')"
+                                                          ng-if="$odd">
+                                                              <img
+                                                                  ng-src="{{page.picture}}"
+                                                                  alt="{{page.name}}"
+                                                               />
+                                                              <span>{{page.name}}</span>
+                                                              <ng-md-icon icon="{{(page.active)?'done':'add'}}" style="fill:{{(page.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                              <md-tooltip>{{(page.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                          </li>
+                                                      </ul>
+                                                  </div>
+                                              </div>
+                                              <!-- END IF 2 -->
+                                              <!-- IF 3 -->
+                                              <div layout="row" ng-if="redessociales.accounts.facebook.pages.length <= 0 && redessociales.accounts.facebook.groups.length > 0">
+                                                  <div flex="100" flex-gt-lg="50">
+                                                      <h5 style="margin:0px 0 2px;">Grupos de Facebook:</h5>
+                                                      <div ng-if="redessociales.accounts.facebook.groups.length<=0" class="alert-warning" style="margin-right:10px;font-size:14px;">No hay grupos</div>
+                                                      <ul>
+                                                          <li
+                                                          ng-repeat="group in redessociales.accounts.facebook.groups"
+                                                          ng-class="{activefb : group.active}"
+                                                          ng-click="insertRSActive($event, group, $index, 'groups', parentIndex, 'facebook')"
+                                                          ng-if="$even">
+                                                              <img
+                                                                  ng-src="{{group.picture}}"
+                                                                  alt="{{group.name}}"
+                                                               />
+                                                              <span>{{group.name}}</span>
+                                                              <ng-md-icon icon="{{(group.active)?'done':'add'}}" style="fill:{{(group.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                              <md-tooltip>{{(group.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                          </li>
+                                                      </ul>
+                                                  </div>
+                                                  <div flex="100" flex-gt-lg="50">
+                                                      <h5 style="margin:0px 0 2px;">&nbsp;</h5>
+                                                      <ul>
+                                                          <li
+                                                          ng-repeat="group in redessociales.accounts.facebook.groups"
+                                                          ng-class="{activefb : group.active}"
+                                                          ng-click="insertRSActive($event, group, $index, 'groups', parentIndex, 'facebook')"
+                                                          ng-if="$odd">
+                                                              <img
+                                                                  ng-src="{{group.picture}}"
+                                                                  alt="{{group.name}}"
+                                                               />
+                                                              <span>{{group.name}}</span>
+                                                              <ng-md-icon icon="{{(group.active)?'done':'add'}}" style="fill:{{(group.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                              <md-tooltip>{{(group.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                          </li>
+                                                      </ul>
+                                                  </div>
+                                              </div>
+                                              <!-- END IF 3 -->
+                                              <!-- IF 4 -->
+                                              <div layout="row" ng-if="redessociales.accounts.facebook.pages.length <= 0 && redessociales.accounts.facebook.groups.length <= 0">
+                                                  <div flex="100" flex-gt-lg="50">
+                                                      <h5 style="margin:0 0 2px">Páginas de Facebook:</h5>
+                                                      <div ng-if="redessociales.accounts.facebook.pages.length<=0" class="alert-warning" style="margin-right:10px;font-size:14px;">No hay páginas</div>
+                                                  </div>
+                                                  <div flex="100" flex-gt-lg="50">
+                                                      <h5 style="margin:0px 0 2px;">Grupos de Facebook:</h5>
+                                                      <div ng-if="redessociales.accounts.facebook.groups.length<=0" class="alert-warning" style="margin-right:10px;font-size:14px;">No hay grupos</div>
+                                                  </div>
+                                              </div>
+                                              <!-- END IF 4 -->
+                                          </div>
+                                      </div>
+                                      <div style="clear: both; padding-top: 10px;">
+                                        <md-checkbox class="md-primary" ng-model="redessociales.notas_relacionadas" aria-label="Notas relacionadas" ng-show="mostrarCheckNR">
+                                          <span class="md-body-1">Publicar en notas relacionadas</span>
+                                        </md-checkbox>
+                                        <md-input-container class="md-block">
+                                          <label>
+                                            Tìtulo
+                                            <span ng-if="redessociales.titulo.length>0">({{redessociales.titulo.length}} Caracteres)
+                                            </span>
+                                          </label>
+                                          <!-- md-maxlength="200" -->
+                                          <textarea ng-model="redessociales.titulo" columns="1" rows="1"></textarea>
+                                        </md-input-container>
+                                        <md-input-container class="md-block">
+                                          <label>
+                                            Descripción
+                                            <span ng-if="redessociales.descripcion.length>0">({{redessociales.descripcion.length}} Caracteres)
+                                            </span>
+                                          </label>
+                                          <!-- md-maxlength="200" -->
+                                          <textarea ng-model="redessociales.descripcion" columns="1" rows="2"></textarea>
+                                        </md-input-container>
+                                      </div>
+                                  </div>
+                                  <!-- TWITTER -->
+                                  <div class="account-all">
+                                       <h4 style="margin:10px 0 5px;font-size:15px"><ng-md-icon icon="twitter" style="fill: #55acee;opacity:1;" size="20"></ng-md-icon>  Twitter:</h4>
+                                      <div class="account-right account-full" style="min-height:auto;">
+                                        <div ng-if="redessociales.accounts.twitter.pages.length <= 0" class="alert-warning" style="margin-right:10px;margin-bottom:0;font-size:14px;">No hay páginas</div>
+                                          <div layout="row" ng-if="redessociales.accounts.twitter.pages.length > 0">
+                                              <div flex="100" flex-gt-lg="50">
+                                                  <ul>
+                                                      <li
+                                                      ng-repeat="page in redessociales.accounts.twitter.pages"
+                                                      ng-class="{activefb : page.active}"
+                                                      ng-click="insertRSActive($event, page, $index, 'pages', parentIndex, 'twitter')"
+                                                      ng-if="$even">
+                                                          <img
+                                                              ng-src="{{page.picture}}"
+                                                              alt="{{page.name}}"
+                                                           />
+                                                          <span>{{page.name}}</span>
+                                                          <ng-md-icon icon="{{(page.active)?'done':'add'}}" style="fill:{{(page.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                          <md-tooltip>{{(page.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                      </li>
+                                                  </ul>
+                                              </div>
+                                              <div flex="100" flex-gt-lg="50">
+                                                  <ul>
+                                                      <li
+                                                      ng-repeat="page in redessociales.accounts.twitter.pages"
+                                                      ng-class="{activefb : page.active}"
+                                                      ng-click="insertRSActive($event, page, $index, 'pages', parentIndex, 'twitter')"
+                                                      ng-if="$odd">
+                                                          <img
+                                                              ng-src="{{page.picture}}"
+                                                              alt="{{page.name}}"
+                                                           />
+                                                          <span>{{page.name}}</span>
+                                                          <ng-md-icon icon="{{(page.active)?'done':'add'}}" style="fill:{{(page.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                          <md-tooltip>{{(page.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                      </li>
+                                                  </ul>
+                                              </div>
+                                          </div>
+                                      </div>
+                                 </div>
+                                 <!-- END TWITTER -->
+                                 <!-- GOOGLE+ -->
+                                 <!-- <div class="account-all">
+                                      <h4 style="margin:10px 0 5px;font-size:15px"><ng-md-icon icon="google-plus" style="fill: #DD4B39;opacity:1;" size="20"></ng-md-icon>  Google+:</h4>
+                                     <div class="account-right account-full" style="min-height:auto;">
+                                       <div ng-if="redessociales.accounts.google.pages.length <= 0" class="alert-warning" style="margin-right:10px;margin-bottom:0;font-size:14px;">No hay páginas</div>
+                                         <div layout="row" ng-if="redessociales.accounts.google.pages.length > 0">
+                                             <div flex="100" flex-gt-lg="50">
+                                                 <ul>
+                                                     <li
+                                                     ng-repeat="page in redessociales.accounts.google.pages"
+                                                     ng-class="{activefb : page.active}"
+                                                     ng-click="insertRSActive($event, page, $index, 'pages', parentIndex, 'google')"
+                                                     ng-if="$even">
+                                                         <img
+                                                             ng-src="{{page.picture}}"
+                                                             alt="{{page.name}}"
+                                                          />
+                                                         <span>{{page.name}}</span>
+                                                         <ng-md-icon icon="{{(page.active)?'done':'add'}}" style="fill:{{(page.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                         <md-tooltip>{{(page.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                     </li>
+                                                 </ul>
+                                             </div>
+                                             <div flex="100" flex-gt-lg="50">
+                                                 <ul>
+                                                     <li
+                                                     ng-repeat="page in redessociales.accounts.google.pages"
+                                                     ng-class="{activefb : page.active}"
+                                                     ng-click="insertRSActive($event, page, $index, 'pages', parentIndex, 'google')"
+                                                     ng-if="$odd">
+                                                         <img
+                                                             ng-src="{{page.picture}}"
+                                                             alt="{{page.name}}"
+                                                          />
+                                                         <span>{{page.name}}</span>
+                                                         <ng-md-icon icon="{{(page.active)?'done':'add'}}" style="fill:{{(page.active)?'#43A047':'#666'}}" size="26"></ng-md-icon>
+                                                         <md-tooltip>{{(page.active)?'Quitar':'Agregar'}}</md-tooltip>
+                                                     </li>
+                                                 </ul>
+                                             </div>
+                                         </div>
+                                     </div>
+                                </div> -->
+                                <!-- END GOOGLE+ -->
+                              </div>
+                          </md-tab>
+                          <md-tab label="Historial">
+                               <h4 style="margin:10px 0 5px; font-size:15px;">
+                                   <ng-md-icon icon="history" style="" size="20"></ng-md-icon>
+                                   Historial de publicaciones:
+                               </h4>
+                               <div style="font-size:14px;" ng-if="historyRS.length<=0" class="alert-warning">
+                                   No hay posts en el historial.
+                               </div>
+                               <div ng-class="{'limitRS' : historyRS.length>3}">
+                                   <ul style="margin:0;list-style:none;padding:0;">
+                                       <li class="revision-social" ng-repeat="history in historyRS">
+                                           <blockquote>
+                                               <md-input-container class="md-block" style="border:0 none;">
+                                                 <textarea ng-class="{'activeEditRS':isEditRSField}" ng-change="isEditRSField=true" ng-model="history.message" columns="1" rows="2"></textarea>
+                                               </md-input-container>
+                                               <div ng-show="isEditRSField&&history.twitter_posts.length>0&&history.facebook_posts.length>0" class="alert-warn md-body-1">
+                                                  Solo se actualizarán las publicaciónes de Facebook.
+                                                </div>
+                                                <div ng-show="isEditRSField&&history.twitter_posts.length>0&&history.facebook_posts.length<=0" class="alert-warn md-body-1">
+                                                  No se pueden modificar los tweets.
+                                                </div>
+                                               <div class="md-caption">
+                                                   <div style="display:inline-block; margin-top:4px; float:left;">
+                                                       <span ng-click="isOpenRS=!isOpenRS" class="link">
+                                                           VER DETALLE
+                                                           <ng-md-icon icon="{{(!isOpenRS)?'keyboard_arrow_down':'keyboard_arrow_up'}}" style="fill: #1976D2" size="15"></ng-md-icon>
+                                                       </span>
+                                                   </div>
+                                                   <button class="btnRSField" ng-disabled="!isEditRSField||(history.twitter_posts.length>0 && history.facebook_posts.length<=0)" ng-click="openRSShare($event, history, 'edit')">
+                                                       <ng-md-icon icon="send" style="fill:#1976D2"></ng-md-icon>
+                                                       <md-tooltip md-direction="bottom">
+                                                         Actualizar texto del post
+                                                       </md-tooltip>
+                                                   </button>
+                                                   <button class="btnRSField" style="margin-right:5px;" ng-click="openRSShare($event, history, 'delete')">
+                                                       <ng-md-icon icon="delete" style="fill:#1976D2"></ng-md-icon>
+                                                       <md-tooltip md-direction="bottom">
+                                                         Eliminar
+                                                       </md-tooltip>
+                                                   </button>
+                                                   <div style="display:inline-block; margin:0;" ng-show="history.programado">
+                                                     <md-button
+                                                      class="md-fab md-mini md-gray activoBtnFB"
+                                                      aria-label="Agenda" style="min-height:22px; line-height: 22px; width: 22px; height: 22px; padding:0 2px; margin: 1px 4px;">
+                                                        <ng-md-icon icon="insert_invitation" style="fill: #1976D2;" size="16"></ng-md-icon>
+                                                          <md-tooltip>
+                                                            Programado automáticamente: {{history.fecha_programada_js | date: 'dd/MM/yyyy HH:mm a'}}
+                                                          </md-tooltip>
+                                                      </md-button>
+                                                   </div>
+                                                   <div style="display:inline-block; margin:4px 10px 0 0;float:right;">
+                                                       <ng-md-icon icon="event_available" style="fill:#000;" size="16"></ng-md-icon>
+                                                       <time datetime="">{{history.js_date_publish | date: 'dd/MM/yyyy HH:mm'}}</time>
+                                                   </div>
+                                               </div>
+                                           </blockquote>
+                                           <div ng-show="isOpenRS">
+                                               <h4 style="padding:5px 0 0; margin:0 0 5px;font-size:13px; font-weight:normal;color:#333;" ng-if="history.facebook_posts.length>0">
+                                                   <ng-md-icon icon="facebook-box" style="fill: #3a5795" size="16"></ng-md-icon>
+                                                   Publicado en Facebook:
+                                               </h4>
+                                               <!-- <div style="font-size:14px;" ng-if="history.facebook_posts.length<=0" class="alert-warning">
+                                                   No hay posts en el historial.
+                                               </div> -->
+                                               <ul class="ul-thumbs-rs" ng-if="history.facebook_posts.length>0">
+                                                   <li ng-repeat="post in history.facebook_posts" style="display:block; margin-top:10px; margin-left:10px;">
+                                                      <div class="img-thumbs-rs">
+                                                        <img ng-click="openRSShare($event, post, 'share')" alt="{{post.name}}" ng-src="{{post.picture}}" />
+                                                        <md-tooltip md-direction="bottom">
+                                                          {{post.name}}
+                                                        </md-tooltip>
+                                                      </div>
+                                                      <div class="md-caption" style="text-align:center">
+                                                          <strong>Publicado por: </strong>
+                                                          <span style="color: #444;">{{post.user.name}}</span>
+                                                          <span style="color: #000; font-weight:bold;">|</span>
+                                                          <strong>Hace: </strong>
+                                                          <time datetime="{{history.js_date_publish}}">
+                                                            {{history.js_date_publish | timeago}}
+                                                          </time>
+                                                          <span style="color: #000; font-weight:bold;" ng-if="post.pendiente">|</span>
+                                                          <strong style="color:rgb(244,67,54)" ng-if="post.pendiente">Pendiente</strong>
+                                                      </div>
+                                                    </li>
+                                               </ul>
+                                               <h4 style="padding:5px 0 0; margin:0 0 5px;font-size:13px; font-weight:normal;color:#333;" ng-if="history.twitter_posts.length>0">
+                                                   <ng-md-icon icon="twitter" style="fill: #55acee" size="16"></ng-md-icon>
+                                                   Publicado en Twitter:
+                                               </h4>
+                                               <!-- <div style="font-size:14px;" ng-if="history.twitter_posts.length<=0" class="alert-warning">
+                                                   No hay posts en el historial.
+                                               </div> -->
+                                               <ul class="ul-thumbs-rs" ng-if="history.twitter_posts.length>0">
+                                                   <li ng-repeat="post in history.twitter_posts" style="display:block; margin-top:10px; margin-left:10px;">
+                                                      <div class="img-thumbs-rs">
+                                                        <img ng-click="openRSShare($event, post, 'share')" alt="{{post.name}}" ng-src="{{post.picture}}" ng-if="!post.pendiente"/>
+                                                        <img alt="{{post.name}}" ng-src="{{post.picture}}" ng-if="post.pendiente"/>
+                                                        <md-tooltip md-direction="bottom">
+                                                          {{post.name}}
+                                                        </md-tooltip>
+                                                      </div>
+                                                      <div class="md-caption" style="text-align:center">
+                                                          <strong>Publicado por: </strong>
+                                                          <span style="color: #444;">{{post.user.name}}</span>
+                                                          <span style="color: #000; font-weight:bold;">|</span>
+                                                          <strong>Hace: </strong>
+                                                          <time datetime="{{history.js_date_publish}}">
+                                                            {{history.js_date_publish | timeago}}
+                                                          </time>
+                                                          <span style="color: #000; font-weight:bold;" ng-if="post.pendiente">|</span>
+                                                          <strong style="color:rgb(244,67,54)" ng-if="post.pendiente">Pendiente</strong>
+                                                      </div>
+                                                   </li>
+                                               </ul>
+                                               <!-- <h4 style="padding:5px 0 0; margin:0 0 5px;font-size:13px; font-weight:normal;color:#333;">
+                                                   <ng-md-icon icon="google-plus" style="fill: #DD4B39" size="16"></ng-md-icon>
+                                                   Publicado en Google+:
+                                               </h4>
+                                               <div style="font-size:14px;" ng-if="history.google_posts.length<=0" class="alert-warning">
+                                                   No hay posts en el historial.
+                                               </div>
+                                               <ul class="ul-thumbs-rs">
+                                                   <li ng-repeat="post in history.google_posts">
+                                                      <img ng-click="openRSShare($event, post, 'share')" alt="{{post.name}}" ng-src="{{post.picture}}" />
+                                                      <md-tooltip md-direction="bottom">
+                                                        {{post.name}}
+                                                      </md-tooltip>
+                                                   </li>
+                                               </ul> -->
+                                           </div>
+                                       </li>
+                                   </ul>
+                               </div>
+                           </md-tab>
+                        </md-tabs>
+                    </div>
+                </section>
+                <!-- Google Maps -->
+                <section class="content-module">
+                    <div class="buttons-options">
+                        <h3 class="text-module"><ng-md-icon icon="location_on" size="20" style=""></ng-md-icon> Localización </h3>
+                    </div>
+                    <div class="googlemaps">
+                        <div layout="row">
+                          <div flex="60">
+                              <md-input-container>
+                                  <label>Ubicación</label>
+                                  <input id="inputMapGoogle" ng-blur="searchMap($event)" ng-keypress="reviewMap($event)" type="text" ng-model="objMap" />
+                              </md-input-container>
+                          </div>
+                          <div flex="10">
+                            <md-button type="button" ng-click="searchMap($event)" class="md-icon-button md-primary" aria-label="Navigation">
+                                <md-tooltip>
+                                  Buscar Lugar
+                                </md-tooltip>
+                                <ng-md-icon icon="place" rotation="45" style="" size="24"></ng-md-icon>
+                            </md-button>
+                          </div>
+                          <div flex="10">
+                            <md-button type="button" ng-click="reviewDataHTML5()" class="md-icon-button md-primary" aria-label="Navigation">
+                                <md-tooltip>
+                                  Posición Actual
+                                </md-tooltip>
+                                <ng-md-icon icon="navigation" rotation="45" style="" size="24"></ng-md-icon>
+                            </md-button>
+                          </div>
+                          <div flex="10">
+                              <md-button type="button" ng-click="showMapGoogle('#map-google', 'toggle')" class="md-icon-button" aria-label="Mapa Google">
+                                  <md-tooltip>
+                                    Ver en Mapa
+                                  </md-tooltip>
+                                  <ng-md-icon icon="map" style="fill:rgb(16,108,200)" size="24"></ng-md-icon>
+                              </md-button>
+                          </div>
+                        </div>
+                        <div layout="row">
+                          <div flex id="map-google" class="height-none">
+                             <map
+                                style="width:100%;height:250px;"
+                                center="{{objLatLng}}"
+                                zoom="{{objMapZoom}}"
+                                on-click="setCenter($event)"
+                                >
+                                <marker
+                                    position = "{{markerGeo.position}}"
+                                    draggable = "{{markerGeo.draggable}}"
+                                    on-dragend="markerGeo.onDragEnd(event)"
+                                    animation = "{{markerGeo.animation}}"
+                                    on-click = "markerGeo.markerClick(event)">
+                                </marker>
+                             </map>
+                          </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Miniaturas -->
+                <section class="content-module">
+                    <div class="buttons-options">
+                        <h3 class="text-module"><ng-md-icon icon="perm_media" size="20" style=""></ng-md-icon> Miniaturas </h3>
+                        <btn-fixed-module type=""></btn-fixed-module>
+                        <button type="button" ng-disabled="flags.thumbs" ng-dblclick="dClickFalse($event)" ng-click="addThumb($event);" class="thumbAdd btn-trigger-module btn-in-list" aria-label="Trigger Module" role="button">
+                            <md-tooltip ng-if="!flags.thumbs" md-direction="left">Agregar miniatura</md-tooltip>
+                            <ng-md-icon icon="add" size="20" style="fill:#333;"></ng-md-icon>
+                        </button>
+                    </div>
+                    <md-progress-circular ng-show="thumbProgress" md-mode="indeterminate"></md-progress-circular>
+                    <ul class="nav navThumbs">
+                        <li class="drop">
+                            <div><img id="imgFirstThumb" src="{{imgFirst.url}}" alt="{{imgFirst.alt}}" /></div>
+                            <ul ng-if="thumbs.length>0">
+                                <li ng-click="selectThumb($event, thumb, $index)" ng-repeat="thumb in thumbs track by $index">
+                                    <img src="{{thumb.url}}" alt="{{thumb.alt}}" />
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <!-- Miniaturas vertical -->
+                <section class="content-module">
+                    <div class="buttons-options">
+                        <h3 class="text-module"><ng-md-icon icon="perm_media" size="20" style=""></ng-md-icon> Miniaturas Vertical </h3>
+                        <btn-fixed-module type=""></btn-fixed-module>
+                        <button type="button" ng-click="addThumbVertical($event);" class="thumbAdd btn-trigger-module btn-in-list" aria-label="Add Thumb" role="button">
+                            <md-tooltip md-direction="left">Agregar miniatura vertical</md-tooltip>
+                            <ng-md-icon icon="add" size="20" style="fill:#333;"></ng-md-icon>
+                        </button>
+                    </div>
+                    <md-progress-circular ng-show="thumbVertical.preload" md-mode="indeterminate"></md-progress-circular>
+                    <ul class="nav navThumbs" ng-show="thumbVertical.state" >
+                        <li ng-if="thumbVertical.imgVertical.url" class="drop" style="width:90%">
+                            <div><img src="{{thumbVertical.imgVertical.url}}" alt="{{thumbVertical.imgVertical.alt}}" /></div>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Subir Galeria -->
+                <section class="content-module" ng-show="noEsUrl">
+                    <div class="buttons-options">
+                        <h3 class="text-module"><ng-md-icon icon="collections" size="20" style=""></ng-md-icon> Subir Galeria </h3>
+                        <btn-fixed-module type=""></btn-fixed-module>
+                        <button type="button" ng-click="triggerModule($event, 'gallery');" class="btn-trigger-module btn-in-list" aria-label="Trigger Module" role="button">
+                            <md-tooltip md-direction="left">Subir fotos</md-tooltip>
+                            <ng-md-icon icon="keyboard_control" size="20" style="fill:#333;"></ng-md-icon>
+                        </button>
+                    </div>
+                    <div class="card-covers">
+                        <uploadmultiplephotos jsonRefresh="true"></uploadmultiplephotos>
+                    </div>
+                </section>
+                <!-- Google Maps -->
+                <section class="content-module">
+                    <div class="buttons-options">
+                        <h3 class="text-module"><ng-md-icon icon="content_copy" size="20" style=""></ng-md-icon> Copiar enlace </h3>
+                        <btn-fixed-module type=""></btn-fixed-module>
+                    </div>
+                    <div copy-link></div>
+                </section>
+                <!-- Buscador Social -->
+                <section class="content-module" ng-show="noEsUrl">
+                    <div class="buttons-options">
+                        <h3 class="text-module"><ng-md-icon icon="search" size="20" style=""></ng-md-icon> Buscador social </h3>
+                        <btn-fixed-module type=""></btn-fixed-module>
+                    </div>
+                    <md-tabs id="tabs-search-social" class="tabs-search-social" md-dynamic-height md-border-bottom>
+                        <md-tab>
+                            <md-tab-label>
+                                <span><md-icon md-svg-src='svg/facebook29.svg' style='color:#435a8b; width:24px;height:24x'></md-icon><md-tooltip>Facebook</md-tooltip></span>
+                            </md-tab-label>
+                            <md-tab-body>
+                                <md-tooltip md-direction="top">Facebook</md-tooltip>
+                                <div class="content-search-social">
+                                    <searchsocial type="facebook"></searchsocial>
+                                </div>
+                            </md-tab-body>
+                        </md-tab>
+                        <md-tab>
+                            <md-tab-label>
+                                <span><md-icon md-svg-src='svg/twitter20.svg' style='color:#55acee; width:24px;height:24px'></md-icon><md-tooltip>Twitter</md-tooltip></span>
+                            </md-tab-label>
+                            <md-tab-body>
+                                <md-tooltip md-direction="top">Twitter</md-tooltip>
+                                <div class="content-search-social">
+                                    <searchsocial type="twitter"></searchsocial>
+                                </div>
+                            </md-tab-body>
+                        </md-tab>
+                        <md-tab>
+                            <md-tab-label>
+                                <span><md-icon md-svg-src='svg/youtube17.svg' style='color:#cc181e; width:24px;height:24px'></md-icon><md-tooltip>Youtube</md-tooltip></span>
+                            </md-tab-label>
+                            <md-tab-body>
+                                <md-tooltip md-direction="top">Youtube</md-tooltip>
+                                <div class="content-search-social">
+                                    <searchsocial type="youtube"></searchsocial>
+                                </div>
+                            </md-tab-body>
+                        </md-tab>
+                        <md-tab>
+                            <md-tab-label>
+                                <span><img src="img/giphy_logo_laser.gif" style="height:36px; margin-top:-6px" /><md-tooltip>Gif</md-tooltip></span>
+                            </md-tab-label>
+                            <md-tab-body>
+                                <md-tooltip md-direction="top">Gif</md-tooltip>
+                                <div class="content-search-social">
+                                    <searchsocial type="gif"></searchsocial>
+                                </div>
+                            </md-tab-body>
+                        </md-tab>
+                        <md-tab>
+                            <md-tab-label>
+                                <span><md-icon md-svg-src='svg/vimeo12.svg' style='color:#00bf8f; width:24px;height:24px'></md-icon><md-tooltip>Vine</md-tooltip></span>
+                            </md-tab-label>
+                            <md-tab-body>
+                                <md-tooltip md-direction="top">Vine</md-tooltip>
+                                <div class="content-search-social">
+                                    <searchsocial type="vine"></searchsocial>
+                                </div>
+                            </md-tab-body>
+                        </md-tab>
+                        <md-tab>
+                            <md-tab-label>
+                                <span><md-icon md-svg-src='svg/google116.svg' style='color:#DD4B39; width:24px;height:24px'></md-icon><md-tooltip>Google+</md-tooltip></span>
+                            </md-tab-label>
+                            <md-tab-body>
+                                <md-tooltip md-direction="top">Google+</md-tooltip>
+                                <div class="content-search-social">
+                                    <searchsocial type="gplus"></searchsocial>
+                                </div>
+                            </md-tab-body>
+                        </md-tab>
+                        <md-tab>
+                            <md-tab-label>
+                                <span><md-icon md-svg-src='svg/instagram19.svg' style='color:#2A5B83; width:24px;height:24px'><md-tooltip>Instagram</md-tooltip></md-icon></span>
+                            </md-tab-label>
+                            <md-tab-body>
+                                <md-tooltip md-direction="top">Instagram</md-tooltip>
+                                <div class="content-search-social">
+                                    <searchsocial type="instagram"></searchsocial>
+                                </div>
+                            </md-tab-body>
+                        </md-tab>
+                       <!--<md-tab>
+                            <md-tab-label>
+                                <span><md-icon md-svg-src='svg/tumblr12.svg' style='color:#2A5B83; width:24px;height:24px'><md-tooltip>Tumblr</md-tooltip></md-icon></span>
+                            </md-tab-label>
+                            <md-tab-body>
+                                <md-tooltip md-direction="top">Tumblr</md-tooltip>
+                                <div class="content-search-social">
+                                    <searchsocial type="tumblr"></searchsocial>
+                                </div>
+                            </md-tab-body>
+                        </md-tab>
+                       <md-tab>
+                            <md-tab-label>
+                                <span><md-icon md-svg-src='svg/pinterest.svg' style='color:#2A5B83; width:24px;height:24px'><md-tooltip>Pinterest</md-tooltip></md-icon></span>
+                            </md-tab-label>
+                            <md-tab-body>
+                                <md-tooltip md-direction="top">Pinterest</md-tooltip>
+                                <div class="content-search-social">
+                                    <searchsocial type="pinterest"></searchsocial>
+                                </div>
+                            </md-tab-body>
+                        </md-tab>-->
+                        <!--md-tab>
+                            <md-tab-label>
+                                <span><md-icon md-svg-src='svg/logo-grupo-rpp.svg' style='width:90px;height:auto;margin-top:-10px'></md-icon><md-tooltip>Grupo RPP</md-tooltip></span>
+                            </md-tab-label>
+                            <md-tab-body>
+                                <md-tooltip md-direction="top">Grupo RPP</md-tooltip>
+                                <div class="content-search-social">
+                                    <searchsocial type="web"></searchsocial>
+                                </div>
+                            </md-tab-body>
+                        </md-tab-->
+                    </md-tabs>
+                </section>
+                <!-- Buscador Archivo Multimedia -->
+                <section class="content-module" ng-show="noEsUrl">
+                    <div class="buttons-options">
+                        <h3 class="text-module"><ng-md-icon icon="archive" size="20" style=""></ng-md-icon> Archivo multimedia</h3>
+                        <btn-fixed-module type=""></btn-fixed-module>
+                    </div>
+                    <md-tabs id="tabs-search--archive" class="tabs-search-social" md-dynamic-height md-border-bottom>
+                        <md-tab>
+                            <md-tab-label>
+                                <span><ng-md-icon icon="photo_library" size="24" style="color:#435a8b;"></ng-md-icon><md-tooltip>Fotos</md-tooltip></span>
+                            </md-tab-label>
+                            <md-tab-body>
+                                <md-tooltip md-direction="top">Archivo de fotos</md-tooltip>
+                                <div class="content-search-social">
+                                    <searcharchive type="fotos"></searcharchive>
+                                </div>
+                            </md-tab-body>
+                        </md-tab>
+                    </md-tabs>
+                </section>
+                <!-- DataFactory -->
+                <section class="content-module" ng-show="noEsUrl">
+                    <div class="buttons-options">
+                        <h3 class="text-module"><ng-md-icon icon="directions_walk" size="20" style=""></ng-md-icon> Deportes </h3>
+                    </div>
+                    <div layout>
+                        <md-input-container flex="40">
+                            <label>ID de DataFactory <span ng-if="objDataFactory.length>0">({{objDataFactory.length}} Caracteres)</span></label>
+                            <input name="nameDataFactory" ng-model="objDataFactory" />
+                        </md-input-container>
+                    </div>
+                </section>
+
+                <!-- Actividad -->
+                <section class="content-module" ng-show="noEsUrl" has-permission slug-module="noticias" action-module="revisiones">
+                    <div class="buttons-options">
+                        <h3 class="text-module"><ng-md-icon size="20" icon="rate_review" style=""></ng-md-icon> Actividad </h3>
+                        <btn-fixed-module type=""></btn-fixed-module>
+                    </div>
+                    <md-progress-circular ng-show="revisionProgress" md-mode="indeterminate"></md-progress-circular>
+                    <ul class="revisions" ng-show="!revisionProgress">
+                        <li ng-repeat="revision in revisions" class="revisions-card" ng-show="$index<=4">
+                            <div>
+                                <div>
+                                    <strong>{{revision.estado}}</strong> | Por: <strong>{{revision.username}}</strong>
+                                </div>
+                                <div class="md-caption">
+                                    Hace: <time datetime="{{revision.date_publish}}">{{revision.date_publish | timeago}}</time>
+                                </div>
+                                <md-button type="button" ng-click="clickViewActivity(revision)" class="md-icon-button md-button button-activity">
+                                    <md-tooltip>
+                                      Ver actividad
+                                    </md-tooltip>
+                                    <ng-md-icon icon="rate_review"></ng-md-icon>
+                                </md-button>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="revisions" ng-show="showRevisions">
+                        <li ng-repeat="revision in revisions" class="revisions-card" ng-show="$index>4">
+                            <div >
+                                <div>
+                                    <strong>{{revision.estado}}</strong> | Por: <strong>{{revision.username}}</strong>
+                                </div>
+                                <div class="md-caption">
+                                    Hace: <time datetime="{{revision.date_publish}}">{{revision.date_publish | timeago}}</time>
+                                </div>
+                                <md-button type="button" ng-click="clickViewActivity(revision)" class="md-icon-button md-button button-activity">
+                                    <md-tooltip>
+                                      Ver actividad
+                                    </md-tooltip>
+                                    <ng-md-icon icon="rate_review"></ng-md-icon>
+                                </md-button>
+                            </div>
+                        </li>
+                    </ul>
+                    <div style="text-align:center">
+                        <md-button type="button" ng-if="revisions.length>5" ng-click="clickShowRevisions(showRevisions)" class="md-raised">{{showRevisions?'Ver menos':'Ver todos'}}</md-button>
+                    </div>
+                </section>
+            </aside>
+            <!-- ZONE CLONE DRAG -->
+            <div class="zone-clone" id="zone-clone" ng-drag-clone="">
+               <div ng-if="fileClone.tipo === 'photo'" style="min-height:60px;border:4px solid white; margin:0;">
+                   <img width="160px" style="max-width:100%;height:auto;margin:0;" src="{{fileClone.foto.url}}" alt="{{fileClone.foto.name}}" />
+               </div>
+               <div ng-if="fileClone.tipo === 'embed' || fileClone.tipo === 'youtube'">
+                    <div class="div-result">
+                        <div class="div-author">
+                            <a target="_blank" href="{{fileClone.data.autor_link}}"><img style="width:32px;height:32px; margin:0;padding:0" ng-if="fileClone.data.avatar" ng-src="{{fileClone.data.avatar}}" alt="Avatar" /></a>
+                        </div>
+                        <div class="div-text">
+                            <div><a target="_blank" href="{{fileClone.data.autor_link}}">{{fileClone.data.autor}}</a></div>
+                            <div>{{fileClone.texto}}</div>
+                            <div ng-if="fileClone.data"><img style="max-width:200px;height:auto;margin:0;padding:0" ng-if="fileClone.data.foto" ng-src="{{fileClone.data.foto}}" alt="Imagen" /></div>
+                            <div style="font-size:0.9em; color:gray; margin:0.5em 0 0;">{{fileClone.data.post_date}}</div>
+                        </div>
+                    </div>
+               </div>
+               <div ng-if="fileClone.tipo === 'text'">
+                   <div class="div-result div-related">
+                        <div ng-if="fileClone.relacionado.items[0].foto" class="div-author">
+                            <a target="_blank" href="{{fileClone.relacionado.items[0].url}}">
+                                <img style="width:82px;height:auto; margin:0;padding:0" ng-src="{{fileClone.relacionado.items[0].foto}}" alt="{{fileClone.relacionado.items[0].titulo}}" />
+                            </a>
+                        </div>
+                       <div class="div-text">
+                           <div><a target="_blank" href="{{fileClone.data.autor_link}}">{{fileClone.data.autor}}</a></div>
+                           <div>
+                               <a target="_blank" href="{{fileClone.relacionado.items[0].url}}">{{fileClone.relacionado.items[0].titulo}}</a>
+                           </div>
+                           <div style="font-size:0.9em; color:gray; margin:0.5em 0 0;">{{fileClone.data.post_date}}</div>'+
+                       </div>
+                   </div>
+               </div>
+            </div>
+            <!-- / END ZONE CLONE DRAG -->
+            <!-- /SIDEBARS -->
+        </div>
+    </section>
+    <!-- FOOTER -->
+</div>

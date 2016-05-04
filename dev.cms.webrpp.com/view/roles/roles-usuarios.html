@@ -1,0 +1,267 @@
+<div class="relative" flex id="page-roles" layout="column" role="main">
+<!-- HEADER -->
+    <script id="perfil-popover" type="text/ng-template">
+        <div class="triangle"></div>
+        <div class="ns-popover-tooltip">
+            <div class="enlaces-popover">
+                <ul>
+                    <li>
+                        <md-button class="md-primary" ng-click="openPerfil($event, 'perfil');">
+                            <ng-md-icon icon="account_circle"></ng-md-icon>
+                            Configurar
+                        </md-button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="modulos-cabecera">
+        <div class="triangle"></div>
+            <div class="ns-popover-tooltip">
+            <div class="enlaces-popover enlaces-apps">
+            <ul>
+              <li has-permission slug-module="socialtv" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/oido-social');" class="md-icon-button" aria-label="Button">
+                      <ng-md-icon icon="facebook-messenger" size="48" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Oido social</h5>
+                  <md-tooltip>Odido Social</md-tooltip>
+              </li>
+              <li has-permission slug-module="noticias" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/publicador');" class="md-icon-button" aria-label="Button">
+                      <ng-md-icon icon="my_library_books" size="48" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Publicador</h5>
+                  <md-tooltip>Publicador</md-tooltip>
+              </li>
+              <li has-permission slug-module="ticker" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/ticker');" class="md-icon-button" aria-label="Button">
+                      <ng-md-icon icon="tv" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Ticker</h5>
+                  <md-tooltip>Ticker</md-tooltip>
+              </li>
+              <li has-permission slug-module="player" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/streaming');" class="md-icon-button" aria-label="Button">
+                      <ng-md-icon icon="settings_input_antenna" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Streaming</h5>
+                  <md-tooltip>Streaming</md-tooltip>
+              </li>
+              <li has-permission slug-module="eventos" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/eventos');" class="md-icon-button">
+                      <ng-md-icon icon="alarm" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Eventos</h5>
+                  <md-tooltip>Eventos</md-tooltip>
+              </li>
+              <li has-permission slug-module="podcast" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/podcast');" class="md-icon-button">
+                      <ng-md-icon icon="volume_up" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Podcast</h5>
+                  <md-tooltip>Podcast</md-tooltip>
+              </li>
+              <li has-permission slug-module="sondeos" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/elecciones');" class="md-icon-button">
+                      <ng-md-icon icon="poll" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Elecciones</h5>
+                  <md-tooltip>Elecciones</md-tooltip>
+              </li>
+              <li has-permission slug-module="redessociales" action-module="index" style="display: inline-block;">
+                  <md-button aria-label="Redes Sociales" ng-click="openApps($event, '/redessociales/publicadas');" class="md-icon-button">
+                      <ng-md-icon icon="group_add" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Redes sociales</h5>
+                  <md-tooltip>Configurar Redes Sociales</md-tooltip>
+              </li>
+              <li has-permission slug-module="roles" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/roles');" class="md-icon-button">
+                      <ng-md-icon icon="recent_actors" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Roles</h5>
+                  <md-tooltip>Roles</md-tooltip>
+              </li>
+            </ul>
+            </div>
+        </div>
+    </script>
+    <md-toolbar class="md-toolbar-head" ng-class="{'novisibletoolbar':!custom}">
+        <div class="md-toolbar-tools">
+            <figure class="logo"><img alt="Logo Grupo RPP" class="pointer" ng-click="openBase()" src="svg/logo-grupo-rpp.svg"/></figure>
+            <md-button aria-label="Settings" class="md-icon-button" ng-class="{'novisiblesearch':!custom}" ng-click="toggleSidebarLeft()">
+                <ng-md-icon icon="more_vert" style="fill: white"></ng-md-icon>
+            </md-button>
+            <div class="contentSearch" id="contentSearch">
+                <ng-md-icon icon="search" style="fill: white"></ng-md-icon>
+                <!--input placeholder="Buscar un tema" ng-keyup="changeMultimediaFiltro($event)" ng-model="query" type="search" class="input-search--top" /-->
+            </div>
+            <md-button
+                ng-class="{'novisiblesearch':!custom}"
+                class="md-icon-button"
+                aria-label="Modulos"
+                ns-popover
+                ns-popover-template="modulos-cabecera"
+                ns-popover-trigger="click"
+                ns-popover-placement="bottom"
+                ns-popover-theme="ns-popover-tooltip-theme"
+                ns-popover-timeout="0.5"
+             >
+                <ng-md-icon icon="apps" style="fill: white"></ng-md-icon>
+                  <md-tooltip md-direction="bottom">
+                      Dashboard
+                  </md-tooltip>
+            </md-button>
+            <md-button aria-label="Chat" class="md-icon-button" ng-class="{'novisiblesearch':!custom}">
+                <ng-md-icon icon="chat" style="fill: white"></ng-md-icon>
+                <md-tooltip md-direction="bottom">
+                    Chat
+                </md-tooltip>
+            </md-button>
+
+            <md-button aria-label="Modules" class="md-icon-button ">
+                <ng-md-icon icon="archive" style="fill: white"></ng-md-icon>
+                <md-tooltip md-direction="bottom">
+                    Módulos
+                </md-tooltip>
+            </md-button>
+
+            <md-button aria-label="User" class="md-icon-button" ng-class="{'novisiblesearch':!custom}" ns-popover ns-popover-placement="bottom" ns-popover-template="perfil-popover" ns-popover-theme="ns-popover-tooltip-theme" ns-popover-timeout="0.5" ns-popover-trigger="click">
+                <md-icon alt="User" md-svg-src="svg/user.svg" style="width:24px;height:24px,"></md-icon>
+                <md-tooltip md-direction="bottom">
+                    Usuario
+                </md-tooltip>
+            </md-button>
+            <md-button aria-label="Scape" class="md-icon-button" ng-class="{'novisiblesearch':!custom}" ng-click="closeSession()" ng-disabled="disabledCloseSession">
+                <md-tooltip md-direction="bottom">
+                    Salir del sistema
+                </md-tooltip>
+                <ng-md-icon icon="settings_power" style="fill: white"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <section flex>
+        <div id="layerSearch" ng-click="hideLayer($event)" ng-show="layerSearch"></div>
+        <div layout="column">
+<!-- BREADCRUMB -->
+            <md-toolbar class="md-toolbar-subhead">
+                <div class="md-toolbar-tools md-toolbar-breadcrumb md-whiteframe-z1" layout-align="center center" layout="row">
+                    <md-button type="button" class="md-icon-button" ng-click="backToList()">
+                        <ng-md-icon icon="arrow_back" size="28"></ng-md-icon>
+                        <md-tooltip md-direction="bottom">
+                            Volver
+                        </md-tooltip>
+                    </md-button>
+                    <button
+                        ng-click="ordenAbc(abc, $index)"
+                        ng-class="{activo: $index === seleccionadoAbc}"
+                        class="button-unitario"
+                        type="button"
+                        ng-repeat="abc in abcdario">
+                            {{abc}}
+                            <md-tooltip>
+                                Por:
+                                <strong>{{abc}}</strong>
+                            </md-tooltip>
+                    </button>
+                </div>
+            </md-toolbar>
+<!-- /BREADCRUMB -->
+<!-- LEFT -->
+            <aside class="sidenav-left sidenav-module md-whiteframe-z2" id="sidebarleft-2" style="left:0%; width:300px; overflow:auto; overflow-x:hidden; max-height:100%;">
+              <md-list-item ng-hide="roles.length<1" style="margin-top: 16px; margin-left: 16px;">
+                <div class="inset">
+                  <div class="input-text--search">
+                      <input ng-model="objF.filtroRol" type="search" placeholder="Filtro de roles" />
+                      <ng-md-icon icon="search"></ng-md-icon>
+                  </div>
+                </div>
+              </md-list-item>
+              <div ng-show="roles.length<1" class="alert-warning" style="margin-top: 16px;">
+                  No se encontraron roles.
+              </div>
+              <md-list-item ng-click="mostrarRol(itemmenu)" class="md-item-menu-nav" ng-class="{active:(itemmenu.slug === rol.slug)}" ng-disabled="itemmenu.slug === rol.slug" ng-repeat="itemmenu in roles | filter:objF.filtroRol">
+                <div class="inset">
+                  <ng-md-icon icon="chevron_right"></ng-md-icon>
+                </div>
+                <div class="inset">{{itemmenu.nombre}}</div>
+                <md-divider></md-divider>
+              </md-list-item>
+            </aside>
+<!-- CONTENT -->
+            <section class="md-toolbar-subbody content-body-center fullcenter" id="contentbodycenter" style="margin-left:310px;">
+                <div class="content-inner relative">
+                  <button
+                      style="right: 190px;"
+                      class="md-fab md-warn md-large md-button button-fly--topleft"
+                      ng-click="crearUsuario($event);"
+                      aria-label="Asociar">
+                      <ng-md-icon icon="person_add" style="fill:white"></ng-md-icon>
+                      <md-tooltip>Crear Usuario</md-tooltip>
+                  </button>
+                    <button
+                        ng-disabled="roles.length<1"
+                        style="right: 120px;"
+                        class="md-fab md-warn md-large md-button button-fly--topleft"
+                        ng-click="guardarRoles($event);"
+                        aria-label="Asociar">
+                        <ng-md-icon icon="save" style="fill:white"></ng-md-icon>
+                        <md-tooltip>Guardar</md-tooltip>
+                    </button>
+                    <button
+                        ng-disabled="rol.usuarios.length<1"
+                        class="md-fab md-warn md-large md-button button-fly--topleft"
+                        ng-click="asociar($event);"
+                        aria-label="Asociar">
+                        <ng-md-icon icon="clear_all" style="fill:white"></ng-md-icon>
+                        <md-tooltip>Quitar usuarios</md-tooltip>
+                    </button>
+                    <div class="text-left">
+                        <div style="width:25%;display:inline-block"></div>
+                        <div ng-if="coleccion.length>1" style="display:inline-block">
+                            <div class="input-text--search">
+                                <input ng-model="objF.filtroColeccion" type="search" placeholder="Filtro de resultados" />
+                                <ng-md-icon icon="search"></ng-md-icon>
+                            </div>
+                            <md-checkbox ng-hide="roles.length<1" ng-show="objF.filtroColeccion.length<=0" class="md-primary checkbox-todos" ng-change="seleccionarTodos(objF.filtroSeleccionTodos)" ng-model="objF.filtroSeleccionTodos" aria-label="Seleccionar">
+                              {{ (objF.filtroSeleccionTodos)?'Ninguno':'Todos' }}
+                            </md-checkbox>
+                        </div>
+                    </div>
+                    <ul masonry class="coleccion-lista--masonry" preserve-order>
+                        <li ng-repeat="item in coleccion | filter:objF.filtroColeccion" class="masonry-brick">
+                            <figure class="coleccion-figure" ng-if="item.media">
+                                <img ng-src="{{item.media[0].url}}" alt="Imagen" />
+                            </figure>
+                            <div class="coleccion-cuerpo">
+                                <h4 class="coleccion-titulo">{{item.nombre}}</h4>
+                            </div>
+                            <div class="coleccion-pie">
+                                <md-checkbox ng-hide="roles.length<1" ng-disabled="item.rol&&item.rol!=rol.slug" ng-if="coleccion.length>1" class="md-primary pie-izquierda" ng-change="seleccionarTema($index, item.seleccionado, item)" aria-label="Seleccionar" ng-model="item.seleccionado">
+                                </md-checkbox>
+                                {{ item.rol }}
+                                <md-button ng-click="editarUsuario($event, item, $index)" class="md-icon-button pie-derecha" aria-label="Editar">
+                                    <ng-md-icon icon="mode_edit" size="24"></ng-md-icon>
+                                    <md-tooltip>Modificar</md-tooltip>
+                                </md-button>
+                            </div>
+                        </li>
+                    </ul>
+                    <div ng-show="newsBusy">
+                        <md-progress-circular class="progressContent" md-mode="indeterminate"></md-progress-circular>
+                    </div>
+                    <div ng-show="msjBusy" class="alert-warning">
+                        No hay más temas encontradas.
+                    </div>
+                </div>
+            </section>
+<!-- SIDEBARS -->
+<!-- RIGHT -->
+            <aside class="sidenav-right sidenav-module fullsidebar" id="sidebarright">
+            </aside>
+<!-- /SIDEBARS -->
+        </div>
+    </section>
+<!-- FOOTER -->
+</div>

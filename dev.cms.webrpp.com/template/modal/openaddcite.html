@@ -1,0 +1,46 @@
+<md-dialog flex="95" aria-label="Add Cite">
+  <md-dialog-content>
+      <!-- Add Text -->
+      <div layout>
+          <div flex="100">
+              <div class="cite-fields">
+                  <h4 style="margin-bottom:0.5em">Cita:</h4>
+                  <div layout>
+                      <md-input-container flex="65" flex-sm="100">
+                          <label>Subtítulo <span ng-if="cita.titulo>0">({{cita.titulo.length}} Caracteres)</span>
+                          </label>
+                          <input ng-trim="false" name="citatitulo" ng-model="cita.titulo"></input>
+                      </md-input-container>
+                      <div flex="35" flex-sm="100">
+                          <span>Orientación:</span>
+                          <select name="nameCitaAlineacion" ng-model="cita.alineacion" flex>
+                            <option value="izquierda">Izquierda</option>
+                            <option value="derecha">Derecha</option>
+                            <option value="arriba">Arriba</option>
+                            <option value="abajo">Abajo</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div flex flex="100" class="editor-cita">
+                      <div class="inputBlock">
+                          <textarea style="height:160px" ui-tinymce="tinymceOptions" ng-model="cita.desarrollo"></textarea>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- End Add Text -->
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button type="button" ng-click="closeOpenAddCite()" class="md-primary">
+      Cerrar
+    </md-button>
+    <md-button ng-if="modalType === 'edit'" type="button" ng-click="removeOpenAddCite()" class="md-primary">
+        Eliminar
+    </md-button>
+    <md-button type="button" ng-click="addOpenAddCite()" class="md-primary">
+        {{(modalType === 'add')?'Agregar':'Actualizar'}}
+    </md-button>
+  </div>
+</md-dialog>

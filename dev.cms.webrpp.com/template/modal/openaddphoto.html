@@ -1,0 +1,63 @@
+<md-dialog flex="95" aria-label="Add Photo">
+  <md-dialog-content>
+      <!-- Add Photo -->
+      <div class="cntUploadImg" id="add-photo-modal" style="min-height:400px; position:relative;">
+          <html5uploadimage style="display:block" width-image="{{widthImage}}" height-image="{{heightImage}}" ajax="false" originalsize="false" editstart="false" image="{{image}}" reset="reset"></html5uploadimage>
+          <input type="hidden" data-json="" name="thumb_values_edit" />
+      </div>
+      <div class="inputBlock">
+          <md-input-container flex>
+              <label>
+                  Título
+                  <span ng-if="parrafo1.length>0">({{parrafo1.length}} Caracteres)</span>
+              </label>
+              <input ng-trim="false" name="parrafo1" ng-model="parrafo1"></input>
+          </md-input-container>
+      </div>
+      <div class="inputBlock">
+          <md-input-container flex>
+              <label>Leyenda <span ng-if="foto.alt.length>0">({{foto.alt.length}} Caracteres)</span>
+              </label>
+              <input type="text" ng-trim="false" name="alt" ng-model="foto.alt" />
+          </md-input-container>
+      </div>
+      <div layout="row" layout-sm="column">
+          <div flex="50" flex-sm="100">
+              <div class="inputBlock">
+                  <md-input-container flex>
+                      <label>Fuente <span ng-if="via.length>0">({{via.length}} Caracteres)</span>
+                      </label>
+                      <input type="text" ng-trim="false" name="via" ng-model="via" />
+                  </md-input-container>
+              </div>
+          </div>
+          <div flex="50" flex-sm="100">
+              <div class="inputBlock">
+                  <md-input-container flex>
+                      <label>Fotógrafo <span ng-if="credito.length>0">({{credito.length}} Caracteres)</span>
+                      </label>
+                      <input type="text" ng-trim="false" name="credito" ng-model="credito" />
+                  </md-input-container>
+              </div>
+          </div>
+      </div>
+      <!-- Temas -->
+      <p class="nm">Etiquetas</p>
+      <md-chips flex secondary-placeholder="Escribe una Etiqueta" placeholder="Etiqueta" ng-model="foto.tags"  md-on-append="tagsOnAppendPhoto($chip)">
+          <md-chip-template>
+              <strong>{{$chip.nombre}}</strong>
+              <em>(Tema)</em>
+          </md-chip-template>
+      </md-chips>
+      <!-- End Add Photo -->
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button type="button" ng-click="closeOpenAddPhoto()" class="md-primary">
+      Cerrar
+    </md-button>
+    <md-button type="button" ng-click="addOpenAddPhoto()" class="md-primary">
+        {{(modalType === 'add')?'Agregar':'Actualizar'}}
+    </md-button>
+  </div>
+</md-dialog>

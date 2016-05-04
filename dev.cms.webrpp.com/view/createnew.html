@@ -1,0 +1,735 @@
+<div layout="column" ng-controller="createNewCtrl">
+    <!-- BREADCRUMB -->
+    <md-toolbar class="md-toolbar-subhead">
+        <div class="md-toolbar-tools md-toolbar-breadcrumb md-whiteframe-z1">
+            <div style="margin: 0 auto; width: 85%;">
+                <md-button type="button" class="md-icon-button" ng-click="backToList()">
+                    <ng-md-icon icon="arrow_back" size="28"></ng-md-icon>
+                    <md-tooltip md-direction="bottom">
+                        Volver
+                    </md-tooltip>
+                </md-button>
+                <div style="display:inline-block">
+                    <md-select ng-model="objSitio" placeholder="Sitio">
+                        <md-option ng-repeat="site in sites" value="{{site}}">{{site}}</md-option>
+                    </md-select>
+                </div>
+                <div style="display:inline-block">
+                    <md-select placeholder="Tipo de noticia" ng-model="objTipo">
+                        <md-option value="noticia">
+                            <ng-md-icon icon="format_align_justify" style="fill:black"></ng-md-icon> Noticia</md-option>
+                        <md-option value="galeria">
+                            <ng-md-icon icon="collections" style="fill:black"></ng-md-icon> Galeria</md-option>
+                        <md-option value="paginado">
+                            <ng-md-icon icon="settings_ethernet" style="fill:black"></ng-md-icon> Páginado</md-option>
+                        <md-option value="lista">
+                            <ng-md-icon icon="format_list_numbered" style="fill:black"></ng-md-icon> Lista</md-option>
+                    </md-select>
+                </div>
+                <md-button type="button" class="md-primary" ng-click="clickSave($event);">
+                    <ng-md-icon icon="save"></ng-md-icon> Guardar
+                </md-button>
+                <md-button type="button" class="md-primary" ng-click="clickPreview($event);">
+                    <ng-md-icon icon="remove_red_eye"></ng-md-icon> Previsualizar
+                </md-button>
+                <md-button type="button" class="md-primary" ng-click="clickPublish($event);">
+                    <ng-md-icon icon="language"></ng-md-icon> Publicar
+                </md-button>
+                <md-button type="button" class="md-primary" ng-click="clickDelete($event);">
+                    <ng-md-icon icon="delete"></ng-md-icon> Eliminar
+                </md-button>
+            </div>
+        </div>
+    </md-toolbar>
+    <!-- /BREADCRUMB -->
+    <section layout="row" flex class="md-toolbar-subbody content-body-center">
+        <md-content flex>
+            <md-card id="bodyAddsNews">
+                <div layout="row" layout-wrap>
+                    <md-card-content flex="100">
+                        <div layout="column" layout-fill layout-align="top center">
+                            <div layout-padding>
+                                <div>
+                                    <form name="titlesForm">
+                                        <h2>Titulos de noticia</h2>
+                                        <div layout="row" layout-wrap>
+                                            <div flex="20" flex-lg="50" flex-md="50" flex-sm="100">
+                                                <md-input-container>
+                                                    <label>Fecha de publicación</label>
+                                                    <input type="date" name="date_publish" ng-model="objDate_publish">
+                                                </md-input-container>
+                                            </div>
+                                            <div flex="15" flex-lg="50" flex-md="50" flex-sm="100">
+                                                <md-input-container>
+                                                    <label>Hora de pub.</label>
+                                                    <input ui-timepicker type="text" name="time_publish" ng-model="objTime_publish">
+                                                </md-input-container>
+                                            </div>
+                                            <div flex="20" flex-lg="50" flex-md="50" flex-sm="100">
+                                                <md-input-container>
+                                                    <label>Fuente</label>
+                                                    <input ng-model="objFuente">
+                                                </md-input-container>
+                                            </div>
+                                            <div flex="20" flex-lg="45" flex-md="45" flex-sm="100">
+                                                <md-select class="width-full" ng-model="autorObj">
+                                                    <md-select-label>{{ autorObj ? autorObj.nombre : 'Autor' }}</md-select-label>
+                                                    <md-option ng-repeat="autor in autores" ng-value="{{autor}}">{{autor.nombre}}</md-option>
+                                                </md-select>
+                                            </div>
+                                            <div flex="20" flex-lg="45" flex-md="45" flex-sm="100">
+                                             <!--
+                                                <md-select class="width-full" ng-model="objCategory">
+                                                    <md-select-label>{{ objCategory ? objCategory.nombre : '* Categoría' }}</md-select-label>
+                                                    <md-option ng-repeat="category in categories" ng-value="{{category}}">{{category.nombre}}</md-option>
+                                                </md-select>
+                                                -->
+                                                <div>
+                                                    <div class="objCategory">
+                                                        {{ objCategoryMultiple ? objCategoryMultiple.nombre : '* Categoría' }}
+                                                    </div>
+                                                    <md-button type="button" style="vertical-align:top" ng-disabled="DATATRANSFERMODAL.length<=0" ng-click="clickEditCategoryModal($event)" class="md-fab md-mini md-primary">
+                                                        <md-tooltip>
+                                                          Editar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="edit" size="24"></ng-md-icon>
+                                                    </md-button>
+                                                     </div>
+                                                <div class="required" ng-show="fields.categoria.length>0">{{fields.categoria}}</div>
+                                            </div>
+                                        </div>
+                                        <md-input-container flex>
+                                            <label>Antetítulo <span ng-if="objVolada.length>0">({{objVolada.length}} Caracteres)</span>
+                                            </label>
+                                            <input ng-model="objVolada">
+                                        </md-input-container>
+                                        <!--
+                                        <label ng-show="moreSomeField" class="label-wysing">Volada</label>
+                                        <div layout layout-sm="column" ng-show="moreSomeField">
+                                            <div flex class="content-wysing">
+                                                <text-angular ng-model="objVolada" class="editor-wysing wysing-medium"></text-angular>
+                                            </div>
+                                        </div>
+                                        -->
+                                        <div layout>
+                                            <md-input-container flex>
+                                                <label>* Titulo <span ng-if="objTitulo.length>0">({{objTitulo.length}} Caracteres)</span>
+                                                </label>
+                                                <input name="titulo" ng-model="objTitulo" ng-blur="blurTitle()" />
+                                            </md-input-container>
+                                        </div>
+                                        <div class="required" ng-show="fields.titulo.length>0">{{fields.titulo}}</div>
+
+                                        <md-button type="button" style="margin-bottom:1em" ng-show="viewMoreSomeField" ng-click="moreSomeField=true; viewMoreSomeField=false;" class="md-raised md-icon-button">
+                                            <md-tooltip md-direction="right">
+                                                Ver más campos
+                                            </md-tooltip>
+                                            <ng-md-icon icon="keyboard_control"></ng-md-icon>
+                                        </md-button>
+
+                                        <div layout ng-show="moreSomeField">
+                                            <md-input-container flex>
+                                                <label>* Titulo SEO <span ng-if="objTitulo_seo.length>0">({{objTitulo_seo.length}} Caracteres)</span>
+                                                </label>
+                                                <input ng-model="objTitulo_seo" ng-change="changeTitleSeo()">
+                                            </md-input-container>
+                                        </div>
+                                        <div class="required" ng-show="fields.titulo_seo.length>0">{{fields.titulo_seo}}</div>
+
+                                        <div layout ng-show="moreSomeField">
+                                            <label class="label-free">www.la10.pe/</label>
+                                            <md-input-container flex>
+                                                <label>* URL <span ng-if="objUrl.length>0">({{objUrl.length}} Caracteres)</span>
+                                                </label>
+                                                <input name="URL" ng-readonly="true" ng-model="objUrl" />
+                                            </md-input-container>
+                                        </div>
+                                        <div class="required" ng-show="fields.url.length>0">{{fields.url}}</div>
+
+                                        <div layout ng-show="moreSomeField">
+                                            <md-input-container flex>
+                                                <label>* Titulo Portada <span ng-if="objTitulo_corto.length>0">({{objTitulo_corto.length}} Caracteres)</span>
+                                                </label>
+                                                <input ng-model="objTitulo_corto" ng-blur="blurTitle()">
+                                            </md-input-container>
+                                        </div>
+                                        <div class="required" ng-show="fields.titulo_corto.length>0">{{fields.titulo_corto}}</div>
+                                    </form>
+                                    <form name="bodyForm">
+                                        <h2 ng-show="moreSomeField">Cuerpo de noticia</h2>
+                                        <label ng-show="moreSomeField" class="label-wysing">Bajada</label>
+                                        <div layout layout-sm="column" ng-show="moreSomeField">
+                                            <div flex class="content-wysing">
+                                                <text-angular ng-model="objBajada" class="editor-wysing wysing-medium"></text-angular>
+                                            </div>
+                                            <!--md-input-container flex>
+                                                <label>Bajada <span ng-if="objBajada.length>0">({{objBajada.length}} Caracteres)</span>
+                                                </label>
+                                                <input ng-model="objBajada">
+                                            </md-input-container-->
+                                        </div>
+                                        <label ng-show="moreSomeField" class="label-wysing">Entradilla</label>
+                                        <div layout layout-sm="column" ng-show="moreSomeField">
+                                            <div flex class="content-wysing">
+                                                <text-angular ng-model="objEntradilla" class="editor-wysing wysing-medium"></text-angular>
+                                            </div>
+                                            <!--md-input-container flex>
+                                                <label>Entradilla <span ng-if="objEntradilla.length>0">({{objEntradilla.length}} Caracteres)</span>
+                                                </label>
+                                                <input ng-model="objEntradilla">
+                                            </md-input-container-->
+                                        </div>
+                                        <p ng-show="moreSomeField">Temas</p>
+                                        <div layout layout-sm="column" ng-show="moreSomeField">
+                                            <!-- Temas -->
+                                            <md-chips flex secondary-placeholder="Escribe un Tema" placeholder="Tema" ng-model="tagsNames" readonly="tagsReadonly" md-on-append="tagsOnAppend($chip)">
+                                                <md-chip-template>
+                                                    <strong>{{$chip.nombre}}</strong>
+                                                    <em>(Tema)</em>
+                                                </md-chip-template>
+                                            </md-chips>
+                                        </div>
+                                        <p ng-show="moreSomeField">Keywords (SEO)</p>
+                                        <div layout layout-sm="column" ng-show="moreSomeField">
+                                            <!-- Keywords (SEO) -->
+                                            <md-chips flex secondary-placeholder="Escribe un Keyword" placeholder="Keyword" ng-model="keywordsNames" readonly="keywordsReadonly" md-on-append="keywordsOnAppend($chip)">
+                                                <md-chip-template>
+                                                    <strong>{{$chip.nombre}}</strong>
+                                                    <em>(Keyword)</em>
+                                                </md-chip-template>
+                                            </md-chips>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="googlemaps">
+                                    <p style="margin-bottom:0.25em">Localización:</p>
+                                    <div layout="row">
+                                      <div flex="85">
+                                          <md-input-container>
+                                              <label>Ubicación</label>
+                                              <input id="inputMapGoogle" ng-blur="searchMap($event)" ng-keypress="reviewMap($event)" type="text" ng-model="objMap" />
+                                          </md-input-container>
+                                      </div>
+                                      <div flex="5">
+                                        <md-button type="button" ng-click="searchMap($event)" class="md-icon-button md-primary" aria-label="Navigation">
+                                            <md-tooltip>
+                                              Buscar Lugar
+                                            </md-tooltip>
+                                            <ng-md-icon icon="place" rotation="45" style="" size="24"></ng-md-icon>
+                                        </md-button>
+                                      </div>
+                                      <div flex="5">
+                                        <md-button type="button" ng-click="reviewDataHTML5()" class="md-icon-button md-primary" aria-label="Navigation">
+                                            <md-tooltip>
+                                              Posición Actual
+                                            </md-tooltip>
+                                            <ng-md-icon icon="navigation" rotation="45" style="" size="24"></ng-md-icon>
+                                        </md-button>
+                                      </div>
+                                      <div flex="5">
+                                          <md-button type="button" ng-click="showMapGoogle('#map-google', 'toggle')" class="md-fab md-mini md-primary" aria-label="More">
+                                              <md-tooltip>
+                                                Ver en Mapa
+                                              </md-tooltip>
+                                              <ng-md-icon icon="map" style="fill:white" size="24"></ng-md-icon>
+                                          </md-button>
+                                      </div>
+                                    </div>
+                                    <div layout="row">
+                                      <div flex id="map-google" class="height-none">
+                                         <map
+                                            style="width:100%;height:250px;"
+                                            center="{{objLatLng}}"
+                                            zoom="8"
+                                            on-click="setCenter(event)"
+                                            >
+                                            <marker
+                                                position = "{{markerGeo.position}}"
+                                                draggable = "{{markerGeo.draggable}}"
+                                                on-dragend="markerGeo.onDragEnd(event)"
+                                                animation = "{{markerGeo.animation}}"
+                                                on-click = "markerGeo.markerClick(event)">
+                                            </marker>
+                                         </map>
+                                      </div>
+                                    </div>
+                                </div>
+                                <p style="margin-bottom:0.25em">DataFactory:</p>
+                                <div layout>
+                                    <md-input-container flex="40">
+                                        <label>ID de DataFactory <span ng-if="objDataFactory.length>0">({{objDataFactory.length}} Caracteres)</span></label>
+                                        <input name="nameDataFactory" ng-model="objDataFactory" />
+                                    </md-input-container>
+                                </div>
+                                <h2>* Bloques de contenido</h2>
+                                <div class="required" ng-show="fields.contenido.length>0">{{fields.contenido}}</div>
+                                <p style="vertical-align:top" ng-show="blockAdd.length > 1">
+                                    <ng-md-icon icon="insert_comment" style=""></ng-md-icon>
+                                    Puede Arrastrar para ordenar los bloques.
+                                </p>
+                                <div>
+                                    <section id="block-ui-add">
+                                        <ul class="draglist">
+                                            <li ng-animate="'animate'" ng-repeat="block in blockAdd" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">
+                                                <div ng-drag="blockAdd.length > 1" ng-drag-data="block" class="md-padding md-content-addblock" ng-mouseenter="showAddOptions$index=true;" ng-mouseleave="showAddOptions$index=false;">
+                                                    <div ng-switch="block.tipo">
+                                                        <div data-tipo="{{block.tipo}}" ng-switch-when="text">
+                                                            <div ng-include="agregadorparrafoycita"></div>
+                                                        </div>
+                                                        <div data-tipo="{{block.tipo}}" ng-switch-when="photo">
+                                                            <div ng-if="block.foto.data" style="margin-bottom:0.75em; overflow:hidden;">
+                                                                <img fallback-src="http://www.la10.pe/tmp/img/16-9-mask.png" alt="{{block.foto.alt}}" src="{{block.foto.url}}" />
+                                                            </div>
+                                                            <p ng-bind-html="block.foto.alt | htmlAddBlock"></p>
+                                                            <p ng-bind-html="block.credito | htmlAddBlock"></p>
+                                                            <p ng-bind-html="block.via | htmlAddBlock"></p>
+                                                            <p>
+                                                                <span>Etiquetas: </span>
+                                                                <span ng-repeat="tag in block.foto.tags"><strong>{{tag.nombre}}</strong> {{$last?'':', '}} </span>
+                                                            </p>
+                                                            <div class="separate"></div>
+                                                            <div ng-include="agregadorparrafoycita"></div>
+                                                        </div>
+                                                        <div data-tipo="{{block.tipo}}" ng-switch-when="video">
+                                                            <div class="rendervideo">
+                                                                <rendervideo width-video="573" height-video='322' source='{{block.video.url}}' poster='{{block.video.url_cover}}'></rendervideo>
+                                                            </div>
+                                                            <p ng-bind-html="block.credito | htmlAddBlock"></p>
+                                                            <p ng-bind-html="block.via | htmlAddBlock"></p>
+                                                            <div class="separate"></div>
+                                                            <div ng-include="agregadorparrafoycita"></div>
+                                                        </div>
+                                                        <div data-tipo="{{block.tipo}}" ng-switch-when="embed">
+                                                            <div style="margin-bottom:0.75em;" ng-bind-html="block.embed | htmlUnSafe"></div>
+                                                            <!--ng-embed embed-data="block.tipo" embed-options="optionsEmbed"></ng-embed!-->
+                                                            <div class="separate"></div>
+                                                            <div ng-include="agregadorparrafoycita"></div>
+                                                        </div>
+                                                        <div data-tipo="{{block.tipo}}" ng-switch-when="youtube">
+                                                            <youtube timestamp="{{block.youtube.timestamp}}" id="{{block.youtube.id}}" autoplay="{{block.youtube.autoplay}}" code="{{block.youtube.url}}"></youtube>
+                                                            <div class="separate"></div>
+                                                            <div ng-include="agregadorparrafoycita"></div>
+                                                        </div>
+                                                        <div data-tipo="{{block.tipo}}" ng-switch-when="audio">
+                                                            <div class="renderaudio">
+                                                                <div class="cnt-imagen-cover">
+                                                                    <img style="width:573px;height:322px;" src="{{block.audio.url_cover}}" alt="Imagen de Cover" />
+                                                                </div>
+                                                                <renderaudio width-audio="573" height-audio='40' source='{{block.audio.url}}' poster='{{block.audio.url_cover}}'></renderaudio>
+                                                            </div>
+                                                            <p ng-bind-html="block.credito | htmlAddBlock"></p>
+                                                            <p ng-bind-html="block.via | htmlAddBlock"></p>
+                                                            <div class="separate"></div>
+                                                            <div ng-include="agregadorparrafoycita"></div>
+                                                        </div>
+                                                        <div data-tipo="{{block.tipo}}" ng-switch-when="poll">
+                                                        </div>
+                                                        <div data-tipo="{{block.tipo}}" ng-switch-when="history">
+                                                        </div>
+                                                        <div data-tipo="{{block.tipo}}" ng-switch-default>
+                                                            <div class="separate"></div>
+                                                            <div ng-include="agregadorparrafoycita"></div>
+                                                        </div>
+                                                    </div>
+                                                    <md-button type="button" ng-show="showAddOptions$index" ng-click="editBlock($event, $index, block)" class="md-fab md-mini md-primary md-content-icon md-content-icon-edit">
+                                                        <md-tooltip md-direction="left">
+                                                            Editar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="edit" style=""></ng-md-icon>
+                                                    </md-button>
+                                                    <md-button type="button" ng-show="showAddOptions$index" ng-click="deleteBlock($event, $index, block)" class="md-fab md-mini md-primary md-content-icon md-content-icon-delete">
+                                                        <md-tooltip md-direction="left">
+                                                            Eliminar
+                                                        </md-tooltip>
+                                                        <ng-md-icon icon="delete" style=""></ng-md-icon>
+                                                    </md-button>
+                                                </div>
+                                            </li>
+                                            <li id="liBlockEditAdd">
+
+                                                <div id="addBlocksCMS">
+                                                    <div class="md-padding md-wave-tabs">
+                                                        <form name="blockForm1">
+                                                            <md-tabs md-selected="selectedTabIndex" md-dynamic-height>
+                                                                <!--md-tab ng-disabled="disabledTab.text" label="<ng-md-icon icon='reorder'></ng-md-icon>"-->
+                                                                <md-tab ng-disabled="disabledTab.text" label="Parrafo">
+                                                                    <div ng-include="parrafoycita"></div>
+                                                                </md-tab>
+                                                                <!--md-tab ng-disabled="disabledTab.photo" label="<ng-md-icon icon='perm_media'></ng-md-icon>"-->
+                                                                <md-tab ng-disabled="disabledTab.photo" label="Foto">
+                                                                    <div layout-padding>
+                                                                        <div class="cntUploadImg">
+                                                                            <html5uploadimage style="display:block" width-image="{{widthImage}}" height-image="{{heightImage}}" ajax="false" originalsize="false" editstart="false" image="{{image}}" reset="reset"></html5uploadimage>
+                                                                            <input type="hidden" data-json="" name="thumb_values_edit" />
+                                                                        </div>
+                                                                        <div class="inputBlock">
+                                                                            <md-input-container flex>
+                                                                                <label>Descripción de la imagen <span ng-if="blk1.foto.alt.length>0">({{blk1.foto.alt.length}} Caracteres)</span>
+                                                                                </label>
+                                                                                <input type="text" ng-trim="false" name="alt" ng-model="blk1.foto.alt" />
+                                                                            </md-input-container>
+                                                                        </div>
+                                                                        <div layout="row" layout-sm="column">
+                                                                            <div flex="50" flex-sm="100">
+                                                                                <div class="inputBlock">
+                                                                                    <md-input-container flex>
+                                                                                        <label>Crédito <span ng-if="blk1.credito.length>0">({{blk1.credito.length}} Caracteres)</span>
+                                                                                        </label>
+                                                                                        <input type="text" ng-trim="false" name="credito" ng-model="blk1.credito" />
+                                                                                    </md-input-container>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div flex="50" flex-sm="100">
+                                                                                <div class="inputBlock">
+                                                                                    <md-input-container flex>
+                                                                                        <label>Fuente <span ng-if="blk1.via.length>0">({{blk1.via.length}} Caracteres)</span>
+                                                                                        </label>
+                                                                                        <input type="text" ng-trim="false" name="via" ng-model="blk1.via" />
+                                                                                    </md-input-container>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Temas -->
+                                                                        <p class="nm">Etiquetas</p>
+                                                                        <md-chips flex secondary-placeholder="Escribe una Etiqueta" placeholder="Etiqueta" ng-model="blk1.foto.tags"  md-on-append="tagsOnAppendPhoto($chip)">
+                                                                            <md-chip-template>
+                                                                                <strong>{{$chip.nombre}}</strong>
+                                                                                <em>(Tema)</em>
+                                                                            </md-chip-template>
+                                                                        </md-chips>
+                                                                        <div class="separator"></div>
+                                                                        <!-- Opciones Comunnes -->
+                                                                        <div ng-include="parrafoycita"></div>
+                                                                        <!-- /Opciones Comunnes -->
+                                                                    </div>
+                                                                </md-tab>
+                                                                <!--md-tab ng-disabled="disabledTab.video" label="<ng-md-icon icon='video_collection'></ng-md-icon>"-->
+                                                                <md-tab ng-disabled="disabledTab.video" label="Video">
+                                                                    <div layout-padding>
+                                                                        <div class="cntUploadVideo" style="overflow:auto;">
+                                                                            <uploadvideo width-video="{{widthVideo}}" height-video="{{heightVideo}}" reset="resetVideo" json-refresh="refreshVideo"></uploadvideo>
+                                                                        </div>
+                                                                        <div layout="row" layout-sm="column">
+                                                                            <div flex="50" flex-sm="100">
+                                                                                <div class="inputBlock">
+                                                                                    <md-input-container flex>
+                                                                                        <label>Crédito <span ng-if="blk1.credito.length>0">({{blk1.credito.length}} Caracteres)</span>
+                                                                                        </label>
+                                                                                        <input type="text" ng-trim="false" name="credito" ng-model="blk1.credito" />
+                                                                                    </md-input-container>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div flex="50" flex-sm="100">
+                                                                                <div class="inputBlock">
+                                                                                    <md-input-container flex>
+                                                                                        <label>Fuente <span ng-if="blk1.via.length>0">({{blk1.via.length}} Caracteres)</span>
+                                                                                        </label>
+                                                                                        <input type="text" ng-trim="false" name="via" ng-model="blk1.via" />
+                                                                                    </md-input-container>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="separator"></div>
+                                                                        <!-- Opciones Comunnes -->
+                                                                        <div ng-include="parrafoycita"></div>
+                                                                        <!-- /Opciones Comunnes -->
+                                                                    </div>
+                                                                </md-tab>
+                                                                <!--md-tab ng-disabled="disabledTab.embed" label="<ng-md-icon icon='settings_ethernet'></ng-md-icon>"-->
+                                                                <md-tab ng-disabled="disabledTab.embed" label="Embed">
+                                                                    <div class="md-padding">
+                                                                        <div class="parent-actions">
+                                                                            <div class="inputBlock">
+                                                                                <md-input-container flex>
+                                                                                    <label>Pega el contenido del HTML aquí: <span ng-if="blk1.embed.length>0">({{blk1.embed.length}} Caracteres)</span>
+                                                                                    </label>
+                                                                                    <textarea ng-trim="false" style="min-height:100px" ng-paste="pasteEmbed($event, 'embed', '#contentEmbed')" ng-change="pasteEmbed($event, 'embed', '#contentEmbed')" name="embed" ng-model="blk1.embed"></textarea>
+                                                                                </md-input-container>
+                                                                                <div ng-show="contentEmbed" id="contentEmbed">{{txtPreviewEmbed}}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="separator"></div>
+                                                                    </div>
+                                                                    <!-- Opciones Comunnes -->
+                                                                    <div ng-include="parrafoycita"></div>
+                                                                    <!-- /Opciones Comunnes -->
+                                                                </md-tab>
+                                                                <md-tab ng-disabled="disabledTab.youtube" label="Youtube">
+                                                                    <div layout-padding>
+                                                                        <div class="inputBlock">
+                                                                            <md-input-container flex>
+                                                                                <label>Pega la URL del video de Youtube: <span ng-if="blk1.youtube.length>0">({{blk1.youtube.length}} Caracteres)</span>
+                                                                                </label>
+                                                                                <input type="text" ng-trim="false" ng-change="pasteVideoYoutube('youtube');" name="youtube" ng-model="blk1.youtube.url" />
+                                                                            </md-input-container>
+                                                                        </div>
+                                                                        <div>
+                                                                            <div class="inputBlock">
+                                                                                <md-checkbox aria-label="Autoplay" ng-model="blk1.youtube.autoplay" flex>
+                                                                                    Autoplay
+                                                                                </md-checkbox>
+                                                                            </div>
+                                                                            <div style="margin-top:1em">
+                                                                                Iniciar video en (Tiempo en segundos):
+                                                                            </div>
+                                                                            <div class="inputBlock">
+                                                                                <md-input-container flex>
+                                                                                    <label>Tiempo</label>
+                                                                                    <input ng-change="changeTimeYoutube('youtube')" style="width:150px" type="text" ng-trim="false" name="youtubeTime" ng-model="blk1.youtube.timestamp" />
+                                                                                </md-input-container>
+                                                                            </div>
+                                                                            <div class="inputBlock" style="visibility:hidden;">
+                                                                                <md-input-container flex>
+                                                                                    <label>ID video youtube</label>
+                                                                                    <input style="width:200px" type="text" ng-trim="false" name="youtubeID" ng-model="blk1.youtube.id" />
+                                                                                </md-input-container>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="separator"></div>
+                                                                    </div>
+                                                                    <!-- Opciones Comunnes -->
+                                                                    <div ng-include="parrafoycita"></div>
+                                                                    <!-- /Opciones Comunnes -->
+                                                                </md-tab>
+                                                                <md-tab ng-disabled="disabledTab.audio" label="Audio">
+                                                                    <div layout-padding>
+                                                                        <div class="cntUploadAudio" style="overflow:auto;">
+                                                                            <uploadaudio width-video="{{widthAudio}}" height-video="{{heightAudio}}" json-refresh="refreshAudio"></uploadaudio>
+                                                                        </div>
+                                                                        <div layout="row" layout-sm="column">
+                                                                            <div flex="50" flex-sm="100">
+                                                                                <div class="inputBlock">
+                                                                                    <md-input-container flex>
+                                                                                        <label>Crédito <span ng-if="blk1.credito.length>0">({{blk1.credito.length}} Caracteres)</span>
+                                                                                        </label>
+                                                                                        <input type="text" ng-trim="false" name="credito" ng-model="blk1.credito" />
+                                                                                    </md-input-container>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div flex="50" flex-sm="100">
+                                                                                <div class="inputBlock">
+                                                                                    <md-input-container flex>
+                                                                                        <label>Fuente <span ng-if="blk1.via.length>0">({{blk1.via.length}} Caracteres)</span>
+                                                                                        </label>
+                                                                                        <input type="text" ng-trim="false" name="via" ng-model="blk1.via" />
+                                                                                    </md-input-container>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="separator"></div>
+                                                                    </div>
+                                                                    <!-- Opciones Comunnes -->
+                                                                    <div ng-include="parrafoycita"></div>
+                                                                    <!-- /Opciones Comunnes -->
+                                                                </md-tab>
+                                                            </md-tabs>
+                                                            <div class="md-actions" style="text-align:right; margin-top:0.5em;">
+                                                                <md-button type="button" ng-click="cancelAddBlock($event, blockForm1, 'parrafo')" ng-show="showEditAddBlock" ng-click="addBlock($event, blockForm1, 'cancelar')" class="md-primary">
+                                                                    Cancelar
+                                                                </md-button>
+                                                                <md-button type="button" ng-click="addBlock($event, blockForm1, 'parrafo', idEdit)" class="md-raised md-warn">
+                                                                    {{!showEditAddBlock?'Agregar':'Actualizar'}}
+                                                                </md-button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                            </li>
+                                        </ul>
+                                    </section>
+
+                                </div>
+                                <p> (*) Campos requeridos.</p>
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </div>
+            </md-card>
+        </md-content>
+    </section>
+    <!-- SIDEBARS -->
+    <!-- LEFT -->
+    <div class="sidenav-left sidenav-module md-whiteframe-z2">
+    </div>
+    <!-- RIGHT -->
+    <div class="sidenav-right sidenav-module md-whiteframe-z2">
+        <!-- Miniaturas -->
+        <md-content style="overflow:visible" layout-padding class="md-whiteframe-z1 content-module">
+            <div class="buttons-options">
+                <h3><ng-md-icon icon="perm_media" style=""></ng-md-icon> Miniaturas </h3>
+                <btn-fixed-module type=""></btn-fixed-module>
+            </div>
+            <md-progress-circular ng-show="thumbProgress" md-mode="indeterminate"></md-progress-circular>
+            <ul class="nav navThumbs" ng-show="!thumbProgress">
+                <li class="drop" ng-show="isImgFirstThumb">
+                    <button type="button" ng-click="addThumb($event);" class="thumbAdd md-fab md-mini md-button md-primary md-default-theme" aria-label="Add Thumb">
+                        <md-tooltip>
+                          Agregar
+                        </md-tooltip>
+                        <img src="svg/plus24.svg" style="width:20px;height:20px" alt="Agregar" />
+                    </button>
+                    <button type="button" ng-click="sendDoneThumb($event);" ng-show="btnDoneThumb" class="thumbDone md-fab md-mini md-button md-cms-green md-default-theme" aria-label="Done">
+                        <md-tooltip>
+                          Enviar
+                        </md-tooltip>
+                        <img src="svg/done.svg" style="width:24px;height:24px" alt="Enviar" />
+                    </button>
+                    <img id="imgFirstThumb" src="" alt="" data-json="" />
+                    <ul ng-if="thumbs.length>1">
+                        <li ng-click="selectThumb($event, thumb)" ng-class="{'thumbFirst': thumb.activo}" ng-repeat="thumb in thumbs">
+                            <img src="{{thumb.url}}" alt="{{thumb.alt}}" />
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </md-content>
+        <!-- Destacar en portadas -->
+        <md-content layout-padding class="md-whiteframe-z1 content-module">
+            <div class="buttons-options">
+                <h3><ng-md-icon icon="done_all" style=""></ng-md-icon> Destacar en Portadas </h3>
+                <btn-fixed-module type=""></btn-fixed-module>
+            </div>
+            <md-card class="card-covers">
+                <md-card-content>
+                    <button type="button" ng-click="openHighlightNew($event);" class="button-cover md-fab md-mini md-button md-primary md-default-theme" aria-label="Add Cover">
+                        <md-tooltip>
+                          Agregar
+                        </md-tooltip>
+                        <img src="svg/plus24.svg" width="20" height="20px" />
+                    </button>
+                    <md-progress-circular ng-show="!showCovers" md-mode="indeterminate"></md-progress-circular>
+                    <ul class="list-covers" ng-show="showCovers">
+                        <li ng-repeat="cover in covers">
+                            {{cover.nombre}}
+                            <span ng-click="openEditCover($event, cover);" class="button-edit-cover btn-in-list" aria-label="Edit Cover">
+                                <md-tooltip>
+                                  Modificar
+                                </md-tooltip>
+                                <ng-md-icon icon="edit" size="20"></ng-md-icon>
+                            </span>
+                            <span ng-click="openPreviewCover($event, cover);" class="button-edit-cover btn-in-list" aria-label="Edit Cover">
+                                <md-tooltip>
+                                  Previsualizar
+                                </md-tooltip>
+                                <ng-md-icon icon="remove_red_eye" size="20"></ng-md-icon>
+                            </span>
+                        </li>
+                    </ul>
+                </md-card-content>
+            </md-card>
+        </md-content>
+        <!-- Subir Galeria -->
+        <md-content style="overflow:visible; position:static;" layout-padding class="md-whiteframe-z1 content-module">
+            <div class="buttons-options">
+                <h3><ng-md-icon icon="collections" style=""></ng-md-icon> Subir Galeria </h3>
+                <btn-fixed-module type=""></btn-fixed-module>
+            </div>
+            <md-card class="card-covers">
+                <md-card-content>
+                    <uploadmultiplephotos jsonRefresh="true"></uploadmultiplephotos>
+                </md-card-content>
+            </md-card>
+        </md-content>
+        <!-- Buscador Social -->
+        <md-content style="overflow:visible; position:static;" layout-padding class="md-whiteframe-z1 content-module">
+            <div class="buttons-options">
+                <h3><ng-md-icon icon="search" style=""></ng-md-icon> Buscador social </h3>
+                <btn-fixed-module type=""></btn-fixed-module>
+            </div>
+            <md-tabs id="tabs-search-social" class="tabs-search-social" md-dynamic-height md-border-bottom>
+                <md-tab label="<span><md-icon md-svg-src='svg/planet30.svg' style='color:#333; width:32px;height:30px'></md-icon><md-tooltip>Web</md-tooltip></span>">
+                    <md-tooltip md-direction="top">Web</md-tooltip>
+                    <div class="content-search-social">
+                        <searchsocial type="web"></searchsocial>
+                    </div>
+                </md-tab>
+                <md-tab label="<span><md-icon md-svg-src='svg/twitter20.svg' style='color:#55acee; width:32px;height:30px'></md-icon><md-tooltip>Twitter</md-tooltip></span>">
+                    <md-tooltip md-direction="top">Twitter</md-tooltip>
+                    <div class="content-search-social">
+                        <searchsocial type="twitter"></searchsocial>
+                    </div>
+                </md-tab>
+                <md-tab label="<span><md-icon md-svg-src='svg/facebook29.svg' style='color:#435a8b; width:32px;height:30px'></md-icon><md-tooltip>Facebook</md-tooltip></span>">
+                    <md-tooltip md-direction="top">Facebook</md-tooltip>
+                    <div class="content-search-social">
+                        <searchsocial type="facebook"></searchsocial>
+                    </div>
+                </md-tab>
+                <md-tab label="<span><md-icon md-svg-src='svg/youtube17.svg' style='color:#cc181e; width:32px;height:30px'></md-icon><md-tooltip>Youtube</md-tooltip></span>">
+                    <md-tooltip md-direction="top">Youtube</md-tooltip>
+                    <div class="content-search-social">
+                        <searchsocial type="youtube"></searchsocial>
+                    </div>
+                </md-tab>
+                <md-tab label="<span><md-icon md-svg-src='svg/vimeo12.svg' style='color:#00bf8f; width:32px;height:30px'></md-icon><md-tooltip>Vine</md-tooltip></span>">
+                    <md-tooltip md-direction="top">Vine</md-tooltip>
+                    <div class="content-search-social">
+                        <searchsocial type="vine"></searchsocial>
+                    </div>
+                </md-tab>
+                <md-tab label="<span><md-icon md-svg-src='svg/google116.svg' style='color:#DD4B39; width:32px;height:30px'></md-icon><md-tooltip>Google+</md-tooltip></span>">
+                    <md-tooltip md-direction="top">Google+</md-tooltip>
+                    <div class="content-search-social">
+                        <searchsocial type="gplus"></searchsocial>
+                    </div>
+                </md-tab>
+                <md-tab label="<md-icon md-svg-src='svg/instagram19.svg' style='color:#2A5B83; width:32px;height:30px'><md-tooltip>Instagram</md-tooltip></md-icon>">
+                    <md-tooltip md-direction="top">Instagram</md-tooltip>
+                    <div class="content-search-social">
+                        <searchsocial type="instagram"></searchsocial>
+                    </div>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+        <!-- Actividad -->
+        <md-content layout-padding class="md-whiteframe-z1 content-module">
+            <div class="buttons-options">
+                <h3><ng-md-icon icon="rate_review" style=""></ng-md-icon> Actividad </h3>
+                <btn-fixed-module type=""></btn-fixed-module>
+            </div>
+            <md-progress-circular ng-show="revisionProgress" md-mode="indeterminate"></md-progress-circular>
+            <ul class="revisions" ng-show="!revisionProgress">
+                <li ng-repeat="revision in revisions" class="revisions-card">
+                    <md-card ng-show="$index<=4">
+                        <md-card-content>
+                            Hace: <time datetime="{{revision.date_publish}}">{{revision.date_publish | timeago}}</time>
+                            <div>
+                                <strong>{{revision.estado}}</strong> | Por: <strong>{{revision.username}}</strong>
+                            </div>
+                            <md-button type="button" ng-click="clickViewActivity(revision)" class="md-fab md-mini md-primary button-activity">
+                                <md-tooltip>
+                                  Ver actividad
+                                </md-tooltip>
+                                <ng-md-icon icon="rate_review"></ng-md-icon>
+                            </md-button>
+                        </md-card-content>
+                    </md-card>
+                </li>
+            </ul>
+            <ul class="revisions" ng-show="showRevisions">
+                <li ng-repeat="revision in revisions" class="revisions-card">
+                    <md-card ng-show="$index>4">
+                        <md-card-content>
+                            Hace: <time datetime="{{revision.date_publish}}">{{revision.date_publish | timeago}}</time>
+                            <div>
+                                <strong>{{revision.estado}}</strong> | Por: <strong>{{revision.username}}</strong>
+                            </div>
+                            <md-button type="button" ng-click="clickViewActivity(revision)" class="md-fab md-mini md-primary button-activity">
+                                <md-tooltip>
+                                  Ver actividad
+                                </md-tooltip>
+                                <ng-md-icon icon="rate_review"></ng-md-icon>
+                            </md-button>
+                        </md-card-content>
+                    </md-card>
+                </li>
+            </ul>
+            <div style="text-align:center">
+                <md-button type="button" ng-if="revisions.length>5" ng-click="clickShowRevisions(showRevisions)" class="md-raised">{{showRevisions?'Ver menos':'Ver todos'}}</md-button>
+            </div>
+        </md-content>
+    </div>
+
+</div>

@@ -1,0 +1,405 @@
+<div class="relative" flex id="page-portadas" layout="column" role="main">
+<!-- HEADER -->
+    <script id="perfil-popover" type="text/ng-template">
+        <div class="triangle"></div>
+        <div class="ns-popover-tooltip">
+            <div class="enlaces-popover">
+                <ul>
+                    <li>
+                        <md-button class="md-primary" ng-click="openPerfil($event, 'perfil');">
+                            <ng-md-icon icon="account_circle"></ng-md-icon>
+                            Configurar
+                        </md-button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="modulos-cabecera">
+        <div class="triangle"></div>
+            <div class="ns-popover-tooltip">
+            <div class="enlaces-popover enlaces-apps">
+            <ul>
+              <li has-permission slug-module="socialtv" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/oido-social');" class="md-icon-button" aria-label="Button">
+                      <ng-md-icon icon="facebook-messenger" size="48" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Oido social</h5>
+                  <md-tooltip>Odido Social</md-tooltip>
+              </li>
+              <li has-permission slug-module="noticias" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/publicador');" class="md-icon-button" aria-label="Button">
+                      <ng-md-icon icon="my_library_books" size="48" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Publicador</h5>
+                  <md-tooltip>Publicador</md-tooltip>
+              </li>
+              <li has-permission slug-module="ticker" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/ticker');" class="md-icon-button" aria-label="Button">
+                      <ng-md-icon icon="tv" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Ticker</h5>
+                  <md-tooltip>Ticker</md-tooltip>
+              </li>
+              <li has-permission slug-module="player" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/streaming');" class="md-icon-button" aria-label="Button">
+                      <ng-md-icon icon="settings_input_antenna" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Streaming</h5>
+                  <md-tooltip>Streaming</md-tooltip>
+              </li>
+              <li has-permission slug-module="eventos" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/eventos');" class="md-icon-button">
+                      <ng-md-icon icon="alarm" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Eventos</h5>
+                  <md-tooltip>Eventos</md-tooltip>
+              </li>
+              <li has-permission slug-module="podcast" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/podcast');" class="md-icon-button">
+                      <ng-md-icon icon="volume_up" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Podcast</h5>
+                  <md-tooltip>Podcast</md-tooltip>
+              </li>
+              <li has-permission slug-module="sondeos" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/elecciones');" class="md-icon-button">
+                      <ng-md-icon icon="poll" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Elecciones</h5>
+                  <md-tooltip>Elecciones</md-tooltip>
+              </li>
+              <li has-permission slug-module="redessociales" action-module="index" style="display: inline-block;">
+                  <md-button aria-label="Redes Sociales" ng-click="openApps($event, '/redessociales/publicadas');" class="md-icon-button">
+                      <ng-md-icon icon="group_add" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Redes sociales</h5>
+                  <md-tooltip>Configurar Redes Sociales</md-tooltip>
+              </li>
+              <li has-permission slug-module="roles" action-module="index" style="display: inline-block;">
+                  <md-button ng-click="openApps($event, '/roles');" class="md-icon-button">
+                      <ng-md-icon icon="recent_actors" size="44" style="fill:rgb(4, 119, 210)"></ng-md-icon>
+                  </md-button>
+                  <h5>Roles</h5>
+                  <md-tooltip>Roles</md-tooltip>
+              </li>
+            </ul>
+            </div>
+        </div>
+    </script>
+    <md-toolbar class="md-toolbar-head" ng-class="{'novisibletoolbar':!custom}">
+        <div class="md-toolbar-tools">
+            <figure class="logo"><img alt="Logo Grupo RPP" class="pointer" ng-click="openBase()" src="svg/logo-grupo-rpp.svg"/></figure>
+            <md-button aria-label="Settings" class="md-icon-button" ng-class="{'novisiblesearch':!custom}" ng-click="toggleSidebarLeft()">
+                <ng-md-icon icon="more_vert" style="fill: white"></ng-md-icon>
+            </md-button>
+            <div class="contentSearch" id="contentSearch" style="visibility:hidden">
+                <ng-md-icon icon="search" style="fill: white"></ng-md-icon>
+                <md-autocomplete class="filterText" md-delay="250" md-item-text="item" md-items="item in getItemsSearch($event, filterText)" md-search-text-change="changeItemsSearch" md-search-text="filterText" md-selected-item="selectedFilterText" placeholder="Buscar...">
+                    <span md-highlight-text="filterText">{{item}}</span>
+                </md-autocomplete>
+                <ng-md-icon class="iconFilter" icon="filter_list" ng-click="btnOpenFilter($event)" style="fill: white"></ng-md-icon>
+                <div class="md-whiteframe-z4" id="optionSearch" layout-padding ng-show="formOptionSearch">
+                    <div layout layout-sm="column">
+                        <md-select flex ng-model="filterSite" placeholder="Sitio">
+                            <md-option ng-value="">Grupo RPP</md-option>
+                            <md-option ng-repeat="fSite in filterSites" ng-value="{{fSite}}">{{fSite.nombre}}</md-option>
+                        </md-select>
+                        <md-select flex ng-model="filterSection" placeholder="Categoría">
+                            <md-option ng-value="">Categoría</md-option>
+                            <md-option ng-repeat="fSection in filterSections" ng-value="{{fSection}}">{{fSection.nombre}}</md-option>
+                        </md-select>
+                        <md-select flex ng-model="filterTypeContent" placeholder="Tipo">
+                            <md-option ng-value="">Tipo</md-option>
+                            <md-option ng-repeat="fTypeContent in filterTypeContents" ng-value="{{fTypeContent}}">{{fTypeContent.nombre}}</md-option>
+                        </md-select>
+                    </div>
+                    <div layout layout-sm="column">
+                        <md-input-container flex>
+                            <label>Desde</label>
+                            <input ng-model="filterFrom" type="date">
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>Hasta</label>
+                            <input ng-model="filterTo" type="date">
+                        </md-input-container>
+                        <md-select flex ng-model="filterState" placeholder="Estado">
+                            <md-option ng-value="">Estado</md-option>
+                            <md-option ng-repeat="fState in filterStates" ng-value="{{fState}}">{{fState.nombre}}</md-option>
+                        </md-select>
+                    </div>
+                    <div layout layout-sm="column">
+                        <md-select ng-model="filterAuthor" placeholder="Autor" style="width:33%">
+                            <md-option ng-value="">Autor</md-option>
+                            <md-option ng-repeat="fAuthor in filterAuthors" ng-value="{{fAuthor}}">{{fAuthor.nombre}}</md-option>
+                        </md-select>
+                    </div>
+                    <div layout layout-sm="column">
+                        <md-button class="md-raised md-warn" ng-click="searchFilterNews($event)" type="button">Buscar</md-button>
+                    </div>
+                </div>
+            </div>
+            <md-button
+                ng-class="{'novisiblesearch':!custom}"
+                class="md-icon-button"
+                aria-label="Modulos"
+                ns-popover
+                ns-popover-template="modulos-cabecera"
+                ns-popover-trigger="click"
+                ns-popover-placement="bottom"
+                ns-popover-theme="ns-popover-tooltip-theme"
+                ns-popover-timeout="0.5"
+             >
+                <ng-md-icon icon="apps" style="fill: white"></ng-md-icon>
+                  <md-tooltip md-direction="bottom">
+                      Dashboard
+                  </md-tooltip>
+            </md-button>
+            <md-button aria-label="Chat" class="md-icon-button" ng-class="{'novisiblesearch':!custom}">
+                <ng-md-icon icon="chat" style="fill: white"></ng-md-icon>
+                <md-tooltip md-direction="bottom">
+                    Chat
+                </md-tooltip>
+            </md-button>
+
+            <md-button aria-label="Modules" class="md-icon-button ">
+                <ng-md-icon icon="archive" style="fill: white"></ng-md-icon>
+                <md-tooltip md-direction="bottom">
+                    Módulos
+                </md-tooltip>
+            </md-button>
+
+            <md-button aria-label="User" class="md-icon-button" ng-class="{'novisiblesearch':!custom}" ns-popover ns-popover-placement="bottom" ns-popover-template="perfil-popover" ns-popover-theme="ns-popover-tooltip-theme" ns-popover-timeout="0.5" ns-popover-trigger="click">
+                <img ng-if="user.pictureUrl" ng-src="{{ user.pictureUrl }}" alt="User" style="width:24px;height:24px;border-radius:50%;"></img>
+                <md-icon ng-if="!user.pictureUrl" md-svg-src="svg/user.svg" alt="User" style="width:24px;height:24px,"></md-icon>
+
+                <md-tooltip md-direction="bottom">
+                    Usuario
+                </md-tooltip>
+            </md-button>
+            <md-button aria-label="Scape" class="md-icon-button" ng-class="{'novisiblesearch':!custom}" ng-click="closeSession()" ng-disabled="disabledCloseSession">
+                <md-tooltip md-direction="bottom">
+                    Salir del sistema
+                </md-tooltip>
+                <ng-md-icon icon="settings_power" style="fill: white"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <section flex>
+        <div id="layerSearch" ng-click="hideLayer($event)" ng-show="layerSearch"></div>
+        <div layout="column">
+<!-- BREADCRUMB -->
+            <md-toolbar class="md-toolbar-subhead">
+                <div class="md-toolbar-tools md-toolbar-breadcrumb md-whiteframe-z1" layout-align="center center" layout="row">
+                    <div class="separador-select toolbar-filtro">
+                        <select chosen ng-change="obtenerDataXSitio()" ng-model="tipo" ng-options="item.nombre for item in tiposPortadas track by item.slug" no-results-text="'No hay opciones'" style="width:120px; margin-right: 10px;">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="separador-select toolbar-filtro" has-permission slug-module="destacadas" action-module="list">
+                        <select chosen ng-change="obtenerDataXSitio()" ng-model="sitio" ng-options="item.slug for item in sitios track by item.slug" no-results-text="'No hay opciones'" style="width:120px; margin-right: 10px;">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="separador-select toolbar-filtro">
+                        <select ng-show="!cargaPortada" chosen ng-change="obtenerDataXSeccion()" ng-model="seccion" ng-options="item.label for item in secciones track by item.slug" ng-show="cargaPortadaSelect" no-results-text="'No hay opciones'" style="width:320px; margin-right: 10px;">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="separador-select toolbar-filtro">
+                        <select chosen ng-change="cargarPlantilla()" ng-model="plantilla" ng-options="item.nombre for item in plantillas track by item.slug" no-results-text="'No hay opciones'" style="margin-right: 10px; ; width:180px">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <md-button class="md-primary" ng-click="clickSave($event);" type="button" has-permission slug-module="destacadas" action-module="guardar">
+                        <ng-md-icon icon="save" size="20"></ng-md-icon>
+                        Guardar
+                    </md-button>
+                    <md-button class="md-primary" ng-click="clickPreview($event);" type="button">
+                        <ng-md-icon icon="remove_red_eye" size="20"></ng-md-icon>
+                        Previsualizar
+                    </md-button>
+                    <md-button class="md-primary" ng-click="clickPublish($event);" type="button" has-permission slug-module="destacadas" action-module="publicar">
+                        <ng-md-icon icon="language" size="20"></ng-md-icon>
+                        Publicar
+                    </md-button>
+                    <md-button class="md-primary" ng-click="clickDelete($event);" ng-if="isPublish" type="button">
+                        <ng-md-icon icon="undo" size="20"></ng-md-icon>
+                        Despublicar
+                    </md-button>
+                    <div style="position: relative; left: 15%;">
+                      <md-button class="md-primary" ng-click="tooglePermisos($event);" type="button">
+                          <ng-md-icon icon="list" size="20"></ng-md-icon>
+                          Permisos
+                      </md-button>
+                    </div>
+                </div>
+            </md-toolbar>
+<!-- /BREADCRUMB -->
+<!-- LEFT -->
+            <aside class="sidenav-left sidenav-module md-whiteframe-z2" id="sidebarleft">
+                <menu-lateral-derecha activo="portadas"></menu-lateral-derecha>
+            </aside>
+<!-- CONTENT -->
+            <section class="md-toolbar-subbody content-body-center fullcenter" id="contentbodycenter">
+                <div id="bodyAddsNews">
+                    <md-progress-circular md-mode="indeterminate" ng-show="cargaPortada"></md-progress-circular>
+
+                    <div class="carril-right">
+                      <div layout="row" layout-wrap>
+                        <div flex="100">
+                          <div name="titlesForm">
+                            <div layout="row" style="position:relative">
+                              <md-input-container flex>
+                                <label>Título <span ng-if="titulo.length>0">({{titulo.length}} Caracteres)</span>
+                                </label>
+                                <input ng-model="portada.titulo">
+                              </md-input-container>
+                              <button type="button" ng-click="(showFieldTitles)?showFieldTitles=false:showFieldTitles=true;" class="btn-help-aside btn-in-list">
+                                <md-tooltip md-direction="right">
+                                    {{(showFieldTitles)?'Ver menos':'Ver más campos'}}
+                                </md-tooltip>
+                                <ng-md-icon ng-if="showFieldTitles" icon="remove"></ng-md-icon>
+                                <ng-md-icon ng-if="!showFieldTitles" icon="add"></ng-md-icon>
+                              </button>
+                            </div>
+
+                            <div layout ng-show="showFieldTitles">
+                              <md-input-container flex>
+                                <label>Descripción <span ng-if="portada.descripcion.length>0">({{descripcion.length}} Caracteres)</span>
+                                </label>
+                                <textarea name="descripcion" ng-model="portada.descripcion" ng-blur="blurTitle()"></textarea>
+                              </md-input-container>
+                            </div>
+
+                            <div layout ng-show="showFieldTitles">
+                              <div flex="100">
+                                <p>Tags</p>
+                                <md-chips ng-model="portada.tags" md-autocomplete-snap md-require-match="true" class="custom-chips"  md-on-append="tagsOnAppend($chip)">
+                                  <md-autocomplete
+                                      md-selected-item="selectedItem"
+                                      md-search-text="searchText1"
+                                      md-items="item in querySearch(searchText1)"
+                                      md-item-text="item"
+                                      placeholder="Añadir tag">
+                                    <span md-highlight-text="searchText1">{{item}}</span>
+                                  </md-autocomplete>
+                                  <md-chip-template>
+                                    <strong>{{$chip}}</strong>
+                                  </md-chip-template>
+                                </md-chips>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div id="area-template-portadas">
+                        <div ng-include src="areaPlantilla"></div>
+                    </div>
+                </div>
+            </section>
+<!-- SIDEBARS -->
+<!-- RIGHT -->
+            <aside class="sidenav-right sidenav-module fullsidebar" id="sidebarright">
+<!--Accesos-->
+              <section class="content-module" ng-if="mostrarPermisos">
+                <div class="buttons-options">
+                    <h3 class="text-module">
+                        <ng-md-icon icon="info_outline" size="20" style=""></ng-md-icon>
+                        Acciones permitidas
+                    </h3>
+                    <btn-fixed-module type=""></btn-fixed-module>
+                </div>
+                <div class="content-search-social">
+                  <ul style="list-style: none; margin: 0px; padding: 0px;">
+                    <li ng-repeat="perm in permissions" style="text-transform: capitalize;">{{ perm }}</li>
+                  </ul>
+                </div>
+              </section>
+
+<!--Última fecha de modificación -->
+              <section class="content-module" has-permission slug-module="destacadas" action-module="ping">
+                <div class="buttons-options">
+                  <h3 class="text-module">
+                      <ng-md-icon icon="timer" size="20" style=""></ng-md-icon>
+                      Seguimiento de portada
+                  </h3>
+                  <p ng-if="!last_modified.need_refresh">La portada actual no ha sido modificada por otros usuarios.</p>
+                  <p ng-if="last_modified.need_refresh">
+                    <img ng-if="last_modified.foto" ng-src="{{ last_modified.foto }}" alt="foto" style="width:24px;height:24px;border-radius:50%;"></img>
+                    <md-icon ng-if="!last_modified.foto" md-svg-src="svg/user.svg" alt="User" style="width:24px;height:24px,"></md-icon>
+                    La portada ha sido modificada {{ last_modified.last_epoctime*1000 | timeago }} por el usuario {{ last_modified.name }}.
+                    <a ng-click="recargarVista()">
+                      <ng-md-icon icon="loop" size="20" style=""></ng-md-icon>
+                      <md-tooltip md-direction="bottom">Recargar página</md-tooltip>
+                    </a>
+                  </p>
+                </div>
+              </section>
+
+<!-- Buscador Social -->
+                <section class="content-module" has-permission slug-module="destacadas" action-module="buscar_noticias">
+                    <div class="buttons-options">
+                        <h3 class="text-module">
+                            <ng-md-icon icon="find_replace" size="20" style=""></ng-md-icon>
+                            Buscador de noticias
+                        </h3>
+                        <btn-fixed-module type=""></btn-fixed-module>
+                    </div>
+                    <div class="content-search-social">
+                        <searchnews type=""></searchnews>
+                    </div>
+                </section>
+
+                <!-- Actividad -->
+                <section class="content-module" style="margin-bottom: 10px" has-permission slug-module="destacadas" action-module="actividades">
+                    <div class="buttons-options">
+                        <h3 class="text-module"><ng-md-icon size="20" icon="rate_review" style=""></ng-md-icon> Actividad </h3>
+                        <btn-fixed-module type=""></btn-fixed-module>
+                    </div>
+                    <md-progress-circular ng-show="revisionProgress" md-mode="indeterminate"></md-progress-circular>
+                    <div style="max-height: 400px; overflow: auto;"
+                       <ul class="revisions" ng-show="!revisionProgress">
+                          <li ng-repeat="revision in revisions" class="revisions-card">
+                            <div>
+                              <div>
+                                <strong>Editado por: {{ revision.username }}</strong>
+                              </div>
+                              <div class="md-caption" ng-if="revision.modtime">
+                                Fecha: <time datetime="{{revision.modtime}}">{{revision.fecha}}</time>
+                              </div>
+                              <div class="md-caption" ng-if="revision.modtime">
+                                (<time datetime="{{revision.modtime}}">{{revision.modtime * 1000| timeago}}</time>)
+                              </div>
+                            </div>
+                          </li>
+                      </ul>
+                      <div ng-show="revisions.length == 0" class="alert-warn md-body-1">No se encontraron registros de actividad.</div>
+                    </div>
+                </section>
+
+            </aside>
+<!-- ZONE CLONE DRAG -->
+            <div class="zone-clone" id="zone-clone" ng-drag-clone>
+                <div>
+                    <div class="div-result-news">
+                        <div class="tema">{{fileClone.categoria.nombre}}</div>
+                        <div>
+                            <h4>
+                                <a href="{{fileClone.url}}" target="_blank">{{fileClone.titulo}}</a>
+                            </h4>
+                        </div>
+                        <div><img alt="Imagen de noticia" src="{{fileClone.imagen_portada.url}}"/></div>
+                        <!--div class="bajada">{{fileClone.bajada}}</div-->
+                        <div class="fecha">{{fileClone.post_date}}</div>
+                    </div>
+                </div>
+            </div>
+<!-- / END ZONE CLONE DRAG -->
+<!-- /SIDEBARS -->
+        </div>
+    </section>
+<!-- FOOTER -->
+</div>

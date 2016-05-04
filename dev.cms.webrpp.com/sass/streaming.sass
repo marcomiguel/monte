@@ -1,0 +1,95 @@
+#streaming #contentbodycenter.fullcenter
+  margin: 0
+  width: 100%
+  position: relative
+
+.streaming-content .flex-container
+  padding: 0
+  margin: 0
+  list-style: none
+  -ms-box-orient: horizontal
+  display: -webkit-box
+  display: -moz-box
+  display: -ms-flexbox
+  display: -moz-flex
+  display: -webkit-flex
+  display: flex
+
+.streaming-content .longhand
+  -webkit-flex-flow: wrap row
+  flex-flow: wrap row
+
+.streaming-content .flex-item
+  padding: 5px
+  width: 300px
+  /*height: 100%*/
+  /*max-height: 260px*/
+  margin: 10px
+  font-weight: bold
+  text-align: center
+
+.indicadores
+  margin: 5px auto 5px
+  text-align: center
+
+.indicadores.embed_url input
+  width: 100%
+
+.descripcion
+  margin: 5px auto 5px
+  text-align: center
+
+.item
+ vertical-align: middle
+
+.item .no-margin
+  margin: 0px
+
+.item.animate-connection
+  -webkit-animation: spin 4s linear infinite
+  -moz-animation: spin 4s linear infinite
+  animation: spin 4s linear infinite
+
+#streaming .md-button.md-icon-button
+  height: 29px
+  min-height: 29px
+
+#streaming .left
+  float: left
+
+#streaming .right
+  float: right
+
+#streaming .streaming-content .flex-container:last-child
+  margin-bottom: 20px
+
+#streaming .opciones
+  position: absolute
+  right: 5px
+  top: 50%
+  transform: translate3d(0,-50%,0)
+  &.focused
+    top: 25%
+
+#streaming .titulo
+  text-transform: uppercase
+
+#streaming .contenido p
+  margin: 1px
+  font-weight: 0.8rem
+  color: #827571
+
+#streaming .titulo:not(:first-child):before
+    content: ' -'
+
+#streaming .item-config:hover
+  background-color: #dbdbdb
+
+#streaming .list_container
+  max-height: 400px
+  overflow-y: auto
+
+#streaming md-sidenav
+  width: 470px
+  min-width: 470px
+  max-width: 470px

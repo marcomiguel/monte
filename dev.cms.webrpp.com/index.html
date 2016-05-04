@@ -1,0 +1,52 @@
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="CMS Grupo RPP">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <meta name="viewport" content="initial-scale=1" />
+    <link rel="stylesheet" href="css/lib/angular-material/0.10.1/angular-material.min.css?version=0.0.6" />
+    <link rel="stylesheet" href="css/utils.css?version=0.0.6" />
+    <link rel="stylesheet" href="css/appcss.css?version=0.0.6" />
+</head>
+<body class="body-preload">
+    <div id="msjGlobal" class="alert-warn--global"></div>
+    <div class="preloader" ng-hide="preloader">
+        <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+    </div>
+    <div ng-cloak>
+        <!-- LOAD SITE -->
+        <msj-init ng-cloak></msj-init>
+        <div ng-view></div>
+    </div>
+    <!-- SCRIPTS -->
+    <script src="//maps.google.com/maps/api/js?region=pe&language=es&sensor=false&libraries=places"></script>
+    <script src="data/config.js?version=0.0.6"></script>
+    <script src="data/configUrls.js?version=0.0.6"></script>
+    <script src="js/lib/tinymce/tinymce.min.js"></script>
+    <script src="js/lib/jquery-1.11.0.min.js"></script>
+    <script src="js/lib/angular-masonry/masonry.pkgd.min.js"></script>
+    <script src="js/lib/angular-masonry/imagesloaded.pkgd.min.js"></script>
+    <script src="js/lib/angular/1.4.3/angular.min.js"></script>
+    <script src="js/lib/angular/1.4.3/angular-animate.min.js"></script>
+    <script src="js/lib/angular/1.4.3/angular-route.min.js"></script>
+    <script src="js/lib/angular/1.4.3/angular-aria.min.js"></script>
+    <script src="js/lib/angular/1.4.3/angular-messages.min.js"></script>
+    <script src="js/lib/ngStorage.min.js"></script>
+    <script src="js/lib/angular-cache.min.js"></script>
+    <script src="js/lib/angular-material/0.10.1/angular-material.min.js"></script>
+    <script src="js/lib/angular-material-icons.min.js"></script>
+    <script src="js/lib/svg-morpheus.js"></script>
+    <script src="js/lib/ng-map.min.js"></script>
+    <script src="js/lib/tinymce/angular-tinymce.js"></script>
+    <script src="js/lib/chosen/chosen.jquery.js"></script>
+    <script src="js/lib/chosen-angular/chosen.js"></script>
+    <script src="js/lib/angular-masonry/angular-masonry.js"></script>
+    <script src="js/lib/html5uploadimage.js?version=0.1.1"></script>
+    <script src="js/lib/utils.js?version=0.1.1"></script>
+    <script src="http://content.jwplatform.com/libraries/EehFj6b8.js"></script>
+    <script data-main="main" src="js/lib/require.min.js"></script>
+    <script src="js/lib/vmap/jquery.vmap.js"></script>
+    <script src="js/lib/vmap/jvectormap.peru.js"></script>
+</body>
+</html>

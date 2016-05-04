@@ -1,0 +1,133 @@
+<div layout="column" class="relative" flex role="main" id="facebook-config">
+    <!-- HEADER -->
+    <div ng-include="'template/partial/header-nosearch.html'"></div>
+    <!-- END HEADER -->
+    <div flex>
+        <div ng-click="hideLayer($event)" id="layerSearch" ng-show="layerSearch"></div>
+        <div layout="column">
+            <!-- BREADCRUMB -->
+            <md-toolbar class="md-toolbar-subhead">
+                <div layout="row" layout-align="center center" class="md-toolbar-tools md-toolbar-breadcrumb md-whiteframe-z1">
+                    
+                </div>
+            </md-toolbar>
+            <!-- /BREADCRUMB -->
+            <!-- LEFT -->
+            <aside class="sidenav-left sidenav-module md-whiteframe-z2" id="sidebarleft">
+                <menu-lateral-derecha activo="videos" modulo="redes-sociales"></menu-lateral-derecha>
+            </aside>
+            <!-- /LEFT -->
+            <!-- CONTENT -->
+            <section class="md-toolbar-subbody content-body-center fullcenter" id="contentbodycenter">
+                <div layout="column">
+                    <div class="md-padding">
+                        <script type="text/ng-template" id="facebook-popover">
+                            <div class="triangle"></div>
+                            <div class="ns-popover-tooltip">
+                                <div class="tags-popover">
+                                    <h4>Post en Facebook:</h4>
+                                    <ul>
+                                        <li ng-repeat="post in new.facebook_posts">
+                                            <div class="img-thumbs-rs">
+                                                <img ng-click="openRSShare($event, post, 'share')" alt="{{post.name}}" ng-src="{{post.picture}}" style="cursor: pointer;"/>
+                                                <md-tooltip md-direction="bottom">
+                                                    {{post.name}}
+                                                </md-tooltip>
+                                          </div>    
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </script>
+                        <script type="text/ng-template" id="twitter-popover">
+                            <div class="triangle"></div>
+                            <div class="ns-popover-tooltip">
+                                <div class="tags-popover">
+                                    <h4>Post en Twitter:</h4>
+                                    <ul>
+                                        <li ng-repeat="post in new.twitter_posts">
+                                            <div class="img-thumbs-rs">
+                                                <img ng-click="openRSShare($event, post, 'share')" alt="{{post.name}}" ng-src="{{post.picture}}" style="cursor: pointer;"/>
+                                                <md-tooltip md-direction="bottom">
+                                                    {{post.name}}
+                                                </md-tooltip>
+                                          </div>    
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </script>
+                        <md-card ng-repeat="new in newsItems track by $index" class="md-card-news">
+                                <div layout="row" layout-wrap>
+                                    <figure class="md-avatar" flex="30">
+                                        <img err-src ng-src="{{new.image_url}}" alt="{{new.titulo}}" ng-click="mostrarVistaDetalle($event, new._id);"/>
+                                    </figure>
+                                    <md-card-content flex="60">
+                                        <p class="nd-card-top">
+                                            <a ng-if="new.url" href="{{new.url}}" target="_blank">
+                                                <ng-md-icon icon="link" style="fill:rgb(33,150,243)"></ng-md-icon>
+                                                <md-tooltip md-direction="top">Ir a URL</md-tooltip>
+                                            </a>
+                                        </p>
+                                        <h2 style="margin:0.125em 0;" style="cursor:pointer" ng-click="mostrarVistaDetalle($event, new._id);">{{ new.message }}</h2>
+                                        <p class="card-secondary">
+                                            Autor: <strong>{{ new.auth.name }}</strong>
+                                        </p>
+                                        <p style="margin-top:0.125em;" class="card-secondary">
+                                           {{new.date_publish * 1000 | eventdate }}
+                                           <!--{{new.date_publish}} | {{new.stats.daxpv}} Visita{{(new.stats.daxpv===1)?'':'s'}}-->
+                                        </p>
+                                        <ul style="margin:5px 0 0;padding:5px 0 0;list-style:none;">
+                                            <li ng-if="new.facebook_posts.length > 0" style="display:inline-block;">
+                                                <span>
+                                                    <md-icon md-svg-src='svg/facebook29.svg' style='color:#435a8b; width:24px; height:24px;'></md-icon>
+                                                    <md-tooltip>Facebook</md-tooltip>
+                                                </span>
+                                            </li>
+                                            <li ng-repeat="post in new.facebook_posts" style="display:inline-block;">
+                                                <span>
+                                                    <img ng-click="openRSShare($event, post, 'share')" alt="{{post.name}}" ng-src="{{post.picture}}" style="cursor: pointer; width:24px; height:24px; vertical-align: middle;"/>
+                                                    <md-tooltip md-direction="bottom">{{post.name}}</md-tooltip>
+                                                </span>    
+                                            </li>
+                                        </ul>
+                                        <ul style="margin:5px 0 0;padding:5px 0 0;list-style:none;">
+                                            <li ng-if="new.twitter_posts.length > 0" style="display:inline-block">
+                                                <span>
+                                                    <md-icon md-svg-src='svg/twitter20.svg' style='color:#55acee; width:24px;height:24px'></md-icon>
+                                                    <md-tooltip>Twitter</md-tooltip>
+                                                </span>
+                                            </li>
+                                            <li ng-repeat="post in new.twitter_posts" style="display:inline-block;">
+                                                <span>
+                                                    <img ng-click="openRSShare($event, post, 'share')" alt="{{post.name}}" ng-src="{{post.picture}}" style="cursor: pointer; width:24px; height:24px; vertical-align: middle;"/>
+                                                    <md-tooltip md-direction="bottom">{{post.name}}</md-tooltip>
+                                                </span>    
+                                            </li>
+                                        </ul>
+                                    </md-card-content>                                
+                                </div>
+                            </md-card>
+                        <div scroll-trigger scroll-function="newsNextPage()" threshold="100" class="trigger-scroll">&nbsp;</div>
+                            <div ng-show="newsBusy">
+                                <md-progress-circular class="progressContent" md-mode="indeterminate"></md-progress-circular>
+                            </div>
+                            <div ng-show="msjBusy" class="alert-warning">
+                                No hay más publicaciones encontradas.
+                            </div>
+                            <div style="height:100px" id="scroll-bottom"></div>
+                    </div>
+                </div>
+            </section>
+            <!-- FAB POPUP -->
+            <section ng-init="iconAddFab='add'" id="fabs" ng-mouseenter="showAddButtons=true; iconAddFab='edit';" ng-mouseleave="showAddButtons=false; iconAddFab='add';">
+                <md-button ng-click="mostrarVistaDetalle($event);" id="mainFab" class="md-fab md-warn md-large" aria-label="Crear Post">
+                    <md-tooltip md-direction="left">
+                        Crear post para video
+                    </md-tooltip>
+                    <ng-md-icon icon="{{iconAddFab}}" style="fill:white"></ng-md-icon>
+                </md-button>
+            </section>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,354 @@
+<div layout="column" ng-controller="listadoCtrl">
+    <!-- BREADCRUMB -->
+    <md-toolbar class="md-zindex-0 md-toolbar-subhead">
+        <div class="md-toolbar-tools md-toolbar-breadcrumb md-whiteframe-z1">
+            <div style="margin: 0 auto; width: 85%;">
+                <div class="chip-legend" ng-repeat="chip in chipLegend">
+                    <span>{{chip.nombre}}</span>
+                    <button type="button" ng-click="clickChipLegend(chip, $index)">
+                        <ng-md-icon icon="close" size="12" style="fill:white;"></ng-md-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </md-toolbar>
+    <!-- /BREADCRUMB -->
+    <div layout="row" layout-align="center center" class="md-toolbar-subbody content-body-center">
+        <div flex="100">
+            <script type="text/ng-template" id="enlaces-popover">
+                <div class="triangle"></div>
+                <div class="ns-popover-tooltip">
+                    <div class="enlaces-popover">
+                        <ul>
+                            <li>
+                                <md-button ng-click="openCreateNew($event, 'editar', new.nid);" class="md-primary">
+                                    <ng-md-icon icon="edit"></ng-md-icon>
+                                    Modificar
+                                </md-button>
+                            </li>
+                            <li>
+                                <md-button ng-click="openHighlightNew($event, 'destacar', new, $index);" class="md-primary">
+                                    <ng-md-icon icon="done_all"></ng-md-icon>
+                                    Destacar
+                                </md-button>
+                            </li>
+                            <li>
+                                <md-button ng-click="openDeleteNew($event, new.titulo, new.nid, $index);" class="md-primary">
+                                    <ng-md-icon icon="delete"></ng-md-icon>
+                                    Eliminar
+                                </md-button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </script>
+            <script type="text/ng-template" id="destacados-popover">
+                <div class="triangle"></div>
+                <div class="ns-popover-tooltip">
+                    <div class="destacados-popover">
+                        <h4>Portadas asignadas:</h4>
+                        <div id="ns_{{new.nid}}">
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                        </div>
+                    </div>
+                </div>
+            </script>
+            <script type="text/ng-template" id="tags-popover">
+                <div class="triangle"></div>
+                <div class="ns-popover-tooltip">
+                    <div class="tags-popover">
+                        <h4>Temas asignados:</h4>
+                        <ul>
+                            <li ng-repeat="tag in new.tags">{{tag.nombre}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </script>
+            <md-content class="md-padding">
+                <div infinite-scroll='newsNextPage()' infinite-scroll-disabled='newsBusy' infinite-scroll-distance='1'>
+                    <md-card ng-repeat="new in newsItems" class="md-card-news">
+                        <div layout="row" layout-wrap>
+                            <figure class="md-avatar" flex="25">
+                                <img style="width:100%; height:auto; max-height:auto;" ng-src="{{new.imagen_portada.url}}?{{$index}}" alt="{{new.titulo}}" />
+                            </figure>
+                            <md-card-content flex="65">
+                                <p class="nd-card-top">
+                                    <span ng-switch="new.tipo">
+                                        <span ng-switch-when="noticia">
+                                            <ng-md-icon icon="reorder" style="fill:#424242"></ng-md-icon>
+                                        </span>
+                                        <span ng-switch-when="galeria">
+                                            <ng-md-icon icon="image" style="fill:#424242"></ng-md-icon>
+                                        </span>
+                                        <span ng-switch-when="slider">
+                                            <ng-md-icon icon="collections" style="fill:#424242"></ng-md-icon>
+                                        </span>
+                                        <span ng-switch-when="video">
+                                            <ng-md-icon icon="video_collection" style="fill:#424242"></ng-md-icon>
+                                        </span>
+                                        <span ng-switch-when="audio">
+                                            <ng-md-icon icon="volume_up" style="fill:#424242"></ng-md-icon>
+                                        </span>
+                                        <span ng-switch-when="url">
+                                            <ng-md-icon icon="link" style="fill:#424242"></ng-md-icon>
+                                        </span>
+                                        <span ng-switch-when="mam">
+                                            <ng-md-icon icon="alarm_add" style="fill:#424242"></ng-md-icon>
+                                        </span>
+                                        <span ng-switch-when="blog">
+                                            <ng-md-icon icon="perm_contact_cal" style="fill:#424242"></ng-md-icon>
+                                        </span>
+                                        <span ng-switch-when="infografia">
+                                            <ng-md-icon icon="photo_album" style="fill:#424242"></ng-md-icon>
+                                        </span>
+                                        <span ng-switch-when="brandcontent">
+                                            <ng-md-icon icon="picture_in_picture" style="fill:#424242"></ng-md-icon>
+                                        </span>
+                                    </span>
+                                    <span ng-if="new.categorias.length>1" class="card-secondary"
+                                        ns-popover
+                                        ns-popover-plain="true"
+                                          ns-popover-template="{{returnCategorys(new.categorias)}}"
+                                        ns-popover-trigger="mouseenter"
+                                        ns-popover-placement="bottom"
+                                        ns-popover-theme="ns-popover-tooltip-theme"
+                                        ns-popover-timeout="0.5"
+                                        >
+                                        <span ng-repeat="categoria in new.categorias">
+                                            <span ng-if="categoria.primary">{{categoria.nombre | uppercase}}</span>
+                                        </span>
+                                    </span>
+                                    <span ng-if="new.categorias.length<=1" class="card-secondary"
+                                        ns-popover
+                                        ns-popover-plain="true"
+                                          ns-popover-template="<div class='triangle'></div><div class='ns-popover-tooltip'>No tiene más categorias asignadas.</div>"
+                                        ns-popover-trigger="mouseenter"
+                                        ns-popover-placement="bottom"
+                                        ns-popover-theme="ns-popover-tooltip-theme"
+                                        ns-popover-timeout="0.5"
+                                    >
+                                        {{ new.categorias[0].nombre | uppercase }}
+                                    </span>
+                                    <span ng-switch="new.estado">
+                                        <span ng-switch-when="publicado">
+                                            <ng-md-icon icon="done" style="fill:#43A047">
+                                                <md-tooltip md-direction="top">
+                                                    Publicado
+                                                </md-tooltip>
+                                            </ng-md-icon>
+                                        </span>
+                                        <span ng-switch-when="editado">
+                                            <ng-md-icon icon="done" style="fill:#FF6D00">
+                                                <md-tooltip md-direction="top">
+                                                    Editado
+                                                </md-tooltip>
+                                            </ng-md-icon>
+                                        </span>
+                                        <span ng-switch-when="creado">
+                                            <ng-md-icon icon="done" style="fill:#0D47A1">
+                                                <md-tooltip md-direction="top">
+                                                    Creado
+                                                </md-tooltip>
+                                            </ng-md-icon>
+                                        </span>
+                                        <span ng-switch-when="despublicado">
+                                            <ng-md-icon icon="done" style="fill:#000000">
+                                                <md-tooltip md-direction="top">
+                                                    Despublicado
+                                                </md-tooltip>
+                                            </ng-md-icon>
+                                        </span>
+                                        <span ng-switch-when="eliminado">
+                                            <ng-md-icon icon="done" style="fill:#D50000">
+                                                <md-tooltip md-direction="top">
+                                                    Eliminado
+                                                </md-tooltip>
+                                            </ng-md-icon>
+                                        </span>
+                                        <span ng-switch-default></span>
+                                    </span>
+                                </p>
+                                <h2>{{ new.titulo }}</h2>
+                                <p class="card-secondary">
+                                    Para <strong>{{ new.sitio }}</strong>,
+                                    por <strong>{{ new.autor.nombre }}</strong>
+                                     |
+                                    <span
+                                        class="btn-in-list"
+                                        ns-popover
+                                        ns-popover-template="tags-popover"
+                                        ns-popover-trigger="click"
+                                        ns-popover-placement="bottom"
+                                        ns-popover-theme="ns-popover-tooltip-theme"
+                                        ns-popover-timeout="0.5"
+                                    >
+                                        Temas <ng-md-icon icon="keyboard_arrow_down" size="16"></ng-md-icon>
+                                    </span>
+                                    |
+                                    <span
+                                        class="btn-in-list"
+                                        ns-popover
+                                        ns-url-ajax="{{urlAjaxHighlight}}{{new.nid}}"
+                                        ns-model-ajax="modelAjaxHighlight"
+                                        ns-html-id="{{new.nid}}"
+                                        ns-popover-template="destacados-popover"
+                                        ns-msj-empty="{{msjEmptyHighlight}}"
+                                        ns-popover-trigger="click"
+                                        ns-popover-placement="bottom"
+                                        ns-popover-theme="ns-popover-tooltip-theme"
+                                        ns-popover-timeout="0.5"
+                                    >
+                                        Portadas <ng-md-icon icon="keyboard_arrow_down" size="16"></ng-md-icon>
+                                    </span>
+
+                                </p>
+                                <p class="card-secondary">
+                                   {{new.date_publish | timeago}} | {{new.visitas_total}} Visita{{(new.visitas_total===1)?'':'s'}}
+                                </p>
+                            </md-card-content>
+                            <div flex="10" class="md-actions" layout="row" layout-align="center center">
+                                <md-button
+                                    class="md-icon-button"
+                                    aria-label="Links"
+                                    ns-popover
+                                    ns-popover-template="enlaces-popover"
+                                    ns-popover-trigger="click"
+                                    ns-popover-placement="bottom"
+                                    ns-popover-theme="ns-popover-tooltip-theme"
+                                    ns-popover-timeout="0.5"
+                                >
+                                    <ng-md-icon icon="more_vert"></ng-md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                    </md-card>
+                    <md-card ng-show="newsBusy" class="md-padding">
+                        <md-progress-circular class="progressContent" md-mode="indeterminate"></md-progress-circular>
+                    </md-card>
+                    <md-card ng-show="msjBusy" class="alert-warning">
+                        No se encontraron coincidencias.
+                    </md-card>
+                </div>
+            </md-content>
+        </div>
+    </div>
+    <!-- FAB POPUP -->
+    <section ng-init="iconAddFab='add'" id="fabs" ng-mouseenter="showAddButtons=true; iconAddFab='edit';" ng-mouseleave="showAddButtons=false; iconAddFab='add';">
+        <div id="fab-popup" layout="column" layout-align="space-between" ng-if="showAddButtons" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+          <md-button class="md-fab md-raised md-cms-green" ng-click="openCreateNew($event, 'galeria', undefined);" aria-label="New document">
+              <md-tooltip md-direction="left">
+              Galeria
+              </md-tooltip>
+              <ng-md-icon icon="collections" style="fill:white"></ng-md-icon>
+          </md-button>
+          <md-button class="md-fab md-raised md-cms-green" ng-click="openCreateNew($event, 'lista', undefined);" aria-label="New document">
+              <md-tooltip md-direction="left">
+               Lista
+              </md-tooltip>
+              <ng-md-icon icon="format_list_numbered" style="fill:white"></ng-md-icon>
+          </md-button>
+          <md-button class="md-fab md-raised md-cms-green" ng-click="openCreateNew($event, 'paginado', undefined);" aria-label="New document">
+              <md-tooltip md-direction="left">
+              Páginado
+              </md-tooltip>
+              <ng-md-icon icon="settings_ethernet" style="fill:white"></ng-md-icon>
+          </md-button>
+          <md-button class="md-fab md-raised md-cms-green" ng-click="openCreateNew($event, 'noticia', undefined);" aria-label="New document">
+              <md-tooltip md-direction="left">
+              Noticia
+              </md-tooltip>
+              <ng-md-icon icon="format_align_justify" style="fill:white"></ng-md-icon>
+          </md-button>
+        </div>
+        <md-button ng-click="openCreateNew($event, 'noticia', undefined);" id="mainFab" class="md-fab md-warn md-large" aria-label="Photos">
+            <md-tooltip md-direction="left">
+            Agregar noticia
+            </md-tooltip>
+            <ng-md-icon icon="{{iconAddFab}}" style="fill:white"></ng-md-icon>
+        </md-button>
+    </section>
+    <!-- FIN FAB POPUP -->
+
+    <!--md-content layout="row" flex>
+        <div layout-align="center" layout layout-padding>
+            <md-card class="md-whiteframe-z1" flex="75" flex-sm="100" flex-md="75">
+
+                <div layout="column" layout-align="top center">
+                    <md-content layout-padding>
+                        <md-list>
+                          <md-subheader class="md-no-sticky"><ng-md-icon icon="speaker_notes"></ng-md-icon> Listado de noticias <md-progress-circular ng-show="showLoadListNew" md-mode="indeterminate"></md-progress-circular></md-subheader>
+                          <md-list-item class="md-with-secondary" ng-repeat="new in news">
+                            <figure class="md-avatar">
+                                <img style="width:100%; height:auto; max-width:160px; max-height:90px; /*width:160px; height:90px;*/" ng-src="{{new.imagen_portada.url}}?{{$index}}" alt="{{new.titulo}}" />
+                            </figure>
+                            <div class="md-list-item-text">
+                              <h2>{{ new.titulo }}</h2>
+                              <p>
+                                  {{ new.autor.nombre }}
+                                  <md-button ng-click="openCreateNew($event, 'editar', new.nid);" class="md-primary">
+                                      <ng-md-icon icon="edit"></ng-md-icon>
+                                      <md-tooltip md-direction="bottom">
+                                          Editar
+                                      </md-tooltip>
+                                  </md-button>
+                                  <md-button ng-click="openDeleteNew($event, new.titulo, new.nid, $index);" class="md-primary">
+                                      <ng-md-icon icon="delete"></ng-md-icon>
+                                      <md-tooltip md-direction="bottom">
+                                          Eliminar
+                                      </md-tooltip>
+                                  </md-button>
+                                  <span>
+                                      {{new.visitas_total}} Vistas
+                                  </span>
+                                  <span>({{ new.estado }})</span>
+                              </p>
+                            </div>
+                            <md-divider inset class="md-default-theme"></md-divider>
+                          </md-list-item>
+                        </md-list>
+                    </md-content>
+                </div>
+
+            </md-card>
+        </div>
+    </md-content-->
+
+    <!--md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')">
+      <md-content layout-padding>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Mas vistos">
+                <md-content>
+                    <md-progress-circular ng-show="showLoadListNew" md-mode="indeterminate"></md-progress-circular>
+                    <md-list ng-show="!newProgress">
+                      <md-list-item class="md-with-secondary" ng-repeat="new in news">
+                        <div class="md-list-item-text">
+                          <h4>{{ new.titulo }}</h4>
+                        </div>
+                        <md-divider inset class="md-default-theme"></md-divider>
+                      </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-tab>
+            <md-tab label="Actividad">
+                <md-content class="md-padding">
+                    <md-progress-circular ng-show="draftLoadListNew" md-mode="indeterminate"></md-progress-circular>
+                    <md-list>
+                      <md-list-item class="md-with-secondary" ng-repeat="draft in drafts">
+                        <div class="md-list-item-text">
+                          <h4>{{ draft.titulo }}</h4>
+                          <md-button ng-click="openCreateNew($event, 'editar', draft.nid);" class="md-primary">
+                              <ng-md-icon icon="edit"></ng-md-icon>
+                              <md-tooltip md-direction="bottom">
+                                  Editar
+                              </md-tooltip>
+                          </md-button>
+                        </div>
+                        <md-divider inset class="md-default-theme"></md-divider>
+                      </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+      </md-content>
+    </md-sidenav-->
+</div>

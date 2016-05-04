@@ -1,0 +1,66 @@
+<md-dialog id="dialog-portadas">
+  <md-dialog-content>
+    <div layout="row" layout-sm="column" layout-padding style="min-height:580px; width: 1200px;">
+        <div flex="70" flex-sm="100">
+            <div ng-show="tag_lista.length > 0" layout="row" layout-align="space-around center">
+              <md-button ng-click="eliminarTemas()">Eliminar</md-button>
+            </div>
+            <div style="overflow: auto; overflow-x: hidden; max-height: 460px; min-height: 460px; margin-top: 1em;">
+              <form name="formListaTags">
+                <div ng-class="temafilter_idx == null?($index==tema_idx?'active-block':''):($index==temafilter_idx?'active-block':'')" class="item-tag" layout="row" layout-wrap ng-repeat="item in tag_lista">
+                  <div flex="5" style="display: flex; justify-content: center; align-items: center;">
+                    <md-input-container flex>
+                      <md-checkbox ng-checked="exists(item, tags_selected)" ng-click="toggle(item, tags_selected)" class="md-primary" aria-label="Escoger"></md-checkbox>
+                    </md-input-container>
+                  </div>
+                  <div flex="10" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <span>{{ $index+1 }}</span>
+                  </div>
+                  <div flex="45">
+                    <md-input-container flex>
+                        <label>Nombre</label>
+                        <input type="text" name="nombre" ng-model="item.nombre" readonly/>
+                    </md-input-container>
+                  </div>
+                  <div flex="5" style="display: flex; justify-content: center; align-items: center;">
+                    <md-button ng-click="editarTema(item, $index)" class="md-icon-button configuracion">
+                      <ng-md-icon icon="edit" size="20" style="fill:black"></ng-md-icon>
+                      <md-tooltip md-direction="right">Editar</md-tooltip>
+                    </md-button>
+                  </div>
+                </div>
+                <div ng-show="!tag_lista.length">No se encontraron coincidencias ...</div>
+              </form>
+            </div>
+        </div>
+        <div flex="30" flex-sm="100">
+            <div class="inputBlock">
+              <form name="formNuevoTema">
+                <!-- <pre style="background-color:yellow; word-break: break-word;">{{tema_idx}}11</pre> -->
+                <h3>{{ tema_idx === null ? 'Crear nueva' : 'Editar' }} encuestadora</h3>
+                  <md-input-container flex>
+                      <label>
+                        Nombre
+                        <span ng-if="nuevoTema.nombre>0">({{nuevoTema.nombre.length}} Caracteres)</span>
+                      </label>
+                      <input ng-trim="false" name="nombre" ng-model="nuevoTema.nombre"></input>
+                  </md-input-container>
+                <div ng-show="msj_error" class="alert-warn md-body-1">{{ msj_error }}</div>
+                <div class="md-actions" style="border:0;">
+                  <md-button ng-show="tema_idx !== null" ng-click="cancelarTema()">Cancelar</md-button>
+                  <md-button ng-click="agregar()" ng-disabled="formNuevoTema.$invalid||!nuevoTema.nombre">{{ tema_idx === null ? 'Agregar' : 'Guardar' }}</md-button>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <md-button ng-click="guardarTemas($event);" ng-disabled="formListaTags.$invalid" class="md-primary">
+        Guardar
+    </md-button>
+    <md-button ng-click="cerrar();" class="md-primary">
+      Cerrar
+    </md-button>
+  </div>
+</md-dialog>

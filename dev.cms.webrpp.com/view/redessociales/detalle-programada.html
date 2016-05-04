@@ -1,0 +1,70 @@
+<div layout="column" class="relative" flex role="main" id="facebook-config">
+    <!-- HEADER -->
+    <div ng-include="'template/partial/header-nosearch.html'"></div>
+    <!-- END HEADER -->
+    <div flex>
+        <div ng-click="hideLayer($event)" id="layerSearch" ng-show="layerSearch"></div>
+        <div layout="column">
+            <!-- BREADCRUMB -->
+            <md-toolbar class="md-toolbar-subhead">
+                <div layout="row" layout-align="center center" class="md-toolbar-tools md-toolbar-breadcrumb md-whiteframe-z1">
+                    <md-button type="button" class="md-icon-button" ng-click="clicVolver()">
+                        <ng-md-icon icon="arrow_back" size="28"></ng-md-icon>
+                        <md-tooltip md-direction="bottom">
+                            Volver
+                        </md-tooltip>
+                    </md-button>
+                    <md-button type="button" class="md-primary" ng-disabled="!isEditRSField" ng-click="openRSShare($event, post, 'edit')">
+                      <ng-md-icon icon="save" size="20"></ng-md-icon>Guardar
+                      <md-tooltip md-direction="bottom">
+                            Guardar
+                        </md-tooltip>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <!-- /BREADCRUMB -->
+            <!-- LEFT -->
+            <aside class="sidenav-left sidenav-module md-whiteframe-z2" id="sidebarleft">
+                <menu-lateral-derecha activo="programadas" modulo="redes-sociales"></menu-lateral-derecha>
+            </aside>
+            <!-- /LEFT -->
+            <!-- CONTENT -->
+            <section class="md-toolbar-subbody content-body-center fullcenter" id="contentbodycenter" style="width:100%;margin:0;">
+                <div class="content-inner relative" style="margin-left: 200px;">
+                    <md-input-container class="md-block">
+                        <label>
+                            Mensaje
+                            <span ng-if="post.message.length>0">({{post.message.length}} Caracteres)
+                            </span>
+                        </label>
+                        <textarea ng-change="isEditRSField=true" name="message" ng-model="post.message" columns="1" rows="2" ng-required="true"></textarea>
+                    </md-input-container>
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab ng-if="post.facebook_posts.length>0">
+                            <md-tab-label>
+                                <span>
+                                    <md-icon md-svg-src='svg/facebook29.svg' style='color:#435a8b; width:24px;height:24x'></md-icon><md-tooltip>Facebook</md-tooltip>
+                                </span> Facebook
+                            </md-tab-label>
+                            <md-content class="md-padding" style="position: relative;">
+                                <div ng-repeat="item in post.facebook_posts" style="display: inline-block;">
+                                    <div ng-bind-html="item.embed_html | htmlEmbed"></div>    
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab ng-if="post.twitter_posts.length>0">
+                            <md-tab-label>
+                                <span><md-icon md-svg-src='svg/twitter20.svg' style='color:#55acee; width:24px;height:24px'></md-icon><md-tooltip>Twitter</md-tooltip></span> Twitter
+                            </md-tab-label>
+                            <md-content class="md-padding" style="position: relative;">
+                                <div ng-repeat="item in post.twitter_posts" style="display: inline-block;">
+                                    <div ng-bind-html="item.embed_html | htmlEmbed"></div>    
+                                </div>
+                            </md-content>
+                    </md-tabs>
+                </div>
+            </section>
+            
+        </div>
+    </div>
+</div>

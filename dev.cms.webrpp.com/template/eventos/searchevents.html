@@ -1,0 +1,82 @@
+<div class="content-search-panel">
+   <md-input-container>
+       <label>Buscar en {{type}}</label>
+       <input type="text" ng-readonly="readonlySearch" ng-model="inputSeachSocial" ng-blur="blurear()" ng-focus="focusear()">
+   </md-input-container>
+   <div class="content-result">
+       <md-progress-circular ng-show="searchLoad" md-mode="indeterminate"></md-progress-circular>
+       <div ng-show="listArrSocialNoResult" class="alert-warn md-body-1">No se encontraron resultados en la búsqueda.</div>
+        <div ng-show="listArrSocialError" class="alert-warn md-body-1">{{msjError}}</div>
+       <div class="result_list" style="position:relative;overflow:scroll;overflow-x:hidden;max-height:460px;">
+       <ul ng-show="!searchLoad">
+           <li ng-repeat="file in listArrSocial">
+               <!-- <div ng-class="!hideComments&&$index==currentFileIdx?'current_file':''" id="{{file.data.id}}" ng-if="file.tipo != 'text'" class="div-result" ng-drag="true" ng-drag-data="file" ng-drag-success="onDragSuccessSearch($index, file, $event)"> -->
+               <div ng-class="!hideComments&&$index==currentFileIdx?'current_file':''" id="{{file.data.id}}" ng-if="file.tipo != 'text'" class="div-result">
+                   <div class="div-author"><a target="_blank" href="{{file.data.autor_link}}"><img style="width:32px;height:32px; margin:0;padding:0" ng-if="file.data.avatar" ng-src="{{file.data.avatar}}" alt="Avatar" /></a></div>
+                   <div class="div-text">
+                        <div style="overflow:hidden;">
+                                <a target="_blank" href="{{file.data.autor_link}}" style="line-height:35px;">{{file.data.autor}}</a>
+                                <md-button md-no-ink class="md-primary" ng-click="agregarIncidencia(file)" style="float:right;margin:0;">Agregar</md-button>
+                        </div>
+                       <div>{{file.texto}}</div>
+                       <div ng-if="file.data"><a target="_blank" href="{{file.data.autor_link}}"><img style="max-width:200px;height:auto;margin:0;padding:0" ng-if="file.data.foto" ng-src="{{file.data.foto}}" alt="Imagen" /></a></div>
+                       <div style="font-size:0.9em; color:gray; margin:0.5em 0 0;">{{file.data.post_date}}
+                           <span ng-if="file.data.retweet_count >= 0">| <ng-md-icon icon="repeat" size="14"></ng-md-icon> {{file.data.retweet_count}} <md-tooltip>ReTweet</md-tooltip></span>
+                           <span ng-if="file.data.favorite_count >= 0">| <ng-md-icon icon="star" size="14"></ng-md-icon> {{file.data.favorite_count}} <md-tooltip>Favoritos</md-tooltip></span>
+                           <span ng-if="file.data.favorite_count >=0" ng-click="showComments($index, file.data.id)" style="cursor: pointer;">| <ng-md-icon icon="reply" size="14"></ng-md-icon><md-tooltip>Respuestas</md-tooltip></span>
+                           <span ng-if="file.data.comments_count >= 0" ng-click="showComments($index, file.data.id)" style="cursor: pointer;">| <md-icon md-svg-src="svg/social-comment-fb.svg" style="width:14px; height:14px;"></md-icon> {{file.data.comments_count}} <md-tooltip>Comentarios</md-tooltip></span>
+                           <span ng-if="file.data.like_count >= 0">| <md-icon md-svg-src="svg/social-like.svg" style="width:14px; height:14px;"></md-icon> {{file.data.like_count}} <md-tooltip>Me gusta</md-tooltip></span>
+                           <span ng-if="file.data.share_count >= 0">| <md-icon md-svg-src="svg/social-shared.svg" style="width:14px; height:14px;"></md-icon> {{file.data.share_count}} <md-tooltip>Compartidos</md-tooltip></span>
+                           <span ng-if="file.data.view_count >= 0">| <ng-md-icon icon="visibility" size="14"></ng-md-icon> {{file.data.view_count}} <md-tooltip>ReTweet</md-tooltip></span>
+                           <span ng-if="file.data.comment_count >= 0">| <ng-md-icon icon="comment" size="14"></ng-md-icon> {{file.data.comment_count}} <md-tooltip>Favoritos</md-tooltip></span>
+                           <span ng-if="file.data.repin_count >= 0">| <ng-md-icon icon="shuffle" size="14"></ng-md-icon> {{file.data.repin_count}} <md-tooltip>Favoritos</md-tooltip></span>
+                       </div>
+                   </div>
+               </div>
+
+               <div ng-if="file.tipo == 'text'" class="div-result div-related" ng-drag="true" ng-drag-data="file" ng-drag-success="onDragSuccessSearch($index, file, $event)">
+                   <div ng-if="file.relacionado.items[0].foto" class="div-author">
+                       <a target="_blank" href="{{file.relacionado.items[0].url}}"><img style="width:82px;height:auto; margin:0;padding:0" ng-src="{{file.relacionado.items[0].foto}}" alt="{{file.relacionado.items[0].titulo}}" /></a>
+                   </div>
+                   <div class="div-text">
+                       <div><a target="_blank" href="{{file.data.autor_link}}">{{file.data.autor}}</a></div>
+                       <div><a target="_blank" href="{{file.relacionado.items[0].url}}">{{file.relacionado.items[0].titulo}}</a></div>
+                       <div style="font-size:0.9em; color:gray; margin:0.5em 0 0;">{{file.data.post_date}}</div>
+                   </div>
+               </div>
+
+               <div ng-class="!hideComments&&$index==currentFileIdx?'current_file':''" ng-show="!hideComments&&$index==currentFileIdx" class="div-comments" style="font-size: 0.90em; text-align: justify; border-left: thick double #BCBCBC">
+                 <div ng-if="loadingComments" id="loading-comments"><md-progress-circular class="md-hue-2" md-mode="indeterminate" md-diameter="5px"></md-progress-circular></div>
+                 <div style="overflow: scroll; overflow-x: hidden; max-height: 175px; margin-right: 5px;">
+                   <ul>
+                     <li style="margin: 1px 5px; padding: 2px; position: relative" ng-repeat="comment in listArrComments">
+                       <div ng-drag="true" ng-drag-data="comment" ng-drag-success="onDragSuccessSearch($index, comment, $event, true)" class="div-result">
+                         <div style="float: left; margin: 0px 5px 5px 0px">
+                           <img ng-if="comment.data.avatar" ng-src="{{ comment.data.avatar }}" alt="Imagen"/>
+                         </div>
+                         <div style="padding-left: 6px">
+                           <div style="padding-right: 6px;">
+                             <div>
+                               <span style="font-weight: bold">{{ comment.data.autor }}</span>
+                               <span style="word-wrap: break-word">{{ comment.texto }}</span>
+                             </div>
+                             <div>
+                               <span style="font-size:0.9em; color:gray; margin:0.5em 0 0;">{{ comment.data.post_date }}</span>
+                             </div>
+                           </div>
+                         </div>
+                       </div><div style="clear: both;"></div>
+                     </li>
+                   </ul>
+                 </div>
+               </div>
+           </li>
+       </ul>
+       <div scroll-container=".result_list" scroll-trigger scroll-function="socialNextPage()" threshold="50" class="trigger-scroll">&nbsp;</div>
+       <div ng-show="socialBusy">
+         <md-progress-circular class="progressContent" md-mode="indeterminate"></md-progress-circular>
+       </div>
+       <div style="height:20px" id="scroll-bottom"></div>
+       </div>
+   </div>
+</div>

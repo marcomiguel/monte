@@ -1,0 +1,220 @@
+//Extend
+.area-draggable-ticker
+    min-height: 85%
+    height: auto
+    &[ng-drop]
+        &.drag-enter
+            border-top: 1px dashed #ffd180
+    &:after
+        bottom: 55%
+    &.list-major
+        border-color: white!important
+        background-color: white!important
+        min-height: 35%
+        &:after
+            content: ''!important
+    &.drag-enter
+        background-color: rgba(255,209,128,0.25)!important
+        border: 1px dashed #ffd180!important
+
+.ul-draggable-ticker
+    margin-top: 10px
+    width: 100%
+    &[ng-drop]
+        &.drag-enter
+            border-top: 1px dashed #ffd180
+.div-inner
+    position: relative
+.list-tickers
+    margin: 0
+    padding: 0
+    [ng-click]
+        -webkit-appearance: none
+        cursor: pointer
+        outline: none
+    li
+        -webkit-box-sizing: border-box
+        -moz-box-sizing: border-box
+        box-sizing: border-box
+        position: relative
+        //padding: 0.5em 5% 0.5em 0
+        padding: 0
+        background-color: white
+        list-style: none
+        &:hover
+            .ticker-enum
+                box-shadow: 3px 3px 6px rgba(0,0,0,0.3), -3px 3px 6px rgba(0,0,0,0.3), 3px -3px 6px rgba(0,0,0,0.3)
+        div
+            position: static
+        .div-drag
+            position: relative
+        //border-bottom: 1px dashed #BCBCBC
+        .ticker-table
+            padding: 0.5em 0 0.5em 0.5em
+        .titulo-ticker, .input-edit-inner, .ticker-fecha
+            cursor: default
+            a, ng-md-icon
+                cursor: pointer!important
+        // DRAG & DROP
+        .drag-enter
+            //opacity: 0.5!important
+            //background-color: rgba(255,209,128,0.25)!important
+            //border: 1px dashed #ffd180!important
+            //opacity: 1!important
+        .div-drop
+            &:before
+                content: ''
+                display: block
+                width: 100%
+                -webkit-transition: height 0.4s, background 0.4s
+                -moz-transition: height 0.4s, background 0.4s
+                -ms-transition: height 0.4s, background 0.4s
+                -o-transition: height 0.4s, background 0.4s
+                transition: height 0.4s, background 0.4s
+                height: 0px
+                background-color: white!important
+                border-top: 1px solid rgba(0,0,0,0.2)!important
+        .div-drop
+            &.drag-enter
+                &:before
+                    content: 'Inserta aquí'
+                    font-size: 12px
+                    text-align: center
+                    line-height: 20px
+                    height: 20px
+                    border: 1px dashed #ffd180!important
+                    background-color: rgba(255,209,128,0.25)!important
+
+        [ng-drop], .dragging
+            background-color: white
+            //opacity: 0.75
+        [ng-drop], [ng-drag]
+
+            &.drag-enter, &.drag-over
+                border-top: 0 none
+
+    .btn-help-aside
+        position: static
+        left: 0
+        top: 0
+    md-input-container
+        padding: 0
+        .md-input
+            padding: 0
+    .input-edit-inner
+        border-bottom: 2px solid transparent
+    .input-edit-outer
+        textarea
+            line-height: 1.2
+            text-transform: uppercase
+.ticker-enum
+    //position: absolute!important
+    //left: -40px
+    cursor: move!important
+    border: 0 none
+    padding: 0
+    //top:25%
+    line-height: 36px
+    font-size: 1em
+    width: 34px
+    height: 34px
+    display: inline-block
+    text-align: center
+    border-radius: 50%
+    background-color: rgba(0,0,0,0.9)
+    color: white
+.ul-result-block
+    width: 100%
+    margin: 0
+    padding: 0
+    li
+        width: 98%
+        display: inline-block
+        padding: 0
+        margin: 0 0 5px
+        border-bottom: 1px solid rgba(0,0,0,0.2)
+        min-height: 50px
+        vertical-align: top
+        &:hover
+            background: rgba(255,209,128,0.25)
+        .ticker-table
+            padding: 0.5em 0
+    .titulo-ticker
+        font-size: 0.75em
+        margin: 0 0 0.25em
+        color: rgba(0,0,0,0.8)
+    .ticker-text
+        padding: 0 0 0.25em
+        span
+            text-transform: capitalize
+            color: rgba(0,0,0,0.8)
+            font-size: 0.7em
+        font-size: 1em
+        text-transform: uppercase
+    .ticker-codigo, .ticker-fecha
+        font-size: 0.75em
+        color: rgba(0,0,0,0.8)
+    .ticker-codigo
+        background-color: rgba(0,0,0,0.1)
+        text-align: center
+        line-height: 55px
+
+#area-template-portadas
+    [ng-click]
+        -webkit-appearance: none
+        cursor: pointer
+        outline: none
+        md-input-container, textarea
+            padding: 0!important
+            margin: 0!important
+    padding-bottom: 2em
+    [ng-drop]
+        border-top: 0 none!important
+    [ng-drag]
+        border-top: 0 none!important
+    .drag-enter
+        .block-news
+            opacity: 0.5
+        .dragging
+            opacity: 1
+.bg-list--id
+    .div-inner
+        background-color: rgba(33,150,243,0.2)
+.list-tickers
+    .ticker-table
+        -webkit-transition: height 1s
+        -moz-transition: height 1s
+        -ms-transition: height 1s
+        -o-transition: height 1s
+        transition: height 1s
+        .titulo-ticker, .ticker-fecha
+            color: rgba(0,0,0,0.7)
+            font-size: 0.85em
+        .ticker-text
+            font-size: 18px
+            text-transform: uppercase
+//@Page Portadas
+#page-ticker
+    #bodyAddsNews
+        padding: 0
+    .content-body-center
+        width: calc(100% - 550px)
+        overflow-y: auto
+        margin-left: 0
+    .sidenav-right
+        width: 550px
+        z-index: 3
+    .sidenav-left
+        display: none
+    .fixed-module
+        width: 550px
+    /* TOP FIXED */
+    #contentbodycenter
+        &.fullcenter
+            margin: 0
+            width: calc(100% - 550px)
+    #sidebarright
+        &.fullsidebar
+            width: 550px
+            .fixed-module
+                width: 550px

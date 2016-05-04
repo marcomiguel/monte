@@ -1,0 +1,100 @@
+// #elecciones
+.candidato
+	.candidato-foto
+		background: rgba(0,0,0,0.1)
+		height: 180px
+		// width: 95%
+		text-align: center
+		font-size: 2em
+		color: #999
+		line-height: 150px
+		cursor: pointer
+		// margin: 10px auto
+		position: relative
+		z-index: 2
+		&:hover
+			// opacity: 0.75
+			border: 1px solid #999
+		img
+			height: 180px
+			width: 100%
+		.candidato-posicion
+			position: absolute
+			font-size: 1.2em
+			width: 30px
+			height: 30px
+			left: 50%
+			top: 50%
+			margin-top: -75px
+			margin-left: -12px
+			z-index: -1
+		.candidato-posicion-extra
+			position: absolute
+			font-size: 12px
+			font-weight: bold
+			line-height: 20px
+			margin: 5px
+			padding: 0 2px
+			text-align: center
+			box-sizing: border-box
+			border-radius: 50%
+			height: 20px
+			width: 20px
+			z-index: 99
+			background-color: #a52714
+			color: #fff
+	.candidato-nombre, .candidato-nombre a
+		text-align: center
+		color: #3F3F3F
+		font-weight: bold
+		font-size: 1.2em
+		// height: 23px
+		text-decoration: none
+	.candidato-partido
+		text-align: center
+		color: #9F041B
+		font-weight: bold
+		height: 19px
+		line-height: 16px
+	.porcentaje
+		margin-top: 15px
+		input
+			width: 75px
+			margin: 0 auto
+			font-size: 1.8em
+			font-weight: bold
+			color: #9F041B
+			text-align: center
+			order: 1
+			padding-top: 5px
+		span
+			font-size: 1.5em
+			font-weight: bold
+			color: #9F041B
+			order: 2
+			position: absolute
+			top: 15px
+			right: 28px
+#mensaje-ordenamiento
+	color: #a52714
+	font-size: 0.8em
+	margin-bottom: 10px
+#elecciones
+	.temas-dia-chips
+		border: none
+		padding: 0
+		.list-temas-dia
+			li
+				margin-right: 2px
+				border-radius: 0
+			.chip-custom
+				width: 170px
+			.chip-custom
+				height: inherit
+				padding: 0
+			.dndPlaceholder
+				height: 278px
+				width: 160px
+				line-height: 278px
+				background-color: #FADEDA !important
+				border: 2px dashed #a52714

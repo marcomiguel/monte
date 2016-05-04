@@ -1,0 +1,107 @@
+<md-dialog flex="95" aria-label="Add Youtube">
+  <md-dialog-content>
+      <!-- Add Youtube -->
+      <div class="inputBlock">
+          <md-input-container flex>
+              <label>
+                  Pega la URL del video de Youtube:
+                  <span ng-if="youtube.url.length>0">({{youtube.url.length}} Caracteres)</span>
+              </label>
+              <input id="input-youtube" ng-model="youtube.url" ng-change="pasteVideoYoutube('youtube')" />
+          </md-input-container>
+      </div>
+      <div style="position:relative; height:343px;">
+              <div class="inputBlock">
+                  <md-checkbox aria-label="Autoplay" ng-model="youtube.autoplay" flex>
+                      Autoplay
+                  </md-checkbox>
+              </div>
+              <div style="margin-top:1em">
+                  Iniciar video en (Tiempo en segundos):
+              </div>
+              <div class="inputBlock">
+                  <md-input-container flex>
+                      <label>Tiempo</label>
+                      <input ng-change="changeTimeYoutube('youtube')" style="width:150px" type="text" ng-trim="false" name="youtubeTime" ng-model="youtube.timestamp" />
+                  </md-input-container>
+              </div>
+              <div style="position:absolute;left:400px; top:0">
+                  <div id="add-img--cover">
+                      <input accept="image/x-png, image/png, image/jpeg, image/jpg" class="loadThumbData" type="file" style="position:absolute;left:10px; height:1px; width:1px; overflow:hidden; z-index:-1" />
+                      <div id="zone-img--youtube">
+                          <md-button class="md-fab md-fab-upload md-mini md-primary" ng-click="uploadCaptureImage()" aria-label="Subir Imagen">
+                              <md-tooltip>Subir imagen</md-tooltip>
+                              <ng-md-icon icon="add" size="20"></ng-md-icon>
+                          </md-button>
+                          <md-button ng-show="isDeleteThumb" class="md-fab ng-hide md-fab-remove md-mini md-warn" ng-click="removeCaptureImage()" aria-label="Subir Imagen">
+                              <md-tooltip>Remover imagen</md-tooltip>
+                              <ng-md-icon icon="delete" size="20"></ng-md-icon>
+                          </md-button>
+                          <img ng-show="showThumbData" width="603" height="339" ng-src="{{srcThumbData}}" alt="Imagen de portada" />
+                      </div>
+                  </div>
+              </div>
+              <div class="inputBlock" style="visibility:hidden;height:1px;overflow:hidden">
+                  <md-input-container flex>
+                      <label>ID video youtube</label>
+                      <input style="width:200px" type="text" ng-trim="false" name="youtubeID" ng-model="youtube.id" />
+                  </md-input-container>
+              </div>
+
+      </div>
+      <!-- End Add Youtube -->
+      <div class="inputBlock" style="width:100%;overflow:hidden">
+          <md-input-container flex>
+              <label>
+                  Título
+                  <span ng-if="parrafo1.length>0">({{parrafo1.length}} Caracteres)</span>
+              </label>
+              <input ng-trim="false" name="parrafo1" ng-model="parrafo1"></input>
+          </md-input-container>
+      </div>
+      <div class="inputBlock">
+          <md-input-container flex>
+              <label>Leyenda <span ng-if="youtube.descripcion.length>0">({{embed_data.descripcion.length}} Caracteres)</span>
+              </label>
+              <input type="text" ng-trim="false" name="alt" ng-model="youtube.descripcion" />
+          </md-input-container>
+      </div>
+      <div layout="row" layout-sm="column">
+          <div flex="50" flex-sm="100">
+              <div class="inputBlock">
+                  <md-input-container flex>
+                      <label>Fuente <span ng-if="via.length>0">({{via.length}} Caracteres)</span>
+                      </label>
+                      <input type="text" ng-trim="false" name="via" ng-model="via" />
+                  </md-input-container>
+              </div>
+          </div>
+          <div flex="50" flex-sm="100">
+              <div class="inputBlock">
+                  <md-input-container flex>
+                      <label>Fotógrafo <span ng-if="credito.length>0">({{credito.length}} Caracteres)</span>
+                      </label>
+                      <input type="text" ng-trim="false" name="credito" ng-model="credito" />
+                  </md-input-container>
+              </div>
+          </div>
+      </div>
+      <!-- Temas -->
+      <p class="nm">Etiquetas</p>
+      <md-chips flex secondary-placeholder="Escribe una Etiqueta" placeholder="Etiqueta" ng-model="youtube.tags"  md-on-append="tagsOnAppendYoutube($chip)">
+          <md-chip-template>
+              <strong>{{$chip.nombre}}</strong>
+              <em>(Tema)</em>
+          </md-chip-template>
+      </md-chips>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button type="button" ng-click="closeOpenAddYoutube()" class="md-primary">
+      Cerrar
+    </md-button>
+    <md-button type="button" ng-click="addOpenAddYoutube()" class="md-primary">
+        {{(modalType === 'add')?'Agregar':'Actualizar'}}
+    </md-button>
+  </div>
+</md-dialog>

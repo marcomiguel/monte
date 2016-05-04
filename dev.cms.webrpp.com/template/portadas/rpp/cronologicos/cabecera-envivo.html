@@ -1,0 +1,98 @@
+<div flex="100" ng-if="portada.cabecera.slug!=''">
+  <!-- 1x4 -->
+  <div layout="row" class="block-wrap-news block-1x4">
+    <div flex="55" class="padding-div-right v-center">
+
+      <div layout="column" ng-if="portada.cabecera.slug!='elecciones-peru-2016'&&portada.cabecera.slug!='streaming-elecciones-2016'">
+        <div layout="row" style="margin-bottom: 5px;">
+          <div flex="50">
+            <div class="separador-select">
+              <span class="label">Tipo:</span>
+              <div class="select-contador horizontal">
+                <select
+                    chosen
+                    ng-change="cambioTipoStreaming('cabecera')"
+                    ng-model="envivo.cabecera.embed.tipo"
+                    no-results-text="'No hay opciones'"
+                    ng-options="item for item in streaming['tipos']"
+                    style="width:300px;">
+                    <option value=""></option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div flex="50">
+            <div class="separador-select">
+              <span class="label">Sitio:</span>
+              <div class="select-contador horizontal">
+                <select
+                    chosen
+                    ng-change="cambioSitioStreaming('cabecera')"
+                    ng-model="envivo.cabecera.embed.sitio"
+                    no-results-text="'No hay opciones'"
+                    ng-options="item for item in streaming['sitios'][envivo.cabecera.embed.tipo]"
+                    style="width:300px;">
+                    <option value=""></option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div layout="row">
+          <div flex="100">
+            <section class="embed-layout" layout="column" layout-align="space-around center">
+              <md-input-container class="embed-box" md-no-float class="md-default-theme">
+                <label for="embed">Embed</label>
+                <textarea spellcheck="false" id="embed" ng-model="envivo.cabecera.embed.codigo" rows="6" aria-multiline="true"></textarea>
+              </md-input-container>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <div layout="column" ng-if="portada.cabecera.slug=='elecciones-peru-2016'||portada.cabecera.slug=='streaming-elecciones-2016'">
+        <div layout="row" style="margin-bottom: 5px;">
+          <div flex="100">
+
+            <form name="formNuevaCancion">
+              <md-input-container>
+                <label>Streaming (URL)</label>
+                <input ng-model="envivo.cabecera.streaming" type="text" required style="width: 420px;">
+              </md-input-container>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div flex="45" class="padding-div-right">
+      <div style="">
+        <section class="section-mam">
+          <h4>
+              <a ng-if="envivo['cabecera'].evento.id" href="/#/eventos/detalle/{{envivo['cabecera'].evento.id}}" target="_blank" style="text-decoration:none">
+                <ng-md-icon icon="link" style="fill:rgb(33,150,243)"></ng-md-icon>
+                <md-tooltip md-direction="top">Ir a Evento</md-tooltip>
+              </a>
+              <ng-md-icon class="mam-alarm-icon" icon="alarm_add" size="18"></ng-md-icon>
+              Minuto a Minuto <span ng-if="envivo['cabecera'].evento.titulo">({{envivo['cabecera'].evento.titulo}} | {{envivo['cabecera'].evento.fechaInicio}})</span>
+          </h4>
+          <div class="inner-mam" ng-class="{'scrollY': events.length>8}">
+            <h6 ng-show="!noSetEvents">
+                <ng-md-icon icon="insert_invitation" size="16"></ng-md-icon> Eventos:
+            </h6>
+            <ul class="ul-mam">
+              <li ng-repeat="mam in events" ng-click="clickEventMaM($event, mam, 'cabecera')" ng-class="mam.id==envivo['cabecera'].evento.id?'activomam':''">
+                <ng-md-icon class="icon-radioall" icon="done" size="20"></ng-md-icon>
+                {{mam.titulo}}<br/>
+                <ng-md-icon icon="insert_invitation" size="16"></ng-md-icon> {{mam.fechaInicio}}
+              </li>
+            </ul>
+            <md-progress-circular ng-show="loadSetEvents" md-mode="indeterminate"></md-progress-circular>
+            <div ng-show="noSetEvents" class="alert-warn">No hay enventos.</div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,173 @@
+<md-dialog id="dialog-portadas">
+  <md-dialog-content>
+    <div layout="row" layout-sm="column" layout-padding style="min-height:580px; width: 1200px;">
+        <div flex="70" flex-sm="100">
+            <div layout="row" layout-align="space-around center">
+              <div class="input-busqueda">
+                  Nombre:
+                  <input ng-model="objF.filtroColeccion" type="search" placeholder="Ingrese una palabra" />
+                  <ng-md-icon icon="search"></ng-md-icon>
+              </div>
+              <div ng-show="tipo!='campana_cabecera'&&tipo!='cabecera'&&tipo!='campana_cuerpo'&&tipo!='medio'&&tipo!='cronologico_1'&&tipo!='cronologico_2'">
+                Tipo de vista:
+                <select chosen ng-model="objF.tamanoColeccion" ng-options="item.nombre for item in tag_tipos track by item.slug"
+                        no-results-text="'No hay opciones'" style="margin-right: 10px; ; width:180px">
+                    <option value="">Todos</option>
+                </select>
+              </div>
+              <md-button ng-click="eliminarTemas()">Eliminar</md-button>
+            </div>
+
+            <div style="overflow: auto; overflow-x: hidden; max-height: 460px; min-height: 460px; margin-top: 1em;">
+              <form name="formListaTags">
+                <div ng-class="temafilter_idx == null?($index==tema_idx?'active-block':''):($index==temafilter_idx?'active-block':'')" class="item-tag" layout="row" layout-wrap ng-repeat="item in filteredTags = (tag_lista | filter:{tipo: objF.tamanoColeccion.slug} | filter:objF.filtroColeccion)" ng-if="item.slug!=''">
+                  <div flex="5" style="display: flex; justify-content: center; align-items: center;">
+                    <md-input-container flex>
+                      <md-checkbox ng-checked="exists(item, tags_selected)" ng-click="toggle(item, tags_selected)" class="md-primary" aria-label="Escoger"></md-checkbox>
+                    </md-input-container>
+                  </div>
+                  <div flex="10" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <span>{{ $index+1 }}</span>
+                  </div>
+                  <div flex="45">
+                    <md-input-container flex>
+                        <label>Nombre</label>
+                        <input type="text" name="nombre" ng-model="item.nombre" readonly/>
+                    </md-input-container>
+                  </div>
+                  <div flex="30" ng-if="tipo!='campana_cabecera'&&tipo!='cabecera'&&tipo!='campana_cuerpo'&&tipo!='medio'&&tipo!='cronologico_1'&&tipo!='cronologico_2'" style="position: relative;">
+                    <md-input-container flex>
+                      <label>Tipo de vista</label>
+                      <input type="text" ng-model="nombre_tipo" ng-init="nombre_tipo=tag_tipos[item.tipo].nombre" readonly/>
+                    </md-input-container>
+                  </div>
+                  <div flex="5" style="display: flex; justify-content: center; align-items: center;">
+                    <md-button ng-click="editarTema(item, $index)" class="md-icon-button configuracion">
+                      <ng-md-icon icon="edit" size="20" style="fill:black"></ng-md-icon>
+                      <md-tooltip md-direction="right">Editar</md-tooltip>
+                    </md-button>
+                  </div>
+                </div>
+                <div ng-show="!filteredTags.length">No se encontraron coincidencias ...</div>
+              </form>
+            </div>
+        </div>
+        <div flex="30" flex-sm="100">
+            <div class="inputBlock">
+              <form name="formNuevoTema">
+                <h3>{{ tema_idx === null ? 'Crear nueva' : 'Editar' }} opción</h3>
+                <md-autocomplete flex required ng-if="seccion=='rpp/home'"
+                    md-input-name="autocompleteField"
+                    md-input-minlength="2"
+                    md-selected-item="nuevoTema.nombre"
+                    md-search-text="searchText"
+                    md-items="item in querySearch(searchText)"
+                    md-item-text="item"
+                    md-floating-label="Nombre">
+                    <md-item-template>
+                      <span md-highlight-text="searchText">{{item}}</span>
+                    </md-item-template>
+                </md-autocomplete>
+
+                <md-autocomplete flex required ng-if="seccion!='rpp/home'"
+                    md-input-name="autocompleteField"
+                    md-input-minlength="2"
+                    md-selected-item="nuevoTema.nombre"
+                    md-search-text="searchText"
+                    md-search-text-change="searchTextChange(searchText)"
+                    md-items="item in querySearch(searchText)"
+                    md-item-text="item"
+                    md-floating-label="Nombre">
+                    <md-item-template>
+                      <span md-highlight-text="searchText">{{item}}</span>
+                    </md-item-template>
+                </md-autocomplete>
+
+                <md-input-container flex ng-if="tipo!='campana_cabecera'&&tipo!='cabecera'&&tipo!='campana_cuerpo'&&tipo!='medio'&&tipo!='cronologico_1'&&tipo!='cronologico_2'">
+                  <label>Tipo de vista</label>
+                  <md-select ng-model="nuevoTema.tipo" required>
+                    <md-option ng-repeat="tipo in tag_tipos" value="{{tipo.slug}}">
+                      {{tipo.nombre}}
+                    </md-option>
+                  </md-select>
+                </md-input-container>
+
+                <!--md-radio-group ng-if="nuevoTema.tipo=='video'" ng-model="nuevoTema.tipo_video" ng-change="changeTipoVideo()" style="display: flex; justify-content: center; align-items: center;">
+                  <md-radio-button style="display: inline;" value="video" class="md-primary"><ng-md-icon icon="videocam"></ng-md-icon></md-radio-button>
+                  <md-radio-button style="display: inline;" value="youtube" class="md-primary"><md-icon md-svg-src="svg/youtube17.svg" style="fill:#cc181e;"></md-icon></md-radio-button>
+                </md-radio-group>
+
+                <md-input-container class="md-block" flex ng-show="nuevoTema.tipo=='video'&&nuevoTema.tipo_video=='youtube'" ng-if="nuevoTema.tipo=='video'&&nuevoTema.tipo_video=='youtube'">
+                  <label>Pega la URL del video de Youtube</label>
+                  <textarea spellcheck="false" class="script-plugin" ng-model="nuevoTema.url_video" columns="1" rows="2" required></textarea>
+                </md-input-container>
+
+                <div class="alert-warn" ng-if="error_video[0]||error_video[1]">
+        		      <ul style="paddgin:0; margin:0">
+	                  <li ng-show="error_video[0]">El video es muy pesado.</li>
+                    <li ng-show="error_video[1]">El archivo no tiene el formato .mp4</li>
+                  </ul>
+                </div>
+
+                <div ng-show="nuevoTema.tipo_video!=''">
+                  <div class="dropzonevideo" style="width:285px; height:160px; position: relative;" ng-show="nuevoTema.tipo=='video'&&nuevoTema.tipo_video=='video'" ng-if="nuevoTema.tipo=='video'&&nuevoTema.tipo_video=='video'">
+                      <input ng-if="!nuevoTema.url_video" ng-model="video" class="inputVideo" accept="video/mp4" onchange="angular.element(this).scope().changeVideo(this, event)" type="file" name="thumbvideo" />
+
+                      <video ng-if="nuevoTema.url_video" ng-src="{{getVideoUrl()}}" style="width:285px; height:160px; z-index: 1" class="videoPlayer" controls></video>
+                      <div ng-if="nuevoTema.url_video" class="videoOptions" style="position: absolute; top: 0; right: 0;">
+                      	<button type="button" class="video_remove md-fab md-mini md-button md-warn md-default-theme" aria-label="Cancelar" ng-click="removeVideo()">
+                      		<img src="./svg/delete82.svg" width="24" height="24px"/>
+                      	</button>
+                      </div>
+                  </div>
+
+                  <div style="position:relative; height:150px;" ng-if="nuevoTema.tipo=='video'">
+                    <div style="position:absolute; top: 55%; left:25%; transform: translate(-30%, -50%);">
+                      <md-button style="position:absolute; top: 0%; left:0%" ng-show="!nuevoTema.imagen" class="md-fab md-fab-upload md-mini md-primary" ng-click="uploadCaptureVideo($index)" aria-label="Subir Imagen">
+                        <md-tooltip>Subir imagen</md-tooltip>
+                        <ng-md-icon icon="add" size="20"></ng-md-icon>
+                      </md-button>
+                      <md-button style="position:absolute; top: 0%; right:0%" ng-show="nuevoTema.imagen" class="md-fab ng-hide md-fab-remove md-mini md-warn" ng-click="removeCaptureVideo($index)" aria-label="Subir Imagen">
+                        <md-tooltip>Remover imagen</md-tooltip>
+                        <ng-md-icon icon="delete" size="20"></ng-md-icon>
+                      </md-button>
+                      <div class="add-img--cover">
+                        <input id="loadThumbVideo" accept="image/x-png, image/png, image/jpeg, image/jpg" class="loadThumbData" type="file" style="position:absolute;left:10px; height:1px; width:1px; overflow:hidden; z-index:-1" />
+                        <div style="background-color:#eee; border: 1px solid #dddddd; height: auto; max-height: 140px; min-height: 140px; position: relative; width: 285px">
+                          <img ng-if="nuevoTema.imagen" ng-show="nuevoTema.imagen" style="max-width: 100%; margin: auto; display: block; height: 140px" ng-src="{{ nuevoTema.imagen }}" alt="Imagen" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <md-input-container flex ng-if="nuevoTema.tipo=='video'">
+                    <label>Leyenda</label>
+                    <input type="text" name="leyenda" ng-model="nuevoTema.leyenda" />
+                </md-input-container-->
+
+                <md-input-container class="md-block" flex ng-show="nuevoTema.tipo=='widget'" ng-if="nuevoTema.tipo=='widget'">
+                  <label>Código (Script)</label>
+                  <textarea spellcheck="false" ng-change="verify_widget()" class="script-plugin" ng-model="nuevoTema.script" columns="1" rows="12" required></textarea>
+                </md-input-container>
+
+                <div ng-show="msj_error" class="alert-warn md-body-1">{{ msj_error }}</div>
+                <div class="md-actions">
+                  <md-button ng-show="tema_idx !== null" ng-click="cancelarTema()">Cancelar</md-button>
+                  <md-button ng-click="agregarTema()" ng-disabled="formNuevoTema.$invalid||!nuevoTema.nombre">{{ tema_idx === null ? 'Agregar' : 'Guardar' }}</md-button>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <md-button ng-click="guardarTemas($event);" ng-disabled="formListaTags.$invalid" class="md-primary">
+        Guardar
+    </md-button>
+    <md-button ng-click="cerrar();" class="md-primary">
+      Cerrar
+    </md-button>
+  </div>
+</md-dialog>

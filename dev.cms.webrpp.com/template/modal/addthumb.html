@@ -1,0 +1,19 @@
+<md-dialog aria-label="Add Thumb" flex="95">
+  <md-dialog-content class="sticky-container" id="imgUploadThumbAdd">
+    <md-content layout-padding id="imgUploadThumb">
+        <div class="cntUploadImg" style="width:{{widthImage}}px; height:{{heightImage}}px; margin:0 auto">
+            <html5uploadimage style="display:block" width-image="{{widthImage}}" height-image="{{heightImage}}" ajax="false" originalsize="false" editstart="false" image="{{image}}" reset="reset"></html5uploadimage>
+            <input type="hidden" data-json="" name="thumb_values_edit" />
+        </div>
+    </md-content>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button ng-click="cancel()" class="md-primary">
+      Cancelar
+    </md-button>
+    <md-button ng-click="answerThumb()" class="md-primary">
+      Agregar miniatura
+    </md-button>
+  </div>
+</md-dialog>
