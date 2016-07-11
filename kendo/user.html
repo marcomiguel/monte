@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kendo</title>
+    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.2.504/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.2.504/styles/kendo.material.min.css" />
+    <script src="//kendo.cdn.telerik.com/2016.2.504/js/jquery.min.js"></script>
+    <script src="//kendo.cdn.telerik.com/2016.2.504/js/angular.min.js"></script>
+    <script src="//kendo.cdn.telerik.com/2016.2.504/js/kendo.all.min.js"></script>
+</head>
+<body>
+    <div ng-app="KendoDemos">
+        <div ng-controller="MyCtrl">
+            <pre style="width: 1000px; overflow: scroll;">{{model.UserOrganizations}}</pre>
+            <div class="form-group">
+                <div class="pull-right">
+                    <button ng-click="addOrganization()" class="btn btn-primary width-90px">
+                        <i class="fa fa-plus">&nbsp;&nbsp;</i>AGREGAR
+                    </button>
+                    <button ng-click="deleteOrganization()" class="btn btn-danger width-90px">
+                        <span class="fa fa-remove"></span>ELIMINAR
+                    </button>
+                </div>
+            </div>
+            <div id="uoGrid"
+                kendo-grid="uoGrid"
+                k-ng-delay="userOrganizationGrid"
+                k-options="userOrganizationGrid">
+                <script type="text/x-kendo-template" id="template">
+                    <div class="buttonsAgencies">
+                        <button ng-click="deleteAgency(dataItem)" class="btn btn-danger width-90px pull-right" style="width:50px; margin-left: 3px;">
+                            <span class="fa fa-remove"></span>&nbsp;ELIMINAR
+                        </button>
+                        <button type="button" ng-click="addAgency(dataItem)" class="btn btn-primary width-90px pull-right" style="width:50px;">
+                            <i class="fa fa-plus"></i>&nbsp;&nbsp;AGREGAR
+                        </button>
+                    </div>
+                    <div class="gridAgenciesContainer" id="gridAgencies{{dataItem.IdUserOrganization}}"></div>
+                </script>
+            </div>
+            <div>
+                <button ng-click="viewData()" class="btn btn-danger width-90px">
+                    <span class="fa fa-remove"></span>Data
+                </button>
+                <button ng-click="viewDataAgency()" class="btn btn-danger width-90px">
+                    <span class="fa fa-remove"></span>Data Agency
+                </button>
+            </div>
+        </div>
+    </div>
+<script>
+  angular.module("KendoDemos", [ "kendo.directives" ])
+          .controller("MyCtrl", function($scope){
+              
+            var appConfig = window.appConfig || {};
+            
+            var objectStatus = {
+                UNCHANGED: 0,
+                ADDED: 1,
+                MODIFIED: 2,
+                DELETED: 3
+            };
+            
+            appConfig.objectStatus = objectStatus;
+            
+            window.appConfig = appConfig;
+            
+            $scope.model = {"IdUser":77,"UserName":"etorrestor","FirstName":"Eduardo ","LastName":"Torres","Email":"etorrestor@ultramal.cl","Position":"Customer","Phone":"","Mobile":"","IdCollaborator":null,"CollaboratorCodeERP":null,"CollaboratorRut":"","CollaboratorCompleteName":null,"UserRoles":[],"UserOrganizations":[{"IdUserOrganization":77,"IdUser":77,"IdOrganization":1,"IsPredetermined":true,"OrganizationName":"Ultramar Agencia Maritima Ltda.","OrganizationCode":"UMAR","UserOrganizationAgencies":[{"IdUserOrganizationAgency":181,"IdUserOrganization":77,"IdAgency":7,"IsPredetermined":true,"AgencyName":"Talcahuano","CreatedBy":"ADMIN","CreatedDate":"2016-06-18T16:23:06.163","ModifiedBy":"ADMIN","ModifiedDate":"2016-06-18T16:23:06.163","IsActive":true,"DomainStatus":0}],"CreatedBy":"ADMIN","CreatedDate":"2016-06-18T16:22:36.29","ModifiedBy":"ADMIN","ModifiedDate":"2016-06-18T16:22:36.29","IsActive":true,"DomainStatus":0},{"IdUserOrganization":92,"IdUser":77,"IdOrganization":2,"IsPredetermined":false,"OrganizationName":"Green Andes","OrganizationCode":"GREE","UserOrganizationAgencies":[{"IdUserOrganizationAgency":249,"IdUserOrganization":92,"IdAgency":1,"IsPredetermined":true,"AgencyName":"Arica","CreatedBy":"marco.montenegro","CreatedDate":"2016-07-07T16:51:44.147","ModifiedBy":"marco.montenegro","ModifiedDate":"2016-07-07T16:51:44.147","IsActive":true,"DomainStatus":0},{"IdUserOrganizationAgency":250,"IdUserOrganization":92,"IdAgency":null,"IsPredetermined":false,"AgencyName":null,"CreatedBy":"marco.montenegro","CreatedDate":"2016-07-07T17:30:14.413","ModifiedBy":"marco.montenegro","ModifiedDate":"2016-07-07T17:30:14.413","IsActive":true,"DomainStatus":0},{"IdUserOrganizationAgency":251,"IdUserOrganization":92,"IdAgency":7,"IsPredetermined":false,"AgencyName":"Talcahuano","CreatedBy":"marco.montenegro","CreatedDate":"2016-07-07T17:35:02.17","ModifiedBy":"marco.montenegro","ModifiedDate":"2016-07-07T17:35:02.17","IsActive":true,"DomainStatus":0}],"CreatedBy":"marco.montenegro","CreatedDate":"2016-07-07T16:51:44.147","ModifiedBy":"marco.montenegro","ModifiedDate":"2016-07-07T17:35:02.167","IsActive":true,"DomainStatus":0}],"CreatedBy":"ADMIN","CreatedDate":"2016-06-18T16:22:02.627","ModifiedBy":"marco.montenegro","ModifiedDate":"2016-07-07T17:35:02.167","IsActive":true,"DomainStatus":0};
+            
+            $scope.organizationsDataSource = [{"IdOrganization":1,"Code":"UMAR","CodeERP":"1000","Symbol":"U","Name":"Ultramar Agencia Maritima Ltda.","Rut":"80991997","BusinessCategory":"Agenciamiento Marítimo","Address":"El Bosque 500111-","StartDate":"2016-01-03T00:00:00","EndDate":"2017-01-02T00:00:00","IdCurrency":2},{"IdOrganization":2,"Code":"GREE","CodeERP":"2000","Symbol":"2","Name":"Green Andes","Rut":"123456","BusinessCategory":"test","Address":"test","StartDate":"2016-07-05T05:00:00","EndDate":"2016-07-03T05:00:00","IdCurrency":2}]
+            
+            $scope.organizationAgenciesDS = [{"IdAgency":1,"Alias":"ARI","Code":"0010","Name":"Arica","IdOrganization":0,"HasRelatedItems":true,"CreatedBy":"ADMIN","CreatedDate":"2016-06-13T23:50:29.41","ModifiedBy":"ADMIN","ModifiedDate":"2016-06-13T23:50:29.41","IsActive":true,"DomainStatus":0},{"IdAgency":2,"Alias":"IQQ","Code":"0020","Name":"Iquique","IdOrganization":0,"HasRelatedItems":true,"CreatedBy":"ADMIN","CreatedDate":"2016-06-13T23:50:29.41","ModifiedBy":"ADMIN","ModifiedDate":"2016-06-13T23:50:29.41","IsActive":true,"DomainStatus":0},{"IdAgency":3,"Alias":"ANF","Code":"0040","Name":"Antofagasta","IdOrganization":0,"HasRelatedItems":false,"CreatedBy":"ADMIN","CreatedDate":"2016-06-13T23:50:29.41","ModifiedBy":"ADMIN","ModifiedDate":"2016-06-13T23:50:29.41","IsActive":true,"DomainStatus":0},{"IdAgency":4,"Alias":"VAP","Code":"0100","Name":"Valparaíso","IdOrganization":0,"HasRelatedItems":true,"CreatedBy":"ADMIN","CreatedDate":"2016-06-13T23:50:29.413","ModifiedBy":"ADMIN","ModifiedDate":"2016-06-13T23:50:29.413","IsActive":true,"DomainStatus":0},{"IdAgency":5,"Alias":"SAI","Code":"0110","Name":"San Antonio","IdOrganization":0,"HasRelatedItems":true,"CreatedBy":"ADMIN","CreatedDate":"2016-06-13T23:50:29.413","ModifiedBy":"ADMIN","ModifiedDate":"2016-06-13T23:50:29.413","IsActive":true,"DomainStatus":0},{"IdAgency":6,"Alias":"SCL","Code":"0160","Name":"Santiago","IdOrganization":0,"HasRelatedItems":true,"CreatedBy":"ADMIN","CreatedDate":"2016-06-13T23:50:29.417","ModifiedBy":"ADMIN","ModifiedDate":"2016-06-13T23:50:29.417","IsActive":true,"DomainStatus":0},{"IdAgency":7,"Alias":"THO","Code":"0120","Name":"Talcahuano","IdOrganization":0,"HasRelatedItems":false,"CreatedBy":"ADMIN","CreatedDate":"2016-06-13T23:50:29.417","ModifiedBy":"ADMIN","ModifiedDate":"2016-06-13T23:50:29.417","IsActive":true,"DomainStatus":0},{"IdAgency":8,"Alias":"PUQ","Code":"0150","Name":"Punta Arenas","IdOrganization":0,"HasRelatedItems":false,"CreatedBy":"ADMIN","CreatedDate":"2016-06-13T23:50:29.417","ModifiedBy":"ADMIN","ModifiedDate":"2016-06-13T23:50:29.417","IsActive":true,"DomainStatus":0},{"IdAgency":13,"Alias":"sas","Code":"sas","Name":"sas","IdOrganization":0,"HasRelatedItems":false,"CreatedBy":"yesenia.aguirre","CreatedDate":"2016-07-07T14:05:10.65","ModifiedBy":"yesenia.aguirre","ModifiedDate":"2016-07-07T14:05:10.65","IsActive":true,"DomainStatus":0}];
+            
+            var idNewId = 0;
+            var idNewIdAgency = 0;
+            function getNewId() { return --idNewId };
+            function getNewIdAgency() { return --idNewIdAgency };
+            
+            // GRILLA ORGANIZACION
+            $scope.userOrganizationGrid = {
+                dataSource: new kendo.data.DataSource({
+                    data: $scope.model.UserOrganizations,
+                    schema: {
+                        model: {
+                            id: "IdUserOrganization",
+                            fields: {
+                                IdUserOrganization: {
+                                    editable: false,
+                                    nullable: true
+                                },
+                                IdOrganization: {
+                                    type: "number"
+                                },
+                                OrganizationName: {
+                                    type: "string"
+                                },
+                                IsPredetermined: {
+                                    type: "boolean"
+                                },
+                                IsSelected: {
+                                    type: "boolean"
+                                },
+                                UserOrganizationAgencies: {
+                                    type: "array"
+                                },
+                                DataOrganization: {
+                                    type: "object"
+                                }
+                            }
+                        }
+                    },
+                    change: function (e) {
+                        //debugger;
+                        console.log('cambio data organizacion');
+                        if (e.action === "add") {
+                            console.log('add organization');
+                            var row = e.items[0];
+                            row.DomainStatus = window.appConfig.objectStatus.ADDED;
+                        } else if (e.action === "itemchange") {
+                            console.log('modify organization');
+                            var row = e.items[0];
+                            if (row.DomainStatus !== window.appConfig.objectStatus.DELETED) {
+                                if (row.IdUserOrganization > 0)
+                                    row.DomainStatus = window.appConfig.objectStatus.MODIFIED;
+                            }
+                             //para el cambio de array
+                            if (e.field === "UserOrganizationAgencies") {
+                                var gridRole = e.sender.data();
+                                var rowRoleAgency = e.items[0];
+                                // modificado al padre del array
+                                $.each(gridRole, function (e, v) {
+                                    if (v.IdUserOrganization === rowRoleAgency.IdUserOrganization) {
+                                        if (v.DomainStatus !== window.appConfig.objectStatus.DELETED) {
+                                            v.DomainStatus = window.appConfig.objectStatus.MODIFIED;
+                                            return false;
+                                        }
+
+                                    }
+                                });
+                            }
+                        }
+                    }
+                }),
+                dataBound: function (e) {
+                       
+                },
+                // autoBind: false,
+                detailInit: detailInit,
+                detailTemplate: kendo.template($("#template").html()),
+                selectable: "row",
+                editable: true,
+                edit: function (e) {
+                    
+                },
+                columns: [
+                    {
+                        title: "",
+                        template: '<input type="checkbox" ng-click="selectOrganization(dataItem)" ng-model="dataItem.IsSelected" ng-disabled="isDisabled" />',
+                        width: "250px"
+                    },
+                    {
+                        field: "OrganizationName",
+                        title: "Código",
+                        editor: function (container, options) {
+                            $('<input kendo-drop-down-list data-option-label="\'Seleccione...\'" k-data-text-field="\'Code\'" k-data-value-field="\'Code\'" k-data-source="organizationsDataSource" data-bind="value:' + options.field + '" k-change="handleOrganizationChange"/>')
+                            .appendTo(container);
+                        },
+                        width: "250px"
+                    },
+                    {
+                        title: "Nombre",
+                        template: "<span>{{dataItem.OrganizationName}}</span>"
+                    },
+                    {
+                        title: "Predeterminado",
+                        width: "50px",
+                        template: '<input type="radio" name="organizationDefault" title="Seleccione predeterminado" ng-checked="dataItem.IsPredetermined" ng-click="changeOrganizationPrederminated(dataItem)" ng-disabled="isDisabled" />',
+                    }
+                ]
+            };
+            
+            $scope.addOrganization = function () {
+                var newModel = {};
+                if ($scope.model.IdUser > 0) newModel.IdUser = $scope.model.IdUser;
+                newModel.IdUserOrganization = getNewId();
+                newModel.OrganizationName = null;
+                newModel.IsPredetermined = false;
+                newModel.UserOrganizationAgencies = [];
+                $scope.userOrganizationGrid.dataSource.insert(0, newModel);
+            };
+            
+            $scope.handleOrganizationChange = function (e) {
+                // console.log('cambio combo organizacion');
+                var gridOrganization = $scope.uoGrid;
+                var selectedRowId = gridOrganization.dataItem(gridOrganization.select()).IdUserOrganization;
+                //dropdownList
+                var selectedIdOrganization = e.sender.dataItem().IdOrganization;
+                var selectedNameOrganization = e.sender.dataItem().Name;
+                $.each(gridOrganization.dataSource.data(), function (e, v) {
+                    if (v.IdUserOrganization === selectedRowId) {
+                        v.IdOrganization = selectedIdOrganization;
+                        v.OrganizationName = selectedNameOrganization;
+                        return false;
+                    }
+                });
+            };
+            
+            // GRILLA AGENCIA
+            function detailInit(e) {
+               e.detailRow.find(".gridAgenciesContainer").kendoGrid({
+                   dataSource: {
+                       transport: {
+                           read: function (options) {
+                               options.success(e.data.UserOrganizationAgencies.toJSON());
+                           }
+                       },
+                       pageSize: 10,
+                       schema: {
+                           model: {
+                               id: "IdUserOrganizationAgency",
+                               fields: {
+                                   IdUserOrganizationAgency: {
+                                       editable: false, 
+                                       nullable: true
+                                   },
+                                   IdUserOrganization: {
+                                       type: "number"
+                                   },
+                                   IdAgency: {
+                                       type: "number"
+                                   },
+                                   IsPredetermined: {
+                                       type: "boolean"
+                                   },
+                                   AgencyName: {
+                                       type: "string"
+                                   },
+                                   DomainStatus: {
+                                       type: "number"
+                                   }
+                               }
+                           }
+                       },
+                       change: function (e) {
+                            //debugger;
+                            console.log('cambio data Agencia');
+                            if (e.action === "add") {
+                               console.log('add agency');
+                               var row = e.items[0];
+                               row.DomainStatus = window.appConfig.objectStatus.ADDED;
+                            } else if (e.action === "itemchange") {
+                               console.log('modify agency');
+                               debugger;
+                               var row = e.items[0];
+                               if (row.DomainStatus !== window.appConfig.objectStatus.DELETED) {
+                                   if (row.IdUserOrganizationAgency > 0)
+                                       row.DomainStatus = window.appConfig.objectStatus.MODIFIED;
+                               }
+                            }
+                        }
+                   },
+                   selectable: "row",
+                   editable: true,
+                   edit: function (e) {
+                        
+                   },
+                   columns: [
+                           {
+                               title: "",
+                               template: "<input type='checkbox' ng-click='selectAgency(dataItem)' ng-model='dataItem.IsSelected'/>",
+                               width: "120px",
+                           },
+                           {
+                               title: "Agencia",
+                               field: "AgencyName",
+                               editor: function (container, options) {
+                                   var model = options.model;
+                                   $('<input kendo-drop-down-list data-option-label="\'Seleccione...\'" k-data-text-field="Name" k-data-value-field="Name" k-data-source="organizationAgenciesDS" data-bind="value:' + options.field + '" k-change="handleAgencyChange"/>')
+                                   .appendTo(container)
+                                   .kendoDropDownList({
+                                        // autoBind: false,
+                                        dataTextField: "Name",
+                                        dataValueField: "Name",
+                                        dataSource: $scope.organizationAgenciesDS,
+                                        optionLabel: "Seleccione...",
+                                        dataBind: "value: AgencyName",
+                                        change: function(e) {
+                                            debugger;
+                                            var value = this.value();
+                                            console.log('cambio combo agencia a', this, value);
+                                            // Use the value of the widget
+                                            var IdUserOrganization = model.IdUserOrganization;
+                                            var grid = $("#gridAgencies"+IdUserOrganization).data("kendoGrid");
+                                            // var dataRow = grid.dataSource.getByUid(currentDataItem.uid);
+                                            var selectedRowId = grid.dataItem(grid.select()).IdUserOrganizationAgency;
+                                            //dropdownList
+                                            var selectedIdAgency = e.sender.dataItem().IdAgency;
+                                            $.each(grid.dataSource.data(), function (e, v) {
+                                                if (v.IdUserOrganizationAgency === selectedRowId) {
+                                                    v.IdAgency = selectedIdAgency;
+                                                    return false;
+                                                }
+                                            });
+                                            $.each($scope.userOrganizationGrid.dataSource.data(), function (e, v) {
+                                                if (v.IdUserOrganization === IdUserOrganization) {
+                                                    v.UserOrganizationAgencies = grid;
+                                                    return false;
+                                                }
+                                            });
+                                        }
+                                   });
+                               }
+                               //template: '<select kendo-drop-down-list k-ng-model="dataItem.DataAgency" k-data-text-field="\'Name\'" k-value-primitive="false" k-data-value-field="\'IdAgency\'" k-data-source="organizationAgenciesDS" k-on-change="agencyChange(kendoEvent, dataItem)" data-bind="value:IdAgency" data-option-label="\'Seleccione...\'" ng-disabled="isDisabled"></select>',
+                           },
+                           {
+                               title: "Predeterminado",
+                               width: "50px",
+                               template: '<input type="radio" name="agencyDefault" title="Seleccione predeterminado" ng-checked="dataItem.IsPredetermined" ng-click="changeAgencyPrederminated(dataItem)"/>',
+                           }
+                   ]
+               });
+            };
+            
+            $scope.handleAgencyChange = function (e) {
+                console.log('cambio combo agencia handle');
+            };
+            
+             $scope.addAgency = function (dataItem) {
+                console.log(dataItem, 'iii');
+                var newModel = {};
+                if ($scope.model.IdUser > 0) newModel.IdUserOrganization = dataItem.IdUserOrganization;
+                newModel.IdUserOrganizationAgency = getNewIdAgency();
+                newModel.IdAgency = -1;
+                newModel.IsPredetermined = false;
+                var grid = $("#gridAgencies"+dataItem.IdUserOrganization).data("kendoGrid");
+                grid.dataSource.insert(0, newModel);
+                // grid.editRow($("#grid tr:eq(" + (1) + ")"));
+                console.log(grid, 'grid agencyyy');
+            };
+            
+            $scope.deleteAgency = function (dataItem) {
+                console.log('deleteAgency', dataItem);
+                var grid = $("#gridAgencies"+dataItem.IdUserOrganization).data("kendoGrid");
+                var currentDataItem = grid.dataItem(grid.select());
+                var dataRow = grid.dataSource.getByUid(currentDataItem.uid);
+                grid.dataSource.remove(dataRow); 
+            };
+            
+            // VIEW DATA
+            $scope.viewData = function(){
+                console.log($scope.userOrganizationGrid.dataSource.data(), 'data grid');  
+            };
+            
+            $scope.viewDataAgency = function(){
+                console.log($("#gridAgencies92").data("kendoGrid"), 'data grid agency 92');  
+            };
+            
+})
+</script>
+</body>
+</html>

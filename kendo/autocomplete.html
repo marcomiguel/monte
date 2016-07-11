@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Autocomplete Kendo</title>
+    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.2.504/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.2.504/styles/kendo.material.min.css" />
+    <script src="//kendo.cdn.telerik.com/2016.2.504/js/jquery.min.js"></script>
+    <script src="//kendo.cdn.telerik.com/2016.2.504/js/angular.min.js"></script>
+    <script src="//kendo.cdn.telerik.com/2016.2.504/js/kendo.all.min.js"></script>
+</head>
+<body>
+    <div id="example" ng-app="KendoDemos">
+        <div ng-controller="MyCtrl">
+            <div class="demo-section k-content">
+                <h4>Select Country /e.g. Armenia/</h4>
+                <input kendo-auto-complete ng-model="country" k-options="customOptions" style="width: 100%;" />
+                <p class="demo-hint">Your selection: {{ country }}</p>
+            </div>
+            <div>
+                <input kendo-auto-complete="autoListBP" 
+                    ng-model="ulSearchText" 
+                    k-options="customOptions"
+                    
+                    
+                    
+                    
+                   />
+                        <i class="fa fa-search" style="position: absolute; margin-top: 8px; margin-left: -17px;"></i>
+            </div>
+            <div>
+                <input kendo-auto-complete="autoListBP" 
+                    ng-model="ulSearchText" 
+                    k-min-Length="3" 
+                   k-select="handleLocalSelect"
+                    k-options="customOptions" 
+                    k-open="handleLocalOpen"
+                    k-close="handleLocalClose"
+                    k-ng-disabled="ulDisabled"
+                   />
+                    <i class="fa fa-search" style="position: absolute; margin-top: 8px; margin-left: -17px;"></i>
+            </div>
+        </div>
+    </div>
+    <script>
+  angular.module("KendoDemos", [ "kendo.directives" ])
+          .controller("MyCtrl", function($scope){
+              $scope.countryNames = [
+                "Albania",
+                "Andorra",
+                "Armenia",
+                "Austria",
+                "Azerbaijan",
+                "Belarus",
+                "Belgium",
+                "Bosnia & Herzegovina",
+                "Bulgaria",
+                "Croatia",
+                "Cyprus",
+                "Czech Republic",
+                "Denmark",
+                "Estonia",
+                "Finland",
+                "France",
+                "Georgia",
+                "Germany",
+                "Greece",
+                "Hungary",
+                "Iceland",
+                "Ireland",
+                "Italy",
+                "Kosovo",
+                "Latvia",
+                "Liechtenstein",
+                "Lithuania",
+                "Luxembourg",
+                "Macedonia",
+                "Malta",
+                "Moldova",
+                "Monaco",
+                "Montenegro",
+                "Netherlands",
+                "Norway",
+                "Poland",
+                "Portugal",
+                "Romania",
+                "Russia",
+                "San Marino",
+                "Serbia",
+                "Slovakia",
+                "Slovenia",
+                "Spain",
+                "Sweden",
+                "Switzerland",
+                "Turkey",
+                "Ukraine",
+                "United Kingdom",
+                "Vatican City"
+            ];
+            
+            $scope.ulDisabled = false;
+            
+                    var valid = false;
+
+                $scope.handleLocalOpen = function (e) {
+                    console.log('ggg');
+                    valid = false;
+                };
+
+                $scope.handleLocalSelect = function (e) {
+                    console.log('fff');
+                    var dataItem = this.dataItem(e.item.index());
+                    $scope.ulSelectedItem = dataItem;
+                    $scope.ulModel = dataItem[$scope.ulValueField||"IdBusinessPartner"];
+                    valid = true;
+                };        
+
+                $scope.handleLocalClose = function (e) {
+                    console.log('hhh');
+                    // if no valid selection - clear input            
+                    if (!valid) {
+                        this.value('');
+                        $scope.ulSelectedItem = null;
+                        $scope.ulModel = null;
+                    }
+                };
+            
+            $scope.customersDataSource = {
+                transport: {
+                    read: {
+                    dataType: "jsonp",
+                    url: "http://demos.telerik.com/kendo-ui/service/Customers",
+                    }
+                }
+                };
+
+                $scope.customOptions = {
+                dataSource: $scope.customersDataSource,
+                dataTextField: "ContactName",
+
+                headerTemplate: '<div class="dropdown-header">' +
+                '<span class="k-widget k-header">Photo</span>' +
+                '<span class="k-widget k-header">Contact info</span>' +
+                '</div>',
+
+                // using  templates:
+                template: '<span class="k-state-default"><img src=\"http://demos.telerik.com/kendo-ui/content/web/Customers/.jpg\" alt=\"\" /></span>' +
+                '<span class="k-state-default"><h3></h3><p></p></span>',
+                };     
+                  
+            
+          })
+</script>
+</body>
+</html>
