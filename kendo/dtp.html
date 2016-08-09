@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Kendo UI Snippet</title>
+
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.1.112/styles/kendo.common.min.css"/>
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.1.112/styles/kendo.rtl.min.css"/>
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.1.112/styles/kendo.silver.min.css"/>
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.1.112/styles/kendo.mobile.all.min.css"/>
+
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="http://kendo.cdn.telerik.com/2016.1.112/js/angular.min.js"></script>
+    <script src="http://kendo.cdn.telerik.com/2016.1.112/js/kendo.all.min.js"></script>
+</head>
+<body>
+  
+<div id="example" ng-app="KendoDemos">
+  <div class="demo-section k-content"ng-controller="MyCtrl">
+    <div class="box-col">
+      <h4>From date:</h4>
+      <input id="fromDatepicker" kendo-date-time-picker
+             ng-model="fromDateString"
+             k-ng-model="fromDateObject"
+             k-options="fromDateOptions"
+             k-max = "maxDate"
+             k-rebind="maxDate"
+             k-on-change="fromDateChanged()" />
+      <span></span>
+      <span>max date:</span>
+      <pre>{{fromDateString}}||{{fromDateObject}}</pre>
+      <pre>{{maxDate}}</pre>
+      <pre>{{fromDateOptions}}</pre>
+    </div>
+    <div class="box-col">
+      <h4>To date:</h4>
+      <input id="toDatepicker" kendo-date-time-picker
+             ng-model="toDateString"
+             k-ng-model="toDateObject"
+             k-options="toDateOptions"
+             k-min = "minDate"
+             k-rebind = "minDate"
+             k-on-change="toDateChanged()"/>
+      <span></span>
+      <span>min date:</span>
+      <pre>{{toDateString}}||{{toDateObject}}</pre>
+      <pre>{{minDate}}</pre>
+      <pre>{{toDateOptions}}</pre>
+    </div>
+    <div>
+      <button id="clear" ng-click="clear()">Clear</button>
+    </div>
+  </div>
+</div>
+<script>
+  angular.module("KendoDemos", [ "kendo.directives" ])
+          .controller("MyCtrl", function($scope, $filter){
+            $scope.fromDateString;
+            $scope.fromDateObject = null;
+            $scope.toDateString;
+            $scope.toDateObject = null;
+            $scope.maxDate = new Date();
+            $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
+            $scope.fromDateChanged = function(){
+              console.log($scope.fromDateString, 'aaa');
+              var from = $filter('date')($scope.fromDateObject, 'MM/dd/yyyy HH:mm');
+              console.log($scope.fromDateString, 'bbb');
+              $scope.minDate = new Date(from);
+              console.log("min changed " + $scope.fromDateString);
+            };
+            $scope.toDateChanged = function(){
+              console.log($scope.toDateString, 'xxx');
+              var to = $filter('date')($scope.toDateObject, 'MM/dd/yyyy HH:mm');
+              console.log($scope.toDateString, 'yyy');
+              $scope.maxDate = new Date(to);
+              console.log("min changed " + $scope.toDateString);
+            };
+            $scope.clear = function(){
+              $scope.fromDateString = '';
+              $scope.toDateString = '';
+              $scope.fromDateObject = null;
+              $scope.toDateObject = null;
+              $scope.maxDate = new Date();
+              $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
+            }
+            
+            $scope.fromDateOptions = {
+                format: "dd/MM/yyyy HH:mm",
+                //parseFormats: ["dd/MM/yyyy'T'HH:mm:ss"]
+            };
+            
+            $scope.toDateOptions = {
+                format: "dd/MM/yyyy HH:mm",
+                //parseFormats: ["dd/MM/yyyy'T'HH:mm:ss"]
+            };
+ 
+          })
+</script>
+</body>
+</html>
