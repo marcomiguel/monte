@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="svg-container"></div>
+</object>
+    <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script>
+		$(function(){
+            var selectedZones = [];
+            var others = false;
+            $("#svg-container").load("body.svg", function() {
+                
+                $(".zone").on("click", function(){
+                    //debugger
+                    var item = $(this).data("zone");
+                    if($(this).hasClass("selected")){
+                        var exist = $.inArray(item, selectedZones);
+                        if(exist!=-1){ // si existe
+                            $(this).removeClass("selected");
+                            selectedZones.splice(exist, 1);
+                            if(selectedZones.length === 0){
+                                $(this).removeClass("main");
+                            }
+                        }
+                    }else{
+                        $(this).addClass("selected");
+                        selectedZones.push(item);
+                        
+                        if(selectedZones.length === 1){
+                            $(this).addClass("main");
+                            if(!others){
+                                if (confirm("Seleccionar otras zonas?")) {
+                                    others = true;
+                                }
+                            }
+                        }
+                    }
+                    console.log(selectedZones, 'sz');
+                });
+            });
+        });
+	</script>
+</body>
+</html>

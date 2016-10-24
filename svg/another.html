@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+	<object data="body.svg" type="image/svg+xml" id="svg-body">
+	SVG no soportado.
+</object>
+    <!--<button class="zone" data-zone="1">Organ 1</button>
+    <button class="zone" data-zone="2">Organ 2</button>
+    <button class="zone" data-zone="3">Organ 3</button>
+    <button class="zone" data-zone="4">Organ 4</button>
+    <button class="zone" data-zone="5">Organ 5</button>
+    <button class="zone" data-zone="6">Organ 6</button>
+    <button class="zone" data-zone="7">Organ 7</button>
+    <button class="zone" data-zone="8">Organ 8</button>
+    <button class="zone" data-zone="9">Organ 9</button>-->
+    <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script>
+		$(function(){
+
+			console.log("cargo dom");
+
+			var svg = $("#svg-body");
+			var selectedZones = [];
+			var others = false;
+			
+			svg.on("load", function(){
+				console.log("cargo svg");
+				var zone = $(this).contents().find(".zone");
+				zone.on("click", function(){
+					var item = $(this).data("zone");
+					if($(this).hasClass("selected")){
+						var exist = $.inArray(item, selectedZones);
+						if(exist!=-1){ // si existe
+							$(this).removeClass("selected");
+							selectedZones.splice(exist, 1);
+							if(selectedZones.length === 0){
+								$(this).removeClass("main");
+							}
+						}
+					}else{
+						$(this).addClass("selected");
+						selectedZones.push(item);
+						
+						if(selectedZones.length === 1){
+							$(this).addClass("main");
+							if(!others){
+								if (confirm("Seleccionar otras zonas?")) {
+									others = true;
+								}
+							}
+						}
+					}
+					
+					console.log(selectedZones, 'sz');
+
+				});
+			});
+			
+        });
+	</script>
+</body>
+</html>
