@@ -14,10 +14,18 @@ const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window
 // const store =
 //   (window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore)(reducer)
 
+const showResults = values =>
+  new Promise(resolve => {
+    setTimeout(() => {  // simulate server latency
+      window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`)
+      resolve()
+    }, 500)
+  })
+
 export const Store = () => {
   return (
     <Provider store={store}>
-        <SimpleForm/>
+        <SimpleForm onSubmit={showResults}/>
     </Provider>
   )
 }

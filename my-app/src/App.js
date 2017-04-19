@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import './App.css';
 
 import { One } from './components/One'
-// import { Store } from './redux/store'
+import { Store } from './redux/store'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <One/>
+        <Store/>
       </div>
     );
   }

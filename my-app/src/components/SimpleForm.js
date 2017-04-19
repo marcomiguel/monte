@@ -1,57 +1,60 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import { Field, FieldArray, reduxForm } from 'redux-form'
+
+const renderField = ({ input, label, type, meta: { touched, error } }) => (
+  <div>
+    <label>{label}</label>
+    <div>
+      <input {...input} type={type} placeholder={label}/>
+      {touched && error && <span>{error}</span>}
+    </div>
+  </div>
+)
+
+const renderMembers = ({ fields, meta: { touched, error } }) => {
+  
+  const handleClick = (fields)=>{
+    console.log('yeee', fields);
+    for(var i=0; i<3; i++){
+      fields.push();
+    }
+  }
+  
+  return (
+  <ul>
+    <li>
+      <button type="button" onClick={handleClick.bind(this, fields)}>Add Member</button>
+      {touched && error && <span>{error}</span>}
+    </li>
+    {fields.map((member, index) =>
+      <li key={index}>
+        <button
+          type="button"
+          title="Remove Member"
+          onClick={() => fields.remove(index)}/>
+        <h4>Member #{index + 1}</h4>
+        <Field
+          name={`${member}.firstName`}
+          type="text"
+          component={renderField}
+          label="First Name"/>
+        <Field
+          name={`${member}.lastName`}
+          type="text"
+          component={renderField}
+          label="Last Name"/>
+      </li>
+    )}
+  </ul>
+  )
+}
 
 const SimpleForm = (props) => {
   const { handleSubmit, pristine, reset, submitting } = props
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>First Name</label>
-        <div>
-          <Field name="firstName" component="input" type="text" placeholder="First Name"/>
-        </div>
-      </div>
-      <div>
-        <label>Last Name</label>
-        <div>
-          <Field name="lastName" component="input" type="text" placeholder="Last Name"/>
-        </div>
-      </div>
-      <div>
-        <label>Email</label>
-        <div>
-          <Field name="email" component="input" type="email" placeholder="Email"/>
-        </div>
-      </div>
-      <div>
-        <label>Sex</label>
-        <div>
-          <label><Field name="sex" component="input" type="radio" value="male"/> Male</label>
-          <label><Field name="sex" component="input" type="radio" value="female"/> Female</label>
-        </div>
-      </div>
-      <div>
-        <label>Favorite Color</label>
-        <div>
-          <Field name="favoriteColor" component="select">
-            <option></option>
-            <option value="ff0000">Red</option>
-            <option value="00ff00">Green</option>
-            <option value="0000ff">Blue</option>
-          </Field>
-        </div>
-      </div>
-      <div>
-        <label htmlFor="employed">Employed</label>
-        <div>
-          <Field name="employed" id="employed" component="input" type="checkbox"/>
-        </div>
-      </div>
-      <div>
-        <label>Notes</label>
-        <div>
-          <Field name="notes" component="textarea"/>
-        </div>
+        <FieldArray name="members" component={renderMembers}/>
       </div>
       <div>
         <button type="submit" disabled={pristine || submitting}>Submit</button>
