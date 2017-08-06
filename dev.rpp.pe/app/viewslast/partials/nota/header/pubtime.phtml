@@ -1,6 +1,0 @@
-<?php $fecha_actual = time();?>
-<?php if($fecha_publicacion>$fecha_actual) $fecha_publicacion = $fecha_actual; ?>
-<div class="story-date">
-	<time itemprop="datePublished" datetime="<?=date(DATE_ATOM,$fecha_publicacion);?>" ><?=strftime("%d de %B del %G",$fecha_publicacion);?> - <?=date('g:i A',$fecha_publicacion);?>
-	</time>
-</div>

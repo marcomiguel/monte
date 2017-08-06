@@ -1,8 +1,0 @@
-<div class="sidebar-panel" id="noticia-360">
-	<h2 class="panel-title"><a href="{{host}}/tema-{{ tag }}">La Noticia 360</a></h2>
-
-<?php foreach (\Rpp\Services\Get\Flow::tag($tag,2) as $e => $item) : ?>
-  {{ partial('partials/portada/bloque/tag/tag_item', [ 'nid' : item._id , 'class' : 'left-photo' , 'title_h' : 'h3' , 'img_size' : 'small']) }}
-<?php endforeach;?>
-
-</div>

@@ -1,8 +1,0 @@
-{{ partial('partials/portada/bloque/tag/campana_cabecera_seccion' , ['slug': model.tag_slug_portada ] ) }}
-<?php if( $this->_view->exists('tag/cabecera/cb_'.$this->model->slug ) ) :?>
-    {{ partial('tag/cabecera/cb_' ~ model.slug , ['portada':'home'] ) }}
-<?php else:?>
-    {{ partial('tag/cabecera/general'   ) }}
-<?php endif;?>
-
-    {{ partial('partials/portada/grilla/' ~ model.package  ) }}

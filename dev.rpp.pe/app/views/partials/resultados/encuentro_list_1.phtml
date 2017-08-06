@@ -1,4 +1,0 @@
-<?php $fecha = @Rpp\Services\Get\Resultados::get_fechas_flags($this->model->torneo)[$this->model->fase]['actual']; if(empty($fecha))$fecha=1;?>
-<?php foreach (Rpp\Services\Get\Resultados::get_fecha($this->model->torneo)->{$this->model->fase}->{$fecha} as $encuentro): ?>
-	                     {{ partial('partials/resultados/encuentro',['match': encuentro ]) }}
-<?php endforeach;?>

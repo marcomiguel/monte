@@ -1,1 +1,0 @@
-<?php echo $this->partial('partials/nota/detalle/open/notapreview/' . $this->notapreview->tipo); ?> 

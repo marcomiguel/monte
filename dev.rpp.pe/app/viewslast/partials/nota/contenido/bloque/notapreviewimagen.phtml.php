@@ -1,1 +1,0 @@
-<img src="<?php echo $foto['data']['data']; ?>" alt="<?php echo $foto['alt']; ?>">

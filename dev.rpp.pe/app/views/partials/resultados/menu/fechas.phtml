@@ -1,7 +1,0 @@
-<div class="wrapper-slider-fechas"><span class="text-slider-fechas">fecha</span>
-  <ul class="slider-fechas">
-    <?php foreach (Rpp\Services\Get\Resultados::get_fecha($this->model->torneo)->{$this->model->fase} as $idfecha => $fechas) :?>
-    <li class="item <?php if( $this->model->fecha == $idfecha ): ?>active<?php endif ;?>"><a href="/resultados/fixture/{{model.torneo}}/{{model.fase}}/{{idfecha}}">{{idfecha}}</a></li>
-    <?php endforeach;?>
-  </ul>
-</div>

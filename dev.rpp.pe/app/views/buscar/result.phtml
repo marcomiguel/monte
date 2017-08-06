@@ -1,5 +1,0 @@
-{% for  key,item in response.docs %}
-    {{partial('partials/portada/flujo/box/normal',['nid':item.id , 'position' : key + 1])}}
-    <?php if($key >= 200) break;?>
-{% endfor %}
-

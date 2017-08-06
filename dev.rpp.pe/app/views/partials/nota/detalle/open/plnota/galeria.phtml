@@ -1,4 +1,0 @@
-<?php \Rpp\Services\Get\Article::part($this->model->nid,'contenido') ?>
-<?php foreach (\Rpp\Services\Get\Article::part($this->model->nid,'galeria') as $v => $key) :?>
-<?php \Rpp\Services\Get\Article::unset_part($this->model->nid,'contenido',$key);  ?>
-<?php endforeach;?>

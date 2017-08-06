@@ -1,9 +1,0 @@
-<div class="tags">
-  <ul>
-  	<?php if (is_array(\Rpp\Services\Get\Content::part($this->model->nid,'tags'))):?>
-	 <?php foreach ( \Rpp\Services\Get\Content::part($this->model->nid,'tags') as $tag): ?> 
-	    {{ partial('partials/nota/tags/list',['tag': tag] ) }}
-	 <?php endforeach; ?>
-	<?php endif;?>
-  </ul>
-</div>

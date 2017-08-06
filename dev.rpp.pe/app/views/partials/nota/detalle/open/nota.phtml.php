@@ -1,1 +1,0 @@
-<?php echo $this->partial('partials/nota/detalle/open/nota/' . \Rpp\Services\Get\Content::node($this->model->nid)->tipo); ?> 
