@@ -7,14 +7,16 @@ import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 
-import { MatButtonModule, MatCheckboxModule, MatChipsModule, MatFormFieldModule, MatInputModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatChipsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatListModule } from '@angular/material';
+import { NavLeftComponent } from './nav-left/nav-left.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
     HeaderComponent,
-    SearchComponent
+    SearchComponent,
+    NavLeftComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,8 @@ import { MatButtonModule, MatCheckboxModule, MatChipsModule, MatFormFieldModule,
     MatChipsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
