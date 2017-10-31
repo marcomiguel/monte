@@ -7,8 +7,9 @@ import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 
-import { MatButtonModule, MatCheckboxModule, MatChipsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatChipsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatListModule, MatToolbarModule } from '@angular/material';
 import { NavLeftComponent } from './nav-left/nav-left.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NavLeftComponent } from './nav-left/nav-left.component';
     LayoutComponent,
     HeaderComponent,
     SearchComponent,
-    NavLeftComponent
+    NavLeftComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,8 @@ import { NavLeftComponent } from './nav-left/nav-left.component';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
