@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Monte</title>
+</head>
+<body>
+    <div id="app">
+        <template v-if="mostrar">
+            <h1>{{ titulo | uppercase }}</h1>
+            <h2>{{ subtitulo | lowercase }}</h2>
+            <a :href="url" target="_blank">{{ text }}</a>
+        </template>
+        <div v-show="mostrar">
+            <h1>Titulo</h1>
+            <h2>Subtitulo</h2>
+            <a :href="url" target="_blank">{{ text }}</a>
+        </div>
+        <div>
+            <button @click="counter++">Sumar 1</button>
+            <button @click="counter--">Restar 1</button>
+            El contador esta en {{ counter }}
+        </div>
+        <div>
+            <input type="text" name="name" placeholder="Nombre" v-model="name"/>
+            <p>Nombre en mayúsculas: {{ name | uppercase}}</p>
+
+            <form @submit.prevent="submit">
+                <h2>¿Cuáles son tus cursos favoritos?</h2>
+                <!-- <input v-model="cursos" type="checkbox" id="vue" value="value"/>
+                <label for="vue">Curso de Vue</label>
+                <input v-model="cursos" type="checkbox" id="react" value="react"/>
+                <label for="vue">Curso de React</label>
+                <input v-model="cursos" type="checkbox" id="angular" value="angular"/>
+                <label for="vue">Curso de Angular</label>
+                <button type="submit">Enviar</button>             -->
+                <template v-for="curso in cursos">
+                    <curso :curso="curso" @checked="selectCurso"></curso>
+                    <!-- <input v-model="cursosSeleccionados" type="checkbox" v-bind:id="curso.value" v-bind:value="curso.value">
+                    <label v-bind:for="curso.value">{{ curso.name }}</label> -->
+                </template>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+        Vue.component('curso', {
+            props: ['curso'],
+            methods: {
+                onChange: function(ev) {
+                    this.$emit('checked', this.curso.value, ev.target.checked)
+                }
+            },
+            template: `
+                <div>
+                    <input type="checkbox" v-bind:id="curso.value" v-bind:value="curso.value" @change="onChange">
+                    <label v-bind:for="curso.value">{{ curso.name }}</label>
+                </div>
+            `
+        })
+        
+        let app = new Vue({
+            el: '#app',
+            data: {
+                url: 'https://google.com',
+                text: 'Google',
+                mostrar: true,
+                titulo: 'Hola soy el titulo',
+                subtitulo: 'Hola soy el subtitulo',
+                counter: 0,
+                name: '',
+                // cursos: [],
+                cursos: [
+                    { name: 'Vue', value: 'vue'},
+                    { name: 'React', value: 'react'},
+                    { name: 'Angular', value: 'angular'},                                        
+                ],
+                cursosSeleccionados: []
+            },
+            filters:{
+                uppercase: function (str) {
+                return str.toUpperCase()
+                },
+                lowercase: function (str) {
+                return str.toLowerCase()
+                },
+                capitalize: function(str) {
+                return str.charAt(0).toUpperCase() + str.slice(1);
+                }
+            },
+            methods: {
+                // sumar : function(){
+                //     this.counter++
+                // },
+                // restar : function(){
+                //     this.counter--
+                // }
+                submit : function() {
+                    // console.log('submit', this.cursos);
+                    console.log('submit', this.cursosSeleccionados);
+                },
+                selectCurso: function(curso, checked) {
+                    if(checked){
+                        this.cursosSeleccionados.push(curso);
+                    }else{
+                        let index = this.cursosSeleccionados.indexOf(curso);
+                        this.cursosSeleccionados.splice(index, 1);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
